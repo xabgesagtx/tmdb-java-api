@@ -3,11 +3,13 @@ package com.github.xabgesagtx.tmdb.api;
 import com.github.xabgesagtx.tmdb.api.external.ComplexTypeSpec;
 import com.github.xabgesagtx.tmdb.codegen.model.*;
 import com.google.common.base.CaseFormat;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+@Slf4j
 public class SpecToTypeConverter {
 
     private final RefTypeResolver refTypeResolver;
@@ -17,7 +19,7 @@ public class SpecToTypeConverter {
     }
 
     public Type generateType(String name, ComplexTypeSpec spec) {
-        System.out.println("Generating type for: " + name);
+        log.info("Generating type for: " + name);
         return createType(name, spec);
     }
 
@@ -42,7 +44,12 @@ public class SpecToTypeConverter {
     }
 
     private Field createField(String originalName, ComplexTypeSpec spec) {
-        String name = CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, originalName);
+        String name;
+        if (originalName.startsWith("_")) {
+            name = "_" + CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, originalName.substring(1));
+        } else {
+            name = CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, originalName);
+        }
         Type type = createType(originalName, spec);
         return new Field(type, name, originalName);
     }
@@ -56,7 +63,7 @@ public class SpecToTypeConverter {
                 return createType(originalName, resolvedSpec);
             }
         } else if (spec.getType() == null) {
-            System.out.println("Something weird happened for " + originalName + " - no type information available: " + spec);
+            log.warn("Something weird happened for " + originalName + " - no type information available: " + spec);
             // TODO: Better support for this - maybe merge both types
             return new MapType();
         } else if (spec.getType().contains("object") && spec.getProperties() == null) {
@@ -79,8 +86,7 @@ public class SpecToTypeConverter {
         } else if (spec.getType().contains("boolean")) {
             return new SimpleType(SimpleType.Primitive.BOOLEAN);
         } else {
-            // TODO: use logger
-            System.out.println("Unknown case: (" + originalName + ") " + spec);
+            log.warn("Unknown case: (" + originalName + ") " + spec);
             if (originalName.endsWith("path") || originalName.equals("iso_639_1") || originalName.equals("production_code")) {
                 return new SimpleType(SimpleType.Primitive.STRING);
             } else if (originalName.equals("belongs_to_collection")) {

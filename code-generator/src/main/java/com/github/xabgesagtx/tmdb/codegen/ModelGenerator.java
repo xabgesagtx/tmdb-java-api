@@ -117,7 +117,7 @@ public class ModelGenerator extends AbstractGenerator {
     JDefinedClass createEnum(EnumType enumType, JClassContainer classContainer) {
         JDefinedClass clazz = classContainer._enum(enumType.getName());
         enumType.getValues().forEach(name -> {
-            String enumName = name.replaceAll("\\s", "_").toUpperCase();
+            String enumName = name.replaceAll("\\s", "_").replaceAll("\\.", "").toUpperCase();
             JEnumConstant enumConstant = clazz.enumConstant(enumName);
             enumConstant.annotate(JsonProperty.class).param("value", name);
 

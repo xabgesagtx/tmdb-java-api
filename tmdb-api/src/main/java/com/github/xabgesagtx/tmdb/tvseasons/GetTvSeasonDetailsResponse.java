@@ -15,7 +15,7 @@ import lombok.extern.jackson.Jacksonized;
 public class GetTvSeasonDetailsResponse {
 
     @JsonProperty("_id")
-    String Id;
+    String _id;
     @JsonProperty("air_date")
     String airDate;
     @JsonProperty("episodes")

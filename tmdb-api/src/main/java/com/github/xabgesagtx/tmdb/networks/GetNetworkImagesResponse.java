@@ -45,9 +45,9 @@ public class GetNetworkImagesResponse {
         public enum FileType {
 
             @JsonProperty(".svg")
-            .SVG,
+            SVG,
             @JsonProperty(".png")
-            .PNG;
+            PNG;
 
         }
 
