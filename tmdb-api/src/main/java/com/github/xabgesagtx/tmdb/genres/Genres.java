@@ -14,6 +14,10 @@ public class Genres {
         this.restClient = restClient;
     }
 
+    /**
+     * <p>Get the list of official genres for movies.</p>
+     * 
+     */
     public Optional<GetMovieListResponse> getMovieList() {
         String path = "/genre/movie/list";
         return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
@@ -23,6 +27,10 @@ public class Genres {
         );
     }
 
+    /**
+     * <p>Get the list of official genres for TV shows.</p>
+     * 
+     */
     public Optional<GetTvListResponse> getTvList() {
         String path = "/genre/tv/list";
         return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {

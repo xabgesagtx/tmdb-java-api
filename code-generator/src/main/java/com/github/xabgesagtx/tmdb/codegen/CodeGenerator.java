@@ -20,10 +20,12 @@ public class CodeGenerator extends AbstractGenerator {
 
     private final JCodeModel model;
     private final ModelGenerator modelGenerator;
+    private final JavaDocFormatter javaDocFormatter;
 
     public CodeGenerator() {
         model = new JCodeModel();
         modelGenerator = new ModelGenerator(model);
+        javaDocFormatter = new JavaDocFormatter("https://developers.themoviedb.org/");
     }
 
     public void generateFor(List<Resource> resources, String basePackage, File outputDir) throws IOException {
@@ -74,6 +76,8 @@ public class CodeGenerator extends AbstractGenerator {
         JType resultType = getJType(endpoint.getResponse(), jPackage, false);
         JType optionalResultType = model.ref(Optional.class).narrow(resultType);
         JMethod method = resourceClass.method(JMod.PUBLIC, optionalResultType, endpoint.getName());
+        String javaDocText = javaDocFormatter.format(endpoint.getDescription());
+        method.javadoc().add(javaDocText);
         Map<String, JVar> pathVariables = endpoint.getPathVariables()
                 .stream()
                 .sorted(Comparator.comparing(Variable::getName, Comparator.naturalOrder()))

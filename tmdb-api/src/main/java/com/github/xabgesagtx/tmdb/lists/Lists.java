@@ -14,6 +14,10 @@ public class Lists {
         this.restClient = restClient;
     }
 
+    /**
+     * <p>Get the details of a list.</p>
+     * 
+     */
     public Optional<GetListDetailsResponse> getListDetails(String listId) {
         // /list/{list_id}
         String path = String.format("/list/%s", listId);
@@ -24,6 +28,10 @@ public class Lists {
         );
     }
 
+    /**
+     * <p>You can use this method to check if a movie has already been added to the list.</p>
+     * 
+     */
     public Optional<CheckItemStatusResponse> checkItemStatus(String listId) {
         // /list/{list_id}/item_status
         String path = String.format("/list/%s/item_status", listId);
@@ -34,6 +42,10 @@ public class Lists {
         );
     }
 
+    /**
+     * <p>Create a list.</p>
+     * 
+     */
     public Optional<CreateListResponse> createList() {
         String path = "/list";
         return restClient.post(path, Collections.emptyMap(), new TypeReference<>() {
@@ -43,6 +55,10 @@ public class Lists {
         );
     }
 
+    /**
+     * <p>Add a movie to a list.</p>
+     * 
+     */
     public Optional<AddMovieResponse> addMovie(String listId) {
         // /list/{list_id}/add_item
         String path = String.format("/list/%s/add_item", listId);
@@ -53,6 +69,10 @@ public class Lists {
         );
     }
 
+    /**
+     * <p>Remove a movie from a list.</p>
+     * 
+     */
     public Optional<RemoveMovieResponse> removeMovie(String listId) {
         // /list/{list_id}/remove_item
         String path = String.format("/list/%s/remove_item", listId);
@@ -63,6 +83,10 @@ public class Lists {
         );
     }
 
+    /**
+     * <p>Clear all of the items from a list.</p>
+     * 
+     */
     public Optional<ClearListResponse> clearList(String listId) {
         // /list/{list_id}/clear
         String path = String.format("/list/%s/clear", listId);
@@ -73,6 +97,10 @@ public class Lists {
         );
     }
 
+    /**
+     * <p>Delete a list.</p>
+     * 
+     */
     public Optional<DeleteListResponse> deleteList(String listId) {
         // /list/{list_id}
         String path = String.format("/list/%s", listId);

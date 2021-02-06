@@ -14,6 +14,10 @@ public class Credits {
         this.restClient = restClient;
     }
 
+    /**
+     * <p>Get a movie or TV credit details by id.</p> <a href="https://developers.themoviedb.org/#recent-changes">\ud83d\udd17</a> Recent Changes    <strong>Date</strong> <strong>Change</strong>     July 13, 2018 Movie credits are now supported.
+     * 
+     */
     public Optional<GetCreditDetailsResponse> getCreditDetails(String creditId) {
         // /credit/{credit_id}
         String path = String.format("/credit/%s", creditId);

@@ -15,6 +15,10 @@ public class Trending {
         this.restClient = restClient;
     }
 
+    /**
+     * <p>Get the daily or weekly trending items. The daily trending list tracks items over the period of a day while items have a 24 hour half life. The weekly list tracks items over a 7 day period, with a 7 day half life.</p> <a href="https://developers.themoviedb.org/#valid-media-types">\ud83d\udd17</a> Valid Media Types    <strong>Media Type</strong> <strong>Description</strong>     all Include all movies, TV shows and people in the results as a global trending list.   movie Show the trending movies in the results.   tv Show the trending TV shows in the results.   person Show the trending people in the results.    <a href="https://developers.themoviedb.org/#valid-time-windows">\ud83d\udd17</a> Valid Time Windows    <strong>Time Window</strong> <strong>Description</strong>     day View the trending list for the day.   week View the trending list for the week.
+     * 
+     */
     public Optional<GetTrendingResponse> getTrending(Trending.MediaTypeParam mediaType, Trending.TimeWindowParam timeWindow) {
         // /trending/{media_type}/{time_window}
         String path = String.format("/trending/%s/%s", mediaType, timeWindow);

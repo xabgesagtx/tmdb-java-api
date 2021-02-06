@@ -39,6 +39,7 @@ public class EndpointSpecToEndpointConverter {
         Type response = specToTypeConverter.generateType(typeName, spec.getResponses().get(0).getBody());
         return Endpoint.builder()
                 .name(endpointName)
+                .description(spec.getDescription())
                 .path(path)
                 .method(method)
                 .pathVariables(pathVariables)

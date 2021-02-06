@@ -14,6 +14,10 @@ public class Certifications {
         this.restClient = restClient;
     }
 
+    /**
+     * <p>Get an up to date list of the officially supported movie certifications on TMDb.</p>
+     * 
+     */
     public Optional<GetMovieCertificationsResponse> getMovieCertifications() {
         String path = "/certification/movie/list";
         return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
@@ -23,6 +27,10 @@ public class Certifications {
         );
     }
 
+    /**
+     * <p>Get an up to date list of the officially supported TV show certifications on TMDb.</p>
+     * 
+     */
     public Optional<GetTvCertificationsResponse> getTvCertifications() {
         String path = "/certification/tv/list";
         return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {

@@ -11,6 +11,7 @@ import java.util.Map;
 public class Endpoint {
 
     String name;
+    String description;
     String path;
     String method;
     List<Variable<?>> pathVariables;

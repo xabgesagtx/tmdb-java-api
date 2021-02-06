@@ -14,6 +14,10 @@ public class Keywords {
         this.restClient = restClient;
     }
 
+    /**
+     * 
+     * 
+     */
     public Optional<GetKeywordDetailsResponse> getKeywordDetails(int keywordId) {
         // /keyword/{keyword_id}
         String path = String.format("/keyword/%s", keywordId);
@@ -24,6 +28,11 @@ public class Keywords {
         );
     }
 
+    /**
+     * <p>Get the movies that belong to a keyword.</p> 
+     * <p>We <strong>highly recommend</strong> using <a href="https://developers.themoviedb.org/3/discover/movie-discover">movie discover</a> instead of this method as it is much more flexible.</p>
+     * 
+     */
     public Optional<GetMoviesByKeywordResponse> getMoviesByKeyword(int keywordId) {
         // /keyword/{keyword_id}/movies
         String path = String.format("/keyword/%s/movies", keywordId);
