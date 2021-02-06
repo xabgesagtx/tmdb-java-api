@@ -1,13 +1,17 @@
 package com.github.xabgesagtx.tmdb.api;
 
 import com.github.xabgesagtx.tmdb.api.external.EndpointSpec;
+import com.github.xabgesagtx.tmdb.api.external.RequestSpec;
 import com.github.xabgesagtx.tmdb.api.external.SchemaSpec;
-import com.github.xabgesagtx.tmdb.codegen.model.Endpoint;
+import com.github.xabgesagtx.tmdb.codegen.model.*;
 import com.google.common.base.CaseFormat;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
+@Slf4j
 public class EndpointSpecToEndpointConverter {
 
     private final SpecToTypeConverter specToTypeConverter;
@@ -21,14 +25,58 @@ public class EndpointSpecToEndpointConverter {
         String endpointName = getEndpointName(spec.getSlug());
         String typeName = getTypeName(spec.getSlug());
 
-        String path = spec.getRequest().getPath();
-        String method = spec.getRequest().getMethod();
+        RequestSpec request = spec.getRequest();
+        String path = request.getPath();
+        String method = request.getMethod();
+        List<PrimitiveVariable> pathVariables = getPathVariables(request);
+        List<PrimitiveVariable> requestParams = getRequestParams(request);
+
         /* TODO:
             - Use path and request variables
             - verify response type
             - consider traits (request and response)
         */
-        return new Endpoint(endpointName, path, method, Collections.emptyMap(), Collections.emptyMap(), specToTypeConverter.generateType(typeName, spec.getResponses().get(0).getBody()), Collections.emptyMap());
+        Type response = specToTypeConverter.generateType(typeName, spec.getResponses().get(0).getBody());
+        return Endpoint.builder()
+                .name(endpointName)
+                .path(path)
+                .method(method)
+                .pathVariables(pathVariables)
+                .requestParams(requestParams)
+                .errorResponses(Collections.emptyMap())
+                .response(response)
+                .build();
+    }
+
+    private List<PrimitiveVariable> getRequestParams(RequestSpec request) {
+        Type requestType = specToTypeConverter.generateType("request", request.getQueryString());
+        return typeToMapOfPrimitiveFields(requestType);
+    }
+
+    private List<PrimitiveVariable> typeToMapOfPrimitiveFields(Type type) {
+        if (type instanceof ObjectType) {
+            ObjectType objectType = (ObjectType) type;
+            List<Field> fields = objectType.getFields();
+            return fields.stream()
+                    .map(field -> {
+                        SimpleType.Primitive variableType;
+                        if (field.getType() instanceof SimpleType) {
+                            variableType = ((SimpleType) field.getType()).getPrimitive();
+                        } else {
+                            log.info("Found non simple field for {}: {}", objectType.getName(), field);
+                            variableType = SimpleType.Primitive.STRING;
+                        }
+                        return new PrimitiveVariable(variableType, field.getName(), field.getJsonName());
+                    })
+                    .collect(Collectors.toList());
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
+    private List<PrimitiveVariable> getPathVariables(RequestSpec request) {
+        Type requestType = specToTypeConverter.generateType("path", request.getPathParams());
+        return typeToMapOfPrimitiveFields(requestType);
     }
 
     String getEndpointName(String slug) {

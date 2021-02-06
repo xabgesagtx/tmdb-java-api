@@ -7,7 +7,11 @@ import java.time.LocalDate;
 abstract class AbstractGenerator {
 
     Class<?> getClassForSimpleType(SimpleType type) {
-        switch (type.getPrimitive()) {
+        return getClassForPrimitive(type.getPrimitive());
+    }
+
+    Class<?> getClassForPrimitive(SimpleType.Primitive type) {
+        switch (type) {
             case BOOLEAN:
                 return Boolean.class;
             case DATE:
@@ -19,7 +23,7 @@ abstract class AbstractGenerator {
             case STRING:
                 return String.class;
             default:
-                throw new IllegalArgumentException("Unknown primitive " + type.getPrimitive());
+                throw new IllegalArgumentException("Unknown primitive " + type);
         }
     }
 

@@ -1,62 +1,79 @@
 
 package com.github.xabgesagtx.tmdb.people;
 
+import com.github.xabgesagtx.tmdb.http.RestClient;
 
 public class People {
 
+    private final RestClient restClient;
 
-    public GetPersonDetailsResponse getPersonDetails() {
-        String path = "/person/{person_id}";
+    public People(RestClient restClient) {
+        this.restClient = restClient;
+    }
+
+    public GetPersonDetailsResponse getPersonDetails(Integer personId) {
+        // /person/{person_id}
+        String path = String.format("/person/%s", personId);
         return null;
     }
 
-    public GetPersonChangesResponse getPersonChanges() {
-        String path = "/person/{person_id}/changes";
+    public GetPersonChangesResponse getPersonChanges(Integer personId) {
+        // /person/{person_id}/changes
+        String path = String.format("/person/%s/changes", personId);
         return null;
     }
 
-    public GetPersonMovieCreditsResponse getPersonMovieCredits() {
-        String path = "/person/{person_id}/movie_credits";
+    public GetPersonMovieCreditsResponse getPersonMovieCredits(Integer personId) {
+        // /person/{person_id}/movie_credits
+        String path = String.format("/person/%s/movie_credits", personId);
         return null;
     }
 
-    public GetPersonTvCreditsResponse getPersonTvCredits() {
-        String path = "/person/{person_id}/tv_credits";
+    public GetPersonTvCreditsResponse getPersonTvCredits(Integer personId) {
+        // /person/{person_id}/tv_credits
+        String path = String.format("/person/%s/tv_credits", personId);
         return null;
     }
 
-    public GetPersonCombinedCreditsResponse getPersonCombinedCredits() {
-        String path = "/person/{person_id}/combined_credits";
+    public GetPersonCombinedCreditsResponse getPersonCombinedCredits(Integer personId) {
+        // /person/{person_id}/combined_credits
+        String path = String.format("/person/%s/combined_credits", personId);
         return null;
     }
 
-    public GetPersonExternalIdsResponse getPersonExternalIds() {
-        String path = "/person/{person_id}/external_ids";
+    public GetPersonExternalIdsResponse getPersonExternalIds(Integer personId) {
+        // /person/{person_id}/external_ids
+        String path = String.format("/person/%s/external_ids", personId);
         return null;
     }
 
-    public GetPersonImagesResponse getPersonImages() {
-        String path = "/person/{person_id}/images";
+    public GetPersonImagesResponse getPersonImages(Integer personId) {
+        // /person/{person_id}/images
+        String path = String.format("/person/%s/images", personId);
         return null;
     }
 
-    public GetTaggedImagesResponse getTaggedImages() {
-        String path = "/person/{person_id}/tagged_images";
+    public GetTaggedImagesResponse getTaggedImages(Integer personId) {
+        // /person/{person_id}/tagged_images
+        String path = String.format("/person/%s/tagged_images", personId);
         return null;
     }
 
-    public GetPersonTranslationsResponse getPersonTranslations() {
-        String path = "/person/{person_id}/translations";
+    public GetPersonTranslationsResponse getPersonTranslations(Integer personId) {
+        // /person/{person_id}/translations
+        String path = String.format("/person/%s/translations", personId);
         return null;
     }
 
     public GetLatestPersonResponse getLatestPerson() {
-        String path = "/person/latest";
+        // /person/latest
+        String path = String.format("/person/latest");
         return null;
     }
 
     public GetPopularPeopleResponse getPopularPeople() {
-        String path = "/person/popular";
+        // /person/popular
+        String path = String.format("/person/popular");
         return null;
     }
 

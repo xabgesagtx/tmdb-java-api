@@ -1,37 +1,49 @@
 
 package com.github.xabgesagtx.tmdb.authentication;
 
+import com.github.xabgesagtx.tmdb.http.RestClient;
 
 public class Authentication {
 
+    private final RestClient restClient;
+
+    public Authentication(RestClient restClient) {
+        this.restClient = restClient;
+    }
 
     public CreateGuestSessionResponse createGuestSession() {
-        String path = "/authentication/guest_session/new";
+        // /authentication/guest_session/new
+        String path = String.format("/authentication/guest_session/new");
         return null;
     }
 
     public CreateRequestTokenResponse createRequestToken() {
-        String path = "/authentication/token/new";
+        // /authentication/token/new
+        String path = String.format("/authentication/token/new");
         return null;
     }
 
     public CreateSessionResponse createSession() {
-        String path = "/authentication/session/new";
+        // /authentication/session/new
+        String path = String.format("/authentication/session/new");
         return null;
     }
 
     public ValidateRequestTokenResponse validateRequestToken() {
-        String path = "/authentication/token/validate_with_login";
+        // /authentication/token/validate_with_login
+        String path = String.format("/authentication/token/validate_with_login");
         return null;
     }
 
     public CreateSessionFromV4AccessTokenResponse createSessionFromV4AccessToken() {
-        String path = "/authentication/session/convert/4";
+        // /authentication/session/convert/4
+        String path = String.format("/authentication/session/convert/4");
         return null;
     }
 
     public DeleteSessionResponse deleteSession() {
-        String path = "/authentication/session";
+        // /authentication/session
+        String path = String.format("/authentication/session");
         return null;
     }
 

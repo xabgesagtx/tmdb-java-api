@@ -1,42 +1,55 @@
 
 package com.github.xabgesagtx.tmdb.search;
 
+import com.github.xabgesagtx.tmdb.http.RestClient;
 
 public class Search {
 
+    private final RestClient restClient;
+
+    public Search(RestClient restClient) {
+        this.restClient = restClient;
+    }
 
     public SearchCompaniesResponse searchCompanies() {
-        String path = "/search/company";
+        // /search/company
+        String path = String.format("/search/company");
         return null;
     }
 
     public SearchCollectionsResponse searchCollections() {
-        String path = "/search/collection";
+        // /search/collection
+        String path = String.format("/search/collection");
         return null;
     }
 
     public SearchKeywordsResponse searchKeywords() {
-        String path = "/search/keyword";
+        // /search/keyword
+        String path = String.format("/search/keyword");
         return null;
     }
 
     public SearchMoviesResponse searchMovies() {
-        String path = "/search/movie";
+        // /search/movie
+        String path = String.format("/search/movie");
         return null;
     }
 
     public MultiSearchResponse multiSearch() {
-        String path = "/search/multi";
+        // /search/multi
+        String path = String.format("/search/multi");
         return null;
     }
 
     public SearchPeopleResponse searchPeople() {
-        String path = "/search/person";
+        // /search/person
+        String path = String.format("/search/person");
         return null;
     }
 
     public SearchTvShowsResponse searchTvShows() {
-        String path = "/search/tv";
+        // /search/tv
+        String path = String.format("/search/tv");
         return null;
     }
 

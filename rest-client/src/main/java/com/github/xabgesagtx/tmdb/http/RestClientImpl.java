@@ -64,6 +64,21 @@ public class RestClientImpl implements RestClient {
         return get(path, Collections.emptyMap(), clazz);
     }
 
+    @Override
+    public <T> Optional<T> post(String path, Map<String, Object> params, Class<T> clazz) {
+        return Optional.empty();
+    }
+
+    @Override
+    public <T> Optional<T> delete(String path, Map<String, Object> params, Class<T> clazz) {
+        return Optional.empty();
+    }
+
+    @Override
+    public <T> Optional<T> put(String path, Map<String, Object> params, Class<T> clazz) {
+        return Optional.empty();
+    }
+
     <T> Optional<T> handleResponse(HttpResponse<T> response) {
         switch (response.statusCode()) {
             case 200:
