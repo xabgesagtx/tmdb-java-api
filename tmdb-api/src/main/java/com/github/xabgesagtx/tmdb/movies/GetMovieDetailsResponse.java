@@ -126,17 +126,27 @@ public class GetMovieDetailsResponse {
     public enum Status {
 
         @JsonProperty("Rumored")
-        RUMORED,
+        RUMORED("Rumored"),
         @JsonProperty("Planned")
-        PLANNED,
+        PLANNED("Planned"),
         @JsonProperty("In Production")
-        IN_PRODUCTION,
+        IN_PRODUCTION("In Production"),
         @JsonProperty("Post Production")
-        POST_PRODUCTION,
+        POST_PRODUCTION("Post Production"),
         @JsonProperty("Released")
-        RELEASED,
+        RELEASED("Released"),
         @JsonProperty("Canceled")
-        CANCELED;
+        CANCELED("Canceled");
+        private final String value;
+
+        Status(String value) {
+            this.value = value;
+        }
+
+        @Override
+        public String toString() {
+            return value;
+        }
 
     }
 

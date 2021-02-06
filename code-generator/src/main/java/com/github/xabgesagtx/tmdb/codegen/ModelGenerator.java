@@ -116,11 +116,17 @@ public class ModelGenerator extends AbstractGenerator {
     @SneakyThrows
     JDefinedClass createEnum(EnumType enumType, JClassContainer classContainer) {
         JDefinedClass clazz = classContainer._enum(enumType.getName());
+        JFieldVar valueField = clazz.field(JMod.PRIVATE | JMod.FINAL, String.class, "value");
+        JMethod constructor = clazz.constructor(JMod.NONE);
+        JVar valueParam = constructor.param(String.class, "value");
+        constructor.body().assign(JExpr._this().ref(valueField), valueParam);
+        JMethod toStringMethod = clazz.method(JMod.PUBLIC, String.class, "toString");
+        toStringMethod.annotate(Override.class);
+        toStringMethod.body()._return(valueField);
         enumType.getValues().forEach(name -> {
             String enumName = name.replaceAll("\\s", "_").replaceAll("\\.", "").toUpperCase();
-            JEnumConstant enumConstant = clazz.enumConstant(enumName);
+            JEnumConstant enumConstant = clazz.enumConstant(enumName).arg(JExpr.lit(name));
             enumConstant.annotate(JsonProperty.class).param("value", name);
-
         });
         return clazz;
     }

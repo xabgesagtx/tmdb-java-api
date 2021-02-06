@@ -45,21 +45,31 @@ public class GetTvEpisodeVideosResponse {
         public enum Type {
 
             @JsonProperty("Trailer")
-            TRAILER,
+            TRAILER("Trailer"),
             @JsonProperty("Teaser")
-            TEASER,
+            TEASER("Teaser"),
             @JsonProperty("Clip")
-            CLIP,
+            CLIP("Clip"),
             @JsonProperty("Featurette")
-            FEATURETTE,
+            FEATURETTE("Featurette"),
             @JsonProperty("Opening Credits")
-            OPENING_CREDITS,
+            OPENING_CREDITS("Opening Credits"),
             @JsonProperty("Behind the Scenes")
-            BEHIND_THE_SCENES,
+            BEHIND_THE_SCENES("Behind the Scenes"),
             @JsonProperty("Bloopers")
-            BLOOPERS,
+            BLOOPERS("Bloopers"),
             @JsonProperty("Recap")
-            RECAP;
+            RECAP("Recap");
+            private final String value;
+
+            Type(String value) {
+                this.value = value;
+            }
+
+            @Override
+            public String toString() {
+                return value;
+            }
 
         }
 

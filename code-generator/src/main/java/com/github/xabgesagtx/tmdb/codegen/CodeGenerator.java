@@ -69,8 +69,8 @@ public class CodeGenerator extends AbstractGenerator {
         JMethod method = resourceClass.method(JMod.PUBLIC, optionalResultType, endpoint.getName());
         Map<String, JVar> pathVariables = endpoint.getPathVariables()
                 .stream()
-                .sorted(Comparator.comparing(PrimitiveVariable::getName, Comparator.naturalOrder()))
-                .map(variable -> Pair.of(variable.getJsonName(), createMethodParam(method, variable)))
+                .sorted(Comparator.comparing(Variable::getName, Comparator.naturalOrder()))
+                .map(variable -> Pair.of(variable.getJsonName(), createMethodParam(method, resourceClass, variable)))
                 .collect(Collectors.toMap(Pair::getKey, Pair::getValue));
         JBlock body = method.body();
         JVar formattedPath = formatPath(body, endpoint.getPath(), pathVariables);
@@ -102,8 +102,15 @@ public class CodeGenerator extends AbstractGenerator {
         }
     }
 
-    JVar createMethodParam(JMethod method, PrimitiveVariable variable) {
-        return method.param(model.ref(getClassForPrimitive(variable.getType())).unboxify(), variable.getName());
+    JVar createMethodParam(JMethod method, JDefinedClass resourceClass, Variable<?> variable) {
+        if (variable instanceof EnumVariable) {
+            EnumVariable enumVariable = (EnumVariable) variable;
+            JDefinedClass enumClass = modelGenerator.createEnum(enumVariable.getType(), resourceClass);
+            return method.param(enumClass, variable.getName());
+        } else {
+            PrimitiveVariable primitiveVariable = (PrimitiveVariable) variable;
+            return method.param(model.ref(getClassForPrimitive(primitiveVariable.getType())).unboxify(), variable.getName());
+        }
     }
 
     JType getJType(Type type, JClassContainer classContainer, boolean shouldBeStatic) {

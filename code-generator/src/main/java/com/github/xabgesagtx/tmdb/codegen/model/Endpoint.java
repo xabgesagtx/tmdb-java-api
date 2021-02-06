@@ -13,8 +13,8 @@ public class Endpoint {
     String name;
     String path;
     String method;
-    List<PrimitiveVariable> pathVariables;
-    List<PrimitiveVariable> requestParams;
+    List<Variable<?>> pathVariables;
+    List<Variable<?>> requestParams;
     Type response;
     Map<Integer, Type> errorResponses;
 

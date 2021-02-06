@@ -45,9 +45,19 @@ public class GetNetworkImagesResponse {
         public enum FileType {
 
             @JsonProperty(".svg")
-            SVG,
+            SVG(".svg"),
             @JsonProperty(".png")
-            PNG;
+            PNG(".png");
+            private final String value;
+
+            FileType(String value) {
+                this.value = value;
+            }
+
+            @Override
+            public String toString() {
+                return value;
+            }
 
         }
 
