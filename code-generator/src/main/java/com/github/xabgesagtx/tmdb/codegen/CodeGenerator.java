@@ -3,6 +3,7 @@ package com.github.xabgesagtx.tmdb.codegen;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.github.xabgesagtx.tmdb.codegen.model.*;
 import com.github.xabgesagtx.tmdb.http.RestClient;
+import com.github.xabgesagtx.tmdb.http.RestClientImpl;
 import com.google.common.base.CaseFormat;
 import com.sun.codemodel.*;
 import lombok.SneakyThrows;
@@ -44,6 +45,12 @@ public class CodeGenerator extends AbstractGenerator {
             constructorBody.assign(field, JExpr._new(resource).arg(restClient));
             tmdbApi.method(JMod.PUBLIC, resource, resourceName).body()._return(field);
         });
+
+        // convenience constructor
+        JMethod apiKeyConstructor = tmdbApi.constructor(JMod.PUBLIC);
+        JVar apiKeyParam = apiKeyConstructor.param(String.class, "apiKey");
+        JInvocation restClientImpl = JExpr._new(model.ref(RestClientImpl.class)).arg(apiKeyParam);
+        apiKeyConstructor.body().invoke("this").arg(restClientImpl);
     }
 
     @SneakyThrows
