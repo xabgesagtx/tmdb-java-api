@@ -1,7 +1,10 @@
 
 package com.github.xabgesagtx.tmdb.configuration;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.github.xabgesagtx.tmdb.http.RestClient;
 
 public class Configuration {
@@ -12,40 +15,58 @@ public class Configuration {
         this.restClient = restClient;
     }
 
-    public GetApiConfigurationResponse getApiConfiguration() {
-        // /configuration
-        String path = String.format("/configuration");
-        return null;
+    public Optional<GetApiConfigurationResponse> getApiConfiguration() {
+        String path = "/configuration";
+        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
-    public List<GetCountriesResponse> getCountries() {
-        // /configuration/countries
-        String path = String.format("/configuration/countries");
-        return null;
+    public Optional<List<GetCountriesResponse>> getCountries() {
+        String path = "/configuration/countries";
+        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
-    public List<GetJobsResponse> getJobs() {
-        // /configuration/jobs
-        String path = String.format("/configuration/jobs");
-        return null;
+    public Optional<List<GetJobsResponse>> getJobs() {
+        String path = "/configuration/jobs";
+        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
-    public List<GetLanguagesResponse> getLanguages() {
-        // /configuration/languages
-        String path = String.format("/configuration/languages");
-        return null;
+    public Optional<List<GetLanguagesResponse>> getLanguages() {
+        String path = "/configuration/languages";
+        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
-    public List<String> getPrimaryTranslations() {
-        // /configuration/primary_translations
-        String path = String.format("/configuration/primary_translations");
-        return null;
+    public Optional<List<String>> getPrimaryTranslations() {
+        String path = "/configuration/primary_translations";
+        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
-    public List<GetTimezonesResponse> getTimezones() {
-        // /configuration/timezones
-        String path = String.format("/configuration/timezones");
-        return null;
+    public Optional<List<GetTimezonesResponse>> getTimezones() {
+        String path = "/configuration/timezones";
+        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
 }

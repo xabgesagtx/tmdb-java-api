@@ -1,5 +1,6 @@
 package com.github.xabgesagtx.tmdb.http;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.github.xabgesagtx.tmdb.http.exceptions.UnauthorizedException;
 import com.github.xabgesagtx.tmdb.http.exceptions.UnexpectedStatusCodeException;
 import com.github.xabgesagtx.tmdb.json.JsonBodyHandler;
@@ -44,14 +45,14 @@ public class RestClientImpl implements RestClient {
 
     @Override
     @SneakyThrows
-    public <T> Optional<T> get(String path, Map<String, Object> params, Class<T> clazz) {
+    public <T> Optional<T> get(String path, Map<String, Object> params, TypeReference<T> typeReference) {
         URI uri = createUri(path, params);
         HttpRequest request = HttpRequest.newBuilder()
                 .GET()
                 .uri(uri)
                 .build();
         try {
-            HttpResponse<T> response = client.send(request, new JsonBodyHandler<>(clazz, jsonTransformer));
+            HttpResponse<T> response = client.send(request, new JsonBodyHandler<>(typeReference, jsonTransformer));
             return handleResponse(response);
         } catch (IOException e) {
             throw new IOApiException("IO issue while performing get", e);
@@ -60,22 +61,22 @@ public class RestClientImpl implements RestClient {
     }
 
     @Override
-    public <T> Optional<T> get(String path, Class<T> clazz) {
-        return get(path, Collections.emptyMap(), clazz);
+    public <T> Optional<T> get(String path, TypeReference<T> typeReference) {
+        return get(path, Collections.emptyMap(), typeReference);
     }
 
     @Override
-    public <T> Optional<T> post(String path, Map<String, Object> params, Class<T> clazz) {
+    public <T> Optional<T> post(String path, Map<String, Object> params, TypeReference<T> typeReference) {
         return Optional.empty();
     }
 
     @Override
-    public <T> Optional<T> delete(String path, Map<String, Object> params, Class<T> clazz) {
+    public <T> Optional<T> delete(String path, Map<String, Object> params, TypeReference<T> typeReference) {
         return Optional.empty();
     }
 
     @Override
-    public <T> Optional<T> put(String path, Map<String, Object> params, Class<T> clazz) {
+    public <T> Optional<T> put(String path, Map<String, Object> params, TypeReference<T> typeReference) {
         return Optional.empty();
     }
 

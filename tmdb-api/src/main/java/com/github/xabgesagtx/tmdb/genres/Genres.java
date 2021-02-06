@@ -1,6 +1,9 @@
 
 package com.github.xabgesagtx.tmdb.genres;
 
+import java.util.Collections;
+import java.util.Optional;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.github.xabgesagtx.tmdb.http.RestClient;
 
 public class Genres {
@@ -11,16 +14,22 @@ public class Genres {
         this.restClient = restClient;
     }
 
-    public GetMovieListResponse getMovieList() {
-        // /genre/movie/list
-        String path = String.format("/genre/movie/list");
-        return null;
+    public Optional<GetMovieListResponse> getMovieList() {
+        String path = "/genre/movie/list";
+        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
-    public GetTvListResponse getTvList() {
-        // /genre/tv/list
-        String path = String.format("/genre/tv/list");
-        return null;
+    public Optional<GetTvListResponse> getTvList() {
+        String path = "/genre/tv/list";
+        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
 }

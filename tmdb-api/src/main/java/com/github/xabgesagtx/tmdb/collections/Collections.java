@@ -1,6 +1,8 @@
 
 package com.github.xabgesagtx.tmdb.collections;
 
+import java.util.Optional;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.github.xabgesagtx.tmdb.http.RestClient;
 
 public class Collections {
@@ -11,22 +13,34 @@ public class Collections {
         this.restClient = restClient;
     }
 
-    public GetCollectionDetailsResponse getCollectionDetails(Integer collectionId) {
+    public Optional<GetCollectionDetailsResponse> getCollectionDetails(int collectionId) {
         // /collection/{collection_id}
         String path = String.format("/collection/%s", collectionId);
-        return null;
+        return restClient.get(path, java.util.Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
-    public GetCollectionImagesResponse getCollectionImages(Integer collectionId) {
+    public Optional<GetCollectionImagesResponse> getCollectionImages(int collectionId) {
         // /collection/{collection_id}/images
         String path = String.format("/collection/%s/images", collectionId);
-        return null;
+        return restClient.get(path, java.util.Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
-    public GetCollectionTranslationsResponse getCollectionTranslations(Integer collectionId) {
+    public Optional<GetCollectionTranslationsResponse> getCollectionTranslations(int collectionId) {
         // /collection/{collection_id}/translations
         String path = String.format("/collection/%s/translations", collectionId);
-        return null;
+        return restClient.get(path, java.util.Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
 }

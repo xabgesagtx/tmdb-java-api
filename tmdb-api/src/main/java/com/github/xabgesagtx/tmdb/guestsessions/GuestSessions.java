@@ -1,6 +1,9 @@
 
 package com.github.xabgesagtx.tmdb.guestsessions;
 
+import java.util.Collections;
+import java.util.Optional;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.github.xabgesagtx.tmdb.http.RestClient;
 
 public class GuestSessions {
@@ -11,22 +14,34 @@ public class GuestSessions {
         this.restClient = restClient;
     }
 
-    public GetGuestSessionRatedMoviesResponse getGuestSessionRatedMovies(String guestSessionId) {
+    public Optional<GetGuestSessionRatedMoviesResponse> getGuestSessionRatedMovies(String guestSessionId) {
         // /guest_session/{guest_session_id}/rated/movies
         String path = String.format("/guest_session/%s/rated/movies", guestSessionId);
-        return null;
+        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
-    public GetGuestSessionRatedTvShowsResponse getGuestSessionRatedTvShows(String guestSessionId) {
+    public Optional<GetGuestSessionRatedTvShowsResponse> getGuestSessionRatedTvShows(String guestSessionId) {
         // /guest_session/{guest_session_id}/rated/tv
         String path = String.format("/guest_session/%s/rated/tv", guestSessionId);
-        return null;
+        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
-    public GetGestSessionRatedTvEpisodesResponse getGestSessionRatedTvEpisodes(String guestSessionId) {
+    public Optional<GetGestSessionRatedTvEpisodesResponse> getGestSessionRatedTvEpisodes(String guestSessionId) {
         // /guest_session/{guest_session_id}/rated/tv/episodes
         String path = String.format("/guest_session/%s/rated/tv/episodes", guestSessionId);
-        return null;
+        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
 }

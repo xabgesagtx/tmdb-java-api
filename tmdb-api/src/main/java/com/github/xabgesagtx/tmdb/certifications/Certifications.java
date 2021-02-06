@@ -1,6 +1,9 @@
 
 package com.github.xabgesagtx.tmdb.certifications;
 
+import java.util.Collections;
+import java.util.Optional;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.github.xabgesagtx.tmdb.http.RestClient;
 
 public class Certifications {
@@ -11,16 +14,22 @@ public class Certifications {
         this.restClient = restClient;
     }
 
-    public GetMovieCertificationsResponse getMovieCertifications() {
-        // /certification/movie/list
-        String path = String.format("/certification/movie/list");
-        return null;
+    public Optional<GetMovieCertificationsResponse> getMovieCertifications() {
+        String path = "/certification/movie/list";
+        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
-    public GetTvCertificationsResponse getTvCertifications() {
-        // /certification/tv/list
-        String path = String.format("/certification/tv/list");
-        return null;
+    public Optional<GetTvCertificationsResponse> getTvCertifications() {
+        String path = "/certification/tv/list";
+        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
 }

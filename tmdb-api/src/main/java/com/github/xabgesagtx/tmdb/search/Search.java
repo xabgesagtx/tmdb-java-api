@@ -1,6 +1,9 @@
 
 package com.github.xabgesagtx.tmdb.search;
 
+import java.util.Collections;
+import java.util.Optional;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.github.xabgesagtx.tmdb.http.RestClient;
 
 public class Search {
@@ -11,46 +14,67 @@ public class Search {
         this.restClient = restClient;
     }
 
-    public SearchCompaniesResponse searchCompanies() {
-        // /search/company
-        String path = String.format("/search/company");
-        return null;
+    public Optional<SearchCompaniesResponse> searchCompanies() {
+        String path = "/search/company";
+        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
-    public SearchCollectionsResponse searchCollections() {
-        // /search/collection
-        String path = String.format("/search/collection");
-        return null;
+    public Optional<SearchCollectionsResponse> searchCollections() {
+        String path = "/search/collection";
+        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
-    public SearchKeywordsResponse searchKeywords() {
-        // /search/keyword
-        String path = String.format("/search/keyword");
-        return null;
+    public Optional<SearchKeywordsResponse> searchKeywords() {
+        String path = "/search/keyword";
+        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
-    public SearchMoviesResponse searchMovies() {
-        // /search/movie
-        String path = String.format("/search/movie");
-        return null;
+    public Optional<SearchMoviesResponse> searchMovies() {
+        String path = "/search/movie";
+        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
-    public MultiSearchResponse multiSearch() {
-        // /search/multi
-        String path = String.format("/search/multi");
-        return null;
+    public Optional<MultiSearchResponse> multiSearch() {
+        String path = "/search/multi";
+        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
-    public SearchPeopleResponse searchPeople() {
-        // /search/person
-        String path = String.format("/search/person");
-        return null;
+    public Optional<SearchPeopleResponse> searchPeople() {
+        String path = "/search/person";
+        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
-    public SearchTvShowsResponse searchTvShows() {
-        // /search/tv
-        String path = String.format("/search/tv");
-        return null;
+    public Optional<SearchTvShowsResponse> searchTvShows() {
+        String path = "/search/tv";
+        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
 }

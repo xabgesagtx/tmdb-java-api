@@ -1,6 +1,9 @@
 
 package com.github.xabgesagtx.tmdb.trending;
 
+import java.util.Collections;
+import java.util.Optional;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.github.xabgesagtx.tmdb.http.RestClient;
 
 public class Trending {
@@ -11,10 +14,14 @@ public class Trending {
         this.restClient = restClient;
     }
 
-    public GetTrendingResponse getTrending(String mediaType, String timeWindow) {
+    public Optional<GetTrendingResponse> getTrending(String mediaType, String timeWindow) {
         // /trending/{media_type}/{time_window}
         String path = String.format("/trending/%s/%s", mediaType, timeWindow);
-        return null;
+        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
 }

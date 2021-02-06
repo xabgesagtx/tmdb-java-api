@@ -1,6 +1,9 @@
 
 package com.github.xabgesagtx.tmdb.tv;
 
+import java.util.Collections;
+import java.util.Optional;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.github.xabgesagtx.tmdb.http.RestClient;
 
 public class TV {
@@ -11,154 +14,249 @@ public class TV {
         this.restClient = restClient;
     }
 
-    public GetTvDetailsResponse getTvDetails(Integer tvId) {
+    public Optional<GetTvDetailsResponse> getTvDetails(int tvId) {
         // /tv/{tv_id}
         String path = String.format("/tv/%s", tvId);
-        return null;
+        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
-    public GetTvAccountStatesResponse getTvAccountStates(Integer tvId) {
+    public Optional<GetTvAccountStatesResponse> getTvAccountStates(int tvId) {
         // /tv/{tv_id}/account_states
         String path = String.format("/tv/%s/account_states", tvId);
-        return null;
+        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
-    public GetTvAggregateCreditsResponse getTvAggregateCredits(Integer tvId) {
+    public Optional<GetTvAggregateCreditsResponse> getTvAggregateCredits(int tvId) {
         // /tv/{tv_id}/aggregate_credits
         String path = String.format("/tv/%s/aggregate_credits", tvId);
-        return null;
+        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
-    public GetTvAlternativeTitlesResponse getTvAlternativeTitles(Integer tvId) {
+    public Optional<GetTvAlternativeTitlesResponse> getTvAlternativeTitles(int tvId) {
         // /tv/{tv_id}/alternative_titles
         String path = String.format("/tv/%s/alternative_titles", tvId);
-        return null;
+        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
-    public GetTvChangesResponse getTvChanges(Integer tvId) {
+    public Optional<GetTvChangesResponse> getTvChanges(int tvId) {
         // /tv/{tv_id}/changes
         String path = String.format("/tv/%s/changes", tvId);
-        return null;
+        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
-    public GetTvContentRatingsResponse getTvContentRatings(Integer tvId) {
+    public Optional<GetTvContentRatingsResponse> getTvContentRatings(int tvId) {
         // /tv/{tv_id}/content_ratings
         String path = String.format("/tv/%s/content_ratings", tvId);
-        return null;
+        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
-    public GetTvCreditsResponse getTvCredits(Integer tvId) {
+    public Optional<GetTvCreditsResponse> getTvCredits(int tvId) {
         // /tv/{tv_id}/credits
         String path = String.format("/tv/%s/credits", tvId);
-        return null;
+        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
-    public GetTvEpisodeGroupsResponse getTvEpisodeGroups(Integer tvId) {
+    public Optional<GetTvEpisodeGroupsResponse> getTvEpisodeGroups(int tvId) {
         // /tv/{tv_id}/episode_groups
         String path = String.format("/tv/%s/episode_groups", tvId);
-        return null;
+        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
-    public GetTvExternalIdsResponse getTvExternalIds(Integer tvId) {
+    public Optional<GetTvExternalIdsResponse> getTvExternalIds(int tvId) {
         // /tv/{tv_id}/external_ids
         String path = String.format("/tv/%s/external_ids", tvId);
-        return null;
+        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
-    public GetTvImagesResponse getTvImages(Integer tvId) {
+    public Optional<GetTvImagesResponse> getTvImages(int tvId) {
         // /tv/{tv_id}/images
         String path = String.format("/tv/%s/images", tvId);
-        return null;
+        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
-    public GetTvKeywordsResponse getTvKeywords(Integer tvId) {
+    public Optional<GetTvKeywordsResponse> getTvKeywords(int tvId) {
         // /tv/{tv_id}/keywords
         String path = String.format("/tv/%s/keywords", tvId);
-        return null;
+        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
-    public GetTvRecommendationsResponse getTvRecommendations(Integer tvId) {
+    public Optional<GetTvRecommendationsResponse> getTvRecommendations(int tvId) {
         // /tv/{tv_id}/recommendations
         String path = String.format("/tv/%s/recommendations", tvId);
-        return null;
+        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
-    public GetTvReviewsResponse getTvReviews(Integer tvId) {
+    public Optional<GetTvReviewsResponse> getTvReviews(int tvId) {
         // /tv/{tv_id}/reviews
         String path = String.format("/tv/%s/reviews", tvId);
-        return null;
+        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
-    public GetScreenedTheatricallyResponse getScreenedTheatrically(Integer tvId) {
+    public Optional<GetScreenedTheatricallyResponse> getScreenedTheatrically(int tvId) {
         // /tv/{tv_id}/screened_theatrically
         String path = String.format("/tv/%s/screened_theatrically", tvId);
-        return null;
+        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
-    public GetSimilarTvShowsResponse getSimilarTvShows(Integer tvId) {
+    public Optional<GetSimilarTvShowsResponse> getSimilarTvShows(int tvId) {
         // /tv/{tv_id}/similar
         String path = String.format("/tv/%s/similar", tvId);
-        return null;
+        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
-    public GetTvTranslationsResponse getTvTranslations(Integer tvId) {
+    public Optional<GetTvTranslationsResponse> getTvTranslations(int tvId) {
         // /tv/{tv_id}/translations
         String path = String.format("/tv/%s/translations", tvId);
-        return null;
+        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
-    public GetTvVideosResponse getTvVideos(Integer tvId) {
+    public Optional<GetTvVideosResponse> getTvVideos(int tvId) {
         // /tv/{tv_id}/videos
         String path = String.format("/tv/%s/videos", tvId);
-        return null;
+        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
-    public GetTvWatchProvidersResponse getTvWatchProviders(Integer tvId) {
+    public Optional<GetTvWatchProvidersResponse> getTvWatchProviders(int tvId) {
         // /tv/{tv_id}/watch/providers
         String path = String.format("/tv/%s/watch/providers", tvId);
-        return null;
+        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
-    public RateTvShowResponse rateTvShow(Integer tvId) {
+    public Optional<RateTvShowResponse> rateTvShow(int tvId) {
         // /tv/{tv_id}/rating
         String path = String.format("/tv/%s/rating", tvId);
-        return null;
+        return restClient.post(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
-    public DeleteTvShowRatingResponse deleteTvShowRating(Integer tvId) {
+    public Optional<DeleteTvShowRatingResponse> deleteTvShowRating(int tvId) {
         // /tv/{tv_id}/rating
         String path = String.format("/tv/%s/rating", tvId);
-        return null;
+        return restClient.delete(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
-    public GetLatestTvResponse getLatestTv() {
-        // /tv/latest
-        String path = String.format("/tv/latest");
-        return null;
+    public Optional<GetLatestTvResponse> getLatestTv() {
+        String path = "/tv/latest";
+        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
-    public GetTvAiringTodayResponse getTvAiringToday() {
-        // /tv/airing_today
-        String path = String.format("/tv/airing_today");
-        return null;
+    public Optional<GetTvAiringTodayResponse> getTvAiringToday() {
+        String path = "/tv/airing_today";
+        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
-    public GetTvOnTheAirResponse getTvOnTheAir() {
-        // /tv/on_the_air
-        String path = String.format("/tv/on_the_air");
-        return null;
+    public Optional<GetTvOnTheAirResponse> getTvOnTheAir() {
+        String path = "/tv/on_the_air";
+        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
-    public GetPopularTvShowsResponse getPopularTvShows() {
-        // /tv/popular
-        String path = String.format("/tv/popular");
-        return null;
+    public Optional<GetPopularTvShowsResponse> getPopularTvShows() {
+        String path = "/tv/popular";
+        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
-    public GetTopRatedTvResponse getTopRatedTv() {
-        // /tv/top_rated
-        String path = String.format("/tv/top_rated");
-        return null;
+    public Optional<GetTopRatedTvResponse> getTopRatedTv() {
+        String path = "/tv/top_rated";
+        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
 }

@@ -1,6 +1,9 @@
 
 package com.github.xabgesagtx.tmdb.credits;
 
+import java.util.Collections;
+import java.util.Optional;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.github.xabgesagtx.tmdb.http.RestClient;
 
 public class Credits {
@@ -11,10 +14,14 @@ public class Credits {
         this.restClient = restClient;
     }
 
-    public GetCreditDetailsResponse getCreditDetails(String creditId) {
+    public Optional<GetCreditDetailsResponse> getCreditDetails(String creditId) {
         // /credit/{credit_id}
         String path = String.format("/credit/%s", creditId);
-        return null;
+        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
 }

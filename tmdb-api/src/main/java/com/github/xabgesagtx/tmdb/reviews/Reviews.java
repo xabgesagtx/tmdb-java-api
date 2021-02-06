@@ -1,6 +1,9 @@
 
 package com.github.xabgesagtx.tmdb.reviews;
 
+import java.util.Collections;
+import java.util.Optional;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.github.xabgesagtx.tmdb.http.RestClient;
 
 public class Reviews {
@@ -11,10 +14,14 @@ public class Reviews {
         this.restClient = restClient;
     }
 
-    public GetReviewDetailsResponse getReviewDetails(String reviewId) {
+    public Optional<GetReviewDetailsResponse> getReviewDetails(String reviewId) {
         // /review/{review_id}
         String path = String.format("/review/%s", reviewId);
-        return null;
+        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
 }

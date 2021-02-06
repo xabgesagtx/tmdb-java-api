@@ -1,6 +1,9 @@
 
 package com.github.xabgesagtx.tmdb.discover;
 
+import java.util.Collections;
+import java.util.Optional;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.github.xabgesagtx.tmdb.http.RestClient;
 
 public class Discover {
@@ -11,16 +14,22 @@ public class Discover {
         this.restClient = restClient;
     }
 
-    public MovieDiscoverResponse movieDiscover() {
-        // /discover/movie
-        String path = String.format("/discover/movie");
-        return null;
+    public Optional<MovieDiscoverResponse> movieDiscover() {
+        String path = "/discover/movie";
+        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
-    public TvDiscoverResponse tvDiscover() {
-        // /discover/tv
-        String path = String.format("/discover/tv");
-        return null;
+    public Optional<TvDiscoverResponse> tvDiscover() {
+        String path = "/discover/tv";
+        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
 }

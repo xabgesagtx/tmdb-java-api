@@ -1,6 +1,9 @@
 
 package com.github.xabgesagtx.tmdb.account;
 
+import java.util.Collections;
+import java.util.Optional;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.github.xabgesagtx.tmdb.http.RestClient;
 
 public class Account {
@@ -11,70 +14,113 @@ public class Account {
         this.restClient = restClient;
     }
 
-    public GetAccountDetailsResponse getAccountDetails() {
-        // /account
-        String path = String.format("/account");
-        return null;
+    public Optional<GetAccountDetailsResponse> getAccountDetails() {
+        String path = "/account";
+        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
-    public GetCreatedListsResponse getCreatedLists(Integer accountId) {
+    public Optional<GetCreatedListsResponse> getCreatedLists(int accountId) {
         // /account/{account_id}/lists
         String path = String.format("/account/%s/lists", accountId);
-        return null;
+        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
-    public GetFavoriteMoviesResponse getFavoriteMovies(Integer accountId) {
+    public Optional<GetFavoriteMoviesResponse> getFavoriteMovies(int accountId) {
         // /account/{account_id}/favorite/movies
         String path = String.format("/account/%s/favorite/movies", accountId);
-        return null;
+        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
-    public GetFavoriteTvShowsResponse getFavoriteTvShows(Integer accountId) {
+    public Optional<GetFavoriteTvShowsResponse> getFavoriteTvShows(int accountId) {
         // /account/{account_id}/favorite/tv
         String path = String.format("/account/%s/favorite/tv", accountId);
-        return null;
+        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
-    public MarkAsFavoriteResponse markAsFavorite(Integer accountId) {
+    public Optional<MarkAsFavoriteResponse> markAsFavorite(int accountId) {
         // /account/{account_id}/favorite
         String path = String.format("/account/%s/favorite", accountId);
-        return null;
+        return restClient.post(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
-    public GetRatedMoviesResponse getRatedMovies(Integer accountId) {
+    public Optional<GetRatedMoviesResponse> getRatedMovies(int accountId) {
         // /account/{account_id}/rated/movies
         String path = String.format("/account/%s/rated/movies", accountId);
-        return null;
+        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
-    public GetRatedTvShowsResponse getRatedTvShows(Integer accountId) {
+    public Optional<GetRatedTvShowsResponse> getRatedTvShows(int accountId) {
         // /account/{account_id}/rated/tv
         String path = String.format("/account/%s/rated/tv", accountId);
-        return null;
+        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
-    public GetRatedTvEpisodesResponse getRatedTvEpisodes(String accountId) {
+    public Optional<GetRatedTvEpisodesResponse> getRatedTvEpisodes(String accountId) {
         // /account/{account_id}/rated/tv/episodes
         String path = String.format("/account/%s/rated/tv/episodes", accountId);
-        return null;
+        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
-    public GetMovieWatchlistResponse getMovieWatchlist(Integer accountId) {
+    public Optional<GetMovieWatchlistResponse> getMovieWatchlist(int accountId) {
         // /account/{account_id}/watchlist/movies
         String path = String.format("/account/%s/watchlist/movies", accountId);
-        return null;
+        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
-    public GetTvShowWatchlistResponse getTvShowWatchlist(Integer accountId) {
+    public Optional<GetTvShowWatchlistResponse> getTvShowWatchlist(int accountId) {
         // /account/{account_id}/watchlist/tv
         String path = String.format("/account/%s/watchlist/tv", accountId);
-        return null;
+        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
-    public AddToWatchlistResponse addToWatchlist(Integer accountId) {
+    public Optional<AddToWatchlistResponse> addToWatchlist(int accountId) {
         // /account/{account_id}/watchlist
         String path = String.format("/account/%s/watchlist", accountId);
-        return null;
+        return restClient.post(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
 }

@@ -1,6 +1,9 @@
 
 package com.github.xabgesagtx.tmdb.find;
 
+import java.util.Collections;
+import java.util.Optional;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.github.xabgesagtx.tmdb.http.RestClient;
 
 public class Find {
@@ -11,10 +14,14 @@ public class Find {
         this.restClient = restClient;
     }
 
-    public FindByIdResponse findById(String externalId) {
+    public Optional<FindByIdResponse> findById(String externalId) {
         // /find/{external_id}
         String path = String.format("/find/%s", externalId);
-        return null;
+        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
 }

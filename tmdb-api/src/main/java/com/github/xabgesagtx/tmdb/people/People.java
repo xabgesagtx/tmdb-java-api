@@ -1,6 +1,9 @@
 
 package com.github.xabgesagtx.tmdb.people;
 
+import java.util.Collections;
+import java.util.Optional;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.github.xabgesagtx.tmdb.http.RestClient;
 
 public class People {
@@ -11,70 +14,112 @@ public class People {
         this.restClient = restClient;
     }
 
-    public GetPersonDetailsResponse getPersonDetails(Integer personId) {
+    public Optional<GetPersonDetailsResponse> getPersonDetails(int personId) {
         // /person/{person_id}
         String path = String.format("/person/%s", personId);
-        return null;
+        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
-    public GetPersonChangesResponse getPersonChanges(Integer personId) {
+    public Optional<GetPersonChangesResponse> getPersonChanges(int personId) {
         // /person/{person_id}/changes
         String path = String.format("/person/%s/changes", personId);
-        return null;
+        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
-    public GetPersonMovieCreditsResponse getPersonMovieCredits(Integer personId) {
+    public Optional<GetPersonMovieCreditsResponse> getPersonMovieCredits(int personId) {
         // /person/{person_id}/movie_credits
         String path = String.format("/person/%s/movie_credits", personId);
-        return null;
+        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
-    public GetPersonTvCreditsResponse getPersonTvCredits(Integer personId) {
+    public Optional<GetPersonTvCreditsResponse> getPersonTvCredits(int personId) {
         // /person/{person_id}/tv_credits
         String path = String.format("/person/%s/tv_credits", personId);
-        return null;
+        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
-    public GetPersonCombinedCreditsResponse getPersonCombinedCredits(Integer personId) {
+    public Optional<GetPersonCombinedCreditsResponse> getPersonCombinedCredits(int personId) {
         // /person/{person_id}/combined_credits
         String path = String.format("/person/%s/combined_credits", personId);
-        return null;
+        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
-    public GetPersonExternalIdsResponse getPersonExternalIds(Integer personId) {
+    public Optional<GetPersonExternalIdsResponse> getPersonExternalIds(int personId) {
         // /person/{person_id}/external_ids
         String path = String.format("/person/%s/external_ids", personId);
-        return null;
+        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
-    public GetPersonImagesResponse getPersonImages(Integer personId) {
+    public Optional<GetPersonImagesResponse> getPersonImages(int personId) {
         // /person/{person_id}/images
         String path = String.format("/person/%s/images", personId);
-        return null;
+        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
-    public GetTaggedImagesResponse getTaggedImages(Integer personId) {
+    public Optional<GetTaggedImagesResponse> getTaggedImages(int personId) {
         // /person/{person_id}/tagged_images
         String path = String.format("/person/%s/tagged_images", personId);
-        return null;
+        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
-    public GetPersonTranslationsResponse getPersonTranslations(Integer personId) {
+    public Optional<GetPersonTranslationsResponse> getPersonTranslations(int personId) {
         // /person/{person_id}/translations
         String path = String.format("/person/%s/translations", personId);
-        return null;
+        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
-    public GetLatestPersonResponse getLatestPerson() {
-        // /person/latest
-        String path = String.format("/person/latest");
-        return null;
+    public Optional<GetLatestPersonResponse> getLatestPerson() {
+        String path = "/person/latest";
+        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
-    public GetPopularPeopleResponse getPopularPeople() {
-        // /person/popular
-        String path = String.format("/person/popular");
-        return null;
+    public Optional<GetPopularPeopleResponse> getPopularPeople() {
+        String path = "/person/popular";
+        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
 }

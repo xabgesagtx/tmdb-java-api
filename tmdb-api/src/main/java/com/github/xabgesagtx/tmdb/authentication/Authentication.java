@@ -1,6 +1,9 @@
 
 package com.github.xabgesagtx.tmdb.authentication;
 
+import java.util.Collections;
+import java.util.Optional;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.github.xabgesagtx.tmdb.http.RestClient;
 
 public class Authentication {
@@ -11,40 +14,58 @@ public class Authentication {
         this.restClient = restClient;
     }
 
-    public CreateGuestSessionResponse createGuestSession() {
-        // /authentication/guest_session/new
-        String path = String.format("/authentication/guest_session/new");
-        return null;
+    public Optional<CreateGuestSessionResponse> createGuestSession() {
+        String path = "/authentication/guest_session/new";
+        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
-    public CreateRequestTokenResponse createRequestToken() {
-        // /authentication/token/new
-        String path = String.format("/authentication/token/new");
-        return null;
+    public Optional<CreateRequestTokenResponse> createRequestToken() {
+        String path = "/authentication/token/new";
+        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
-    public CreateSessionResponse createSession() {
-        // /authentication/session/new
-        String path = String.format("/authentication/session/new");
-        return null;
+    public Optional<CreateSessionResponse> createSession() {
+        String path = "/authentication/session/new";
+        return restClient.post(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
-    public ValidateRequestTokenResponse validateRequestToken() {
-        // /authentication/token/validate_with_login
-        String path = String.format("/authentication/token/validate_with_login");
-        return null;
+    public Optional<ValidateRequestTokenResponse> validateRequestToken() {
+        String path = "/authentication/token/validate_with_login";
+        return restClient.post(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
-    public CreateSessionFromV4AccessTokenResponse createSessionFromV4AccessToken() {
-        // /authentication/session/convert/4
-        String path = String.format("/authentication/session/convert/4");
-        return null;
+    public Optional<CreateSessionFromV4AccessTokenResponse> createSessionFromV4AccessToken() {
+        String path = "/authentication/session/convert/4";
+        return restClient.post(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
-    public DeleteSessionResponse deleteSession() {
-        // /authentication/session
-        String path = String.format("/authentication/session");
-        return null;
+    public Optional<DeleteSessionResponse> deleteSession() {
+        String path = "/authentication/session";
+        return restClient.delete(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
 }

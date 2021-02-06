@@ -1,6 +1,9 @@
 
 package com.github.xabgesagtx.tmdb.keywords;
 
+import java.util.Collections;
+import java.util.Optional;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.github.xabgesagtx.tmdb.http.RestClient;
 
 public class Keywords {
@@ -11,16 +14,24 @@ public class Keywords {
         this.restClient = restClient;
     }
 
-    public GetKeywordDetailsResponse getKeywordDetails(Integer keywordId) {
+    public Optional<GetKeywordDetailsResponse> getKeywordDetails(int keywordId) {
         // /keyword/{keyword_id}
         String path = String.format("/keyword/%s", keywordId);
-        return null;
+        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
-    public GetMoviesByKeywordResponse getMoviesByKeyword(Integer keywordId) {
+    public Optional<GetMoviesByKeywordResponse> getMoviesByKeyword(int keywordId) {
         // /keyword/{keyword_id}/movies
         String path = String.format("/keyword/%s/movies", keywordId);
-        return null;
+        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
 }

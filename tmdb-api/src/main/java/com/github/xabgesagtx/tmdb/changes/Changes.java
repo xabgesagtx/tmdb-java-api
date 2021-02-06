@@ -1,6 +1,9 @@
 
 package com.github.xabgesagtx.tmdb.changes;
 
+import java.util.Collections;
+import java.util.Optional;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.github.xabgesagtx.tmdb.http.RestClient;
 
 public class Changes {
@@ -11,22 +14,31 @@ public class Changes {
         this.restClient = restClient;
     }
 
-    public GetMovieChangeListResponse getMovieChangeList() {
-        // /movie/changes
-        String path = String.format("/movie/changes");
-        return null;
+    public Optional<GetMovieChangeListResponse> getMovieChangeList() {
+        String path = "/movie/changes";
+        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
-    public GetTvChangeListResponse getTvChangeList() {
-        // /tv/changes
-        String path = String.format("/tv/changes");
-        return null;
+    public Optional<GetTvChangeListResponse> getTvChangeList() {
+        String path = "/tv/changes";
+        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
-    public GetPersonChangeListResponse getPersonChangeList() {
-        // /person/changes
-        String path = String.format("/person/changes");
-        return null;
+    public Optional<GetPersonChangeListResponse> getPersonChangeList() {
+        String path = "/person/changes";
+        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
 }

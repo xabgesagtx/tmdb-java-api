@@ -1,6 +1,7 @@
 package com.github.xabgesagtx.tmdb.json;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.json.JsonMapper;
@@ -18,9 +19,9 @@ public class JacksonJsonTransformer implements JsonTransformer {
     }
 
     @Override
-    public <T> T readValue(String body, Class<T> clazz) throws JsonTransformingException {
+    public <T> T readValue(String body, TypeReference<T> typeReference) throws JsonTransformingException {
         try {
-            return mapper.readValue(body, clazz);
+            return mapper.readValue(body, typeReference);
         } catch (JsonProcessingException e) {
             throw new JsonTransformingException("Failed to read body", e);
         }

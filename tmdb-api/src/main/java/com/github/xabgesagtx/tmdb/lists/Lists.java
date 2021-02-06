@@ -1,6 +1,9 @@
 
 package com.github.xabgesagtx.tmdb.lists;
 
+import java.util.Collections;
+import java.util.Optional;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.github.xabgesagtx.tmdb.http.RestClient;
 
 public class Lists {
@@ -11,46 +14,73 @@ public class Lists {
         this.restClient = restClient;
     }
 
-    public GetListDetailsResponse getListDetails(String listId) {
+    public Optional<GetListDetailsResponse> getListDetails(String listId) {
         // /list/{list_id}
         String path = String.format("/list/%s", listId);
-        return null;
+        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
-    public CheckItemStatusResponse checkItemStatus(String listId) {
+    public Optional<CheckItemStatusResponse> checkItemStatus(String listId) {
         // /list/{list_id}/item_status
         String path = String.format("/list/%s/item_status", listId);
-        return null;
+        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
-    public CreateListResponse createList() {
-        // /list
-        String path = String.format("/list");
-        return null;
+    public Optional<CreateListResponse> createList() {
+        String path = "/list";
+        return restClient.post(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
-    public AddMovieResponse addMovie(String listId) {
+    public Optional<AddMovieResponse> addMovie(String listId) {
         // /list/{list_id}/add_item
         String path = String.format("/list/%s/add_item", listId);
-        return null;
+        return restClient.post(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
-    public RemoveMovieResponse removeMovie(String listId) {
+    public Optional<RemoveMovieResponse> removeMovie(String listId) {
         // /list/{list_id}/remove_item
         String path = String.format("/list/%s/remove_item", listId);
-        return null;
+        return restClient.post(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
-    public ClearListResponse clearList(String listId) {
+    public Optional<ClearListResponse> clearList(String listId) {
         // /list/{list_id}/clear
         String path = String.format("/list/%s/clear", listId);
-        return null;
+        return restClient.post(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
-    public DeleteListResponse deleteList(String listId) {
+    public Optional<DeleteListResponse> deleteList(String listId) {
         // /list/{list_id}
         String path = String.format("/list/%s", listId);
-        return null;
+        return restClient.delete(path, Collections.emptyMap(), new TypeReference<>() {
+
+
+        }
+        );
     }
 
 }

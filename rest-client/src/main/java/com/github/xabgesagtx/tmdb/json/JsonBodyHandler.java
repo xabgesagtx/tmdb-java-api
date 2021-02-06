@@ -1,5 +1,6 @@
 package com.github.xabgesagtx.tmdb.json;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import lombok.RequiredArgsConstructor;
 
 import java.net.http.HttpResponse;
@@ -8,7 +9,7 @@ import java.nio.charset.StandardCharsets;
 @RequiredArgsConstructor
 public class JsonBodyHandler<T> implements HttpResponse.BodyHandler<T> {
 
-    private final Class<T> clazz;
+    private final TypeReference<T> typeReference;
     private final JsonTransformer transformer;
 
 
@@ -21,7 +22,7 @@ public class JsonBodyHandler<T> implements HttpResponse.BodyHandler<T> {
 
             return HttpResponse.BodySubscribers.mapping(
                     upstream,
-                    body -> transformer.readValue(body, clazz));
+                    body -> transformer.readValue(body, typeReference));
         }
     }
 
