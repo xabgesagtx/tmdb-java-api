@@ -39,19 +39,38 @@ public class EndpointGenerator extends AbstractGenerator {
             String requestBodyParamName = CaseFormat.UPPER_CAMEL.to(CaseFormat.LOWER_CAMEL, endpoint.getRequestBody().getName());
             requestBodyExpression = method.param(requestClass, requestBodyParamName);
         }
+        Map<String, JVar> requestParams = endpoint.getRequestParams()
+                .stream()
+                .sorted(Comparator.comparing(Variable::getName, Comparator.naturalOrder()))
+                .map(variable -> Pair.of(variable.getJsonName(), createMethodParam(method, resourceClass, variable)))
+                .collect(Collectors.toMap(Pair::getKey, Pair::getValue));
         JBlock body = method.body();
         JVar formattedPath = formatPath(body, endpoint.getPath(), pathVariables);
+        JExpression requestParamsExpression = createRequestParamsMap(body, requestParams);
         JFieldVar restClient = resourceClass.fields().get("restClient");
-        JExpression requestParm = model.ref(Collections.class).staticInvoke("emptyMap");
         JExpression typeReference = JExpr._new(model.anonymousClass(model.ref(TypeReference.class).narrow(new JClass[0])));
         JInvocation restClientInvocation = restClient.invoke(endpoint.getMethod())
                 .arg(formattedPath)
-                .arg(requestParm)
+                .arg(requestParamsExpression)
                 .arg(typeReference);
         if (Set.of("post", "delete", "put").contains(endpoint.getMethod())) {
             restClientInvocation.arg(requestBodyExpression);
         }
         body._return(restClientInvocation);
+    }
+
+    private JExpression createRequestParamsMap(JBlock body, Map<String, JVar> requestParams) {
+        if (requestParams.isEmpty()) {
+            return body.decl(model.ref(Map.class).narrow(String.class, Object.class),
+                    "requestParams",
+                    model.ref(Collections.class).staticInvoke("emptyMap"));
+        } else {
+            var mapVar = body.decl(model.ref(Map.class).narrow(String.class, Object.class),
+                    "requestParams",
+                    JExpr._new(model.ref(HashMap.class).narrow(new JClass[0])));
+            requestParams.forEach((name, variable) -> body.invoke(mapVar, "put").arg(JExpr.lit(name)).arg(variable));
+            return mapVar;
+        }
     }
 
     private JVar formatPath(JBlock body, String path, Map<String, JVar> pathVariables) {

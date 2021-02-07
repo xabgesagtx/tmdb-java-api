@@ -107,6 +107,7 @@ public class RestClientImpl implements RestClient {
             return "";
         } else {
             return params.entrySet().stream()
+                    .filter(entry -> entry.getValue() != null)
                     .map(entry -> entry.getKey() + "=" + encodeValue(entry.getValue()))
                     .collect(joining("&", "?", ""));
         }

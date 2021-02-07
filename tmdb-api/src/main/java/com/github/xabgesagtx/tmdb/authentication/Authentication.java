@@ -2,6 +2,7 @@
 package com.github.xabgesagtx.tmdb.authentication;
 
 import java.util.Collections;
+import java.util.Map;
 import java.util.Optional;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.github.xabgesagtx.tmdb.http.RestClient;
@@ -22,7 +23,8 @@ public class Authentication {
      */
     public Optional<CreateGuestSessionResponse> createGuestSession() {
         String path = "/authentication/guest_session/new";
-        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+        Map<String, Object> requestParams = Collections.emptyMap();
+        return restClient.get(path, requestParams, new TypeReference<>() {
 
 
         }
@@ -35,7 +37,8 @@ public class Authentication {
      */
     public Optional<CreateRequestTokenResponse> createRequestToken() {
         String path = "/authentication/token/new";
-        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+        Map<String, Object> requestParams = Collections.emptyMap();
+        return restClient.get(path, requestParams, new TypeReference<>() {
 
 
         }
@@ -48,7 +51,8 @@ public class Authentication {
      */
     public Optional<CreateSessionResponse> createSession(CreateSessionRequest createSessionRequest) {
         String path = "/authentication/session/new";
-        return restClient.post(path, Collections.emptyMap(), new TypeReference<>() {
+        Map<String, Object> requestParams = Collections.emptyMap();
+        return restClient.post(path, requestParams, new TypeReference<>() {
 
 
         }
@@ -64,7 +68,8 @@ public class Authentication {
      */
     public Optional<ValidateRequestTokenResponse> validateRequestToken(ValidateRequestTokenRequest validateRequestTokenRequest) {
         String path = "/authentication/token/validate_with_login";
-        return restClient.post(path, Collections.emptyMap(), new TypeReference<>() {
+        Map<String, Object> requestParams = Collections.emptyMap();
+        return restClient.post(path, requestParams, new TypeReference<>() {
 
 
         }
@@ -77,7 +82,8 @@ public class Authentication {
      */
     public Optional<CreateSessionFromV4AccessTokenResponse> createSessionFromV4AccessToken(CreateSessionFromV4AccessTokenRequest createSessionFromV4AccessTokenRequest) {
         String path = "/authentication/session/convert/4";
-        return restClient.post(path, Collections.emptyMap(), new TypeReference<>() {
+        Map<String, Object> requestParams = Collections.emptyMap();
+        return restClient.post(path, requestParams, new TypeReference<>() {
 
 
         }
@@ -90,7 +96,8 @@ public class Authentication {
      */
     public Optional<DeleteSessionResponse> deleteSession(DeleteSessionRequest deleteSessionRequest) {
         String path = "/authentication/session";
-        return restClient.delete(path, Collections.emptyMap(), new TypeReference<>() {
+        Map<String, Object> requestParams = Collections.emptyMap();
+        return restClient.delete(path, requestParams, new TypeReference<>() {
 
 
         }

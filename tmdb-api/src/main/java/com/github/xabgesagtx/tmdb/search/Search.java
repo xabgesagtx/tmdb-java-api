@@ -2,6 +2,8 @@
 package com.github.xabgesagtx.tmdb.search;
 
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.github.xabgesagtx.tmdb.http.RestClient;
@@ -20,7 +22,8 @@ public class Search {
      */
     public Optional<SearchCompaniesResponse> searchCompanies() {
         String path = "/search/company";
-        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+        Map<String, Object> requestParams = Collections.emptyMap();
+        return restClient.get(path, requestParams, new TypeReference<>() {
 
 
         }
@@ -33,7 +36,8 @@ public class Search {
      */
     public Optional<SearchCollectionsResponse> searchCollections() {
         String path = "/search/collection";
-        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+        Map<String, Object> requestParams = Collections.emptyMap();
+        return restClient.get(path, requestParams, new TypeReference<>() {
 
 
         }
@@ -46,7 +50,8 @@ public class Search {
      */
     public Optional<SearchKeywordsResponse> searchKeywords() {
         String path = "/search/keyword";
-        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+        Map<String, Object> requestParams = Collections.emptyMap();
+        return restClient.get(path, requestParams, new TypeReference<>() {
 
 
         }
@@ -57,9 +62,12 @@ public class Search {
      * <p>Search for movies.</p>
      * 
      */
-    public Optional<SearchMoviesResponse> searchMovies() {
+    public Optional<SearchMoviesResponse> searchMovies(int primaryReleaseYear, int year) {
         String path = "/search/movie";
-        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+        Map<String, Object> requestParams = new HashMap<>();
+        requestParams.put("primary_release_year", primaryReleaseYear);
+        requestParams.put("year", year);
+        return restClient.get(path, requestParams, new TypeReference<>() {
 
 
         }
@@ -72,7 +80,8 @@ public class Search {
      */
     public Optional<MultiSearchResponse> multiSearch() {
         String path = "/search/multi";
-        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+        Map<String, Object> requestParams = Collections.emptyMap();
+        return restClient.get(path, requestParams, new TypeReference<>() {
 
 
         }
@@ -85,7 +94,8 @@ public class Search {
      */
     public Optional<SearchPeopleResponse> searchPeople() {
         String path = "/search/person";
-        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+        Map<String, Object> requestParams = Collections.emptyMap();
+        return restClient.get(path, requestParams, new TypeReference<>() {
 
 
         }
@@ -96,9 +106,11 @@ public class Search {
      * <p>Search for a TV show.</p>
      * 
      */
-    public Optional<SearchTvShowsResponse> searchTvShows() {
+    public Optional<SearchTvShowsResponse> searchTvShows(int firstAirDateYear) {
         String path = "/search/tv";
-        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+        Map<String, Object> requestParams = new HashMap<>();
+        requestParams.put("first_air_date_year", firstAirDateYear);
+        return restClient.get(path, requestParams, new TypeReference<>() {
 
 
         }

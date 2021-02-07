@@ -2,6 +2,8 @@
 package com.github.xabgesagtx.tmdb.lists;
 
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.github.xabgesagtx.tmdb.http.RestClient;
@@ -21,7 +23,8 @@ public class Lists {
     public Optional<GetListDetailsResponse> getListDetails(String listId) {
         // /list/{list_id}
         String path = String.format("/list/%s", listId);
-        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+        Map<String, Object> requestParams = Collections.emptyMap();
+        return restClient.get(path, requestParams, new TypeReference<>() {
 
 
         }
@@ -32,10 +35,12 @@ public class Lists {
      * <p>You can use this method to check if a movie has already been added to the list.</p>
      * 
      */
-    public Optional<CheckItemStatusResponse> checkItemStatus(String listId) {
+    public Optional<CheckItemStatusResponse> checkItemStatus(String listId, int movieId) {
         // /list/{list_id}/item_status
         String path = String.format("/list/%s/item_status", listId);
-        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+        Map<String, Object> requestParams = new HashMap<>();
+        requestParams.put("movie_id", movieId);
+        return restClient.get(path, requestParams, new TypeReference<>() {
 
 
         }
@@ -48,7 +53,8 @@ public class Lists {
      */
     public Optional<CreateListResponse> createList(CreateListRequest createListRequest) {
         String path = "/list";
-        return restClient.post(path, Collections.emptyMap(), new TypeReference<>() {
+        Map<String, Object> requestParams = Collections.emptyMap();
+        return restClient.post(path, requestParams, new TypeReference<>() {
 
 
         }
@@ -62,7 +68,8 @@ public class Lists {
     public Optional<AddMovieResponse> addMovie(String listId, AddMovieRequest addMovieRequest) {
         // /list/{list_id}/add_item
         String path = String.format("/list/%s/add_item", listId);
-        return restClient.post(path, Collections.emptyMap(), new TypeReference<>() {
+        Map<String, Object> requestParams = Collections.emptyMap();
+        return restClient.post(path, requestParams, new TypeReference<>() {
 
 
         }
@@ -76,7 +83,8 @@ public class Lists {
     public Optional<RemoveMovieResponse> removeMovie(String listId, RemoveMovieRequest removeMovieRequest) {
         // /list/{list_id}/remove_item
         String path = String.format("/list/%s/remove_item", listId);
-        return restClient.post(path, Collections.emptyMap(), new TypeReference<>() {
+        Map<String, Object> requestParams = Collections.emptyMap();
+        return restClient.post(path, requestParams, new TypeReference<>() {
 
 
         }
@@ -87,10 +95,12 @@ public class Lists {
      * <p>Clear all of the items from a list.</p>
      * 
      */
-    public Optional<ClearListResponse> clearList(String listId) {
+    public Optional<ClearListResponse> clearList(String listId, boolean confirm) {
         // /list/{list_id}/clear
         String path = String.format("/list/%s/clear", listId);
-        return restClient.post(path, Collections.emptyMap(), new TypeReference<>() {
+        Map<String, Object> requestParams = new HashMap<>();
+        requestParams.put("confirm", confirm);
+        return restClient.post(path, requestParams, new TypeReference<>() {
 
 
         }
@@ -104,7 +114,8 @@ public class Lists {
     public Optional<DeleteListResponse> deleteList(String listId) {
         // /list/{list_id}
         String path = String.format("/list/%s", listId);
-        return restClient.delete(path, Collections.emptyMap(), new TypeReference<>() {
+        Map<String, Object> requestParams = Collections.emptyMap();
+        return restClient.delete(path, requestParams, new TypeReference<>() {
 
 
         }

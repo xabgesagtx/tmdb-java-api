@@ -1,8 +1,11 @@
 
 package com.github.xabgesagtx.tmdb.discover;
 
-import java.util.Collections;
+import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.github.xabgesagtx.tmdb.http.RestClient;
 
@@ -23,9 +26,43 @@ public class Discover {
      * <p>Some examples of what can be done with discover can be found <a href="https://www.themoviedb.org/documentation/api/discover">here</a>.</p> <a href="https://developers.themoviedb.org/#recent-changes">\ud83d\udd17</a> Recent Changes    <strong>Date</strong> <strong>Change</strong>     January 2, 2020 A new set of filters are available for watch provider filtering. Check out <code>with_watch_providers</code> and <code>watch_region</code>.
      * 
      */
-    public Optional<MovieDiscoverResponse> movieDiscover() {
+    public Optional<MovieDiscoverResponse> movieDiscover(String certification, String certificationCountry, String certification_gte, String certification_lte, boolean includeAdult, boolean includeVideo, String language, int page, LocalDate primaryReleaseDate_gte, LocalDate primaryReleaseDate_lte, int primaryReleaseYear, LocalDate releaseDate_gte, LocalDate releaseDate_lte, Discover.MovieDiscoverSortByParam sortBy, double voteAverage_gte, double voteAverage_lte, int voteCount_gte, int voteCount_lte, String watchRegion, String withCast, String withCompanies, String withCrew, String withGenres, String withKeywords, String withOriginalLanguage, String withPeople, int withReleaseType, int withRuntime_gte, int withRuntime_lte, String withWatchProviders, String withoutGenres, String withoutKeywords, int year) {
         String path = "/discover/movie";
-        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+        Map<String, Object> requestParams = new HashMap<>();
+        requestParams.put("with_release_type", withReleaseType);
+        requestParams.put("with_watch_providers", withWatchProviders);
+        requestParams.put("year", year);
+        requestParams.put("primary_release_date.gte", primaryReleaseDate_gte);
+        requestParams.put("with_cast", withCast);
+        requestParams.put("watch_region", watchRegion);
+        requestParams.put("with_genres", withGenres);
+        requestParams.put("language", language);
+        requestParams.put("sort_by", sortBy);
+        requestParams.put("with_keywords", withKeywords);
+        requestParams.put("include_adult", includeAdult);
+        requestParams.put("with_runtime.lte", withRuntime_lte);
+        requestParams.put("with_people", withPeople);
+        requestParams.put("with_runtime.gte", withRuntime_gte);
+        requestParams.put("with_original_language", withOriginalLanguage);
+        requestParams.put("primary_release_date.lte", primaryReleaseDate_lte);
+        requestParams.put("vote_average.gte", voteAverage_gte);
+        requestParams.put("vote_average.lte", voteAverage_lte);
+        requestParams.put("vote_count.gte", voteCount_gte);
+        requestParams.put("with_crew", withCrew);
+        requestParams.put("release_date.lte", releaseDate_lte);
+        requestParams.put("with_companies", withCompanies);
+        requestParams.put("vote_count.lte", voteCount_lte);
+        requestParams.put("release_date.gte", releaseDate_gte);
+        requestParams.put("certification", certification);
+        requestParams.put("without_keywords", withoutKeywords);
+        requestParams.put("certification_country", certificationCountry);
+        requestParams.put("primary_release_year", primaryReleaseYear);
+        requestParams.put("certification.lte", certification_lte);
+        requestParams.put("include_video", includeVideo);
+        requestParams.put("certification.gte", certification_gte);
+        requestParams.put("page", page);
+        requestParams.put("without_genres", withoutGenres);
+        return restClient.get(path, requestParams, new TypeReference<>() {
 
 
         }
@@ -39,13 +76,108 @@ public class Discover {
      * <p>Some examples of what can be done with discover can be found <a href="https://www.themoviedb.org/documentation/api/discover">here</a>.</p> <a href="https://developers.themoviedb.org/#recent-changes">\ud83d\udd17</a> Recent Changes    <strong>Date</strong> <strong>Change</strong>     January 2, 2020 A new set of filters are available for watch provider filtering. Check out <code>with_watch_providers</code> and <code>watch_region</code>.
      * 
      */
-    public Optional<TvDiscoverResponse> tvDiscover() {
+    public Optional<TvDiscoverResponse> tvDiscover(LocalDate airDate_gte, LocalDate airDate_lte, int firstAirDateYear, LocalDate firstAirDate_gte, LocalDate firstAirDate_lte, boolean includeNullFirstAirDates, String language, int page, boolean screenedTheatrically, Discover.TvDiscoverSortByParam sortBy, String timezone, double voteAverage_gte, int voteCount_gte, String watchRegion, String withCompanies, String withGenres, String withKeywords, String withNetworks, String withOriginalLanguage, int withRuntime_gte, int withRuntime_lte, String withWatchProviders, String withoutGenres, String withoutKeywords) {
         String path = "/discover/tv";
-        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+        Map<String, Object> requestParams = new HashMap<>();
+        requestParams.put("vote_count.gte", voteCount_gte);
+        requestParams.put("with_watch_providers", withWatchProviders);
+        requestParams.put("timezone", timezone);
+        requestParams.put("watch_region", watchRegion);
+        requestParams.put("with_genres", withGenres);
+        requestParams.put("language", language);
+        requestParams.put("with_companies", withCompanies);
+        requestParams.put("sort_by", sortBy);
+        requestParams.put("first_air_date.gte", firstAirDate_gte);
+        requestParams.put("with_keywords", withKeywords);
+        requestParams.put("air_date.gte", airDate_gte);
+        requestParams.put("first_air_date_year", firstAirDateYear);
+        requestParams.put("without_keywords", withoutKeywords);
+        requestParams.put("first_air_date.lte", firstAirDate_lte);
+        requestParams.put("with_runtime.lte", withRuntime_lte);
+        requestParams.put("air_date.lte", airDate_lte);
+        requestParams.put("with_networks", withNetworks);
+        requestParams.put("with_runtime.gte", withRuntime_gte);
+        requestParams.put("with_original_language", withOriginalLanguage);
+        requestParams.put("page", page);
+        requestParams.put("vote_average.gte", voteAverage_gte);
+        requestParams.put("without_genres", withoutGenres);
+        requestParams.put("screened_theatrically", screenedTheatrically);
+        requestParams.put("include_null_first_air_dates", includeNullFirstAirDates);
+        return restClient.get(path, requestParams, new TypeReference<>() {
 
 
         }
         );
+    }
+
+    public enum MovieDiscoverSortByParam {
+
+        @JsonProperty("popularity.asc")
+        POPULARITYASC("popularity.asc"),
+        @JsonProperty("popularity.desc")
+        POPULARITYDESC("popularity.desc"),
+        @JsonProperty("release_date.asc")
+        RELEASE_DATEASC("release_date.asc"),
+        @JsonProperty("release_date.desc")
+        RELEASE_DATEDESC("release_date.desc"),
+        @JsonProperty("revenue.asc")
+        REVENUEASC("revenue.asc"),
+        @JsonProperty("revenue.desc")
+        REVENUEDESC("revenue.desc"),
+        @JsonProperty("primary_release_date.asc")
+        PRIMARY_RELEASE_DATEASC("primary_release_date.asc"),
+        @JsonProperty("primary_release_date.desc")
+        PRIMARY_RELEASE_DATEDESC("primary_release_date.desc"),
+        @JsonProperty("original_title.asc")
+        ORIGINAL_TITLEASC("original_title.asc"),
+        @JsonProperty("original_title.desc")
+        ORIGINAL_TITLEDESC("original_title.desc"),
+        @JsonProperty("vote_average.asc")
+        VOTE_AVERAGEASC("vote_average.asc"),
+        @JsonProperty("vote_average.desc")
+        VOTE_AVERAGEDESC("vote_average.desc"),
+        @JsonProperty("vote_count.asc")
+        VOTE_COUNTASC("vote_count.asc"),
+        @JsonProperty("vote_count.desc")
+        VOTE_COUNTDESC("vote_count.desc");
+        private final String value;
+
+        MovieDiscoverSortByParam(String value) {
+            this.value = value;
+        }
+
+        @Override
+        public String toString() {
+            return value;
+        }
+
+    }
+
+    public enum TvDiscoverSortByParam {
+
+        @JsonProperty("vote_average.desc")
+        VOTE_AVERAGEDESC("vote_average.desc"),
+        @JsonProperty("vote_average.asc")
+        VOTE_AVERAGEASC("vote_average.asc"),
+        @JsonProperty("first_air_date.desc")
+        FIRST_AIR_DATEDESC("first_air_date.desc"),
+        @JsonProperty("first_air_date.asc")
+        FIRST_AIR_DATEASC("first_air_date.asc"),
+        @JsonProperty("popularity.desc")
+        POPULARITYDESC("popularity.desc"),
+        @JsonProperty("popularity.asc")
+        POPULARITYASC("popularity.asc");
+        private final String value;
+
+        TvDiscoverSortByParam(String value) {
+            this.value = value;
+        }
+
+        @Override
+        public String toString() {
+            return value;
+        }
+
     }
 
 }

@@ -27,20 +27,19 @@ public class EndpointSpecToEndpointConverter {
     Endpoint convert(EndpointSpec spec) {
         String endpointName = getEndpointName(spec.getSlug());
         String responseTypeName = getResponseTypeName(spec.getSlug());
-        String requestTypeName = getRequestTypeName(spec.getSlug());
 
         RequestSpec request = spec.getRequest();
         String path = request.getPath();
         String method = request.getMethod();
-        List<Variable<?>> pathVariables = getPathVariables(request);
-        List<Variable<?>> requestParams = getRequestParams(request);
+        List<Variable<?>> pathVariables = getPathVariables(spec.getSlug(), request);
+        List<Variable<?>> requestParams = getRequestParams(spec.getSlug(), request);
 
 
         /* TODO:
             - consider traits (request and response)
         */
         Type response = specToTypeConverter.generateType(responseTypeName, spec.getResponses().get(0).getBody());
-        ObjectType requestBody = getRequestBody(requestTypeName, spec.getRequest()).orElse(null);
+        ObjectType requestBody = getRequestBody(spec.getSlug(), spec.getRequest()).orElse(null);
         return Endpoint.builder()
                 .name(endpointName)
                 .description(spec.getDescription())
@@ -54,7 +53,8 @@ public class EndpointSpecToEndpointConverter {
                 .build();
     }
 
-    private Optional<ObjectType> getRequestBody(String requestTypeName, RequestSpec request) {
+    private Optional<ObjectType> getRequestBody(String slug, RequestSpec request) {
+        String requestTypeName = getRequestTypeName(slug);
         return request.getBodies().stream()
                 .map(BodySpec::getBody)
                 .filter(Objects::nonNull)
@@ -64,12 +64,12 @@ public class EndpointSpecToEndpointConverter {
                 .findFirst();
     }
 
-    private List<Variable<?>> getRequestParams(RequestSpec request) {
+    private List<Variable<?>> getRequestParams(String slug, RequestSpec request) {
         Type requestType = specToTypeConverter.generateType("request", request.getQueryString());
-        return typeToMapOfVariables(requestType);
+        return typeToMapOfVariables(slug, requestType);
     }
 
-    private List<Variable<?>> typeToMapOfVariables(Type type) {
+    private List<Variable<?>> typeToMapOfVariables(String slug, Type type) {
         if (type instanceof ObjectType) {
             ObjectType objectType = (ObjectType) type;
             List<Field> fields = objectType.getFields();
@@ -77,7 +77,10 @@ public class EndpointSpecToEndpointConverter {
                     .map(field -> {
                         if (field.getType() instanceof EnumType) {
                             EnumType variableType = ((EnumType) field.getType());
-                            return new EnumVariable(variableType.withName(variableType.getName() + "Param"), field.getName(), field.getJsonName());
+                            String prefix = CaseFormat.LOWER_HYPHEN.to(CaseFormat.UPPER_CAMEL, slug);
+                            String suffix = "Param";
+                            String variableTypeName = prefix + variableType.getName() + suffix;
+                            return new EnumVariable(variableType.withName(variableTypeName), field.getName(), field.getJsonName());
                         } else if (field.getType() instanceof SimpleType) {
                             SimpleType.Primitive variableType = ((SimpleType) field.getType()).getPrimitive();
                             return new PrimitiveVariable(variableType, field.getName(), field.getJsonName());
@@ -93,9 +96,9 @@ public class EndpointSpecToEndpointConverter {
         }
     }
 
-    private List<Variable<?>> getPathVariables(RequestSpec request) {
+    private List<Variable<?>> getPathVariables(String slug, RequestSpec request) {
         Type requestType = specToTypeConverter.generateType("path", request.getPathParams());
-        return typeToMapOfVariables(requestType);
+        return typeToMapOfVariables(slug, requestType);
     }
 
     String getEndpointName(String slug) {

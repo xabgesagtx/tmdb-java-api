@@ -1,8 +1,9 @@
 
 package com.github.xabgesagtx.tmdb.configuration;
 
-import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.github.xabgesagtx.tmdb.http.RestClient;
@@ -24,9 +25,11 @@ public class Configuration {
      * <p>The configuration method also contains the list of change keys which can be useful if you are building an app that consumes data from the change feed.</p>
      * 
      */
-    public Optional<GetApiConfigurationResponse> getApiConfiguration() {
+    public Optional<GetApiConfigurationResponse> getApiConfiguration(String apiKey) {
         String path = "/configuration";
-        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+        Map<String, Object> requestParams = new HashMap<>();
+        requestParams.put("api_key", apiKey);
+        return restClient.get(path, requestParams, new TypeReference<>() {
 
 
         }
@@ -37,9 +40,11 @@ public class Configuration {
      * <p>Get the list of countries (ISO 3166-1 tags) used throughout TMDb.</p>
      * 
      */
-    public Optional<List<GetCountriesResponse>> getCountries() {
+    public Optional<List<GetCountriesResponse>> getCountries(String apiKey) {
         String path = "/configuration/countries";
-        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+        Map<String, Object> requestParams = new HashMap<>();
+        requestParams.put("api_key", apiKey);
+        return restClient.get(path, requestParams, new TypeReference<>() {
 
 
         }
@@ -50,9 +55,11 @@ public class Configuration {
      * <p>Get a list of the jobs and departments we use on TMDb.</p>
      * 
      */
-    public Optional<List<GetJobsResponse>> getJobs() {
+    public Optional<List<GetJobsResponse>> getJobs(String apiKey) {
         String path = "/configuration/jobs";
-        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+        Map<String, Object> requestParams = new HashMap<>();
+        requestParams.put("api_key", apiKey);
+        return restClient.get(path, requestParams, new TypeReference<>() {
 
 
         }
@@ -63,9 +70,11 @@ public class Configuration {
      * <p>Get the list of languages (ISO 639-1 tags) used throughout TMDb.</p>
      * 
      */
-    public Optional<List<GetLanguagesResponse>> getLanguages() {
+    public Optional<List<GetLanguagesResponse>> getLanguages(String apiKey) {
         String path = "/configuration/languages";
-        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+        Map<String, Object> requestParams = new HashMap<>();
+        requestParams.put("api_key", apiKey);
+        return restClient.get(path, requestParams, new TypeReference<>() {
 
 
         }
@@ -80,9 +89,11 @@ public class Configuration {
      * <p>One more thing to mention, these are the translations that map to our website translation project. You can view and contribute to that project <a href="https://www.localeapp.com/projects/8267">here</a>.</p>
      * 
      */
-    public Optional<List<String>> getPrimaryTranslations() {
+    public Optional<List<String>> getPrimaryTranslations(String apiKey) {
         String path = "/configuration/primary_translations";
-        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+        Map<String, Object> requestParams = new HashMap<>();
+        requestParams.put("api_key", apiKey);
+        return restClient.get(path, requestParams, new TypeReference<>() {
 
 
         }
@@ -93,9 +104,11 @@ public class Configuration {
      * <p>Get the list of timezones used throughout TMDb.</p>
      * 
      */
-    public Optional<List<GetTimezonesResponse>> getTimezones() {
+    public Optional<List<GetTimezonesResponse>> getTimezones(String apiKey) {
         String path = "/configuration/timezones";
-        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+        Map<String, Object> requestParams = new HashMap<>();
+        requestParams.put("api_key", apiKey);
+        return restClient.get(path, requestParams, new TypeReference<>() {
 
 
         }

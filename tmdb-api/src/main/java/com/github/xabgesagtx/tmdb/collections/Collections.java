@@ -1,6 +1,7 @@
 
 package com.github.xabgesagtx.tmdb.collections;
 
+import java.util.Map;
 import java.util.Optional;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.github.xabgesagtx.tmdb.http.RestClient;
@@ -20,7 +21,8 @@ public class Collections {
     public Optional<GetCollectionDetailsResponse> getCollectionDetails(int collectionId) {
         // /collection/{collection_id}
         String path = String.format("/collection/%s", collectionId);
-        return restClient.get(path, java.util.Collections.emptyMap(), new TypeReference<>() {
+        Map<String, Object> requestParams = java.util.Collections.emptyMap();
+        return restClient.get(path, requestParams, new TypeReference<>() {
 
 
         }
@@ -34,7 +36,8 @@ public class Collections {
     public Optional<GetCollectionImagesResponse> getCollectionImages(int collectionId) {
         // /collection/{collection_id}/images
         String path = String.format("/collection/%s/images", collectionId);
-        return restClient.get(path, java.util.Collections.emptyMap(), new TypeReference<>() {
+        Map<String, Object> requestParams = java.util.Collections.emptyMap();
+        return restClient.get(path, requestParams, new TypeReference<>() {
 
 
         }
@@ -48,7 +51,8 @@ public class Collections {
     public Optional<GetCollectionTranslationsResponse> getCollectionTranslations(int collectionId) {
         // /collection/{collection_id}/translations
         String path = String.format("/collection/%s/translations", collectionId);
-        return restClient.get(path, java.util.Collections.emptyMap(), new TypeReference<>() {
+        Map<String, Object> requestParams = java.util.Collections.emptyMap();
+        return restClient.get(path, requestParams, new TypeReference<>() {
 
 
         }

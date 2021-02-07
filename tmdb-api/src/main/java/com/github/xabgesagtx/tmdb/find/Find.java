@@ -1,8 +1,10 @@
 
 package com.github.xabgesagtx.tmdb.find;
 
-import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.github.xabgesagtx.tmdb.http.RestClient;
 
@@ -21,14 +23,47 @@ public class Find {
      * <p>*Defunct or no longer available as a service.</p>
      * 
      */
-    public Optional<FindByIdResponse> findById(String externalId) {
+    public Optional<FindByIdResponse> findById(String externalId, Find.FindByIdExternalSourceParam externalSource) {
         // /find/{external_id}
         String path = String.format("/find/%s", externalId);
-        return restClient.get(path, Collections.emptyMap(), new TypeReference<>() {
+        Map<String, Object> requestParams = new HashMap<>();
+        requestParams.put("external_source", externalSource);
+        return restClient.get(path, requestParams, new TypeReference<>() {
 
 
         }
         );
+    }
+
+    public enum FindByIdExternalSourceParam {
+
+        @JsonProperty("imdb_id")
+        IMDB_ID("imdb_id"),
+        @JsonProperty("freebase_mid")
+        FREEBASE_MID("freebase_mid"),
+        @JsonProperty("freebase_id")
+        FREEBASE_ID("freebase_id"),
+        @JsonProperty("tvdb_id")
+        TVDB_ID("tvdb_id"),
+        @JsonProperty("tvrage_id")
+        TVRAGE_ID("tvrage_id"),
+        @JsonProperty("facebook_id")
+        FACEBOOK_ID("facebook_id"),
+        @JsonProperty("twitter_id")
+        TWITTER_ID("twitter_id"),
+        @JsonProperty("instagram_id")
+        INSTAGRAM_ID("instagram_id");
+        private final String value;
+
+        FindByIdExternalSourceParam(String value) {
+            this.value = value;
+        }
+
+        @Override
+        public String toString() {
+            return value;
+        }
+
     }
 
 }

@@ -4,6 +4,7 @@ import com.github.xabgesagtx.tmdb.api.external.ComplexTypeSpec;
 import com.github.xabgesagtx.tmdb.codegen.model.*;
 import com.google.common.base.CaseFormat;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
 import java.util.Map;
@@ -50,6 +51,7 @@ public class SpecToTypeConverter {
         } else {
             name = CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, originalName);
         }
+        name = StringUtils.replace(name, ".", "_");
         Type type = createType(originalName, spec);
         return new Field(type, name, originalName);
     }
@@ -101,7 +103,8 @@ public class SpecToTypeConverter {
 
     private Type createEnumType(String originalName, ComplexTypeSpec spec) {
         String name = CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, originalName);
-        return new EnumType(name, spec.getEnumValues());
+        List<String> enumValues = spec.getEnumValues().stream().filter(StringUtils::isNotBlank).collect(Collectors.toList());
+        return new EnumType(name, enumValues);
     }
 
     private ArrayType createArrayType(String originalName, ComplexTypeSpec spec) {
