@@ -69,6 +69,14 @@ public class Movies {
     }
 
     /**
+     * <p>Get all of the alternative titles for a movie.</p> <a href="https://developers.themoviedb.org/#recent-changes">\ud83d\udd17</a> Recent Changes    <strong>Date</strong> <strong>Change</strong>     March 16, 2018 Added the <code>type</code> field.
+     * 
+     */
+    public Optional<GetMovieAlternativeTitlesResponse> getMovieAlternativeTitles(int movieId) {
+        return getMovieAlternativeTitles(movieId, null);
+    }
+
+    /**
      * <p>Get the changes for a movie. By default only the last 24 hours are returned.</p> 
      * <p>You can query up to 14 days in a single query by using the <code>start_date</code> and <code>end_date</code> query parameters.</p>
      * 
@@ -103,11 +111,10 @@ public class Movies {
      * <p>Get the external ids for a movie. We currently support the following external sources.</p>    <strong>Media Databases</strong> <strong>Social IDs</strong>     IMDb ID Facebook    Instagram    Twitter
      * 
      */
-    public Optional<GetMovieExternalIdsResponse> getMovieExternalIds(int movieId, String apiKey) {
+    public Optional<GetMovieExternalIdsResponse> getMovieExternalIds(int movieId) {
         // /movie/{movie_id}/external_ids
         String path = String.format("/movie/%s/external_ids", movieId);
-        Map<String, Object> requestParams = new HashMap<>();
-        requestParams.put("api_key", apiKey);
+        Map<String, Object> requestParams = Collections.emptyMap();
         return restClient.get(path, requestParams, new TypeReference<>() {
 
 
@@ -133,14 +140,22 @@ public class Movies {
     }
 
     /**
+     * <p>Get the images that belong to a movie.</p> 
+     * <p>Querying images with a <code>language</code> parameter will filter the results. If you want to include a fallback language (especially useful for backdrops) you can use the <code>include_image_language</code> parameter. This should be a comma seperated value like so: <code>include_image_language=en,null</code>.</p>
+     * 
+     */
+    public Optional<GetMovieImagesResponse> getMovieImages(int movieId) {
+        return getMovieImages(movieId, null);
+    }
+
+    /**
      * <p>Get the keywords that have been added to a movie.</p>
      * 
      */
-    public Optional<GetMovieKeywordsResponse> getMovieKeywords(int movieId, String apiKey) {
+    public Optional<GetMovieKeywordsResponse> getMovieKeywords(int movieId) {
         // /movie/{movie_id}/keywords
         String path = String.format("/movie/%s/keywords", movieId);
-        Map<String, Object> requestParams = new HashMap<>();
-        requestParams.put("api_key", apiKey);
+        Map<String, Object> requestParams = Collections.emptyMap();
         return restClient.get(path, requestParams, new TypeReference<>() {
 
 
@@ -152,11 +167,10 @@ public class Movies {
      * <p>Get a list of lists that this movie belongs to.</p>
      * 
      */
-    public Optional<GetMovieListsResponse> getMovieLists(int movieId, String apiKey) {
+    public Optional<GetMovieListsResponse> getMovieLists(int movieId) {
         // /movie/{movie_id}/lists
         String path = String.format("/movie/%s/lists", movieId);
-        Map<String, Object> requestParams = new HashMap<>();
-        requestParams.put("api_key", apiKey);
+        Map<String, Object> requestParams = Collections.emptyMap();
         return restClient.get(path, requestParams, new TypeReference<>() {
 
 
@@ -168,11 +182,10 @@ public class Movies {
      * <p>Get a list of recommended movies for a movie.</p>
      * 
      */
-    public Optional<GetMovieRecommendationsResponse> getMovieRecommendations(int movieId, String apiKey) {
+    public Optional<GetMovieRecommendationsResponse> getMovieRecommendations(int movieId) {
         // /movie/{movie_id}/recommendations
         String path = String.format("/movie/%s/recommendations", movieId);
-        Map<String, Object> requestParams = new HashMap<>();
-        requestParams.put("api_key", apiKey);
+        Map<String, Object> requestParams = Collections.emptyMap();
         return restClient.get(path, requestParams, new TypeReference<>() {
 
 
@@ -193,11 +206,10 @@ public class Movies {
      * </ol>
      * 
      */
-    public Optional<GetMovieReleaseDatesResponse> getMovieReleaseDates(int movieId, String apiKey) {
+    public Optional<GetMovieReleaseDatesResponse> getMovieReleaseDates(int movieId) {
         // /movie/{movie_id}/release_dates
         String path = String.format("/movie/%s/release_dates", movieId);
-        Map<String, Object> requestParams = new HashMap<>();
-        requestParams.put("api_key", apiKey);
+        Map<String, Object> requestParams = Collections.emptyMap();
         return restClient.get(path, requestParams, new TypeReference<>() {
 
 
@@ -209,11 +221,10 @@ public class Movies {
      * <p>Get the user reviews for a movie.</p>
      * 
      */
-    public Optional<GetMovieReviewsResponse> getMovieReviews(int movieId, String apiKey) {
+    public Optional<GetMovieReviewsResponse> getMovieReviews(int movieId) {
         // /movie/{movie_id}/reviews
         String path = String.format("/movie/%s/reviews", movieId);
-        Map<String, Object> requestParams = new HashMap<>();
-        requestParams.put("api_key", apiKey);
+        Map<String, Object> requestParams = Collections.emptyMap();
         return restClient.get(path, requestParams, new TypeReference<>() {
 
 
@@ -226,11 +237,10 @@ public class Movies {
      * <p>These items are assembled by looking at keywords and genres.</p>
      * 
      */
-    public Optional<GetSimilarMoviesResponse> getSimilarMovies(int movieId, String apiKey) {
+    public Optional<GetSimilarMoviesResponse> getSimilarMovies(int movieId) {
         // /movie/{movie_id}/similar
         String path = String.format("/movie/%s/similar", movieId);
-        Map<String, Object> requestParams = new HashMap<>();
-        requestParams.put("api_key", apiKey);
+        Map<String, Object> requestParams = Collections.emptyMap();
         return restClient.get(path, requestParams, new TypeReference<>() {
 
 
@@ -242,11 +252,10 @@ public class Movies {
      * <p>Get a list of translations that have been created for a movie.</p>
      * 
      */
-    public Optional<GetMovieTranslationsResponse> getMovieTranslations(int movieId, String apiKey) {
+    public Optional<GetMovieTranslationsResponse> getMovieTranslations(int movieId) {
         // /movie/{movie_id}/translations
         String path = String.format("/movie/%s/translations", movieId);
-        Map<String, Object> requestParams = new HashMap<>();
-        requestParams.put("api_key", apiKey);
+        Map<String, Object> requestParams = Collections.emptyMap();
         return restClient.get(path, requestParams, new TypeReference<>() {
 
 
@@ -258,11 +267,10 @@ public class Movies {
      * <p>Get the videos that have been added to a movie.</p> <a href="https://developers.themoviedb.org/#recent-changes">\ud83d\udd17</a> Recent Changes    <strong>Date</strong> <strong>Change</strong>     March 23, 2019 Vimeo was added as a video source.   March 20, 2019 "Behind the Scenes" and "Bloopers" were added as valid video types.
      * 
      */
-    public Optional<GetMovieVideosResponse> getMovieVideos(int movieId, String apiKey) {
+    public Optional<GetMovieVideosResponse> getMovieVideos(int movieId) {
         // /movie/{movie_id}/videos
         String path = String.format("/movie/%s/videos", movieId);
-        Map<String, Object> requestParams = new HashMap<>();
-        requestParams.put("api_key", apiKey);
+        Map<String, Object> requestParams = Collections.emptyMap();
         return restClient.get(path, requestParams, new TypeReference<>() {
 
 
@@ -276,11 +284,10 @@ public class Movies {
      * <p>You can link to the provided TMDb URL to help support TMDb and let your users deep link into the content.</p>
      * 
      */
-    public Optional<GetMovieWatchProvidersResponse> getMovieWatchProviders(int movieId, String apiKey) {
+    public Optional<GetMovieWatchProvidersResponse> getMovieWatchProviders(int movieId) {
         // /movie/{movie_id}/watch/providers
         String path = String.format("/movie/%s/watch/providers", movieId);
-        Map<String, Object> requestParams = new HashMap<>();
-        requestParams.put("api_key", apiKey);
+        Map<String, Object> requestParams = Collections.emptyMap();
         return restClient.get(path, requestParams, new TypeReference<>() {
 
 

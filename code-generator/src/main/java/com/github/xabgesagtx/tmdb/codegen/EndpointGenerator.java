@@ -34,8 +34,9 @@ public class EndpointGenerator extends AbstractGenerator {
                 .map(variable -> Pair.of(variable.getJsonName(), createMethodParam(method, resourceClass, variable)))
                 .collect(Collectors.toMap(Pair::getKey, Pair::getValue));
         JExpression requestBodyExpression = JExpr._null();
+        JDefinedClass requestClass = null;
         if (endpoint.getRequestBody() != null) {
-            JDefinedClass requestClass = modelGenerator.createClass(endpoint.getRequestBody(), jPackage, false);
+            requestClass = modelGenerator.createClass(endpoint.getRequestBody(), jPackage, false);
             String requestBodyParamName = CaseFormat.UPPER_CAMEL.to(CaseFormat.LOWER_CAMEL, endpoint.getRequestBody().getName());
             requestBodyExpression = method.param(requestClass, requestBodyParamName);
         }
@@ -57,6 +58,39 @@ public class EndpointGenerator extends AbstractGenerator {
             restClientInvocation.arg(requestBodyExpression);
         }
         body._return(restClientInvocation);
+        createConvenienceMethod(resourceClass, optionalResultType, endpoint, pathVariables, requestClass, requestParams);
+    }
+
+    private void createConvenienceMethod(JDefinedClass resourceClass, JType optionalResultType, Endpoint endpoint, Map<String, JVar> pathVariables, JDefinedClass requestClass, Map<String, JVar> requestParams) {
+        if (endpoint.getRequestParams().stream().allMatch(Variable::isRequired)) {
+            return;
+        }
+        JMethod method = resourceClass.method(JMod.PUBLIC, optionalResultType, endpoint.getName());
+        String javaDocText = javaDocFormatter.format(endpoint.getDescription());
+        method.javadoc().add(javaDocText);
+        List<JExpression> invocationParams = new ArrayList<>();
+        pathVariables
+                .values()
+                .stream()
+                .sorted(Comparator.comparing(JVar::name, Comparator.naturalOrder()))
+                .forEach(jVar -> invocationParams.add(method.param(jVar.type(), jVar.name())));
+        if (requestClass != null) {
+            invocationParams.add(method.param(requestClass, "requestBody"));
+        }
+        endpoint.getRequestParams().stream()
+                .sorted(Comparator.comparing(Variable::getName, Comparator.naturalOrder()))
+                .forEach(param -> {
+                    if (param.isRequired()) {
+                        JVar jVar = requestParams.get(param.getJsonName());
+                        invocationParams.add(method.param(jVar.type(), jVar.name()));
+                    } else {
+                        invocationParams.add(JExpr._null());
+                    }
+                });
+        JBlock body = method.body();
+        JInvocation invocation = JExpr.invoke(endpoint.getName());
+        invocationParams.forEach(invocation::arg);
+        body._return(invocation);
     }
 
     private JExpression createRequestParamsMap(JBlock body, Map<String, JVar> requestParams) {
@@ -98,7 +132,9 @@ public class EndpointGenerator extends AbstractGenerator {
             return method.param(enumClass, variable.getName());
         } else {
             PrimitiveVariable primitiveVariable = (PrimitiveVariable) variable;
-            return method.param(model.ref(getClassForPrimitive(primitiveVariable.getType())).unboxify(), variable.getName());
+            Class<?> classForPrimitive = getClassForPrimitive(primitiveVariable.getType());
+            JType type = variable.isRequired() ? model.ref(classForPrimitive).unboxify() : model.ref(classForPrimitive);
+            return method.param(type, variable.getName());
         }
     }
 

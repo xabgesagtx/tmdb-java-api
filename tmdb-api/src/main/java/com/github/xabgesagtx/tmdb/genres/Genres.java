@@ -32,6 +32,14 @@ public class Genres {
     }
 
     /**
+     * <p>Get the list of official genres for movies.</p>
+     * 
+     */
+    public Optional<GetMovieListResponse> getMovieList() {
+        return getMovieList(null);
+    }
+
+    /**
      * <p>Get the list of official genres for TV shows.</p>
      * 
      */

@@ -2,7 +2,6 @@
 package com.github.xabgesagtx.tmdb.account;
 
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -34,11 +33,10 @@ public class Account {
      * <p>Get all of the lists created by an account. Will invlude private lists if you are the owner.</p>
      * 
      */
-    public Optional<GetCreatedListsResponse> getCreatedLists(int accountId, String apiKey) {
+    public Optional<GetCreatedListsResponse> getCreatedLists(int accountId) {
         // /account/{account_id}/lists
         String path = String.format("/account/%s/lists", accountId);
-        Map<String, Object> requestParams = new HashMap<>();
-        requestParams.put("api_key", apiKey);
+        Map<String, Object> requestParams = Collections.emptyMap();
         return restClient.get(path, requestParams, new TypeReference<>() {
 
 

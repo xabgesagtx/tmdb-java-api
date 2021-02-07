@@ -62,7 +62,7 @@ public class Search {
      * <p>Search for movies.</p>
      * 
      */
-    public Optional<SearchMoviesResponse> searchMovies(int primaryReleaseYear, int year) {
+    public Optional<SearchMoviesResponse> searchMovies(Integer primaryReleaseYear, Integer year) {
         String path = "/search/movie";
         Map<String, Object> requestParams = new HashMap<>();
         requestParams.put("primary_release_year", primaryReleaseYear);
@@ -72,6 +72,14 @@ public class Search {
 
         }
         );
+    }
+
+    /**
+     * <p>Search for movies.</p>
+     * 
+     */
+    public Optional<SearchMoviesResponse> searchMovies() {
+        return searchMovies(null, null);
     }
 
     /**
@@ -106,7 +114,7 @@ public class Search {
      * <p>Search for a TV show.</p>
      * 
      */
-    public Optional<SearchTvShowsResponse> searchTvShows(int firstAirDateYear) {
+    public Optional<SearchTvShowsResponse> searchTvShows(Integer firstAirDateYear) {
         String path = "/search/tv";
         Map<String, Object> requestParams = new HashMap<>();
         requestParams.put("first_air_date_year", firstAirDateYear);
@@ -115,6 +123,14 @@ public class Search {
 
         }
         );
+    }
+
+    /**
+     * <p>Search for a TV show.</p>
+     * 
+     */
+    public Optional<SearchTvShowsResponse> searchTvShows() {
+        return searchTvShows(null);
     }
 
 }

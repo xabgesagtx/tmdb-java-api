@@ -75,6 +75,7 @@ public class EndpointSpecToEndpointConverter {
     private List<Variable<?>> typeToMapOfVariables(String slug, ObjectType type, List<String> requiredFields) {
         List<Field> fields = type.getFields();
         return fields.stream()
+                .filter(field -> !field.getJsonName().equals("api_key"))
                 .map(field -> {
                     boolean required = requiredFields.contains(field.getJsonName());
                     if (field.getType() instanceof EnumType) {
