@@ -46,41 +46,41 @@ public class Lists {
      * <p>Create a list.</p>
      * 
      */
-    public Optional<CreateListResponse> createList() {
+    public Optional<CreateListResponse> createList(CreateListRequest createListRequest) {
         String path = "/list";
         return restClient.post(path, Collections.emptyMap(), new TypeReference<>() {
 
 
         }
-        );
+        , createListRequest);
     }
 
     /**
      * <p>Add a movie to a list.</p>
      * 
      */
-    public Optional<AddMovieResponse> addMovie(String listId) {
+    public Optional<AddMovieResponse> addMovie(String listId, AddMovieRequest addMovieRequest) {
         // /list/{list_id}/add_item
         String path = String.format("/list/%s/add_item", listId);
         return restClient.post(path, Collections.emptyMap(), new TypeReference<>() {
 
 
         }
-        );
+        , addMovieRequest);
     }
 
     /**
      * <p>Remove a movie from a list.</p>
      * 
      */
-    public Optional<RemoveMovieResponse> removeMovie(String listId) {
+    public Optional<RemoveMovieResponse> removeMovie(String listId, RemoveMovieRequest removeMovieRequest) {
         // /list/{list_id}/remove_item
         String path = String.format("/list/%s/remove_item", listId);
         return restClient.post(path, Collections.emptyMap(), new TypeReference<>() {
 
 
         }
-        );
+        , removeMovieRequest);
     }
 
     /**
@@ -94,7 +94,7 @@ public class Lists {
 
 
         }
-        );
+        , null);
     }
 
     /**
@@ -108,7 +108,7 @@ public class Lists {
 
 
         }
-        );
+        , null);
     }
 
 }

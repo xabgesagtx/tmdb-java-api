@@ -284,14 +284,14 @@ public class TV {
      * <p>A valid session or guest session ID is required. You can read more about how this works <a href="https://developers.themoviedb.org/3/authentication/how-do-i-generate-a-session-id">here</a>.</p>
      * 
      */
-    public Optional<RateTvShowResponse> rateTvShow(int tvId) {
+    public Optional<RateTvShowResponse> rateTvShow(int tvId, RateTvShowRequest rateTvShowRequest) {
         // /tv/{tv_id}/rating
         String path = String.format("/tv/%s/rating", tvId);
         return restClient.post(path, Collections.emptyMap(), new TypeReference<>() {
 
 
         }
-        );
+        , rateTvShowRequest);
     }
 
     /**
@@ -306,7 +306,7 @@ public class TV {
 
 
         }
-        );
+        , null);
     }
 
     /**

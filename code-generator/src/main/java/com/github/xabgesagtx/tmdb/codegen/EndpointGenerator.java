@@ -2,6 +2,7 @@ package com.github.xabgesagtx.tmdb.codegen;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.github.xabgesagtx.tmdb.codegen.model.*;
+import com.google.common.base.CaseFormat;
 import com.sun.codemodel.*;
 import org.apache.commons.lang3.tuple.Pair;
 
@@ -32,6 +33,12 @@ public class EndpointGenerator extends AbstractGenerator {
                 .sorted(Comparator.comparing(Variable::getName, Comparator.naturalOrder()))
                 .map(variable -> Pair.of(variable.getJsonName(), createMethodParam(method, resourceClass, variable)))
                 .collect(Collectors.toMap(Pair::getKey, Pair::getValue));
+        JExpression requestBodyExpression = JExpr._null();
+        if (endpoint.getRequestBody() != null) {
+            JDefinedClass requestClass = modelGenerator.createClass(endpoint.getRequestBody(), jPackage, false);
+            String requestBodyParamName = CaseFormat.UPPER_CAMEL.to(CaseFormat.LOWER_CAMEL, endpoint.getRequestBody().getName());
+            requestBodyExpression = method.param(requestClass, requestBodyParamName);
+        }
         JBlock body = method.body();
         JVar formattedPath = formatPath(body, endpoint.getPath(), pathVariables);
         JFieldVar restClient = resourceClass.fields().get("restClient");
@@ -41,6 +48,9 @@ public class EndpointGenerator extends AbstractGenerator {
                 .arg(formattedPath)
                 .arg(requestParm)
                 .arg(typeReference);
+        if (Set.of("post", "delete", "put").contains(endpoint.getMethod())) {
+            restClientInvocation.arg(requestBodyExpression);
+        }
         body._return(restClientInvocation);
     }
 

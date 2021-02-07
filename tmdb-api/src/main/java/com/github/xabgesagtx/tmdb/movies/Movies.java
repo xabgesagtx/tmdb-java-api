@@ -263,14 +263,14 @@ public class Movies {
      * <p>A valid session or guest session ID is required. You can read more about how this works <a href="https://developers.themoviedb.org/3/authentication/how-do-i-generate-a-session-id">here</a>.</p>
      * 
      */
-    public Optional<RateMovieResponse> rateMovie(int movieId) {
+    public Optional<RateMovieResponse> rateMovie(int movieId, RateMovieRequest rateMovieRequest) {
         // /movie/{movie_id}/rating
         String path = String.format("/movie/%s/rating", movieId);
         return restClient.post(path, Collections.emptyMap(), new TypeReference<>() {
 
 
         }
-        );
+        , rateMovieRequest);
     }
 
     /**
@@ -285,7 +285,7 @@ public class Movies {
 
 
         }
-        );
+        , null);
     }
 
     /**

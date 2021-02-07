@@ -24,12 +24,6 @@ public class ModelGenerator extends AbstractGenerator {
         this.model = model;
     }
 
-    public JCodeModel generate(ObjectType baseType, String basePackageName) {
-        JPackage basePackage = model._package(basePackageName);
-        createClass(baseType, basePackage, false);
-        return model;
-    }
-
     @SneakyThrows
     JDefinedClass createClass(ObjectType baseType, JClassContainer classContainer, boolean shouldBeStatic) {
         int mod = shouldBeStatic ? JMod.PUBLIC | JMod.STATIC : JMod.PUBLIC;

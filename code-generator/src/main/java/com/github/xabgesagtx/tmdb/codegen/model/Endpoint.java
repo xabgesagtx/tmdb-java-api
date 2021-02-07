@@ -15,6 +15,7 @@ public class Endpoint {
     String path;
     String method;
     List<Variable<?>> pathVariables;
+    ObjectType requestBody;
     List<Variable<?>> requestParams;
     Type response;
     Map<Integer, Type> errorResponses;

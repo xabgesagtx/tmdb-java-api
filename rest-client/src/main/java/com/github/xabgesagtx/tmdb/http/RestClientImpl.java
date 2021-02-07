@@ -66,17 +66,17 @@ public class RestClientImpl implements RestClient {
     }
 
     @Override
-    public <T> Optional<T> post(String path, Map<String, Object> params, TypeReference<T> typeReference) {
+    public <T> Optional<T> post(String path, Map<String, Object> params, TypeReference<T> typeReference, Object requestBody) {
         return Optional.empty();
     }
 
     @Override
-    public <T> Optional<T> delete(String path, Map<String, Object> params, TypeReference<T> typeReference) {
+    public <T> Optional<T> delete(String path, Map<String, Object> params, TypeReference<T> typeReference, Object requestBody) {
         return Optional.empty();
     }
 
     @Override
-    public <T> Optional<T> put(String path, Map<String, Object> params, TypeReference<T> typeReference) {
+    public <T> Optional<T> put(String path, Map<String, Object> params, TypeReference<T> typeReference, Object requestBody) {
         return Optional.empty();
     }
 

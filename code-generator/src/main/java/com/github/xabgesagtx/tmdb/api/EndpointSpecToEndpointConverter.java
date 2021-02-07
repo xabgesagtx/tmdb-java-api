@@ -1,5 +1,6 @@
 package com.github.xabgesagtx.tmdb.api;
 
+import com.github.xabgesagtx.tmdb.api.external.BodySpec;
 import com.github.xabgesagtx.tmdb.api.external.EndpointSpec;
 import com.github.xabgesagtx.tmdb.api.external.RequestSpec;
 import com.github.xabgesagtx.tmdb.api.external.SchemaSpec;
@@ -9,6 +10,8 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -23,7 +26,8 @@ public class EndpointSpecToEndpointConverter {
 
     Endpoint convert(EndpointSpec spec) {
         String endpointName = getEndpointName(spec.getSlug());
-        String typeName = getTypeName(spec.getSlug());
+        String responseTypeName = getResponseTypeName(spec.getSlug());
+        String requestTypeName = getRequestTypeName(spec.getSlug());
 
         RequestSpec request = spec.getRequest();
         String path = request.getPath();
@@ -31,22 +35,33 @@ public class EndpointSpecToEndpointConverter {
         List<Variable<?>> pathVariables = getPathVariables(request);
         List<Variable<?>> requestParams = getRequestParams(request);
 
+
         /* TODO:
-            - Use path and request variables
-            - verify response type
             - consider traits (request and response)
         */
-        Type response = specToTypeConverter.generateType(typeName, spec.getResponses().get(0).getBody());
+        Type response = specToTypeConverter.generateType(responseTypeName, spec.getResponses().get(0).getBody());
+        ObjectType requestBody = getRequestBody(requestTypeName, spec.getRequest()).orElse(null);
         return Endpoint.builder()
                 .name(endpointName)
                 .description(spec.getDescription())
                 .path(path)
                 .method(method)
                 .pathVariables(pathVariables)
+                .requestBody(requestBody)
                 .requestParams(requestParams)
                 .errorResponses(Collections.emptyMap())
                 .response(response)
                 .build();
+    }
+
+    private Optional<ObjectType> getRequestBody(String requestTypeName, RequestSpec request) {
+        return request.getBodies().stream()
+                .map(BodySpec::getBody)
+                .filter(Objects::nonNull)
+                .filter(body -> body.getProperties() != null && !body.getProperties().isEmpty())
+                .map(body -> specToTypeConverter.generateType(requestTypeName, body))
+                .map(requestBodyType -> (ObjectType) requestBodyType)
+                .findFirst();
     }
 
     private List<Variable<?>> getRequestParams(RequestSpec request) {
@@ -87,8 +102,13 @@ public class EndpointSpecToEndpointConverter {
         return CaseFormat.LOWER_HYPHEN.to(CaseFormat.LOWER_CAMEL, slug);
     }
 
-    String getTypeName(String slug) {
+    String getResponseTypeName(String slug) {
         String completeSlug = slug + "-response";
+        return CaseFormat.LOWER_HYPHEN.to(CaseFormat.LOWER_UNDERSCORE, completeSlug);
+    }
+
+    String getRequestTypeName(String slug) {
+        String completeSlug = slug + "-request";
         return CaseFormat.LOWER_HYPHEN.to(CaseFormat.LOWER_UNDERSCORE, completeSlug);
     }
 }

@@ -46,13 +46,13 @@ public class Authentication {
      * <p>You can use this method to create a fully valid session ID once a user has validated the request token. More information about how this works can be found <a href="https://developers.themoviedb.org/3/authentication/how-do-i-generate-a-session-id">here</a>.</p>
      * 
      */
-    public Optional<CreateSessionResponse> createSession() {
+    public Optional<CreateSessionResponse> createSession(CreateSessionRequest createSessionRequest) {
         String path = "/authentication/session/new";
         return restClient.post(path, Collections.emptyMap(), new TypeReference<>() {
 
 
         }
-        );
+        , createSessionRequest);
     }
 
     /**
@@ -62,39 +62,39 @@ public class Authentication {
      * <p>If you decide to use this method please <strong>use HTTPS</strong>.</p>
      * 
      */
-    public Optional<ValidateRequestTokenResponse> validateRequestToken() {
+    public Optional<ValidateRequestTokenResponse> validateRequestToken(ValidateRequestTokenRequest validateRequestTokenRequest) {
         String path = "/authentication/token/validate_with_login";
         return restClient.post(path, Collections.emptyMap(), new TypeReference<>() {
 
 
         }
-        );
+        , validateRequestTokenRequest);
     }
 
     /**
      * <p>Use this method to create a v3 session ID if you already have a valid v4 access token. The v4 token needs to be authenticated by the user. Your standard "read token" will not validate to create a session ID.</p>
      * 
      */
-    public Optional<CreateSessionFromV4AccessTokenResponse> createSessionFromV4AccessToken() {
+    public Optional<CreateSessionFromV4AccessTokenResponse> createSessionFromV4AccessToken(CreateSessionFromV4AccessTokenRequest createSessionFromV4AccessTokenRequest) {
         String path = "/authentication/session/convert/4";
         return restClient.post(path, Collections.emptyMap(), new TypeReference<>() {
 
 
         }
-        );
+        , createSessionFromV4AccessTokenRequest);
     }
 
     /**
      * <p>If you would like to delete (or "logout") from a session, call this method with a valid session ID.</p>
      * 
      */
-    public Optional<DeleteSessionResponse> deleteSession() {
+    public Optional<DeleteSessionResponse> deleteSession(DeleteSessionRequest deleteSessionRequest) {
         String path = "/authentication/session";
         return restClient.delete(path, Collections.emptyMap(), new TypeReference<>() {
 
 
         }
-        );
+        , deleteSessionRequest);
     }
 
 }

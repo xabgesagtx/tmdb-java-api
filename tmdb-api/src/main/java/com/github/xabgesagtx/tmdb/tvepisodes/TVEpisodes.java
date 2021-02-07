@@ -121,14 +121,14 @@ public class TVEpisodes {
      * <p>A valid session or guest session ID is required. You can read more about how this works <a href="https://developers.themoviedb.org/3/authentication/how-do-i-generate-a-session-id">here</a>.</p>
      * 
      */
-    public Optional<RateTvEpisodeResponse> rateTvEpisode(int episodeNumber, int seasonNumber, int tvId) {
+    public Optional<RateTvEpisodeResponse> rateTvEpisode(int episodeNumber, int seasonNumber, int tvId, RateTvEpisodeRequest rateTvEpisodeRequest) {
         // /tv/{tv_id}/season/{season_number}/episode/{episode_number}/rating
         String path = String.format("/tv/%s/season/%s/episode/%s/rating", tvId, seasonNumber, episodeNumber);
         return restClient.post(path, Collections.emptyMap(), new TypeReference<>() {
 
 
         }
-        );
+        , rateTvEpisodeRequest);
     }
 
     /**
@@ -143,7 +143,7 @@ public class TVEpisodes {
 
 
         }
-        );
+        , null);
     }
 
     /**

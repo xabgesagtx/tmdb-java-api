@@ -73,14 +73,14 @@ public class Account {
      * <p>This method allows you to mark a movie or TV show as a favorite item.</p>
      * 
      */
-    public Optional<MarkAsFavoriteResponse> markAsFavorite(int accountId) {
+    public Optional<MarkAsFavoriteResponse> markAsFavorite(int accountId, MarkAsFavoriteRequest markAsFavoriteRequest) {
         // /account/{account_id}/favorite
         String path = String.format("/account/%s/favorite", accountId);
         return restClient.post(path, Collections.emptyMap(), new TypeReference<>() {
 
 
         }
-        );
+        , markAsFavoriteRequest);
     }
 
     /**
@@ -157,14 +157,14 @@ public class Account {
      * <p>Add a movie or TV show to your watchlist.</p>
      * 
      */
-    public Optional<AddToWatchlistResponse> addToWatchlist(int accountId) {
+    public Optional<AddToWatchlistResponse> addToWatchlist(int accountId, AddToWatchlistRequest addToWatchlistRequest) {
         // /account/{account_id}/watchlist
         String path = String.format("/account/%s/watchlist", accountId);
         return restClient.post(path, Collections.emptyMap(), new TypeReference<>() {
 
 
         }
-        );
+        , addToWatchlistRequest);
     }
 
 }
