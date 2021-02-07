@@ -6,6 +6,7 @@ import com.github.xabgesagtx.tmdb.http.RestClientImpl;
 import com.google.common.base.CaseFormat;
 import com.sun.codemodel.*;
 import lombok.SneakyThrows;
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -37,7 +38,7 @@ public class CodeGenerator extends AbstractGenerator {
         JVar restClient = constructor.param(RestClient.class, "restClient");
         JBlock constructorBody = constructor.body();
         resourceClasses.forEach(resource -> {
-            String resourceName = CaseFormat.UPPER_CAMEL.to(CaseFormat.LOWER_CAMEL, resource.name());
+            String resourceName = CaseFormat.UPPER_CAMEL.to(CaseFormat.LOWER_CAMEL, StringUtils.replace(resource.name(), "TV", "Tv"));
             JFieldVar field = tmdbApi.field(JMod.PRIVATE | JMod.FINAL, resource, resourceName);
             constructorBody.assign(field, JExpr._new(resource).arg(restClient));
             tmdbApi.method(JMod.PUBLIC, resource, resourceName).body()._return(field);

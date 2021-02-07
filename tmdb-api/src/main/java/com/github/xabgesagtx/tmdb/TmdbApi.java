@@ -50,10 +50,10 @@ public class TmdbApi {
     private final People people;
     private final Reviews reviews;
     private final Search search;
-    private final TV tV;
-    private final TVSeasons tVSeasons;
-    private final TVEpisodes tVEpisodes;
-    private final TVEpisodeGroups tVEpisodeGroups;
+    private final TV tv;
+    private final TVSeasons tvSeasons;
+    private final TVEpisodes tvEpisodes;
+    private final TVEpisodeGroups tvEpisodeGroups;
 
     public TmdbApi(RestClient restClient) {
         account = new Account(restClient);
@@ -76,10 +76,10 @@ public class TmdbApi {
         people = new People(restClient);
         reviews = new Reviews(restClient);
         search = new Search(restClient);
-        tV = new TV(restClient);
-        tVSeasons = new TVSeasons(restClient);
-        tVEpisodes = new TVEpisodes(restClient);
-        tVEpisodeGroups = new TVEpisodeGroups(restClient);
+        tv = new TV(restClient);
+        tvSeasons = new TVSeasons(restClient);
+        tvEpisodes = new TVEpisodes(restClient);
+        tvEpisodeGroups = new TVEpisodeGroups(restClient);
     }
 
     public TmdbApi(String apiKey) {
@@ -166,20 +166,20 @@ public class TmdbApi {
         return search;
     }
 
-    public TV tV() {
-        return tV;
+    public TV tv() {
+        return tv;
     }
 
-    public TVSeasons tVSeasons() {
-        return tVSeasons;
+    public TVSeasons tvSeasons() {
+        return tvSeasons;
     }
 
-    public TVEpisodes tVEpisodes() {
-        return tVEpisodes;
+    public TVEpisodes tvEpisodes() {
+        return tvEpisodes;
     }
 
-    public TVEpisodeGroups tVEpisodeGroups() {
-        return tVEpisodeGroups;
+    public TVEpisodeGroups tvEpisodeGroups() {
+        return tvEpisodeGroups;
     }
 
 }
