@@ -53,7 +53,7 @@ public class Movies {
      * </ul>
      * 
      */
-    public Optional<GetMovieAccountStatesResponse> getMovieAccountStates(int movieId, String guestSessionId, String sessionId) {
+    public Optional<GetMovieAccountStatesResponse> getMovieAccountStates(int movieId, String sessionId, String guestSessionId) {
         // /movie/{movie_id}/account_states
         String path = String.format("/movie/%s/account_states", movieId);
         Map<String, Object> requestParams = new HashMap<>();
@@ -76,7 +76,7 @@ public class Movies {
      * 
      */
     public Optional<GetMovieAccountStatesResponse> getMovieAccountStates(int movieId, String sessionId) {
-        return getMovieAccountStates(movieId, null, sessionId);
+        return getMovieAccountStates(movieId, sessionId, null);
     }
 
     /**

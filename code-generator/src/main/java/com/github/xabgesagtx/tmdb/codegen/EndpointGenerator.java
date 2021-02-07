@@ -15,15 +15,18 @@ public class EndpointGenerator extends AbstractGenerator {
     private final JCodeModel model;
     private final JavaDocFormatter javaDocFormatter;
     private final ModelGenerator modelGenerator;
+    private final Comparator<Variable<?>> variableComparator;
 
     public EndpointGenerator(JCodeModel model) {
         this.model = model;
         javaDocFormatter = new JavaDocFormatter("https://developers.themoviedb.org/");
         modelGenerator = new ModelGenerator(model);
+        Comparator<Variable<?>> variableComparator = Comparator.comparing(Variable::isRequired, Comparator.<Boolean>naturalOrder().reversed());
+        this.variableComparator = variableComparator.thenComparing(Variable::getName);
     }
 
     void generateEndpoint(JDefinedClass resourceClass, JPackage jPackage, Endpoint endpoint) {
-        JType resultType = getJType(endpoint.getResponse(), jPackage, false);
+        JType resultType = getJType(endpoint.getResponse(), jPackage);
         JType optionalResultType = model.ref(Optional.class).narrow(resultType);
         JMethod method = resourceClass.method(JMod.PUBLIC, optionalResultType, endpoint.getName());
         String javaDocText = javaDocFormatter.format(endpoint.getDescription());
@@ -42,7 +45,7 @@ public class EndpointGenerator extends AbstractGenerator {
         }
         Map<String, JVar> requestParams = endpoint.getRequestParams()
                 .stream()
-                .sorted(Comparator.comparing(Variable::getName, Comparator.naturalOrder()))
+                .sorted(variableComparator)
                 .map(variable -> Pair.of(variable.getJsonName(), createMethodParam(method, resourceClass, variable)))
                 .collect(Collectors.toMap(Pair::getKey, Pair::getValue));
         JBlock body = method.body();
@@ -78,7 +81,7 @@ public class EndpointGenerator extends AbstractGenerator {
             invocationParams.add(method.param(requestClass, "requestBody"));
         }
         endpoint.getRequestParams().stream()
-                .sorted(Comparator.comparing(Variable::getName, Comparator.naturalOrder()))
+                .sorted(variableComparator)
                 .forEach(param -> {
                     if (param.isRequired()) {
                         JVar jVar = requestParams.get(param.getJsonName());
@@ -138,13 +141,13 @@ public class EndpointGenerator extends AbstractGenerator {
         }
     }
 
-    JType getJType(Type type, JClassContainer classContainer, boolean shouldBeStatic) {
+    JType getJType(Type type, JClassContainer classContainer) {
         if (type instanceof SimpleType) {
             return model.ref(getClassForSimpleType((SimpleType) type));
         } else if (type instanceof MapType) {
             return model.ref(Map.class).narrow(String.class, Object.class);
         } else if (type instanceof ArrayType) {
-            JType genericType = getJType(((ArrayType) type).getType(), classContainer, shouldBeStatic);
+            JType genericType = getJType(((ArrayType) type).getType(), classContainer);
             return model.ref(List.class).narrow(genericType);
         } else if (type instanceof EnumType) {
             return modelGenerator.createEnum((EnumType) type, classContainer);
