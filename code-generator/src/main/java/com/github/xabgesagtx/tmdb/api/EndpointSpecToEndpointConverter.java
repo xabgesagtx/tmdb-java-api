@@ -1,9 +1,6 @@
 package com.github.xabgesagtx.tmdb.api;
 
-import com.github.xabgesagtx.tmdb.api.external.BodySpec;
-import com.github.xabgesagtx.tmdb.api.external.EndpointSpec;
-import com.github.xabgesagtx.tmdb.api.external.RequestSpec;
-import com.github.xabgesagtx.tmdb.api.external.SchemaSpec;
+import com.github.xabgesagtx.tmdb.api.external.*;
 import com.github.xabgesagtx.tmdb.codegen.model.*;
 import com.google.common.base.CaseFormat;
 import lombok.extern.slf4j.Slf4j;
@@ -66,39 +63,46 @@ public class EndpointSpecToEndpointConverter {
 
     private List<Variable<?>> getRequestParams(String slug, RequestSpec request) {
         Type requestType = specToTypeConverter.generateType("request", request.getQueryString());
-        return typeToMapOfVariables(slug, requestType);
-    }
-
-    private List<Variable<?>> typeToMapOfVariables(String slug, Type type) {
-        if (type instanceof ObjectType) {
-            ObjectType objectType = (ObjectType) type;
-            List<Field> fields = objectType.getFields();
-            return fields.stream()
-                    .map(field -> {
-                        if (field.getType() instanceof EnumType) {
-                            EnumType variableType = ((EnumType) field.getType());
-                            String prefix = CaseFormat.LOWER_HYPHEN.to(CaseFormat.UPPER_CAMEL, slug);
-                            String suffix = "Param";
-                            String variableTypeName = prefix + variableType.getName() + suffix;
-                            return new EnumVariable(variableType.withName(variableTypeName), field.getName(), field.getJsonName());
-                        } else if (field.getType() instanceof SimpleType) {
-                            SimpleType.Primitive variableType = ((SimpleType) field.getType()).getPrimitive();
-                            return new PrimitiveVariable(variableType, field.getName(), field.getJsonName());
-                        } else {
-                            log.info("Found non simple field for {}: {}", objectType.getName(), field);
-                            SimpleType.Primitive variableType = SimpleType.Primitive.STRING;
-                            return new PrimitiveVariable(variableType, field.getName(), field.getJsonName());
-                        }
-                    })
-                    .collect(Collectors.toList());
+        if (requestType instanceof ObjectType) {
+            List<String> requiredFields = Objects.requireNonNullElse(request.getQueryString().getRequired(), Collections.emptyList());
+            ObjectType requestObjectType = (ObjectType) requestType;
+            return typeToMapOfVariables(slug, requestObjectType, requiredFields);
         } else {
             return Collections.emptyList();
         }
     }
 
+    private List<Variable<?>> typeToMapOfVariables(String slug, ObjectType type, List<String> requiredFields) {
+        List<Field> fields = type.getFields();
+        return fields.stream()
+                .map(field -> {
+                    boolean required = requiredFields.contains(field.getJsonName());
+                    if (field.getType() instanceof EnumType) {
+                        EnumType variableType = ((EnumType) field.getType());
+                        String prefix = CaseFormat.LOWER_HYPHEN.to(CaseFormat.UPPER_CAMEL, slug);
+                        String suffix = "Param";
+                        String variableTypeName = prefix + variableType.getName() + suffix;
+                        return new EnumVariable(variableType.withName(variableTypeName), field.getName(), field.getJsonName(), required);
+                    } else if (field.getType() instanceof SimpleType) {
+                        SimpleType.Primitive variableType = ((SimpleType) field.getType()).getPrimitive();
+                        return new PrimitiveVariable(variableType, field.getName(), field.getJsonName(), required);
+                    } else {
+                        log.info("Found non simple field for {}: {}", type.getName(), field);
+                        SimpleType.Primitive variableType = SimpleType.Primitive.STRING;
+                        return new PrimitiveVariable(variableType, field.getName(), field.getJsonName(), required);
+                    }
+                })
+                .collect(Collectors.toList());
+    }
+
     private List<Variable<?>> getPathVariables(String slug, RequestSpec request) {
         Type requestType = specToTypeConverter.generateType("path", request.getPathParams());
-        return typeToMapOfVariables(slug, requestType);
+        if (requestType instanceof ObjectType) {
+            ObjectType requestObjectType = (ObjectType) requestType;
+            return typeToMapOfVariables(slug, requestObjectType, requestObjectType.getFields().stream().map(Field::getJsonName).collect(Collectors.toList()));
+        } else {
+            return Collections.emptyList();
+        }
     }
 
     String getEndpointName(String slug) {

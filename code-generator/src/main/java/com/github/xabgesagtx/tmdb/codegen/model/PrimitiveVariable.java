@@ -7,4 +7,5 @@ public class PrimitiveVariable implements Variable<SimpleType.Primitive> {
     SimpleType.Primitive type;
     String name;
     String jsonName;
+    boolean required;
 }

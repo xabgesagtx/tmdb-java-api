@@ -7,4 +7,5 @@ public class EnumVariable implements Variable<EnumType> {
     EnumType type;
     String name;
     String jsonName;
+    boolean required;
 }
