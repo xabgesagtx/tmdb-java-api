@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 public class ApiSpecToResourceConverter {
 
     public List<Resource> convert(ApiSpec apiSpec) {
-        EndpointSpecToEndpointConverter endpointConverter = new EndpointSpecToEndpointConverter(apiSpec.getResources().getSchemas());
+        EndpointSpecToEndpointConverter endpointConverter = new EndpointSpecToEndpointConverter(apiSpec.getResources().getSchemas(), apiSpec.getResources().getTraits());
         return getGroupsWithEndpoints(apiSpec.getGroups(), apiSpec.getResources().getEndpoints()).stream()
                 .map(groupWithEndpoints -> createResource(endpointConverter, groupWithEndpoints))
                 .collect(Collectors.toList());

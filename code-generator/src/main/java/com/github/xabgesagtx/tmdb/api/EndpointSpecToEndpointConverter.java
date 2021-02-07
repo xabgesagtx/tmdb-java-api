@@ -15,13 +15,20 @@ import java.util.stream.Collectors;
 public class EndpointSpecToEndpointConverter {
 
     private final SpecToTypeConverter specToTypeConverter;
+    private final EndpointTraitEnricher endpointTraitEnricher;
 
-    public EndpointSpecToEndpointConverter(List<SchemaSpec> schemaSpecs) {
+    public EndpointSpecToEndpointConverter(List<SchemaSpec> schemaSpecs, List<TraitSpec> traits) {
         RefTypeResolver refTypeResolver = new RefTypeResolver(schemaSpecs);
-        this.specToTypeConverter = new SpecToTypeConverter(refTypeResolver);
+        specToTypeConverter = new SpecToTypeConverter(refTypeResolver);
+        endpointTraitEnricher = new EndpointTraitEnricher(traits);
     }
 
     Endpoint convert(EndpointSpec spec) {
+        EndpointSpec enrichedSpec = endpointTraitEnricher.enrich(spec);
+        return convertEnriched(enrichedSpec);
+    }
+
+    private Endpoint convertEnriched(EndpointSpec spec) {
         String endpointName = getEndpointName(spec.getSlug());
         String responseTypeName = getResponseTypeName(spec.getSlug());
 
