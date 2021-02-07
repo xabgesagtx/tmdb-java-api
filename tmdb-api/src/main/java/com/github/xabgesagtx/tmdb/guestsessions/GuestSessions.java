@@ -1,9 +1,10 @@
 
 package com.github.xabgesagtx.tmdb.guestsessions;
 
-import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.github.xabgesagtx.tmdb.http.RestClient;
 
@@ -19,10 +20,37 @@ public class GuestSessions {
      * <p>Get the rated movies for a guest session.</p>
      * 
      */
-    public Optional<GetGuestSessionRatedMoviesResponse> getGuestSessionRatedMovies(String guestSessionId) {
+    public Optional<GetGuestSessionRatedMoviesResponse> getGuestSessionRatedMovies(String guestSessionId, String language, GuestSessions.GetGuestSessionRatedMoviesSortByParam sortBy) {
         // /guest_session/{guest_session_id}/rated/movies
         String path = String.format("/guest_session/%s/rated/movies", guestSessionId);
-        Map<String, Object> requestParams = Collections.emptyMap();
+        Map<String, Object> requestParams = new HashMap<>();
+        requestParams.put("language", language);
+        requestParams.put("sort_by", sortBy);
+        return restClient.get(path, requestParams, new TypeReference<>() {
+
+
+        }
+        );
+    }
+
+    /**
+     * <p>Get the rated movies for a guest session.</p>
+     * 
+     */
+    public Optional<GetGuestSessionRatedMoviesResponse> getGuestSessionRatedMovies(String guestSessionId) {
+        return getGuestSessionRatedMovies(guestSessionId, null, null);
+    }
+
+    /**
+     * <p>Get the rated TV shows for a guest session.</p>
+     * 
+     */
+    public Optional<GetGuestSessionRatedTvShowsResponse> getGuestSessionRatedTvShows(String guestSessionId, String language, GuestSessions.GetGuestSessionRatedTvShowsSortByParam sortBy) {
+        // /guest_session/{guest_session_id}/rated/tv
+        String path = String.format("/guest_session/%s/rated/tv", guestSessionId);
+        Map<String, Object> requestParams = new HashMap<>();
+        requestParams.put("language", language);
+        requestParams.put("sort_by", sortBy);
         return restClient.get(path, requestParams, new TypeReference<>() {
 
 
@@ -35,9 +63,19 @@ public class GuestSessions {
      * 
      */
     public Optional<GetGuestSessionRatedTvShowsResponse> getGuestSessionRatedTvShows(String guestSessionId) {
-        // /guest_session/{guest_session_id}/rated/tv
-        String path = String.format("/guest_session/%s/rated/tv", guestSessionId);
-        Map<String, Object> requestParams = Collections.emptyMap();
+        return getGuestSessionRatedTvShows(guestSessionId, null, null);
+    }
+
+    /**
+     * <p>Get the rated TV episodes for a guest session.</p>
+     * 
+     */
+    public Optional<GetGestSessionRatedTvEpisodesResponse> getGestSessionRatedTvEpisodes(String guestSessionId, String language, GuestSessions.GetGestSessionRatedTvEpisodesSortByParam sortBy) {
+        // /guest_session/{guest_session_id}/rated/tv/episodes
+        String path = String.format("/guest_session/%s/rated/tv/episodes", guestSessionId);
+        Map<String, Object> requestParams = new HashMap<>();
+        requestParams.put("language", language);
+        requestParams.put("sort_by", sortBy);
         return restClient.get(path, requestParams, new TypeReference<>() {
 
 
@@ -50,14 +88,64 @@ public class GuestSessions {
      * 
      */
     public Optional<GetGestSessionRatedTvEpisodesResponse> getGestSessionRatedTvEpisodes(String guestSessionId) {
-        // /guest_session/{guest_session_id}/rated/tv/episodes
-        String path = String.format("/guest_session/%s/rated/tv/episodes", guestSessionId);
-        Map<String, Object> requestParams = Collections.emptyMap();
-        return restClient.get(path, requestParams, new TypeReference<>() {
+        return getGestSessionRatedTvEpisodes(guestSessionId, null, null);
+    }
 
+    public enum GetGestSessionRatedTvEpisodesSortByParam {
 
+        @JsonProperty("created_at.asc")
+        CREATED_ATASC("created_at.asc"),
+        @JsonProperty("created_at.desc")
+        CREATED_ATDESC("created_at.desc");
+        private final String value;
+
+        GetGestSessionRatedTvEpisodesSortByParam(String value) {
+            this.value = value;
         }
-        );
+
+        @Override
+        public String toString() {
+            return value;
+        }
+
+    }
+
+    public enum GetGuestSessionRatedMoviesSortByParam {
+
+        @JsonProperty("created_at.asc")
+        CREATED_ATASC("created_at.asc"),
+        @JsonProperty("created_at.desc")
+        CREATED_ATDESC("created_at.desc");
+        private final String value;
+
+        GetGuestSessionRatedMoviesSortByParam(String value) {
+            this.value = value;
+        }
+
+        @Override
+        public String toString() {
+            return value;
+        }
+
+    }
+
+    public enum GetGuestSessionRatedTvShowsSortByParam {
+
+        @JsonProperty("created_at.asc")
+        CREATED_ATASC("created_at.asc"),
+        @JsonProperty("created_at.desc")
+        CREATED_ATDESC("created_at.desc");
+        private final String value;
+
+        GetGuestSessionRatedTvShowsSortByParam(String value) {
+            this.value = value;
+        }
+
+        @Override
+        public String toString() {
+            return value;
+        }
+
     }
 
 }

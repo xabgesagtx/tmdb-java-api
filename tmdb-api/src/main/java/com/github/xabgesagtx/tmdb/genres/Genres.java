@@ -1,7 +1,6 @@
 
 package com.github.xabgesagtx.tmdb.genres;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -43,14 +42,23 @@ public class Genres {
      * <p>Get the list of official genres for TV shows.</p>
      * 
      */
-    public Optional<GetTvListResponse> getTvList() {
+    public Optional<GetTvListResponse> getTvList(String language) {
         String path = "/genre/tv/list";
-        Map<String, Object> requestParams = Collections.emptyMap();
+        Map<String, Object> requestParams = new HashMap<>();
+        requestParams.put("language", language);
         return restClient.get(path, requestParams, new TypeReference<>() {
 
 
         }
         );
+    }
+
+    /**
+     * <p>Get the list of official genres for TV shows.</p>
+     * 
+     */
+    public Optional<GetTvListResponse> getTvList() {
+        return getTvList(null);
     }
 
 }

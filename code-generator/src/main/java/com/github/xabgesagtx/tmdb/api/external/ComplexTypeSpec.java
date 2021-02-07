@@ -5,11 +5,13 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Value;
+import lombok.With;
 import lombok.extern.jackson.Jacksonized;
 
 import java.util.List;
 import java.util.Map;
 
+// TODO: Find a way to make this class immutable (currently issues with Jackson custom serialisation)
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ComplexTypeSpec {

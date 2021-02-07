@@ -1,7 +1,7 @@
 
 package com.github.xabgesagtx.tmdb.tvepisodegroups;
 
-import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -28,15 +28,33 @@ public class TVEpisodeGroups {
      * </ol>
      * 
      */
-    public Optional<GetTvEpisodeGroupDetailsResponse> getTvEpisodeGroupDetails(String id) {
+    public Optional<GetTvEpisodeGroupDetailsResponse> getTvEpisodeGroupDetails(String id, String language) {
         // /tv/episode_group/{id}
         String path = String.format("/tv/episode_group/%s", id);
-        Map<String, Object> requestParams = Collections.emptyMap();
+        Map<String, Object> requestParams = new HashMap<>();
+        requestParams.put("language", language);
         return restClient.get(path, requestParams, new TypeReference<>() {
 
 
         }
         );
+    }
+
+    /**
+     * <p>Get the details of a TV episode group. Groups support 7 different types which are enumerated as the following:</p> 
+     * <ol> 
+     *  <li>Original air date</li> 
+     *  <li>Absolute</li> 
+     *  <li>DVD</li> 
+     *  <li>Digital</li> 
+     *  <li>Story arc</li> 
+     *  <li>Production</li> 
+     *  <li>TV</li> 
+     * </ol>
+     * 
+     */
+    public Optional<GetTvEpisodeGroupDetailsResponse> getTvEpisodeGroupDetails(String id) {
+        return getTvEpisodeGroupDetails(id, null);
     }
 
 }

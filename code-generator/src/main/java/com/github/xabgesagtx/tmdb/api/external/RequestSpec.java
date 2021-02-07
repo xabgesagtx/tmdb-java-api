@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Builder;
 import lombok.Value;
+import lombok.With;
 import lombok.extern.jackson.Jacksonized;
 
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.List;
 @Builder
 @Value
 @JsonIgnoreProperties(ignoreUnknown = true)
+@With
 public class RequestSpec {
 
      ComplexTypeSpec pathParams;

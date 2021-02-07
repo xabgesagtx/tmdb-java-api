@@ -2,6 +2,7 @@
 package com.github.xabgesagtx.tmdb.keywords;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -35,15 +36,26 @@ public class Keywords {
      * <p>We <strong>highly recommend</strong> using <a href="https://developers.themoviedb.org/3/discover/movie-discover">movie discover</a> instead of this method as it is much more flexible.</p>
      * 
      */
-    public Optional<GetMoviesByKeywordResponse> getMoviesByKeyword(int keywordId) {
+    public Optional<GetMoviesByKeywordResponse> getMoviesByKeyword(int keywordId, Boolean includeAdult, String language) {
         // /keyword/{keyword_id}/movies
         String path = String.format("/keyword/%s/movies", keywordId);
-        Map<String, Object> requestParams = Collections.emptyMap();
+        Map<String, Object> requestParams = new HashMap<>();
+        requestParams.put("include_adult", includeAdult);
+        requestParams.put("language", language);
         return restClient.get(path, requestParams, new TypeReference<>() {
 
 
         }
         );
+    }
+
+    /**
+     * <p>Get the movies that belong to a keyword.</p> 
+     * <p>We <strong>highly recommend</strong> using <a href="https://developers.themoviedb.org/3/discover/movie-discover">movie discover</a> instead of this method as it is much more flexible.</p>
+     * 
+     */
+    public Optional<GetMoviesByKeywordResponse> getMoviesByKeyword(int keywordId) {
+        return getMoviesByKeyword(keywordId, null, null);
     }
 
 }

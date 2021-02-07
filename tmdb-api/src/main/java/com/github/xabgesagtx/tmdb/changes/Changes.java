@@ -1,7 +1,8 @@
 
 package com.github.xabgesagtx.tmdb.changes;
 
-import java.util.Collections;
+import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -20,9 +21,39 @@ public class Changes {
      * <p>You can query it for up to 14 days worth of changed IDs at a time with the <code>start_date</code> and <code>end_date</code> query parameters. 100 items are returned per page.</p>
      * 
      */
-    public Optional<GetMovieChangeListResponse> getMovieChangeList() {
+    public Optional<GetMovieChangeListResponse> getMovieChangeList(LocalDate endDate, Integer page, LocalDate startDate) {
         String path = "/movie/changes";
-        Map<String, Object> requestParams = Collections.emptyMap();
+        Map<String, Object> requestParams = new HashMap<>();
+        requestParams.put("end_date", endDate);
+        requestParams.put("page", page);
+        requestParams.put("start_date", startDate);
+        return restClient.get(path, requestParams, new TypeReference<>() {
+
+
+        }
+        );
+    }
+
+    /**
+     * <p>Get a list of all of the movie ids that have been changed in the past 24 hours.</p> 
+     * <p>You can query it for up to 14 days worth of changed IDs at a time with the <code>start_date</code> and <code>end_date</code> query parameters. 100 items are returned per page.</p>
+     * 
+     */
+    public Optional<GetMovieChangeListResponse> getMovieChangeList() {
+        return getMovieChangeList(null, null, null);
+    }
+
+    /**
+     * <p>Get a list of all of the TV show ids that have been changed in the past 24 hours.</p> 
+     * <p>You can query it for up to 14 days worth of changed IDs at a time with the <code>start_date</code> and <code>end_date</code> query parameters. 100 items are returned per page.</p>
+     * 
+     */
+    public Optional<GetTvChangeListResponse> getTvChangeList(LocalDate endDate, Integer page, LocalDate startDate) {
+        String path = "/tv/changes";
+        Map<String, Object> requestParams = new HashMap<>();
+        requestParams.put("end_date", endDate);
+        requestParams.put("page", page);
+        requestParams.put("start_date", startDate);
         return restClient.get(path, requestParams, new TypeReference<>() {
 
 
@@ -36,8 +67,20 @@ public class Changes {
      * 
      */
     public Optional<GetTvChangeListResponse> getTvChangeList() {
-        String path = "/tv/changes";
-        Map<String, Object> requestParams = Collections.emptyMap();
+        return getTvChangeList(null, null, null);
+    }
+
+    /**
+     * <p>Get a list of all of the person ids that have been changed in the past 24 hours.</p> 
+     * <p>You can query it for up to 14 days worth of changed IDs at a time with the <code>start_date</code> and <code>end_date</code> query parameters. 100 items are returned per page.</p>
+     * 
+     */
+    public Optional<GetPersonChangeListResponse> getPersonChangeList(LocalDate endDate, Integer page, LocalDate startDate) {
+        String path = "/person/changes";
+        Map<String, Object> requestParams = new HashMap<>();
+        requestParams.put("end_date", endDate);
+        requestParams.put("page", page);
+        requestParams.put("start_date", startDate);
         return restClient.get(path, requestParams, new TypeReference<>() {
 
 
@@ -51,13 +94,7 @@ public class Changes {
      * 
      */
     public Optional<GetPersonChangeListResponse> getPersonChangeList() {
-        String path = "/person/changes";
-        Map<String, Object> requestParams = Collections.emptyMap();
-        return restClient.get(path, requestParams, new TypeReference<>() {
-
-
-        }
-        );
+        return getPersonChangeList(null, null, null);
     }
 
 }

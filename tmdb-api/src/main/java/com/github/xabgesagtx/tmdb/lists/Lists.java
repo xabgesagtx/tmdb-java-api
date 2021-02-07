@@ -1,7 +1,6 @@
 
 package com.github.xabgesagtx.tmdb.lists;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -20,15 +19,24 @@ public class Lists {
      * <p>Get the details of a list.</p>
      * 
      */
-    public Optional<GetListDetailsResponse> getListDetails(String listId) {
+    public Optional<GetListDetailsResponse> getListDetails(String listId, String language) {
         // /list/{list_id}
         String path = String.format("/list/%s", listId);
-        Map<String, Object> requestParams = Collections.emptyMap();
+        Map<String, Object> requestParams = new HashMap<>();
+        requestParams.put("language", language);
         return restClient.get(path, requestParams, new TypeReference<>() {
 
 
         }
         );
+    }
+
+    /**
+     * <p>Get the details of a list.</p>
+     * 
+     */
+    public Optional<GetListDetailsResponse> getListDetails(String listId) {
+        return getListDetails(listId, null);
     }
 
     /**
@@ -51,9 +59,10 @@ public class Lists {
      * <p>Create a list.</p>
      * 
      */
-    public Optional<CreateListResponse> createList(CreateListRequest createListRequest) {
+    public Optional<CreateListResponse> createList(CreateListRequest createListRequest, String sessionId) {
         String path = "/list";
-        Map<String, Object> requestParams = Collections.emptyMap();
+        Map<String, Object> requestParams = new HashMap<>();
+        requestParams.put("session_id", sessionId);
         return restClient.post(path, requestParams, new TypeReference<>() {
 
 
@@ -65,10 +74,11 @@ public class Lists {
      * <p>Add a movie to a list.</p>
      * 
      */
-    public Optional<AddMovieResponse> addMovie(String listId, AddMovieRequest addMovieRequest) {
+    public Optional<AddMovieResponse> addMovie(String listId, AddMovieRequest addMovieRequest, String sessionId) {
         // /list/{list_id}/add_item
         String path = String.format("/list/%s/add_item", listId);
-        Map<String, Object> requestParams = Collections.emptyMap();
+        Map<String, Object> requestParams = new HashMap<>();
+        requestParams.put("session_id", sessionId);
         return restClient.post(path, requestParams, new TypeReference<>() {
 
 
@@ -80,10 +90,11 @@ public class Lists {
      * <p>Remove a movie from a list.</p>
      * 
      */
-    public Optional<RemoveMovieResponse> removeMovie(String listId, RemoveMovieRequest removeMovieRequest) {
+    public Optional<RemoveMovieResponse> removeMovie(String listId, RemoveMovieRequest removeMovieRequest, String sessionId) {
         // /list/{list_id}/remove_item
         String path = String.format("/list/%s/remove_item", listId);
-        Map<String, Object> requestParams = Collections.emptyMap();
+        Map<String, Object> requestParams = new HashMap<>();
+        requestParams.put("session_id", sessionId);
         return restClient.post(path, requestParams, new TypeReference<>() {
 
 
@@ -95,11 +106,12 @@ public class Lists {
      * <p>Clear all of the items from a list.</p>
      * 
      */
-    public Optional<ClearListResponse> clearList(String listId, boolean confirm) {
+    public Optional<ClearListResponse> clearList(String listId, boolean confirm, String sessionId) {
         // /list/{list_id}/clear
         String path = String.format("/list/%s/clear", listId);
         Map<String, Object> requestParams = new HashMap<>();
         requestParams.put("confirm", confirm);
+        requestParams.put("session_id", sessionId);
         return restClient.post(path, requestParams, new TypeReference<>() {
 
 
@@ -111,10 +123,11 @@ public class Lists {
      * <p>Delete a list.</p>
      * 
      */
-    public Optional<DeleteListResponse> deleteList(String listId) {
+    public Optional<DeleteListResponse> deleteList(String listId, String sessionId) {
         // /list/{list_id}
         String path = String.format("/list/%s", listId);
-        Map<String, Object> requestParams = Collections.emptyMap();
+        Map<String, Object> requestParams = new HashMap<>();
+        requestParams.put("session_id", sessionId);
         return restClient.delete(path, requestParams, new TypeReference<>() {
 
 

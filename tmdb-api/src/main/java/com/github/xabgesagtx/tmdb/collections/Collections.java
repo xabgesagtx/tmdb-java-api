@@ -1,6 +1,7 @@
 
 package com.github.xabgesagtx.tmdb.collections;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -18,10 +19,35 @@ public class Collections {
      * <p>Get collection details by id.</p> <a href="https://developers.themoviedb.org/#recent-changes">\ud83d\udd17</a> Recent Changes    <strong>Date</strong> <strong>Change</strong>     March 16, 2018 Added the <a href="https://developers.themoviedb.org/3/collections/get-collection-translations">translations</a> method.
      * 
      */
-    public Optional<GetCollectionDetailsResponse> getCollectionDetails(int collectionId) {
+    public Optional<GetCollectionDetailsResponse> getCollectionDetails(int collectionId, String language) {
         // /collection/{collection_id}
         String path = String.format("/collection/%s", collectionId);
-        Map<String, Object> requestParams = java.util.Collections.emptyMap();
+        Map<String, Object> requestParams = new HashMap<>();
+        requestParams.put("language", language);
+        return restClient.get(path, requestParams, new TypeReference<>() {
+
+
+        }
+        );
+    }
+
+    /**
+     * <p>Get collection details by id.</p> <a href="https://developers.themoviedb.org/#recent-changes">\ud83d\udd17</a> Recent Changes    <strong>Date</strong> <strong>Change</strong>     March 16, 2018 Added the <a href="https://developers.themoviedb.org/3/collections/get-collection-translations">translations</a> method.
+     * 
+     */
+    public Optional<GetCollectionDetailsResponse> getCollectionDetails(int collectionId) {
+        return getCollectionDetails(collectionId, null);
+    }
+
+    /**
+     * <p>Get the images for a collection by id.</p>
+     * 
+     */
+    public Optional<GetCollectionImagesResponse> getCollectionImages(int collectionId, String language) {
+        // /collection/{collection_id}/images
+        String path = String.format("/collection/%s/images", collectionId);
+        Map<String, Object> requestParams = new HashMap<>();
+        requestParams.put("language", language);
         return restClient.get(path, requestParams, new TypeReference<>() {
 
 
@@ -34,9 +60,18 @@ public class Collections {
      * 
      */
     public Optional<GetCollectionImagesResponse> getCollectionImages(int collectionId) {
-        // /collection/{collection_id}/images
-        String path = String.format("/collection/%s/images", collectionId);
-        Map<String, Object> requestParams = java.util.Collections.emptyMap();
+        return getCollectionImages(collectionId, null);
+    }
+
+    /**
+     * <p>Get the list translations for a collection by id.</p>
+     * 
+     */
+    public Optional<GetCollectionTranslationsResponse> getCollectionTranslations(int collectionId, String language) {
+        // /collection/{collection_id}/translations
+        String path = String.format("/collection/%s/translations", collectionId);
+        Map<String, Object> requestParams = new HashMap<>();
+        requestParams.put("language", language);
         return restClient.get(path, requestParams, new TypeReference<>() {
 
 
@@ -49,14 +84,7 @@ public class Collections {
      * 
      */
     public Optional<GetCollectionTranslationsResponse> getCollectionTranslations(int collectionId) {
-        // /collection/{collection_id}/translations
-        String path = String.format("/collection/%s/translations", collectionId);
-        Map<String, Object> requestParams = java.util.Collections.emptyMap();
-        return restClient.get(path, requestParams, new TypeReference<>() {
-
-
-        }
-        );
+        return getCollectionTranslations(collectionId, null);
     }
 
 }

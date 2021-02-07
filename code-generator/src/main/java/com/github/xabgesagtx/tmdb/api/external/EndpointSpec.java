@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Value;
+import lombok.With;
 import lombok.extern.jackson.Jacksonized;
 
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.List;
 @Jacksonized
 @Builder
 @Value
+@With
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class EndpointSpec {
 

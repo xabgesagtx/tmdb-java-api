@@ -26,7 +26,7 @@ public class Discover {
      * <p>Some examples of what can be done with discover can be found <a href="https://www.themoviedb.org/documentation/api/discover">here</a>.</p> <a href="https://developers.themoviedb.org/#recent-changes">\ud83d\udd17</a> Recent Changes    <strong>Date</strong> <strong>Change</strong>     January 2, 2020 A new set of filters are available for watch provider filtering. Check out <code>with_watch_providers</code> and <code>watch_region</code>.
      * 
      */
-    public Optional<MovieDiscoverResponse> movieDiscover(String certification, String certificationCountry, String certification_gte, String certification_lte, Boolean includeAdult, Boolean includeVideo, String language, Integer page, LocalDate primaryReleaseDate_gte, LocalDate primaryReleaseDate_lte, Integer primaryReleaseYear, LocalDate releaseDate_gte, LocalDate releaseDate_lte, Discover.MovieDiscoverSortByParam sortBy, Double voteAverage_gte, Double voteAverage_lte, Integer voteCount_gte, Integer voteCount_lte, String watchRegion, String withCast, String withCompanies, String withCrew, String withGenres, String withKeywords, String withOriginalLanguage, String withPeople, Integer withReleaseType, Integer withRuntime_gte, Integer withRuntime_lte, String withWatchProviders, String withoutGenres, String withoutKeywords, Integer year) {
+    public Optional<MovieDiscoverResponse> movieDiscover(String certification, String certificationCountry, String certification_gte, String certification_lte, Boolean includeAdult, Boolean includeVideo, String language, Integer page, LocalDate primaryReleaseDate_gte, LocalDate primaryReleaseDate_lte, Integer primaryReleaseYear, String region, LocalDate releaseDate_gte, LocalDate releaseDate_lte, Discover.MovieDiscoverSortByParam sortBy, Double voteAverage_gte, Double voteAverage_lte, Integer voteCount_gte, Integer voteCount_lte, String watchRegion, String withCast, String withCompanies, String withCrew, String withGenres, String withKeywords, String withOriginalLanguage, String withPeople, Integer withReleaseType, Integer withRuntime_gte, Integer withRuntime_lte, String withWatchProviders, String withoutGenres, String withoutKeywords, Integer year) {
         String path = "/discover/movie";
         Map<String, Object> requestParams = new HashMap<>();
         requestParams.put("with_release_type", withReleaseType);
@@ -61,6 +61,7 @@ public class Discover {
         requestParams.put("include_video", includeVideo);
         requestParams.put("certification.gte", certification_gte);
         requestParams.put("page", page);
+        requestParams.put("region", region);
         requestParams.put("without_genres", withoutGenres);
         return restClient.get(path, requestParams, new TypeReference<>() {
 
@@ -79,7 +80,7 @@ public class Discover {
      * 
      */
     public Optional<MovieDiscoverResponse> movieDiscover() {
-        return movieDiscover(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+        return movieDiscover(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
     }
 
     /**
