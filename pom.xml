@@ -9,6 +9,26 @@
     <name>tmdb-java-api-parent</name>
     <description>Parent of tmdb java api</description>
 
+    <issueManagement>
+        <url>https://github.com/xabgesagtx/tmdb-java-api/issues</url>
+        <system>GitHub Issues</system>
+    </issueManagement>
+
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>http://www.opensource.org/licenses/mit-license.php</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <scm>
+        <url>https://github.com/xabgesagtx/tmdb-java-api</url>
+        <connection>scm:git:git://github.com/xabgesagtx/tmdb-java-api.git</connection>
+        <developerConnection>scm:git:git@github.com:xabgesagtx/tmdb-java-api.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>11</maven.compiler.source>
