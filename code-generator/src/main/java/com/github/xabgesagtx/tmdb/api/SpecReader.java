@@ -1,7 +1,6 @@
 package com.github.xabgesagtx.tmdb.api;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.xabgesagtx.tmdb.ObjectMapperFactory;
 import com.github.xabgesagtx.tmdb.api.external.ComplexTypeSpec;
 
 import java.io.File;
@@ -12,7 +11,7 @@ public class SpecReader {
     private final ObjectMapper mapper;
 
     public SpecReader() {
-        mapper = new ObjectMapperFactory().create();
+        mapper = new SpecObjectMapperFactory().create();
     }
 
     public ComplexTypeSpec read(File file) throws IOException {

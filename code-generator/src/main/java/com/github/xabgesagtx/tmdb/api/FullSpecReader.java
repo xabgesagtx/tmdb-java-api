@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.github.xabgesagtx.tmdb.api.external.ApiSpec;
 import com.github.xabgesagtx.tmdb.api.external.ComplexTypeSpec;
-import com.github.xabgesagtx.tmdb.api.external.ComplexTypeSpecDeserializer;
 
 import java.io.File;
 import java.io.IOException;
