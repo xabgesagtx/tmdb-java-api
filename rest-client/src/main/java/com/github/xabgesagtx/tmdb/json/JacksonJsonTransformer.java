@@ -27,4 +27,12 @@ public class JacksonJsonTransformer implements JsonTransformer {
         }
     }
 
+    @Override
+    public String writeAsString(Object object) throws JsonTransformingException {
+        try {
+            return mapper.writeValueAsString(object);
+        } catch (JsonProcessingException e) {
+            throw new JsonTransformingException("Failed to read body", e);
+        }
+    }
 }

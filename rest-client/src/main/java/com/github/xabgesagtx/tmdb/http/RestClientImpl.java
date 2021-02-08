@@ -17,6 +17,7 @@ import java.net.URI;
 import java.net.URLEncoder;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
+import java.net.http.HttpRequest.BodyPublisher;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
@@ -44,40 +45,63 @@ public class RestClientImpl implements RestClient {
 
 
     @Override
-    @SneakyThrows
     public <T> Optional<T> get(String path, Map<String, Object> params, TypeReference<T> typeReference) {
         URI uri = createUri(path, params);
-        HttpRequest request = HttpRequest.newBuilder()
+        HttpRequest request = HttpRequest.newBuilder(uri)
                 .GET()
-                .uri(uri)
                 .build();
-        try {
-            HttpResponse<T> response = client.send(request, new JsonBodyHandler<>(typeReference, jsonTransformer));
-            return handleResponse(response);
-        } catch (IOException e) {
-            throw new IOApiException("IO issue while performing get", e);
-        }
-
-    }
-
-    @Override
-    public <T> Optional<T> get(String path, TypeReference<T> typeReference) {
-        return get(path, Collections.emptyMap(), typeReference);
+        return sendRequest(request, typeReference);
     }
 
     @Override
     public <T> Optional<T> post(String path, Map<String, Object> params, TypeReference<T> typeReference, Object requestBody) {
-        return Optional.empty();
+        URI uri = createUri(path, params);
+        BodyPublisher bodyPublisher = createBodyPublisher(requestBody);
+        HttpRequest request = HttpRequest.newBuilder(uri)
+                .POST(bodyPublisher)
+                .build();
+        return sendRequest(request, typeReference);
     }
 
     @Override
     public <T> Optional<T> delete(String path, Map<String, Object> params, TypeReference<T> typeReference, Object requestBody) {
-        return Optional.empty();
+        URI uri = createUri(path, params);
+        BodyPublisher bodyPublisher = createBodyPublisher(requestBody);
+        HttpRequest request = HttpRequest.newBuilder(uri)
+                .method("DELETE", bodyPublisher)
+                .build();
+        return sendRequest(request, typeReference);
     }
 
     @Override
     public <T> Optional<T> put(String path, Map<String, Object> params, TypeReference<T> typeReference, Object requestBody) {
-        return Optional.empty();
+        URI uri = createUri(path, params);
+        BodyPublisher bodyPublisher = createBodyPublisher(requestBody);
+        HttpRequest request = HttpRequest.newBuilder(uri)
+                .method("DELETE", bodyPublisher)
+                .build();
+        return sendRequest(request, typeReference);
+    }
+
+    @SneakyThrows
+    private <T> Optional<T> sendRequest(HttpRequest request, TypeReference<T> typeReference) {
+        try {
+            HttpResponse<T> response = client.send(request, new JsonBodyHandler<>(typeReference, jsonTransformer));
+            return handleResponse(response);
+        } catch (IOException e) {
+            throw new IOApiException("IO issue while performing " + request.method(), e);
+        }
+    }
+
+    private BodyPublisher createBodyPublisher(Object requestBody) {
+        BodyPublisher bodyPublisher;
+        if (requestBody == null) {
+            bodyPublisher = HttpRequest.BodyPublishers.noBody();
+        } else {
+            String json = jsonTransformer.writeAsString(requestBody);
+            bodyPublisher = HttpRequest.BodyPublishers.ofString(json, StandardCharsets.UTF_8);
+        }
+        return bodyPublisher;
     }
 
     <T> Optional<T> handleResponse(HttpResponse<T> response) {
