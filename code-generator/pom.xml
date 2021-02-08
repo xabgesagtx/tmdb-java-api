@@ -55,5 +55,29 @@
         </dependency>
 
     </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.6.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <skip>false</skip>
+                    <mainClass>com.github.xabgesagtx.tmdb.CodeGeneratorApplication</mainClass>
+                    <arguments>
+                        <argument>${project.basedir}/api_v3.json</argument>
+                        <argument>${project.basedir}/../tmdb-api/src/main/java</argument>
+                    </arguments>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

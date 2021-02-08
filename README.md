@@ -28,3 +28,12 @@ If you are looking for more finished java libraries for the tmdb API, have a loo
 * https://github.com/Omertron/api-themoviedb
 
 Also, there is a full and excellent [documentation](https://developers.themoviedb.org/3/) on the API.
+
+## Development
+
+Currently (=workaround), the api code can regernerated using the following command:
+```shell
+mvn compile exec:java
+```
+
+Future plans: Use a separate maven plugin in another repository to generate code (multi-module project doesn't allow a plugin from another module)
