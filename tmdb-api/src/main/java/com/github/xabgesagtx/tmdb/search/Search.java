@@ -3,7 +3,6 @@ package com.github.xabgesagtx.tmdb.search;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.github.xabgesagtx.tmdb.http.RestClient;
 
@@ -19,7 +18,7 @@ public class Search {
      * <p>Search for companies.</p>
      * 
      */
-    public Optional<SearchCompaniesResponse> searchCompanies(String query, Integer page) {
+    public SearchCompaniesResponse searchCompanies(String query, Integer page) {
         String path = "/search/company";
         Map<String, Object> requestParams = new HashMap<>();
         requestParams.put("query", query);
@@ -35,7 +34,7 @@ public class Search {
      * <p>Search for companies.</p>
      * 
      */
-    public Optional<SearchCompaniesResponse> searchCompanies(String query) {
+    public SearchCompaniesResponse searchCompanies(String query) {
         return searchCompanies(query, null);
     }
 
@@ -43,7 +42,7 @@ public class Search {
      * <p>Search for collections.</p>
      * 
      */
-    public Optional<SearchCollectionsResponse> searchCollections(String query, String language, Integer page) {
+    public SearchCollectionsResponse searchCollections(String query, String language, Integer page) {
         String path = "/search/collection";
         Map<String, Object> requestParams = new HashMap<>();
         requestParams.put("query", query);
@@ -60,7 +59,7 @@ public class Search {
      * <p>Search for collections.</p>
      * 
      */
-    public Optional<SearchCollectionsResponse> searchCollections(String query) {
+    public SearchCollectionsResponse searchCollections(String query) {
         return searchCollections(query, null, null);
     }
 
@@ -68,7 +67,7 @@ public class Search {
      * <p>Search for keywords.</p>
      * 
      */
-    public Optional<SearchKeywordsResponse> searchKeywords(String query, Integer page) {
+    public SearchKeywordsResponse searchKeywords(String query, Integer page) {
         String path = "/search/keyword";
         Map<String, Object> requestParams = new HashMap<>();
         requestParams.put("query", query);
@@ -84,7 +83,7 @@ public class Search {
      * <p>Search for keywords.</p>
      * 
      */
-    public Optional<SearchKeywordsResponse> searchKeywords(String query) {
+    public SearchKeywordsResponse searchKeywords(String query) {
         return searchKeywords(query, null);
     }
 
@@ -92,7 +91,7 @@ public class Search {
      * <p>Search for movies.</p>
      * 
      */
-    public Optional<SearchMoviesResponse> searchMovies(String query, Boolean includeAdult, String language, Integer page, Integer primaryReleaseYear, String region, Integer year) {
+    public SearchMoviesResponse searchMovies(String query, Boolean includeAdult, String language, Integer page, Integer primaryReleaseYear, String region, Integer year) {
         String path = "/search/movie";
         Map<String, Object> requestParams = new HashMap<>();
         requestParams.put("include_adult", includeAdult);
@@ -113,7 +112,7 @@ public class Search {
      * <p>Search for movies.</p>
      * 
      */
-    public Optional<SearchMoviesResponse> searchMovies(String query) {
+    public SearchMoviesResponse searchMovies(String query) {
         return searchMovies(query, null, null, null, null, null, null);
     }
 
@@ -121,7 +120,7 @@ public class Search {
      * <p>Search multiple models in a single request. Multi search currently supports searching for movies, tv shows and people in a single request.</p>
      * 
      */
-    public Optional<MultiSearchResponse> multiSearch(String query, Boolean includeAdult, String language, Integer page, String region) {
+    public MultiSearchResponse multiSearch(String query, Boolean includeAdult, String language, Integer page, String region) {
         String path = "/search/multi";
         Map<String, Object> requestParams = new HashMap<>();
         requestParams.put("include_adult", includeAdult);
@@ -140,7 +139,7 @@ public class Search {
      * <p>Search multiple models in a single request. Multi search currently supports searching for movies, tv shows and people in a single request.</p>
      * 
      */
-    public Optional<MultiSearchResponse> multiSearch(String query) {
+    public MultiSearchResponse multiSearch(String query) {
         return multiSearch(query, null, null, null, null);
     }
 
@@ -148,7 +147,7 @@ public class Search {
      * <p>Search for people.</p>
      * 
      */
-    public Optional<SearchPeopleResponse> searchPeople(String query, Boolean includeAdult, String language, Integer page, String region) {
+    public SearchPeopleResponse searchPeople(String query, Boolean includeAdult, String language, Integer page, String region) {
         String path = "/search/person";
         Map<String, Object> requestParams = new HashMap<>();
         requestParams.put("include_adult", includeAdult);
@@ -167,7 +166,7 @@ public class Search {
      * <p>Search for people.</p>
      * 
      */
-    public Optional<SearchPeopleResponse> searchPeople(String query) {
+    public SearchPeopleResponse searchPeople(String query) {
         return searchPeople(query, null, null, null, null);
     }
 
@@ -175,7 +174,7 @@ public class Search {
      * <p>Search for a TV show.</p>
      * 
      */
-    public Optional<SearchTvShowsResponse> searchTvShows(String query, Integer firstAirDateYear, Boolean includeAdult, String language, Integer page) {
+    public SearchTvShowsResponse searchTvShows(String query, Integer firstAirDateYear, Boolean includeAdult, String language, Integer page) {
         String path = "/search/tv";
         Map<String, Object> requestParams = new HashMap<>();
         requestParams.put("include_adult", includeAdult);
@@ -194,7 +193,7 @@ public class Search {
      * <p>Search for a TV show.</p>
      * 
      */
-    public Optional<SearchTvShowsResponse> searchTvShows(String query) {
+    public SearchTvShowsResponse searchTvShows(String query) {
         return searchTvShows(query, null, null, null, null);
     }
 

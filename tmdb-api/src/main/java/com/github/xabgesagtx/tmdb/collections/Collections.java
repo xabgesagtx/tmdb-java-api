@@ -24,7 +24,7 @@ public class Collections {
         String path = String.format("/collection/%s", collectionId);
         Map<String, Object> requestParams = new HashMap<>();
         requestParams.put("language", language);
-        return restClient.get(path, requestParams, new TypeReference<>() {
+        return restClient.getOpt(path, requestParams, new TypeReference<>() {
 
 
         }
@@ -48,7 +48,7 @@ public class Collections {
         String path = String.format("/collection/%s/images", collectionId);
         Map<String, Object> requestParams = new HashMap<>();
         requestParams.put("language", language);
-        return restClient.get(path, requestParams, new TypeReference<>() {
+        return restClient.getOpt(path, requestParams, new TypeReference<>() {
 
 
         }
@@ -72,7 +72,7 @@ public class Collections {
         String path = String.format("/collection/%s/translations", collectionId);
         Map<String, Object> requestParams = new HashMap<>();
         requestParams.put("language", language);
-        return restClient.get(path, requestParams, new TypeReference<>() {
+        return restClient.getOpt(path, requestParams, new TypeReference<>() {
 
 
         }

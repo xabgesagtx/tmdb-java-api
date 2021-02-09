@@ -19,5 +19,6 @@ public class Endpoint {
     List<Variable<?>> requestParams;
     Type response;
     Map<Integer, Type> errorResponses;
+    boolean singleElementRetrieval;
 
 }

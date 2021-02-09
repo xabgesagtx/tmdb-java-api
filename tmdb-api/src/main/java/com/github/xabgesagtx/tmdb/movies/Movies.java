@@ -28,7 +28,7 @@ public class Movies {
         Map<String, Object> requestParams = new HashMap<>();
         requestParams.put("append_to_response", appendToResponse);
         requestParams.put("language", language);
-        return restClient.get(path, requestParams, new TypeReference<>() {
+        return restClient.getOpt(path, requestParams, new TypeReference<>() {
 
 
         }
@@ -59,7 +59,7 @@ public class Movies {
         Map<String, Object> requestParams = new HashMap<>();
         requestParams.put("guest_session_id", guestSessionId);
         requestParams.put("session_id", sessionId);
-        return restClient.get(path, requestParams, new TypeReference<>() {
+        return restClient.getOpt(path, requestParams, new TypeReference<>() {
 
 
         }
@@ -88,7 +88,7 @@ public class Movies {
         String path = String.format("/movie/%s/alternative_titles", movieId);
         Map<String, Object> requestParams = new HashMap<>();
         requestParams.put("country", country);
-        return restClient.get(path, requestParams, new TypeReference<>() {
+        return restClient.getOpt(path, requestParams, new TypeReference<>() {
 
 
         }
@@ -108,7 +108,7 @@ public class Movies {
      * <p>You can query up to 14 days in a single query by using the <code>start_date</code> and <code>end_date</code> query parameters.</p>
      * 
      */
-    public Optional<GetMovieChangesResponse> getMovieChanges(int movieId, LocalDate endDate, Integer page, LocalDate startDate) {
+    public GetMovieChangesResponse getMovieChanges(int movieId, LocalDate endDate, Integer page, LocalDate startDate) {
         // /movie/{movie_id}/changes
         String path = String.format("/movie/%s/changes", movieId);
         Map<String, Object> requestParams = new HashMap<>();
@@ -127,7 +127,7 @@ public class Movies {
      * <p>You can query up to 14 days in a single query by using the <code>start_date</code> and <code>end_date</code> query parameters.</p>
      * 
      */
-    public Optional<GetMovieChangesResponse> getMovieChanges(int movieId) {
+    public GetMovieChangesResponse getMovieChanges(int movieId) {
         return getMovieChanges(movieId, null, null, null);
     }
 
@@ -140,7 +140,7 @@ public class Movies {
         String path = String.format("/movie/%s/credits", movieId);
         Map<String, Object> requestParams = new HashMap<>();
         requestParams.put("language", language);
-        return restClient.get(path, requestParams, new TypeReference<>() {
+        return restClient.getOpt(path, requestParams, new TypeReference<>() {
 
 
         }
@@ -163,7 +163,7 @@ public class Movies {
         // /movie/{movie_id}/external_ids
         String path = String.format("/movie/%s/external_ids", movieId);
         Map<String, Object> requestParams = Collections.emptyMap();
-        return restClient.get(path, requestParams, new TypeReference<>() {
+        return restClient.getOpt(path, requestParams, new TypeReference<>() {
 
 
         }
@@ -181,7 +181,7 @@ public class Movies {
         Map<String, Object> requestParams = new HashMap<>();
         requestParams.put("include_image_language", includeImageLanguage);
         requestParams.put("language", language);
-        return restClient.get(path, requestParams, new TypeReference<>() {
+        return restClient.getOpt(path, requestParams, new TypeReference<>() {
 
 
         }
@@ -205,7 +205,7 @@ public class Movies {
         // /movie/{movie_id}/keywords
         String path = String.format("/movie/%s/keywords", movieId);
         Map<String, Object> requestParams = Collections.emptyMap();
-        return restClient.get(path, requestParams, new TypeReference<>() {
+        return restClient.getOpt(path, requestParams, new TypeReference<>() {
 
 
         }
@@ -216,7 +216,7 @@ public class Movies {
      * <p>Get a list of lists that this movie belongs to.</p>
      * 
      */
-    public Optional<GetMovieListsResponse> getMovieLists(int movieId, String language, Integer page) {
+    public GetMovieListsResponse getMovieLists(int movieId, String language, Integer page) {
         // /movie/{movie_id}/lists
         String path = String.format("/movie/%s/lists", movieId);
         Map<String, Object> requestParams = new HashMap<>();
@@ -233,7 +233,7 @@ public class Movies {
      * <p>Get a list of lists that this movie belongs to.</p>
      * 
      */
-    public Optional<GetMovieListsResponse> getMovieLists(int movieId) {
+    public GetMovieListsResponse getMovieLists(int movieId) {
         return getMovieLists(movieId, null, null);
     }
 
@@ -241,7 +241,7 @@ public class Movies {
      * <p>Get a list of recommended movies for a movie.</p>
      * 
      */
-    public Optional<GetMovieRecommendationsResponse> getMovieRecommendations(int movieId, String language, Integer page) {
+    public GetMovieRecommendationsResponse getMovieRecommendations(int movieId, String language, Integer page) {
         // /movie/{movie_id}/recommendations
         String path = String.format("/movie/%s/recommendations", movieId);
         Map<String, Object> requestParams = new HashMap<>();
@@ -258,7 +258,7 @@ public class Movies {
      * <p>Get a list of recommended movies for a movie.</p>
      * 
      */
-    public Optional<GetMovieRecommendationsResponse> getMovieRecommendations(int movieId) {
+    public GetMovieRecommendationsResponse getMovieRecommendations(int movieId) {
         return getMovieRecommendations(movieId, null, null);
     }
 
@@ -279,7 +279,7 @@ public class Movies {
         // /movie/{movie_id}/release_dates
         String path = String.format("/movie/%s/release_dates", movieId);
         Map<String, Object> requestParams = Collections.emptyMap();
-        return restClient.get(path, requestParams, new TypeReference<>() {
+        return restClient.getOpt(path, requestParams, new TypeReference<>() {
 
 
         }
@@ -290,7 +290,7 @@ public class Movies {
      * <p>Get the user reviews for a movie.</p>
      * 
      */
-    public Optional<GetMovieReviewsResponse> getMovieReviews(int movieId, String language, Integer page) {
+    public GetMovieReviewsResponse getMovieReviews(int movieId, String language, Integer page) {
         // /movie/{movie_id}/reviews
         String path = String.format("/movie/%s/reviews", movieId);
         Map<String, Object> requestParams = new HashMap<>();
@@ -307,7 +307,7 @@ public class Movies {
      * <p>Get the user reviews for a movie.</p>
      * 
      */
-    public Optional<GetMovieReviewsResponse> getMovieReviews(int movieId) {
+    public GetMovieReviewsResponse getMovieReviews(int movieId) {
         return getMovieReviews(movieId, null, null);
     }
 
@@ -316,7 +316,7 @@ public class Movies {
      * <p>These items are assembled by looking at keywords and genres.</p>
      * 
      */
-    public Optional<GetSimilarMoviesResponse> getSimilarMovies(int movieId, String language, Integer page) {
+    public GetSimilarMoviesResponse getSimilarMovies(int movieId, String language, Integer page) {
         // /movie/{movie_id}/similar
         String path = String.format("/movie/%s/similar", movieId);
         Map<String, Object> requestParams = new HashMap<>();
@@ -334,7 +334,7 @@ public class Movies {
      * <p>These items are assembled by looking at keywords and genres.</p>
      * 
      */
-    public Optional<GetSimilarMoviesResponse> getSimilarMovies(int movieId) {
+    public GetSimilarMoviesResponse getSimilarMovies(int movieId) {
         return getSimilarMovies(movieId, null, null);
     }
 
@@ -346,7 +346,7 @@ public class Movies {
         // /movie/{movie_id}/translations
         String path = String.format("/movie/%s/translations", movieId);
         Map<String, Object> requestParams = Collections.emptyMap();
-        return restClient.get(path, requestParams, new TypeReference<>() {
+        return restClient.getOpt(path, requestParams, new TypeReference<>() {
 
 
         }
@@ -362,7 +362,7 @@ public class Movies {
         String path = String.format("/movie/%s/videos", movieId);
         Map<String, Object> requestParams = new HashMap<>();
         requestParams.put("language", language);
-        return restClient.get(path, requestParams, new TypeReference<>() {
+        return restClient.getOpt(path, requestParams, new TypeReference<>() {
 
 
         }
@@ -387,7 +387,7 @@ public class Movies {
         // /movie/{movie_id}/watch/providers
         String path = String.format("/movie/%s/watch/providers", movieId);
         Map<String, Object> requestParams = Collections.emptyMap();
-        return restClient.get(path, requestParams, new TypeReference<>() {
+        return restClient.getOpt(path, requestParams, new TypeReference<>() {
 
 
         }
@@ -399,7 +399,7 @@ public class Movies {
      * <p>A valid session or guest session ID is required. You can read more about how this works <a href="https://developers.themoviedb.org/3/authentication/how-do-i-generate-a-session-id">here</a>.</p>
      * 
      */
-    public Optional<RateMovieResponse> rateMovie(int movieId, RateMovieRequest rateMovieRequest, String guestSessionId, String sessionId) {
+    public RateMovieResponse rateMovie(int movieId, RateMovieRequest rateMovieRequest, String guestSessionId, String sessionId) {
         // /movie/{movie_id}/rating
         String path = String.format("/movie/%s/rating", movieId);
         Map<String, Object> requestParams = new HashMap<>();
@@ -417,7 +417,7 @@ public class Movies {
      * <p>A valid session or guest session ID is required. You can read more about how this works <a href="https://developers.themoviedb.org/3/authentication/how-do-i-generate-a-session-id">here</a>.</p>
      * 
      */
-    public Optional<RateMovieResponse> rateMovie(int movieId, RateMovieRequest requestBody) {
+    public RateMovieResponse rateMovie(int movieId, RateMovieRequest requestBody) {
         return rateMovie(movieId, requestBody, null, null);
     }
 
@@ -426,7 +426,7 @@ public class Movies {
      * <p>A valid session or guest session ID is required. You can read more about how this works <a href="https://developers.themoviedb.org/3/authentication/how-do-i-generate-a-session-id">here</a>.</p>
      * 
      */
-    public Optional<DeleteMovieRatingResponse> deleteMovieRating(int movieId, String guestSessionId, String sessionId) {
+    public DeleteMovieRatingResponse deleteMovieRating(int movieId, String guestSessionId, String sessionId) {
         // /movie/{movie_id}/rating
         String path = String.format("/movie/%s/rating", movieId);
         Map<String, Object> requestParams = new HashMap<>();
@@ -444,7 +444,7 @@ public class Movies {
      * <p>A valid session or guest session ID is required. You can read more about how this works <a href="https://developers.themoviedb.org/3/authentication/how-do-i-generate-a-session-id">here</a>.</p>
      * 
      */
-    public Optional<DeleteMovieRatingResponse> deleteMovieRating(int movieId) {
+    public DeleteMovieRatingResponse deleteMovieRating(int movieId) {
         return deleteMovieRating(movieId, null, null);
     }
 
@@ -452,7 +452,7 @@ public class Movies {
      * <p>Get the most newly created movie. This is a live response and will continuously change.</p>
      * 
      */
-    public Optional<GetLatestMovieResponse> getLatestMovie(String language) {
+    public GetLatestMovieResponse getLatestMovie(String language) {
         String path = "/movie/latest";
         Map<String, Object> requestParams = new HashMap<>();
         requestParams.put("language", language);
@@ -467,7 +467,7 @@ public class Movies {
      * <p>Get the most newly created movie. This is a live response and will continuously change.</p>
      * 
      */
-    public Optional<GetLatestMovieResponse> getLatestMovie() {
+    public GetLatestMovieResponse getLatestMovie() {
         return getLatestMovie(null);
     }
 
@@ -476,7 +476,7 @@ public class Movies {
      * <p>You can optionally specify a <code>region</code> prameter which will narrow the search to only look for theatrical release dates within the specified country.</p>
      * 
      */
-    public Optional<GetNowPlayingResponse> getNowPlaying(String language, Integer page, String region) {
+    public GetNowPlayingResponse getNowPlaying(String language, Integer page, String region) {
         String path = "/movie/now_playing";
         Map<String, Object> requestParams = new HashMap<>();
         requestParams.put("language", language);
@@ -494,7 +494,7 @@ public class Movies {
      * <p>You can optionally specify a <code>region</code> prameter which will narrow the search to only look for theatrical release dates within the specified country.</p>
      * 
      */
-    public Optional<GetNowPlayingResponse> getNowPlaying() {
+    public GetNowPlayingResponse getNowPlaying() {
         return getNowPlaying(null, null, null);
     }
 
@@ -502,7 +502,7 @@ public class Movies {
      * <p>Get a list of the current popular movies on TMDb. This list updates daily.</p>
      * 
      */
-    public Optional<GetPopularMoviesResponse> getPopularMovies(String language, Integer page, String region) {
+    public GetPopularMoviesResponse getPopularMovies(String language, Integer page, String region) {
         String path = "/movie/popular";
         Map<String, Object> requestParams = new HashMap<>();
         requestParams.put("language", language);
@@ -519,7 +519,7 @@ public class Movies {
      * <p>Get a list of the current popular movies on TMDb. This list updates daily.</p>
      * 
      */
-    public Optional<GetPopularMoviesResponse> getPopularMovies() {
+    public GetPopularMoviesResponse getPopularMovies() {
         return getPopularMovies(null, null, null);
     }
 
@@ -527,7 +527,7 @@ public class Movies {
      * <p>Get the top rated movies on TMDb.</p>
      * 
      */
-    public Optional<GetTopRatedMoviesResponse> getTopRatedMovies(String language, Integer page, String region) {
+    public GetTopRatedMoviesResponse getTopRatedMovies(String language, Integer page, String region) {
         String path = "/movie/top_rated";
         Map<String, Object> requestParams = new HashMap<>();
         requestParams.put("language", language);
@@ -544,7 +544,7 @@ public class Movies {
      * <p>Get the top rated movies on TMDb.</p>
      * 
      */
-    public Optional<GetTopRatedMoviesResponse> getTopRatedMovies() {
+    public GetTopRatedMoviesResponse getTopRatedMovies() {
         return getTopRatedMovies(null, null, null);
     }
 
@@ -553,7 +553,7 @@ public class Movies {
      * <p>You can optionally specify a <code>region</code> prameter which will narrow the search to only look for theatrical release dates within the specified country.</p>
      * 
      */
-    public Optional<GetUpcomingResponse> getUpcoming(String language, Integer page, String region) {
+    public GetUpcomingResponse getUpcoming(String language, Integer page, String region) {
         String path = "/movie/upcoming";
         Map<String, Object> requestParams = new HashMap<>();
         requestParams.put("language", language);
@@ -571,7 +571,7 @@ public class Movies {
      * <p>You can optionally specify a <code>region</code> prameter which will narrow the search to only look for theatrical release dates within the specified country.</p>
      * 
      */
-    public Optional<GetUpcomingResponse> getUpcoming() {
+    public GetUpcomingResponse getUpcoming() {
         return getUpcoming(null, null, null);
     }
 

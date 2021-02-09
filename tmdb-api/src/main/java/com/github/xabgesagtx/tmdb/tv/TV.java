@@ -28,7 +28,7 @@ public class TV {
         Map<String, Object> requestParams = new HashMap<>();
         requestParams.put("append_to_response", appendToResponse);
         requestParams.put("language", language);
-        return restClient.get(path, requestParams, new TypeReference<>() {
+        return restClient.getOpt(path, requestParams, new TypeReference<>() {
 
 
         }
@@ -60,7 +60,7 @@ public class TV {
         requestParams.put("guest_session_id", guestSessionId);
         requestParams.put("session_id", sessionId);
         requestParams.put("language", language);
-        return restClient.get(path, requestParams, new TypeReference<>() {
+        return restClient.getOpt(path, requestParams, new TypeReference<>() {
 
 
         }
@@ -90,7 +90,7 @@ public class TV {
         String path = String.format("/tv/%s/aggregate_credits", tvId);
         Map<String, Object> requestParams = new HashMap<>();
         requestParams.put("language", language);
-        return restClient.get(path, requestParams, new TypeReference<>() {
+        return restClient.getOpt(path, requestParams, new TypeReference<>() {
 
 
         }
@@ -115,7 +115,7 @@ public class TV {
         String path = String.format("/tv/%s/alternative_titles", tvId);
         Map<String, Object> requestParams = new HashMap<>();
         requestParams.put("language", language);
-        return restClient.get(path, requestParams, new TypeReference<>() {
+        return restClient.getOpt(path, requestParams, new TypeReference<>() {
 
 
         }
@@ -136,7 +136,7 @@ public class TV {
      * <p>TV show changes are different than movie changes in that there are some edits on seasons and episodes that will create a change entry at the show level. These can be found under the season and episode keys. These keys will contain a <code>series_id</code> and <code>episode_id</code>. You can use the <a href="https://developers.themoviedb.org/3/tv-seasons/get-tv-season-changes">season changes</a> and <a href="https://developers.themoviedb.org/3/tv-episodes/get-tv-episode-changes">episode changes</a> methods to look these up individually.</p>
      * 
      */
-    public Optional<GetTvChangesResponse> getTvChanges(int tvId, LocalDate endDate, Integer page, LocalDate startDate) {
+    public GetTvChangesResponse getTvChanges(int tvId, LocalDate endDate, Integer page, LocalDate startDate) {
         // /tv/{tv_id}/changes
         String path = String.format("/tv/%s/changes", tvId);
         Map<String, Object> requestParams = new HashMap<>();
@@ -156,7 +156,7 @@ public class TV {
      * <p>TV show changes are different than movie changes in that there are some edits on seasons and episodes that will create a change entry at the show level. These can be found under the season and episode keys. These keys will contain a <code>series_id</code> and <code>episode_id</code>. You can use the <a href="https://developers.themoviedb.org/3/tv-seasons/get-tv-season-changes">season changes</a> and <a href="https://developers.themoviedb.org/3/tv-episodes/get-tv-episode-changes">episode changes</a> methods to look these up individually.</p>
      * 
      */
-    public Optional<GetTvChangesResponse> getTvChanges(int tvId) {
+    public GetTvChangesResponse getTvChanges(int tvId) {
         return getTvChanges(tvId, null, null, null);
     }
 
@@ -169,7 +169,7 @@ public class TV {
         String path = String.format("/tv/%s/content_ratings", tvId);
         Map<String, Object> requestParams = new HashMap<>();
         requestParams.put("language", language);
-        return restClient.get(path, requestParams, new TypeReference<>() {
+        return restClient.getOpt(path, requestParams, new TypeReference<>() {
 
 
         }
@@ -193,7 +193,7 @@ public class TV {
         String path = String.format("/tv/%s/credits", tvId);
         Map<String, Object> requestParams = new HashMap<>();
         requestParams.put("language", language);
-        return restClient.get(path, requestParams, new TypeReference<>() {
+        return restClient.getOpt(path, requestParams, new TypeReference<>() {
 
 
         }
@@ -217,7 +217,7 @@ public class TV {
         String path = String.format("/tv/%s/episode_groups", tvId);
         Map<String, Object> requestParams = new HashMap<>();
         requestParams.put("language", language);
-        return restClient.get(path, requestParams, new TypeReference<>() {
+        return restClient.getOpt(path, requestParams, new TypeReference<>() {
 
 
         }
@@ -242,7 +242,7 @@ public class TV {
         String path = String.format("/tv/%s/external_ids", tvId);
         Map<String, Object> requestParams = new HashMap<>();
         requestParams.put("language", language);
-        return restClient.get(path, requestParams, new TypeReference<>() {
+        return restClient.getOpt(path, requestParams, new TypeReference<>() {
 
 
         }
@@ -268,7 +268,7 @@ public class TV {
         String path = String.format("/tv/%s/images", tvId);
         Map<String, Object> requestParams = new HashMap<>();
         requestParams.put("language", language);
-        return restClient.get(path, requestParams, new TypeReference<>() {
+        return restClient.getOpt(path, requestParams, new TypeReference<>() {
 
 
         }
@@ -292,7 +292,7 @@ public class TV {
         // /tv/{tv_id}/keywords
         String path = String.format("/tv/%s/keywords", tvId);
         Map<String, Object> requestParams = Collections.emptyMap();
-        return restClient.get(path, requestParams, new TypeReference<>() {
+        return restClient.getOpt(path, requestParams, new TypeReference<>() {
 
 
         }
@@ -303,7 +303,7 @@ public class TV {
      * <p>Get the list of TV show recommendations for this item.</p>
      * 
      */
-    public Optional<GetTvRecommendationsResponse> getTvRecommendations(int tvId, String language, Integer page) {
+    public GetTvRecommendationsResponse getTvRecommendations(int tvId, String language, Integer page) {
         // /tv/{tv_id}/recommendations
         String path = String.format("/tv/%s/recommendations", tvId);
         Map<String, Object> requestParams = new HashMap<>();
@@ -320,7 +320,7 @@ public class TV {
      * <p>Get the list of TV show recommendations for this item.</p>
      * 
      */
-    public Optional<GetTvRecommendationsResponse> getTvRecommendations(int tvId) {
+    public GetTvRecommendationsResponse getTvRecommendations(int tvId) {
         return getTvRecommendations(tvId, null, null);
     }
 
@@ -328,7 +328,7 @@ public class TV {
      * <p>Get the reviews for a TV show.</p>
      * 
      */
-    public Optional<GetTvReviewsResponse> getTvReviews(int tvId, String language, Integer page) {
+    public GetTvReviewsResponse getTvReviews(int tvId, String language, Integer page) {
         // /tv/{tv_id}/reviews
         String path = String.format("/tv/%s/reviews", tvId);
         Map<String, Object> requestParams = new HashMap<>();
@@ -345,7 +345,7 @@ public class TV {
      * <p>Get the reviews for a TV show.</p>
      * 
      */
-    public Optional<GetTvReviewsResponse> getTvReviews(int tvId) {
+    public GetTvReviewsResponse getTvReviews(int tvId) {
         return getTvReviews(tvId, null, null);
     }
 
@@ -357,7 +357,7 @@ public class TV {
         // /tv/{tv_id}/screened_theatrically
         String path = String.format("/tv/%s/screened_theatrically", tvId);
         Map<String, Object> requestParams = Collections.emptyMap();
-        return restClient.get(path, requestParams, new TypeReference<>() {
+        return restClient.getOpt(path, requestParams, new TypeReference<>() {
 
 
         }
@@ -368,7 +368,7 @@ public class TV {
      * <p>Get a list of similar TV shows. These items are assembled by looking at keywords and genres.</p>
      * 
      */
-    public Optional<GetSimilarTvShowsResponse> getSimilarTvShows(int tvId, String language, Integer page) {
+    public GetSimilarTvShowsResponse getSimilarTvShows(int tvId, String language, Integer page) {
         // /tv/{tv_id}/similar
         String path = String.format("/tv/%s/similar", tvId);
         Map<String, Object> requestParams = new HashMap<>();
@@ -385,7 +385,7 @@ public class TV {
      * <p>Get a list of similar TV shows. These items are assembled by looking at keywords and genres.</p>
      * 
      */
-    public Optional<GetSimilarTvShowsResponse> getSimilarTvShows(int tvId) {
+    public GetSimilarTvShowsResponse getSimilarTvShows(int tvId) {
         return getSimilarTvShows(tvId, null, null);
     }
 
@@ -397,7 +397,7 @@ public class TV {
         // /tv/{tv_id}/translations
         String path = String.format("/tv/%s/translations", tvId);
         Map<String, Object> requestParams = Collections.emptyMap();
-        return restClient.get(path, requestParams, new TypeReference<>() {
+        return restClient.getOpt(path, requestParams, new TypeReference<>() {
 
 
         }
@@ -413,7 +413,7 @@ public class TV {
         String path = String.format("/tv/%s/videos", tvId);
         Map<String, Object> requestParams = new HashMap<>();
         requestParams.put("language", language);
-        return restClient.get(path, requestParams, new TypeReference<>() {
+        return restClient.getOpt(path, requestParams, new TypeReference<>() {
 
 
         }
@@ -438,7 +438,7 @@ public class TV {
         // /tv/{tv_id}/watch/providers
         String path = String.format("/tv/%s/watch/providers", tvId);
         Map<String, Object> requestParams = Collections.emptyMap();
-        return restClient.get(path, requestParams, new TypeReference<>() {
+        return restClient.getOpt(path, requestParams, new TypeReference<>() {
 
 
         }
@@ -450,7 +450,7 @@ public class TV {
      * <p>A valid session or guest session ID is required. You can read more about how this works <a href="https://developers.themoviedb.org/3/authentication/how-do-i-generate-a-session-id">here</a>.</p>
      * 
      */
-    public Optional<RateTvShowResponse> rateTvShow(int tvId, RateTvShowRequest rateTvShowRequest, String guestSessionId, String sessionId) {
+    public RateTvShowResponse rateTvShow(int tvId, RateTvShowRequest rateTvShowRequest, String guestSessionId, String sessionId) {
         // /tv/{tv_id}/rating
         String path = String.format("/tv/%s/rating", tvId);
         Map<String, Object> requestParams = new HashMap<>();
@@ -468,7 +468,7 @@ public class TV {
      * <p>A valid session or guest session ID is required. You can read more about how this works <a href="https://developers.themoviedb.org/3/authentication/how-do-i-generate-a-session-id">here</a>.</p>
      * 
      */
-    public Optional<RateTvShowResponse> rateTvShow(int tvId, RateTvShowRequest requestBody) {
+    public RateTvShowResponse rateTvShow(int tvId, RateTvShowRequest requestBody) {
         return rateTvShow(tvId, requestBody, null, null);
     }
 
@@ -477,7 +477,7 @@ public class TV {
      * <p>A valid session or guest session ID is required. You can read more about how this works <a href="https://developers.themoviedb.org/3/authentication/how-do-i-generate-a-session-id">here</a>.</p>
      * 
      */
-    public Optional<DeleteTvShowRatingResponse> deleteTvShowRating(int tvId, String guestSessionId, String sessionId) {
+    public DeleteTvShowRatingResponse deleteTvShowRating(int tvId, String guestSessionId, String sessionId) {
         // /tv/{tv_id}/rating
         String path = String.format("/tv/%s/rating", tvId);
         Map<String, Object> requestParams = new HashMap<>();
@@ -495,7 +495,7 @@ public class TV {
      * <p>A valid session or guest session ID is required. You can read more about how this works <a href="https://developers.themoviedb.org/3/authentication/how-do-i-generate-a-session-id">here</a>.</p>
      * 
      */
-    public Optional<DeleteTvShowRatingResponse> deleteTvShowRating(int tvId) {
+    public DeleteTvShowRatingResponse deleteTvShowRating(int tvId) {
         return deleteTvShowRating(tvId, null, null);
     }
 
@@ -503,7 +503,7 @@ public class TV {
      * <p>Get the most newly created TV show. This is a live response and will continuously change.</p>
      * 
      */
-    public Optional<GetLatestTvResponse> getLatestTv(String language) {
+    public GetLatestTvResponse getLatestTv(String language) {
         String path = "/tv/latest";
         Map<String, Object> requestParams = new HashMap<>();
         requestParams.put("language", language);
@@ -518,7 +518,7 @@ public class TV {
      * <p>Get the most newly created TV show. This is a live response and will continuously change.</p>
      * 
      */
-    public Optional<GetLatestTvResponse> getLatestTv() {
+    public GetLatestTvResponse getLatestTv() {
         return getLatestTv(null);
     }
 
@@ -527,7 +527,7 @@ public class TV {
      * <p>You can specify a <a>timezone</a> to offset the day calculation. Without a specified timezone, this query defaults to EST (Eastern Time UTC-05:00).</p>
      * 
      */
-    public Optional<GetTvAiringTodayResponse> getTvAiringToday(String language, Integer page) {
+    public GetTvAiringTodayResponse getTvAiringToday(String language, Integer page) {
         String path = "/tv/airing_today";
         Map<String, Object> requestParams = new HashMap<>();
         requestParams.put("language", language);
@@ -544,7 +544,7 @@ public class TV {
      * <p>You can specify a <a>timezone</a> to offset the day calculation. Without a specified timezone, this query defaults to EST (Eastern Time UTC-05:00).</p>
      * 
      */
-    public Optional<GetTvAiringTodayResponse> getTvAiringToday() {
+    public GetTvAiringTodayResponse getTvAiringToday() {
         return getTvAiringToday(null, null);
     }
 
@@ -553,7 +553,7 @@ public class TV {
      * <p>This query looks for any TV show that has an episode with an air date in the next 7 days.</p>
      * 
      */
-    public Optional<GetTvOnTheAirResponse> getTvOnTheAir(String language, Integer page) {
+    public GetTvOnTheAirResponse getTvOnTheAir(String language, Integer page) {
         String path = "/tv/on_the_air";
         Map<String, Object> requestParams = new HashMap<>();
         requestParams.put("language", language);
@@ -570,7 +570,7 @@ public class TV {
      * <p>This query looks for any TV show that has an episode with an air date in the next 7 days.</p>
      * 
      */
-    public Optional<GetTvOnTheAirResponse> getTvOnTheAir() {
+    public GetTvOnTheAirResponse getTvOnTheAir() {
         return getTvOnTheAir(null, null);
     }
 
@@ -578,7 +578,7 @@ public class TV {
      * <p>Get a list of the current popular TV shows on TMDb. This list updates daily.</p>
      * 
      */
-    public Optional<GetPopularTvShowsResponse> getPopularTvShows(String language, Integer page) {
+    public GetPopularTvShowsResponse getPopularTvShows(String language, Integer page) {
         String path = "/tv/popular";
         Map<String, Object> requestParams = new HashMap<>();
         requestParams.put("language", language);
@@ -594,7 +594,7 @@ public class TV {
      * <p>Get a list of the current popular TV shows on TMDb. This list updates daily.</p>
      * 
      */
-    public Optional<GetPopularTvShowsResponse> getPopularTvShows() {
+    public GetPopularTvShowsResponse getPopularTvShows() {
         return getPopularTvShows(null, null);
     }
 
@@ -602,7 +602,7 @@ public class TV {
      * <p>Get a list of the top rated TV shows on TMDb.</p>
      * 
      */
-    public Optional<GetTopRatedTvResponse> getTopRatedTv(String language, Integer page) {
+    public GetTopRatedTvResponse getTopRatedTv(String language, Integer page) {
         String path = "/tv/top_rated";
         Map<String, Object> requestParams = new HashMap<>();
         requestParams.put("language", language);
@@ -618,7 +618,7 @@ public class TV {
      * <p>Get a list of the top rated TV shows on TMDb.</p>
      * 
      */
-    public Optional<GetTopRatedTvResponse> getTopRatedTv() {
+    public GetTopRatedTvResponse getTopRatedTv() {
         return getTopRatedTv(null, null);
     }
 

@@ -4,11 +4,9 @@ import com.github.xabgesagtx.tmdb.api.external.*;
 import com.github.xabgesagtx.tmdb.codegen.model.*;
 import com.google.common.base.CaseFormat;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -44,6 +42,7 @@ public class EndpointSpecToEndpointConverter {
         */
         Type response = specToTypeConverter.generateType(responseTypeName, spec.getResponses().get(0).getBody());
         ObjectType requestBody = getRequestBody(spec.getSlug(), spec.getRequest()).orElse(null);
+        boolean singleElementRetrieval = isSingleElementRetrieval(spec);
         return Endpoint.builder()
                 .name(endpointName)
                 .description(spec.getDescription())
@@ -54,7 +53,19 @@ public class EndpointSpecToEndpointConverter {
                 .requestParams(requestParams)
                 .errorResponses(Collections.emptyMap())
                 .response(response)
+                .singleElementRetrieval(singleElementRetrieval)
                 .build();
+    }
+
+    private boolean isSingleElementRetrieval(EndpointSpec spec) {
+        boolean isGetMethod = "get".equals(spec.getRequest().getMethod());
+        boolean startsWithGet = StringUtils.startsWithAny(spec.getSlug(), "get-");
+        boolean isArrayResponseType = spec.getResponses().get(0).getBody().getType().contains("array");
+        Map<String, ComplexTypeSpec> pathVariables = Objects.requireNonNullElse(spec.getRequest().getPathParams().getProperties(), Collections.emptyMap());
+        boolean hasIdPathVariable = pathVariables.keySet().stream().anyMatch(pathVariable -> StringUtils.endsWith(pathVariable, "_id"));
+        Map<String, ComplexTypeSpec> requestParams = Objects.requireNonNullElse(spec.getRequest().getQueryString().getProperties(), Collections.emptyMap());
+        boolean hasPageRequestParam = requestParams.keySet().stream().anyMatch("page"::equals);
+        return isGetMethod && startsWithGet && !isArrayResponseType && !hasPageRequestParam && hasIdPathVariable;
     }
 
     private Optional<ObjectType> getRequestBody(String slug, RequestSpec request) {

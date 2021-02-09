@@ -1,14 +1,11 @@
 package com.github.xabgesagtx.tmdb.http;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.github.xabgesagtx.tmdb.http.exceptions.UnauthorizedException;
-import com.github.xabgesagtx.tmdb.http.exceptions.UnexpectedStatusCodeException;
+import com.github.xabgesagtx.tmdb.http.exceptions.*;
 import com.github.xabgesagtx.tmdb.json.JsonBodyHandler;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
-import com.github.xabgesagtx.tmdb.http.exceptions.ForbiddenException;
-import com.github.xabgesagtx.tmdb.http.exceptions.IOApiException;
 import com.github.xabgesagtx.tmdb.json.JacksonJsonTransformer;
 import com.github.xabgesagtx.tmdb.json.JsonTransformer;
 
@@ -42,10 +39,8 @@ public class RestClientImpl implements RestClient {
         this(HttpClient.newHttpClient(), new JacksonJsonTransformer(), apiKey, baseUrl);
     }
 
-
-
     @Override
-    public <T> Optional<T> get(String path, Map<String, Object> params, TypeReference<T> typeReference) {
+    public <T> Optional<T> getOpt(String path, Map<String, Object> params, TypeReference<T> typeReference) {
         URI uri = createUri(path, params);
         HttpRequest request = HttpRequest.newBuilder(uri)
                 .GET()
@@ -54,33 +49,42 @@ public class RestClientImpl implements RestClient {
     }
 
     @Override
-    public <T> Optional<T> post(String path, Map<String, Object> params, TypeReference<T> typeReference, Object requestBody) {
+    public <T> T get(String path, Map<String, Object> params, TypeReference<T> typeReference) {
+        URI uri = createUri(path, params);
+        HttpRequest request = HttpRequest.newBuilder(uri)
+                .GET()
+                .build();
+        return sendRequest(request, typeReference).orElseThrow(() -> new NotFoundException(uri.getPath()));
+    }
+
+    @Override
+    public <T> T post(String path, Map<String, Object> params, TypeReference<T> typeReference, Object requestBody) {
         URI uri = createUri(path, params);
         BodyPublisher bodyPublisher = createBodyPublisher(requestBody);
         HttpRequest request = HttpRequest.newBuilder(uri)
                 .POST(bodyPublisher)
                 .build();
-        return sendRequest(request, typeReference);
+        return sendRequest(request, typeReference).orElseThrow(() -> new NotFoundException(uri.getPath()));
     }
 
     @Override
-    public <T> Optional<T> delete(String path, Map<String, Object> params, TypeReference<T> typeReference, Object requestBody) {
+    public <T> T delete(String path, Map<String, Object> params, TypeReference<T> typeReference, Object requestBody) {
         URI uri = createUri(path, params);
         BodyPublisher bodyPublisher = createBodyPublisher(requestBody);
         HttpRequest request = HttpRequest.newBuilder(uri)
                 .method("DELETE", bodyPublisher)
                 .build();
-        return sendRequest(request, typeReference);
+        return sendRequest(request, typeReference).orElseThrow(() -> new NotFoundException(uri.getPath()));
     }
 
     @Override
-    public <T> Optional<T> put(String path, Map<String, Object> params, TypeReference<T> typeReference, Object requestBody) {
+    public <T> T put(String path, Map<String, Object> params, TypeReference<T> typeReference, Object requestBody) {
         URI uri = createUri(path, params);
         BodyPublisher bodyPublisher = createBodyPublisher(requestBody);
         HttpRequest request = HttpRequest.newBuilder(uri)
                 .method("DELETE", bodyPublisher)
                 .build();
-        return sendRequest(request, typeReference);
+        return sendRequest(request, typeReference).orElseThrow(() -> new NotFoundException(uri.getPath()));
     }
 
     @SneakyThrows

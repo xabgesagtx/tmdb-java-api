@@ -23,7 +23,7 @@ public class Networks {
         // /network/{network_id}
         String path = String.format("/network/%s", networkId);
         Map<String, Object> requestParams = Collections.emptyMap();
-        return restClient.get(path, requestParams, new TypeReference<>() {
+        return restClient.getOpt(path, requestParams, new TypeReference<>() {
 
 
         }
@@ -38,7 +38,7 @@ public class Networks {
         // /network/{network_id}/alternative_names
         String path = String.format("/network/%s/alternative_names", networkId);
         Map<String, Object> requestParams = Collections.emptyMap();
-        return restClient.get(path, requestParams, new TypeReference<>() {
+        return restClient.getOpt(path, requestParams, new TypeReference<>() {
 
 
         }
@@ -55,7 +55,7 @@ public class Networks {
         // /network/{network_id}/images
         String path = String.format("/network/%s/images", networkId);
         Map<String, Object> requestParams = Collections.emptyMap();
-        return restClient.get(path, requestParams, new TypeReference<>() {
+        return restClient.getOpt(path, requestParams, new TypeReference<>() {
 
 
         }

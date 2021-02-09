@@ -19,7 +19,7 @@ public class CodeGeneratorApplication {
             createApi(args[0], args[1]);
         } else {
             log.info("Using default arguments for generating api");
-            createApi("tmdb-api/api_v3.json", "tmdb-api/src/main/java");
+            createApi("code-generator/api_v3.json", "tmdb-api/src/main/java");
         }
     }
 

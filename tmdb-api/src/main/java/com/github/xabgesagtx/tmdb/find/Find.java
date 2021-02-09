@@ -3,7 +3,6 @@ package com.github.xabgesagtx.tmdb.find;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.github.xabgesagtx.tmdb.http.RestClient;
@@ -23,7 +22,7 @@ public class Find {
      * <p>*Defunct or no longer available as a service.</p>
      * 
      */
-    public Optional<FindByIdResponse> findById(String externalId, Find.FindByIdExternalSourceParam externalSource, String language) {
+    public FindByIdResponse findById(String externalId, Find.FindByIdExternalSourceParam externalSource, String language) {
         // /find/{external_id}
         String path = String.format("/find/%s", externalId);
         Map<String, Object> requestParams = new HashMap<>();
@@ -43,7 +42,7 @@ public class Find {
      * <p>*Defunct or no longer available as a service.</p>
      * 
      */
-    public Optional<FindByIdResponse> findById(String externalId, Find.FindByIdExternalSourceParam externalSource) {
+    public FindByIdResponse findById(String externalId, Find.FindByIdExternalSourceParam externalSource) {
         return findById(externalId, externalSource, null);
     }
 

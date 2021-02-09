@@ -26,7 +26,7 @@ public class GuestSessions {
         Map<String, Object> requestParams = new HashMap<>();
         requestParams.put("language", language);
         requestParams.put("sort_by", sortBy);
-        return restClient.get(path, requestParams, new TypeReference<>() {
+        return restClient.getOpt(path, requestParams, new TypeReference<>() {
 
 
         }
@@ -51,7 +51,7 @@ public class GuestSessions {
         Map<String, Object> requestParams = new HashMap<>();
         requestParams.put("language", language);
         requestParams.put("sort_by", sortBy);
-        return restClient.get(path, requestParams, new TypeReference<>() {
+        return restClient.getOpt(path, requestParams, new TypeReference<>() {
 
 
         }
@@ -76,7 +76,7 @@ public class GuestSessions {
         Map<String, Object> requestParams = new HashMap<>();
         requestParams.put("language", language);
         requestParams.put("sort_by", sortBy);
-        return restClient.get(path, requestParams, new TypeReference<>() {
+        return restClient.getOpt(path, requestParams, new TypeReference<>() {
 
 
         }

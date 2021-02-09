@@ -3,7 +3,6 @@ package com.github.xabgesagtx.tmdb.account;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.github.xabgesagtx.tmdb.http.RestClient;
@@ -20,7 +19,7 @@ public class Account {
      * <p>Get your account details.</p>
      * 
      */
-    public Optional<GetAccountDetailsResponse> getAccountDetails(String sessionId) {
+    public GetAccountDetailsResponse getAccountDetails(String sessionId) {
         String path = "/account";
         Map<String, Object> requestParams = new HashMap<>();
         requestParams.put("session_id", sessionId);
@@ -35,7 +34,7 @@ public class Account {
      * <p>Get all of the lists created by an account. Will invlude private lists if you are the owner.</p>
      * 
      */
-    public Optional<GetCreatedListsResponse> getCreatedLists(int accountId, String sessionId, String language, Integer page) {
+    public GetCreatedListsResponse getCreatedLists(int accountId, String sessionId, String language, Integer page) {
         // /account/{account_id}/lists
         String path = String.format("/account/%s/lists", accountId);
         Map<String, Object> requestParams = new HashMap<>();
@@ -53,7 +52,7 @@ public class Account {
      * <p>Get all of the lists created by an account. Will invlude private lists if you are the owner.</p>
      * 
      */
-    public Optional<GetCreatedListsResponse> getCreatedLists(int accountId, String sessionId) {
+    public GetCreatedListsResponse getCreatedLists(int accountId, String sessionId) {
         return getCreatedLists(accountId, sessionId, null, null);
     }
 
@@ -61,7 +60,7 @@ public class Account {
      * <p>Get the list of your favorite movies.</p>
      * 
      */
-    public Optional<GetFavoriteMoviesResponse> getFavoriteMovies(int accountId, String sessionId, String language, Integer page, Account.GetFavoriteMoviesSortByParam sortBy) {
+    public GetFavoriteMoviesResponse getFavoriteMovies(int accountId, String sessionId, String language, Integer page, Account.GetFavoriteMoviesSortByParam sortBy) {
         // /account/{account_id}/favorite/movies
         String path = String.format("/account/%s/favorite/movies", accountId);
         Map<String, Object> requestParams = new HashMap<>();
@@ -80,7 +79,7 @@ public class Account {
      * <p>Get the list of your favorite movies.</p>
      * 
      */
-    public Optional<GetFavoriteMoviesResponse> getFavoriteMovies(int accountId, String sessionId) {
+    public GetFavoriteMoviesResponse getFavoriteMovies(int accountId, String sessionId) {
         return getFavoriteMovies(accountId, sessionId, null, null, null);
     }
 
@@ -88,7 +87,7 @@ public class Account {
      * <p>Get the list of your favorite TV shows.</p>
      * 
      */
-    public Optional<GetFavoriteTvShowsResponse> getFavoriteTvShows(int accountId, String sessionId, String language, Integer page, Account.GetFavoriteTvShowsSortByParam sortBy) {
+    public GetFavoriteTvShowsResponse getFavoriteTvShows(int accountId, String sessionId, String language, Integer page, Account.GetFavoriteTvShowsSortByParam sortBy) {
         // /account/{account_id}/favorite/tv
         String path = String.format("/account/%s/favorite/tv", accountId);
         Map<String, Object> requestParams = new HashMap<>();
@@ -107,7 +106,7 @@ public class Account {
      * <p>Get the list of your favorite TV shows.</p>
      * 
      */
-    public Optional<GetFavoriteTvShowsResponse> getFavoriteTvShows(int accountId, String sessionId) {
+    public GetFavoriteTvShowsResponse getFavoriteTvShows(int accountId, String sessionId) {
         return getFavoriteTvShows(accountId, sessionId, null, null, null);
     }
 
@@ -115,7 +114,7 @@ public class Account {
      * <p>This method allows you to mark a movie or TV show as a favorite item.</p>
      * 
      */
-    public Optional<MarkAsFavoriteResponse> markAsFavorite(int accountId, MarkAsFavoriteRequest markAsFavoriteRequest, String sessionId) {
+    public MarkAsFavoriteResponse markAsFavorite(int accountId, MarkAsFavoriteRequest markAsFavoriteRequest, String sessionId) {
         // /account/{account_id}/favorite
         String path = String.format("/account/%s/favorite", accountId);
         Map<String, Object> requestParams = new HashMap<>();
@@ -131,7 +130,7 @@ public class Account {
      * <p>Get a list of all the movies you have rated.</p>
      * 
      */
-    public Optional<GetRatedMoviesResponse> getRatedMovies(int accountId, String sessionId, String language, Integer page, Account.GetRatedMoviesSortByParam sortBy) {
+    public GetRatedMoviesResponse getRatedMovies(int accountId, String sessionId, String language, Integer page, Account.GetRatedMoviesSortByParam sortBy) {
         // /account/{account_id}/rated/movies
         String path = String.format("/account/%s/rated/movies", accountId);
         Map<String, Object> requestParams = new HashMap<>();
@@ -150,7 +149,7 @@ public class Account {
      * <p>Get a list of all the movies you have rated.</p>
      * 
      */
-    public Optional<GetRatedMoviesResponse> getRatedMovies(int accountId, String sessionId) {
+    public GetRatedMoviesResponse getRatedMovies(int accountId, String sessionId) {
         return getRatedMovies(accountId, sessionId, null, null, null);
     }
 
@@ -158,7 +157,7 @@ public class Account {
      * <p>Get a list of all the TV shows you have rated.</p>
      * 
      */
-    public Optional<GetRatedTvShowsResponse> getRatedTvShows(int accountId, String sessionId, String language, Integer page, Account.GetRatedTvShowsSortByParam sortBy) {
+    public GetRatedTvShowsResponse getRatedTvShows(int accountId, String sessionId, String language, Integer page, Account.GetRatedTvShowsSortByParam sortBy) {
         // /account/{account_id}/rated/tv
         String path = String.format("/account/%s/rated/tv", accountId);
         Map<String, Object> requestParams = new HashMap<>();
@@ -177,7 +176,7 @@ public class Account {
      * <p>Get a list of all the TV shows you have rated.</p>
      * 
      */
-    public Optional<GetRatedTvShowsResponse> getRatedTvShows(int accountId, String sessionId) {
+    public GetRatedTvShowsResponse getRatedTvShows(int accountId, String sessionId) {
         return getRatedTvShows(accountId, sessionId, null, null, null);
     }
 
@@ -185,7 +184,7 @@ public class Account {
      * <p>Get a list of all the TV episodes you have rated.</p>
      * 
      */
-    public Optional<GetRatedTvEpisodesResponse> getRatedTvEpisodes(String accountId, String sessionId, String language, Integer page, Account.GetRatedTvEpisodesSortByParam sortBy) {
+    public GetRatedTvEpisodesResponse getRatedTvEpisodes(String accountId, String sessionId, String language, Integer page, Account.GetRatedTvEpisodesSortByParam sortBy) {
         // /account/{account_id}/rated/tv/episodes
         String path = String.format("/account/%s/rated/tv/episodes", accountId);
         Map<String, Object> requestParams = new HashMap<>();
@@ -204,7 +203,7 @@ public class Account {
      * <p>Get a list of all the TV episodes you have rated.</p>
      * 
      */
-    public Optional<GetRatedTvEpisodesResponse> getRatedTvEpisodes(String accountId, String sessionId) {
+    public GetRatedTvEpisodesResponse getRatedTvEpisodes(String accountId, String sessionId) {
         return getRatedTvEpisodes(accountId, sessionId, null, null, null);
     }
 
@@ -212,7 +211,7 @@ public class Account {
      * <p>Get a list of all the movies you have added to your watchlist.</p>
      * 
      */
-    public Optional<GetMovieWatchlistResponse> getMovieWatchlist(int accountId, String sessionId, String language, Integer page, Account.GetMovieWatchlistSortByParam sortBy) {
+    public GetMovieWatchlistResponse getMovieWatchlist(int accountId, String sessionId, String language, Integer page, Account.GetMovieWatchlistSortByParam sortBy) {
         // /account/{account_id}/watchlist/movies
         String path = String.format("/account/%s/watchlist/movies", accountId);
         Map<String, Object> requestParams = new HashMap<>();
@@ -231,7 +230,7 @@ public class Account {
      * <p>Get a list of all the movies you have added to your watchlist.</p>
      * 
      */
-    public Optional<GetMovieWatchlistResponse> getMovieWatchlist(int accountId, String sessionId) {
+    public GetMovieWatchlistResponse getMovieWatchlist(int accountId, String sessionId) {
         return getMovieWatchlist(accountId, sessionId, null, null, null);
     }
 
@@ -239,7 +238,7 @@ public class Account {
      * <p>Get a list of all the TV shows you have added to your watchlist.</p>
      * 
      */
-    public Optional<GetTvShowWatchlistResponse> getTvShowWatchlist(int accountId, String sessionId, String language, Integer page, Account.GetTvShowWatchlistSortByParam sortBy) {
+    public GetTvShowWatchlistResponse getTvShowWatchlist(int accountId, String sessionId, String language, Integer page, Account.GetTvShowWatchlistSortByParam sortBy) {
         // /account/{account_id}/watchlist/tv
         String path = String.format("/account/%s/watchlist/tv", accountId);
         Map<String, Object> requestParams = new HashMap<>();
@@ -258,7 +257,7 @@ public class Account {
      * <p>Get a list of all the TV shows you have added to your watchlist.</p>
      * 
      */
-    public Optional<GetTvShowWatchlistResponse> getTvShowWatchlist(int accountId, String sessionId) {
+    public GetTvShowWatchlistResponse getTvShowWatchlist(int accountId, String sessionId) {
         return getTvShowWatchlist(accountId, sessionId, null, null, null);
     }
 
@@ -266,7 +265,7 @@ public class Account {
      * <p>Add a movie or TV show to your watchlist.</p>
      * 
      */
-    public Optional<AddToWatchlistResponse> addToWatchlist(int accountId, AddToWatchlistRequest addToWatchlistRequest, String sessionId) {
+    public AddToWatchlistResponse addToWatchlist(int accountId, AddToWatchlistRequest addToWatchlistRequest, String sessionId) {
         // /account/{account_id}/watchlist
         String path = String.format("/account/%s/watchlist", accountId);
         Map<String, Object> requestParams = new HashMap<>();

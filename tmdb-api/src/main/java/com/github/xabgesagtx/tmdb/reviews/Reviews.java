@@ -23,7 +23,7 @@ public class Reviews {
         // /review/{review_id}
         String path = String.format("/review/%s", reviewId);
         Map<String, Object> requestParams = Collections.emptyMap();
-        return restClient.get(path, requestParams, new TypeReference<>() {
+        return restClient.getOpt(path, requestParams, new TypeReference<>() {
 
 
         }

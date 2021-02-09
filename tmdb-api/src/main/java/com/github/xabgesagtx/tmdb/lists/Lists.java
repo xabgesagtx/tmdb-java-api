@@ -24,7 +24,7 @@ public class Lists {
         String path = String.format("/list/%s", listId);
         Map<String, Object> requestParams = new HashMap<>();
         requestParams.put("language", language);
-        return restClient.get(path, requestParams, new TypeReference<>() {
+        return restClient.getOpt(path, requestParams, new TypeReference<>() {
 
 
         }
@@ -43,7 +43,7 @@ public class Lists {
      * <p>You can use this method to check if a movie has already been added to the list.</p>
      * 
      */
-    public Optional<CheckItemStatusResponse> checkItemStatus(String listId, int movieId) {
+    public CheckItemStatusResponse checkItemStatus(String listId, int movieId) {
         // /list/{list_id}/item_status
         String path = String.format("/list/%s/item_status", listId);
         Map<String, Object> requestParams = new HashMap<>();
@@ -59,7 +59,7 @@ public class Lists {
      * <p>Create a list.</p>
      * 
      */
-    public Optional<CreateListResponse> createList(CreateListRequest createListRequest, String sessionId) {
+    public CreateListResponse createList(CreateListRequest createListRequest, String sessionId) {
         String path = "/list";
         Map<String, Object> requestParams = new HashMap<>();
         requestParams.put("session_id", sessionId);
@@ -74,7 +74,7 @@ public class Lists {
      * <p>Add a movie to a list.</p>
      * 
      */
-    public Optional<AddMovieResponse> addMovie(String listId, AddMovieRequest addMovieRequest, String sessionId) {
+    public AddMovieResponse addMovie(String listId, AddMovieRequest addMovieRequest, String sessionId) {
         // /list/{list_id}/add_item
         String path = String.format("/list/%s/add_item", listId);
         Map<String, Object> requestParams = new HashMap<>();
@@ -90,7 +90,7 @@ public class Lists {
      * <p>Remove a movie from a list.</p>
      * 
      */
-    public Optional<RemoveMovieResponse> removeMovie(String listId, RemoveMovieRequest removeMovieRequest, String sessionId) {
+    public RemoveMovieResponse removeMovie(String listId, RemoveMovieRequest removeMovieRequest, String sessionId) {
         // /list/{list_id}/remove_item
         String path = String.format("/list/%s/remove_item", listId);
         Map<String, Object> requestParams = new HashMap<>();
@@ -106,7 +106,7 @@ public class Lists {
      * <p>Clear all of the items from a list.</p>
      * 
      */
-    public Optional<ClearListResponse> clearList(String listId, boolean confirm, String sessionId) {
+    public ClearListResponse clearList(String listId, boolean confirm, String sessionId) {
         // /list/{list_id}/clear
         String path = String.format("/list/%s/clear", listId);
         Map<String, Object> requestParams = new HashMap<>();
@@ -123,7 +123,7 @@ public class Lists {
      * <p>Delete a list.</p>
      * 
      */
-    public Optional<DeleteListResponse> deleteList(String listId, String sessionId) {
+    public DeleteListResponse deleteList(String listId, String sessionId) {
         // /list/{list_id}
         String path = String.format("/list/%s", listId);
         Map<String, Object> requestParams = new HashMap<>();

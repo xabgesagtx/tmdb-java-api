@@ -3,7 +3,6 @@ package com.github.xabgesagtx.tmdb.genres;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.github.xabgesagtx.tmdb.http.RestClient;
 
@@ -19,7 +18,7 @@ public class Genres {
      * <p>Get the list of official genres for movies.</p>
      * 
      */
-    public Optional<GetMovieListResponse> getMovieList(String language) {
+    public GetMovieListResponse getMovieList(String language) {
         String path = "/genre/movie/list";
         Map<String, Object> requestParams = new HashMap<>();
         requestParams.put("language", language);
@@ -34,7 +33,7 @@ public class Genres {
      * <p>Get the list of official genres for movies.</p>
      * 
      */
-    public Optional<GetMovieListResponse> getMovieList() {
+    public GetMovieListResponse getMovieList() {
         return getMovieList(null);
     }
 
@@ -42,7 +41,7 @@ public class Genres {
      * <p>Get the list of official genres for TV shows.</p>
      * 
      */
-    public Optional<GetTvListResponse> getTvList(String language) {
+    public GetTvListResponse getTvList(String language) {
         String path = "/genre/tv/list";
         Map<String, Object> requestParams = new HashMap<>();
         requestParams.put("language", language);
@@ -57,7 +56,7 @@ public class Genres {
      * <p>Get the list of official genres for TV shows.</p>
      * 
      */
-    public Optional<GetTvListResponse> getTvList() {
+    public GetTvListResponse getTvList() {
         return getTvList(null);
     }
 

@@ -23,7 +23,7 @@ public class Credits {
         // /credit/{credit_id}
         String path = String.format("/credit/%s", creditId);
         Map<String, Object> requestParams = Collections.emptyMap();
-        return restClient.get(path, requestParams, new TypeReference<>() {
+        return restClient.getOpt(path, requestParams, new TypeReference<>() {
 
 
         }

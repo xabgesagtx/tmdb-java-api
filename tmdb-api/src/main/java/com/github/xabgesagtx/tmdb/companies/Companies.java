@@ -23,7 +23,7 @@ public class Companies {
         // /company/{company_id}
         String path = String.format("/company/%s", companyId);
         Map<String, Object> requestParams = Collections.emptyMap();
-        return restClient.get(path, requestParams, new TypeReference<>() {
+        return restClient.getOpt(path, requestParams, new TypeReference<>() {
 
 
         }
@@ -38,7 +38,7 @@ public class Companies {
         // /company/{company_id}/alternative_names
         String path = String.format("/company/%s/alternative_names", companyId);
         Map<String, Object> requestParams = Collections.emptyMap();
-        return restClient.get(path, requestParams, new TypeReference<>() {
+        return restClient.getOpt(path, requestParams, new TypeReference<>() {
 
 
         }
@@ -55,7 +55,7 @@ public class Companies {
         // /company/{company_id}/images
         String path = String.format("/company/%s/images", companyId);
         Map<String, Object> requestParams = Collections.emptyMap();
-        return restClient.get(path, requestParams, new TypeReference<>() {
+        return restClient.getOpt(path, requestParams, new TypeReference<>() {
 
 
         }

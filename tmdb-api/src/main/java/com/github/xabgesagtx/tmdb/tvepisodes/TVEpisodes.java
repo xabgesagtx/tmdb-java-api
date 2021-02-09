@@ -28,7 +28,7 @@ public class TVEpisodes {
         Map<String, Object> requestParams = new HashMap<>();
         requestParams.put("append_to_response", appendToResponse);
         requestParams.put("language", language);
-        return restClient.get(path, requestParams, new TypeReference<>() {
+        return restClient.getOpt(path, requestParams, new TypeReference<>() {
 
 
         }
@@ -54,7 +54,7 @@ public class TVEpisodes {
         Map<String, Object> requestParams = new HashMap<>();
         requestParams.put("guest_session_id", guestSessionId);
         requestParams.put("session_id", sessionId);
-        return restClient.get(path, requestParams, new TypeReference<>() {
+        return restClient.getOpt(path, requestParams, new TypeReference<>() {
 
 
         }
@@ -74,7 +74,7 @@ public class TVEpisodes {
      * <p>You can query up to 14 days in a single query by using the <code>start_date</code> and <code>end_date</code> query parameters.</p>
      * 
      */
-    public Optional<GetTvEpisodeChangesResponse> getTvEpisodeChanges(int episodeId, LocalDate endDate, Integer page, LocalDate startDate) {
+    public GetTvEpisodeChangesResponse getTvEpisodeChanges(int episodeId, LocalDate endDate, Integer page, LocalDate startDate) {
         // /tv/episode/{episode_id}/changes
         String path = String.format("/tv/episode/%s/changes", episodeId);
         Map<String, Object> requestParams = new HashMap<>();
@@ -93,7 +93,7 @@ public class TVEpisodes {
      * <p>You can query up to 14 days in a single query by using the <code>start_date</code> and <code>end_date</code> query parameters.</p>
      * 
      */
-    public Optional<GetTvEpisodeChangesResponse> getTvEpisodeChanges(int episodeId) {
+    public GetTvEpisodeChangesResponse getTvEpisodeChanges(int episodeId) {
         return getTvEpisodeChanges(episodeId, null, null, null);
     }
 
@@ -106,7 +106,7 @@ public class TVEpisodes {
         String path = String.format("/tv/%s/season/%s/episode/%s/credits", tvId, seasonNumber, episodeNumber);
         Map<String, Object> requestParams = new HashMap<>();
         requestParams.put("language", language);
-        return restClient.get(path, requestParams, new TypeReference<>() {
+        return restClient.getOpt(path, requestParams, new TypeReference<>() {
 
 
         }
@@ -130,7 +130,7 @@ public class TVEpisodes {
         // /tv/{tv_id}/season/{season_number}/episode/{episode_number}/external_ids
         String path = String.format("/tv/%s/season/%s/episode/%s/external_ids", tvId, seasonNumber, episodeNumber);
         Map<String, Object> requestParams = Collections.emptyMap();
-        return restClient.get(path, requestParams, new TypeReference<>() {
+        return restClient.getOpt(path, requestParams, new TypeReference<>() {
 
 
         }
@@ -146,7 +146,7 @@ public class TVEpisodes {
         // /tv/{tv_id}/season/{season_number}/episode/{episode_number}/images
         String path = String.format("/tv/%s/season/%s/episode/%s/images", tvId, seasonNumber, episodeNumber);
         Map<String, Object> requestParams = Collections.emptyMap();
-        return restClient.get(path, requestParams, new TypeReference<>() {
+        return restClient.getOpt(path, requestParams, new TypeReference<>() {
 
 
         }
@@ -161,7 +161,7 @@ public class TVEpisodes {
         // /tv/{tv_id}/season/{season_number}/episode/{episode_number}/translations
         String path = String.format("/tv/%s/season/%s/episode/%s/translations", tvId, seasonNumber, episodeNumber);
         Map<String, Object> requestParams = Collections.emptyMap();
-        return restClient.get(path, requestParams, new TypeReference<>() {
+        return restClient.getOpt(path, requestParams, new TypeReference<>() {
 
 
         }
@@ -173,7 +173,7 @@ public class TVEpisodes {
      * <p>A valid session or guest session ID is required. You can read more about how this works <a href="https://developers.themoviedb.org/3/authentication/how-do-i-generate-a-session-id">here</a>.</p>
      * 
      */
-    public Optional<RateTvEpisodeResponse> rateTvEpisode(int episodeNumber, int seasonNumber, int tvId, RateTvEpisodeRequest rateTvEpisodeRequest, String guestSessionId, String sessionId) {
+    public RateTvEpisodeResponse rateTvEpisode(int episodeNumber, int seasonNumber, int tvId, RateTvEpisodeRequest rateTvEpisodeRequest, String guestSessionId, String sessionId) {
         // /tv/{tv_id}/season/{season_number}/episode/{episode_number}/rating
         String path = String.format("/tv/%s/season/%s/episode/%s/rating", tvId, seasonNumber, episodeNumber);
         Map<String, Object> requestParams = new HashMap<>();
@@ -191,7 +191,7 @@ public class TVEpisodes {
      * <p>A valid session or guest session ID is required. You can read more about how this works <a href="https://developers.themoviedb.org/3/authentication/how-do-i-generate-a-session-id">here</a>.</p>
      * 
      */
-    public Optional<RateTvEpisodeResponse> rateTvEpisode(int episodeNumber, int seasonNumber, int tvId, RateTvEpisodeRequest requestBody) {
+    public RateTvEpisodeResponse rateTvEpisode(int episodeNumber, int seasonNumber, int tvId, RateTvEpisodeRequest requestBody) {
         return rateTvEpisode(episodeNumber, seasonNumber, tvId, requestBody, null, null);
     }
 
@@ -200,7 +200,7 @@ public class TVEpisodes {
      * <p>A valid session or guest session ID is required. You can read more about how this works <a href="https://developers.themoviedb.org/3/authentication/how-do-i-generate-a-session-id">here</a>.</p>
      * 
      */
-    public Optional<DeleteTvEpisodeRatingResponse> deleteTvEpisodeRating(int episodeNumber, int seasonNumber, int tvId, String guestSessionId, String sessionId) {
+    public DeleteTvEpisodeRatingResponse deleteTvEpisodeRating(int episodeNumber, int seasonNumber, int tvId, String guestSessionId, String sessionId) {
         // /tv/{tv_id}/season/{season_number}/episode/{episode_number}/rating
         String path = String.format("/tv/%s/season/%s/episode/%s/rating", tvId, seasonNumber, episodeNumber);
         Map<String, Object> requestParams = new HashMap<>();
@@ -218,7 +218,7 @@ public class TVEpisodes {
      * <p>A valid session or guest session ID is required. You can read more about how this works <a href="https://developers.themoviedb.org/3/authentication/how-do-i-generate-a-session-id">here</a>.</p>
      * 
      */
-    public Optional<DeleteTvEpisodeRatingResponse> deleteTvEpisodeRating(int episodeNumber, int seasonNumber, int tvId) {
+    public DeleteTvEpisodeRatingResponse deleteTvEpisodeRating(int episodeNumber, int seasonNumber, int tvId) {
         return deleteTvEpisodeRating(episodeNumber, seasonNumber, tvId, null, null);
     }
 
@@ -231,7 +231,7 @@ public class TVEpisodes {
         String path = String.format("/tv/%s/season/%s/episode/%s/videos", tvId, seasonNumber, episodeNumber);
         Map<String, Object> requestParams = new HashMap<>();
         requestParams.put("language", language);
-        return restClient.get(path, requestParams, new TypeReference<>() {
+        return restClient.getOpt(path, requestParams, new TypeReference<>() {
 
 
         }

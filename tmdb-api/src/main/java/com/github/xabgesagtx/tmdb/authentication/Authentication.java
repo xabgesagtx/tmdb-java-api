@@ -3,7 +3,6 @@ package com.github.xabgesagtx.tmdb.authentication;
 
 import java.util.Collections;
 import java.util.Map;
-import java.util.Optional;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.github.xabgesagtx.tmdb.http.RestClient;
 
@@ -21,7 +20,7 @@ public class Authentication {
      * <p>If a guest session is not used for the first time within 24 hours, it will be automatically deleted.</p>
      * 
      */
-    public Optional<CreateGuestSessionResponse> createGuestSession() {
+    public CreateGuestSessionResponse createGuestSession() {
         String path = "/authentication/guest_session/new";
         Map<String, Object> requestParams = Collections.emptyMap();
         return restClient.get(path, requestParams, new TypeReference<>() {
@@ -35,7 +34,7 @@ public class Authentication {
      * <p>Create a temporary request token that can be used to validate a TMDb user login. More details about how this works can be found <a href="https://developers.themoviedb.org/3/authentication/how-do-i-generate-a-session-id">here</a>.</p>
      * 
      */
-    public Optional<CreateRequestTokenResponse> createRequestToken() {
+    public CreateRequestTokenResponse createRequestToken() {
         String path = "/authentication/token/new";
         Map<String, Object> requestParams = Collections.emptyMap();
         return restClient.get(path, requestParams, new TypeReference<>() {
@@ -49,7 +48,7 @@ public class Authentication {
      * <p>You can use this method to create a fully valid session ID once a user has validated the request token. More information about how this works can be found <a href="https://developers.themoviedb.org/3/authentication/how-do-i-generate-a-session-id">here</a>.</p>
      * 
      */
-    public Optional<CreateSessionResponse> createSession(CreateSessionRequest createSessionRequest) {
+    public CreateSessionResponse createSession(CreateSessionRequest createSessionRequest) {
         String path = "/authentication/session/new";
         Map<String, Object> requestParams = Collections.emptyMap();
         return restClient.post(path, requestParams, new TypeReference<>() {
@@ -66,7 +65,7 @@ public class Authentication {
      * <p>If you decide to use this method please <strong>use HTTPS</strong>.</p>
      * 
      */
-    public Optional<ValidateRequestTokenResponse> validateRequestToken(ValidateRequestTokenRequest validateRequestTokenRequest) {
+    public ValidateRequestTokenResponse validateRequestToken(ValidateRequestTokenRequest validateRequestTokenRequest) {
         String path = "/authentication/token/validate_with_login";
         Map<String, Object> requestParams = Collections.emptyMap();
         return restClient.post(path, requestParams, new TypeReference<>() {
@@ -80,7 +79,7 @@ public class Authentication {
      * <p>Use this method to create a v3 session ID if you already have a valid v4 access token. The v4 token needs to be authenticated by the user. Your standard "read token" will not validate to create a session ID.</p>
      * 
      */
-    public Optional<CreateSessionFromV4AccessTokenResponse> createSessionFromV4AccessToken(CreateSessionFromV4AccessTokenRequest createSessionFromV4AccessTokenRequest) {
+    public CreateSessionFromV4AccessTokenResponse createSessionFromV4AccessToken(CreateSessionFromV4AccessTokenRequest createSessionFromV4AccessTokenRequest) {
         String path = "/authentication/session/convert/4";
         Map<String, Object> requestParams = Collections.emptyMap();
         return restClient.post(path, requestParams, new TypeReference<>() {
@@ -94,7 +93,7 @@ public class Authentication {
      * <p>If you would like to delete (or "logout") from a session, call this method with a valid session ID.</p>
      * 
      */
-    public Optional<DeleteSessionResponse> deleteSession(DeleteSessionRequest deleteSessionRequest) {
+    public DeleteSessionResponse deleteSession(DeleteSessionRequest deleteSessionRequest) {
         String path = "/authentication/session";
         Map<String, Object> requestParams = Collections.emptyMap();
         return restClient.delete(path, requestParams, new TypeReference<>() {

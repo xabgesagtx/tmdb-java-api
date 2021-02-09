@@ -4,7 +4,6 @@ package com.github.xabgesagtx.tmdb.configuration;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.github.xabgesagtx.tmdb.http.RestClient;
 
@@ -25,7 +24,7 @@ public class Configuration {
      * <p>The configuration method also contains the list of change keys which can be useful if you are building an app that consumes data from the change feed.</p>
      * 
      */
-    public Optional<GetApiConfigurationResponse> getApiConfiguration() {
+    public GetApiConfigurationResponse getApiConfiguration() {
         String path = "/configuration";
         Map<String, Object> requestParams = Collections.emptyMap();
         return restClient.get(path, requestParams, new TypeReference<>() {
@@ -39,7 +38,7 @@ public class Configuration {
      * <p>Get the list of countries (ISO 3166-1 tags) used throughout TMDb.</p>
      * 
      */
-    public Optional<List<GetCountriesResponse>> getCountries() {
+    public List<GetCountriesResponse> getCountries() {
         String path = "/configuration/countries";
         Map<String, Object> requestParams = Collections.emptyMap();
         return restClient.get(path, requestParams, new TypeReference<>() {
@@ -53,7 +52,7 @@ public class Configuration {
      * <p>Get a list of the jobs and departments we use on TMDb.</p>
      * 
      */
-    public Optional<List<GetJobsResponse>> getJobs() {
+    public List<GetJobsResponse> getJobs() {
         String path = "/configuration/jobs";
         Map<String, Object> requestParams = Collections.emptyMap();
         return restClient.get(path, requestParams, new TypeReference<>() {
@@ -67,7 +66,7 @@ public class Configuration {
      * <p>Get the list of languages (ISO 639-1 tags) used throughout TMDb.</p>
      * 
      */
-    public Optional<List<GetLanguagesResponse>> getLanguages() {
+    public List<GetLanguagesResponse> getLanguages() {
         String path = "/configuration/languages";
         Map<String, Object> requestParams = Collections.emptyMap();
         return restClient.get(path, requestParams, new TypeReference<>() {
@@ -85,7 +84,7 @@ public class Configuration {
      * <p>One more thing to mention, these are the translations that map to our website translation project. You can view and contribute to that project <a href="https://www.localeapp.com/projects/8267">here</a>.</p>
      * 
      */
-    public Optional<List<String>> getPrimaryTranslations() {
+    public List<String> getPrimaryTranslations() {
         String path = "/configuration/primary_translations";
         Map<String, Object> requestParams = Collections.emptyMap();
         return restClient.get(path, requestParams, new TypeReference<>() {
@@ -99,7 +98,7 @@ public class Configuration {
      * <p>Get the list of timezones used throughout TMDb.</p>
      * 
      */
-    public Optional<List<GetTimezonesResponse>> getTimezones() {
+    public List<GetTimezonesResponse> getTimezones() {
         String path = "/configuration/timezones";
         Map<String, Object> requestParams = Collections.emptyMap();
         return restClient.get(path, requestParams, new TypeReference<>() {

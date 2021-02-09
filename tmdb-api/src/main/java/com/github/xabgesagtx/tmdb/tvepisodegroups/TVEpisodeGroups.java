@@ -3,7 +3,6 @@ package com.github.xabgesagtx.tmdb.tvepisodegroups;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.github.xabgesagtx.tmdb.http.RestClient;
 
@@ -28,7 +27,7 @@ public class TVEpisodeGroups {
      * </ol>
      * 
      */
-    public Optional<GetTvEpisodeGroupDetailsResponse> getTvEpisodeGroupDetails(String id, String language) {
+    public GetTvEpisodeGroupDetailsResponse getTvEpisodeGroupDetails(String id, String language) {
         // /tv/episode_group/{id}
         String path = String.format("/tv/episode_group/%s", id);
         Map<String, Object> requestParams = new HashMap<>();
@@ -53,7 +52,7 @@ public class TVEpisodeGroups {
      * </ol>
      * 
      */
-    public Optional<GetTvEpisodeGroupDetailsResponse> getTvEpisodeGroupDetails(String id) {
+    public GetTvEpisodeGroupDetailsResponse getTvEpisodeGroupDetails(String id) {
         return getTvEpisodeGroupDetails(id, null);
     }
 

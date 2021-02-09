@@ -27,7 +27,7 @@ public class TVSeasons {
         Map<String, Object> requestParams = new HashMap<>();
         requestParams.put("append_to_response", appendToResponse);
         requestParams.put("language", language);
-        return restClient.get(path, requestParams, new TypeReference<>() {
+        return restClient.getOpt(path, requestParams, new TypeReference<>() {
 
 
         }
@@ -54,7 +54,7 @@ public class TVSeasons {
         requestParams.put("guest_session_id", guestSessionId);
         requestParams.put("session_id", sessionId);
         requestParams.put("language", language);
-        return restClient.get(path, requestParams, new TypeReference<>() {
+        return restClient.getOpt(path, requestParams, new TypeReference<>() {
 
 
         }
@@ -79,7 +79,7 @@ public class TVSeasons {
         String path = String.format("/tv/%s/season/%s/aggregate_credits", tvId, seasonNumber);
         Map<String, Object> requestParams = new HashMap<>();
         requestParams.put("language", language);
-        return restClient.get(path, requestParams, new TypeReference<>() {
+        return restClient.getOpt(path, requestParams, new TypeReference<>() {
 
 
         }
@@ -100,7 +100,7 @@ public class TVSeasons {
      * <p>You can query up to 14 days in a single query by using the <code>start_date</code> and <code>end_date</code> query parameters.</p>
      * 
      */
-    public Optional<GetTvSeasonChangesResponse> getTvSeasonChanges(int seasonId, LocalDate endDate, Integer page, LocalDate startDate) {
+    public GetTvSeasonChangesResponse getTvSeasonChanges(int seasonId, LocalDate endDate, Integer page, LocalDate startDate) {
         // /tv/season/{season_id}/changes
         String path = String.format("/tv/season/%s/changes", seasonId);
         Map<String, Object> requestParams = new HashMap<>();
@@ -119,7 +119,7 @@ public class TVSeasons {
      * <p>You can query up to 14 days in a single query by using the <code>start_date</code> and <code>end_date</code> query parameters.</p>
      * 
      */
-    public Optional<GetTvSeasonChangesResponse> getTvSeasonChanges(int seasonId) {
+    public GetTvSeasonChangesResponse getTvSeasonChanges(int seasonId) {
         return getTvSeasonChanges(seasonId, null, null, null);
     }
 
@@ -132,7 +132,7 @@ public class TVSeasons {
         String path = String.format("/tv/%s/season/%s/credits", tvId, seasonNumber);
         Map<String, Object> requestParams = new HashMap<>();
         requestParams.put("language", language);
-        return restClient.get(path, requestParams, new TypeReference<>() {
+        return restClient.getOpt(path, requestParams, new TypeReference<>() {
 
 
         }
@@ -157,7 +157,7 @@ public class TVSeasons {
         String path = String.format("/tv/%s/season/%s/external_ids", tvId, seasonNumber);
         Map<String, Object> requestParams = new HashMap<>();
         requestParams.put("language", language);
-        return restClient.get(path, requestParams, new TypeReference<>() {
+        return restClient.getOpt(path, requestParams, new TypeReference<>() {
 
 
         }
@@ -183,7 +183,7 @@ public class TVSeasons {
         String path = String.format("/tv/%s/season/%s/images", tvId, seasonNumber);
         Map<String, Object> requestParams = new HashMap<>();
         requestParams.put("language", language);
-        return restClient.get(path, requestParams, new TypeReference<>() {
+        return restClient.getOpt(path, requestParams, new TypeReference<>() {
 
 
         }
@@ -208,7 +208,7 @@ public class TVSeasons {
         String path = String.format("/tv/%s/season/%s/translations", tvId, seasonNumber);
         Map<String, Object> requestParams = new HashMap<>();
         requestParams.put("language", language);
-        return restClient.get(path, requestParams, new TypeReference<>() {
+        return restClient.getOpt(path, requestParams, new TypeReference<>() {
 
 
         }
@@ -232,7 +232,7 @@ public class TVSeasons {
         String path = String.format("/tv/%s/season/%s/videos", tvId, seasonNumber);
         Map<String, Object> requestParams = new HashMap<>();
         requestParams.put("language", language);
-        return restClient.get(path, requestParams, new TypeReference<>() {
+        return restClient.getOpt(path, requestParams, new TypeReference<>() {
 
 
         }

@@ -28,7 +28,7 @@ public class People {
         Map<String, Object> requestParams = new HashMap<>();
         requestParams.put("append_to_response", appendToResponse);
         requestParams.put("language", language);
-        return restClient.get(path, requestParams, new TypeReference<>() {
+        return restClient.getOpt(path, requestParams, new TypeReference<>() {
 
 
         }
@@ -49,7 +49,7 @@ public class People {
      * <p>You can query up to 14 days in a single query by using the <code>start_date</code> and <code>end_date</code> query parameters.</p>
      * 
      */
-    public Optional<GetPersonChangesResponse> getPersonChanges(int personId, LocalDate endDate, Integer page, LocalDate startDate) {
+    public GetPersonChangesResponse getPersonChanges(int personId, LocalDate endDate, Integer page, LocalDate startDate) {
         // /person/{person_id}/changes
         String path = String.format("/person/%s/changes", personId);
         Map<String, Object> requestParams = new HashMap<>();
@@ -68,7 +68,7 @@ public class People {
      * <p>You can query up to 14 days in a single query by using the <code>start_date</code> and <code>end_date</code> query parameters.</p>
      * 
      */
-    public Optional<GetPersonChangesResponse> getPersonChanges(int personId) {
+    public GetPersonChangesResponse getPersonChanges(int personId) {
         return getPersonChanges(personId, null, null, null);
     }
 
@@ -81,7 +81,7 @@ public class People {
         String path = String.format("/person/%s/movie_credits", personId);
         Map<String, Object> requestParams = new HashMap<>();
         requestParams.put("language", language);
-        return restClient.get(path, requestParams, new TypeReference<>() {
+        return restClient.getOpt(path, requestParams, new TypeReference<>() {
 
 
         }
@@ -106,7 +106,7 @@ public class People {
         String path = String.format("/person/%s/tv_credits", personId);
         Map<String, Object> requestParams = new HashMap<>();
         requestParams.put("language", language);
-        return restClient.get(path, requestParams, new TypeReference<>() {
+        return restClient.getOpt(path, requestParams, new TypeReference<>() {
 
 
         }
@@ -131,7 +131,7 @@ public class People {
         String path = String.format("/person/%s/combined_credits", personId);
         Map<String, Object> requestParams = new HashMap<>();
         requestParams.put("language", language);
-        return restClient.get(path, requestParams, new TypeReference<>() {
+        return restClient.getOpt(path, requestParams, new TypeReference<>() {
 
 
         }
@@ -155,7 +155,7 @@ public class People {
         String path = String.format("/person/%s/external_ids", personId);
         Map<String, Object> requestParams = new HashMap<>();
         requestParams.put("language", language);
-        return restClient.get(path, requestParams, new TypeReference<>() {
+        return restClient.getOpt(path, requestParams, new TypeReference<>() {
 
 
         }
@@ -178,7 +178,7 @@ public class People {
         // /person/{person_id}/images
         String path = String.format("/person/%s/images", personId);
         Map<String, Object> requestParams = Collections.emptyMap();
-        return restClient.get(path, requestParams, new TypeReference<>() {
+        return restClient.getOpt(path, requestParams, new TypeReference<>() {
 
 
         }
@@ -189,7 +189,7 @@ public class People {
      * <p>Get the images that this person has been tagged in.</p>
      * 
      */
-    public Optional<GetTaggedImagesResponse> getTaggedImages(int personId, String language, Integer page) {
+    public GetTaggedImagesResponse getTaggedImages(int personId, String language, Integer page) {
         // /person/{person_id}/tagged_images
         String path = String.format("/person/%s/tagged_images", personId);
         Map<String, Object> requestParams = new HashMap<>();
@@ -206,7 +206,7 @@ public class People {
      * <p>Get the images that this person has been tagged in.</p>
      * 
      */
-    public Optional<GetTaggedImagesResponse> getTaggedImages(int personId) {
+    public GetTaggedImagesResponse getTaggedImages(int personId) {
         return getTaggedImages(personId, null, null);
     }
 
@@ -219,7 +219,7 @@ public class People {
         String path = String.format("/person/%s/translations", personId);
         Map<String, Object> requestParams = new HashMap<>();
         requestParams.put("language", language);
-        return restClient.get(path, requestParams, new TypeReference<>() {
+        return restClient.getOpt(path, requestParams, new TypeReference<>() {
 
 
         }
@@ -238,7 +238,7 @@ public class People {
      * <p>Get the most newly created person. This is a live response and will continuously change.</p>
      * 
      */
-    public Optional<GetLatestPersonResponse> getLatestPerson(String language) {
+    public GetLatestPersonResponse getLatestPerson(String language) {
         String path = "/person/latest";
         Map<String, Object> requestParams = new HashMap<>();
         requestParams.put("language", language);
@@ -253,7 +253,7 @@ public class People {
      * <p>Get the most newly created person. This is a live response and will continuously change.</p>
      * 
      */
-    public Optional<GetLatestPersonResponse> getLatestPerson() {
+    public GetLatestPersonResponse getLatestPerson() {
         return getLatestPerson(null);
     }
 
@@ -261,7 +261,7 @@ public class People {
      * <p>Get the list of popular people on TMDb. This list updates daily.</p>
      * 
      */
-    public Optional<GetPopularPeopleResponse> getPopularPeople(String language, Integer page) {
+    public GetPopularPeopleResponse getPopularPeople(String language, Integer page) {
         String path = "/person/popular";
         Map<String, Object> requestParams = new HashMap<>();
         requestParams.put("language", language);
@@ -277,7 +277,7 @@ public class People {
      * <p>Get the list of popular people on TMDb. This list updates daily.</p>
      * 
      */
-    public Optional<GetPopularPeopleResponse> getPopularPeople() {
+    public GetPopularPeopleResponse getPopularPeople() {
         return getPopularPeople(null, null);
     }
 

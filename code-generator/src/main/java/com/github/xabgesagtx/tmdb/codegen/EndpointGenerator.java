@@ -27,8 +27,8 @@ public class EndpointGenerator extends AbstractGenerator {
 
     void generateEndpoint(JDefinedClass resourceClass, JPackage jPackage, Endpoint endpoint) {
         JType resultType = getJType(endpoint.getResponse(), jPackage);
-        JType optionalResultType = model.ref(Optional.class).narrow(resultType);
-        JMethod method = resourceClass.method(JMod.PUBLIC, optionalResultType, endpoint.getName());
+        JType methodResultType = endpoint.isSingleElementRetrieval() ? model.ref(Optional.class).narrow(resultType) : resultType;
+        JMethod method = resourceClass.method(JMod.PUBLIC, methodResultType, endpoint.getName());
         String javaDocText = javaDocFormatter.format(endpoint.getDescription());
         method.javadoc().add(javaDocText);
         Map<String, JVar> pathVariables = endpoint.getPathVariables()
@@ -53,7 +53,8 @@ public class EndpointGenerator extends AbstractGenerator {
         JExpression requestParamsExpression = createRequestParamsMap(body, requestParams);
         JFieldVar restClient = resourceClass.fields().get("restClient");
         JExpression typeReference = JExpr._new(model.anonymousClass(model.ref(TypeReference.class).narrow(new JClass[0])));
-        JInvocation restClientInvocation = restClient.invoke(endpoint.getMethod())
+        String restClientMethod = endpoint.isSingleElementRetrieval() ? endpoint.getMethod() + "Opt" : endpoint.getMethod();
+        JInvocation restClientInvocation = restClient.invoke(restClientMethod)
                 .arg(formattedPath)
                 .arg(requestParamsExpression)
                 .arg(typeReference);
@@ -61,7 +62,7 @@ public class EndpointGenerator extends AbstractGenerator {
             restClientInvocation.arg(requestBodyExpression);
         }
         body._return(restClientInvocation);
-        createConvenienceMethod(resourceClass, optionalResultType, endpoint, pathVariables, requestClass, requestParams);
+        createConvenienceMethod(resourceClass, methodResultType, endpoint, pathVariables, requestClass, requestParams);
     }
 
     private void createConvenienceMethod(JDefinedClass resourceClass, JType optionalResultType, Endpoint endpoint, Map<String, JVar> pathVariables, JDefinedClass requestClass, Map<String, JVar> requestParams) {

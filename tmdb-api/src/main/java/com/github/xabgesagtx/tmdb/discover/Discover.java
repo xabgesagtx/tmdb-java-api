@@ -4,7 +4,6 @@ package com.github.xabgesagtx.tmdb.discover;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.github.xabgesagtx.tmdb.http.RestClient;
@@ -26,7 +25,7 @@ public class Discover {
      * <p>Some examples of what can be done with discover can be found <a href="https://www.themoviedb.org/documentation/api/discover">here</a>.</p> <a href="https://developers.themoviedb.org/#recent-changes">\ud83d\udd17</a> Recent Changes    <strong>Date</strong> <strong>Change</strong>     January 2, 2020 A new set of filters are available for watch provider filtering. Check out <code>with_watch_providers</code> and <code>watch_region</code>.
      * 
      */
-    public Optional<MovieDiscoverResponse> movieDiscover(String certification, String certificationCountry, String certification_gte, String certification_lte, Boolean includeAdult, Boolean includeVideo, String language, Integer page, LocalDate primaryReleaseDate_gte, LocalDate primaryReleaseDate_lte, Integer primaryReleaseYear, String region, LocalDate releaseDate_gte, LocalDate releaseDate_lte, Discover.MovieDiscoverSortByParam sortBy, Double voteAverage_gte, Double voteAverage_lte, Integer voteCount_gte, Integer voteCount_lte, String watchRegion, String withCast, String withCompanies, String withCrew, String withGenres, String withKeywords, String withOriginalLanguage, String withPeople, Integer withReleaseType, Integer withRuntime_gte, Integer withRuntime_lte, String withWatchProviders, String withoutGenres, String withoutKeywords, Integer year) {
+    public MovieDiscoverResponse movieDiscover(String certification, String certificationCountry, String certification_gte, String certification_lte, Boolean includeAdult, Boolean includeVideo, String language, Integer page, LocalDate primaryReleaseDate_gte, LocalDate primaryReleaseDate_lte, Integer primaryReleaseYear, String region, LocalDate releaseDate_gte, LocalDate releaseDate_lte, Discover.MovieDiscoverSortByParam sortBy, Double voteAverage_gte, Double voteAverage_lte, Integer voteCount_gte, Integer voteCount_lte, String watchRegion, String withCast, String withCompanies, String withCrew, String withGenres, String withKeywords, String withOriginalLanguage, String withPeople, Integer withReleaseType, Integer withRuntime_gte, Integer withRuntime_lte, String withWatchProviders, String withoutGenres, String withoutKeywords, Integer year) {
         String path = "/discover/movie";
         Map<String, Object> requestParams = new HashMap<>();
         requestParams.put("with_release_type", withReleaseType);
@@ -79,7 +78,7 @@ public class Discover {
      * <p>Some examples of what can be done with discover can be found <a href="https://www.themoviedb.org/documentation/api/discover">here</a>.</p> <a href="https://developers.themoviedb.org/#recent-changes">\ud83d\udd17</a> Recent Changes    <strong>Date</strong> <strong>Change</strong>     January 2, 2020 A new set of filters are available for watch provider filtering. Check out <code>with_watch_providers</code> and <code>watch_region</code>.
      * 
      */
-    public Optional<MovieDiscoverResponse> movieDiscover() {
+    public MovieDiscoverResponse movieDiscover() {
         return movieDiscover(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
     }
 
@@ -90,7 +89,7 @@ public class Discover {
      * <p>Some examples of what can be done with discover can be found <a href="https://www.themoviedb.org/documentation/api/discover">here</a>.</p> <a href="https://developers.themoviedb.org/#recent-changes">\ud83d\udd17</a> Recent Changes    <strong>Date</strong> <strong>Change</strong>     January 2, 2020 A new set of filters are available for watch provider filtering. Check out <code>with_watch_providers</code> and <code>watch_region</code>.
      * 
      */
-    public Optional<TvDiscoverResponse> tvDiscover(LocalDate airDate_gte, LocalDate airDate_lte, Integer firstAirDateYear, LocalDate firstAirDate_gte, LocalDate firstAirDate_lte, Boolean includeNullFirstAirDates, String language, Integer page, Boolean screenedTheatrically, Discover.TvDiscoverSortByParam sortBy, String timezone, Double voteAverage_gte, Integer voteCount_gte, String watchRegion, String withCompanies, String withGenres, String withKeywords, String withNetworks, String withOriginalLanguage, Integer withRuntime_gte, Integer withRuntime_lte, String withWatchProviders, String withoutGenres, String withoutKeywords) {
+    public TvDiscoverResponse tvDiscover(LocalDate airDate_gte, LocalDate airDate_lte, Integer firstAirDateYear, LocalDate firstAirDate_gte, LocalDate firstAirDate_lte, Boolean includeNullFirstAirDates, String language, Integer page, Boolean screenedTheatrically, Discover.TvDiscoverSortByParam sortBy, String timezone, Double voteAverage_gte, Integer voteCount_gte, String watchRegion, String withCompanies, String withGenres, String withKeywords, String withNetworks, String withOriginalLanguage, Integer withRuntime_gte, Integer withRuntime_lte, String withWatchProviders, String withoutGenres, String withoutKeywords) {
         String path = "/discover/tv";
         Map<String, Object> requestParams = new HashMap<>();
         requestParams.put("vote_count.gte", voteCount_gte);
@@ -131,7 +130,7 @@ public class Discover {
      * <p>Some examples of what can be done with discover can be found <a href="https://www.themoviedb.org/documentation/api/discover">here</a>.</p> <a href="https://developers.themoviedb.org/#recent-changes">\ud83d\udd17</a> Recent Changes    <strong>Date</strong> <strong>Change</strong>     January 2, 2020 A new set of filters are available for watch provider filtering. Check out <code>with_watch_providers</code> and <code>watch_region</code>.
      * 
      */
-    public Optional<TvDiscoverResponse> tvDiscover() {
+    public TvDiscoverResponse tvDiscover() {
         return tvDiscover(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
     }
 

@@ -24,7 +24,7 @@ public class Keywords {
         // /keyword/{keyword_id}
         String path = String.format("/keyword/%s", keywordId);
         Map<String, Object> requestParams = Collections.emptyMap();
-        return restClient.get(path, requestParams, new TypeReference<>() {
+        return restClient.getOpt(path, requestParams, new TypeReference<>() {
 
 
         }
@@ -42,7 +42,7 @@ public class Keywords {
         Map<String, Object> requestParams = new HashMap<>();
         requestParams.put("include_adult", includeAdult);
         requestParams.put("language", language);
-        return restClient.get(path, requestParams, new TypeReference<>() {
+        return restClient.getOpt(path, requestParams, new TypeReference<>() {
 
 
         }
