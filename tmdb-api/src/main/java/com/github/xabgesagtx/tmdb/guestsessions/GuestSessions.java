@@ -7,6 +7,7 @@ import java.util.Optional;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.github.xabgesagtx.tmdb.http.RestClient;
+import com.github.xabgesagtx.tmdb.http.exceptions.TmdbApiException;
 
 public class GuestSessions {
 
@@ -19,6 +20,8 @@ public class GuestSessions {
     /**
      * <p>Get the rated movies for a guest session.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public Optional<GetGuestSessionRatedMoviesResponse> getGuestSessionRatedMovies(String guestSessionId, String language, GuestSessions.GetGuestSessionRatedMoviesSortByParam sortBy) {
         // /guest_session/{guest_session_id}/rated/movies
@@ -36,6 +39,8 @@ public class GuestSessions {
     /**
      * <p>Get the rated movies for a guest session.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public Optional<GetGuestSessionRatedMoviesResponse> getGuestSessionRatedMovies(String guestSessionId) {
         return getGuestSessionRatedMovies(guestSessionId, null, null);
@@ -44,6 +49,8 @@ public class GuestSessions {
     /**
      * <p>Get the rated TV shows for a guest session.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public Optional<GetGuestSessionRatedTvShowsResponse> getGuestSessionRatedTvShows(String guestSessionId, String language, GuestSessions.GetGuestSessionRatedTvShowsSortByParam sortBy) {
         // /guest_session/{guest_session_id}/rated/tv
@@ -61,6 +68,8 @@ public class GuestSessions {
     /**
      * <p>Get the rated TV shows for a guest session.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public Optional<GetGuestSessionRatedTvShowsResponse> getGuestSessionRatedTvShows(String guestSessionId) {
         return getGuestSessionRatedTvShows(guestSessionId, null, null);
@@ -69,6 +78,8 @@ public class GuestSessions {
     /**
      * <p>Get the rated TV episodes for a guest session.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public Optional<GetGestSessionRatedTvEpisodesResponse> getGestSessionRatedTvEpisodes(String guestSessionId, String language, GuestSessions.GetGestSessionRatedTvEpisodesSortByParam sortBy) {
         // /guest_session/{guest_session_id}/rated/tv/episodes
@@ -86,6 +97,8 @@ public class GuestSessions {
     /**
      * <p>Get the rated TV episodes for a guest session.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public Optional<GetGestSessionRatedTvEpisodesResponse> getGestSessionRatedTvEpisodes(String guestSessionId) {
         return getGestSessionRatedTvEpisodes(guestSessionId, null, null);

@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.github.xabgesagtx.tmdb.http.RestClient;
+import com.github.xabgesagtx.tmdb.http.exceptions.TmdbApiException;
 
 public class Configuration {
 
@@ -23,6 +24,8 @@ public class Configuration {
      * </code></pre> 
      * <p>The configuration method also contains the list of change keys which can be useful if you are building an app that consumes data from the change feed.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public GetApiConfigurationResponse getApiConfiguration() {
         String path = "/configuration";
@@ -37,6 +40,8 @@ public class Configuration {
     /**
      * <p>Get the list of countries (ISO 3166-1 tags) used throughout TMDb.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public List<GetCountriesResponse> getCountries() {
         String path = "/configuration/countries";
@@ -51,6 +56,8 @@ public class Configuration {
     /**
      * <p>Get a list of the jobs and departments we use on TMDb.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public List<GetJobsResponse> getJobs() {
         String path = "/configuration/jobs";
@@ -65,6 +72,8 @@ public class Configuration {
     /**
      * <p>Get the list of languages (ISO 639-1 tags) used throughout TMDb.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public List<GetLanguagesResponse> getLanguages() {
         String path = "/configuration/languages";
@@ -83,6 +92,8 @@ public class Configuration {
      * <p>We're always open to adding more if you think one should be added. You can ask about getting a new primary translation added by posting on <a href="https://www.themoviedb.org/talk/category/5047951f760ee3318900009a">the forums</a>.</p> 
      * <p>One more thing to mention, these are the translations that map to our website translation project. You can view and contribute to that project <a href="https://www.localeapp.com/projects/8267">here</a>.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public List<String> getPrimaryTranslations() {
         String path = "/configuration/primary_translations";
@@ -97,6 +108,8 @@ public class Configuration {
     /**
      * <p>Get the list of timezones used throughout TMDb.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public List<GetTimezonesResponse> getTimezones() {
         String path = "/configuration/timezones";

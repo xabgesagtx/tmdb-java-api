@@ -6,6 +6,7 @@ import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.github.xabgesagtx.tmdb.http.RestClient;
+import com.github.xabgesagtx.tmdb.http.exceptions.TmdbApiException;
 
 public class Account {
 
@@ -18,6 +19,8 @@ public class Account {
     /**
      * <p>Get your account details.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public GetAccountDetailsResponse getAccountDetails(String sessionId) {
         String path = "/account";
@@ -33,6 +36,8 @@ public class Account {
     /**
      * <p>Get all of the lists created by an account. Will invlude private lists if you are the owner.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public GetCreatedListsResponse getCreatedLists(int accountId, String sessionId, String language, Integer page) {
         // /account/{account_id}/lists
@@ -51,6 +56,8 @@ public class Account {
     /**
      * <p>Get all of the lists created by an account. Will invlude private lists if you are the owner.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public GetCreatedListsResponse getCreatedLists(int accountId, String sessionId) {
         return getCreatedLists(accountId, sessionId, null, null);
@@ -59,6 +66,8 @@ public class Account {
     /**
      * <p>Get the list of your favorite movies.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public GetFavoriteMoviesResponse getFavoriteMovies(int accountId, String sessionId, String language, Integer page, Account.GetFavoriteMoviesSortByParam sortBy) {
         // /account/{account_id}/favorite/movies
@@ -78,6 +87,8 @@ public class Account {
     /**
      * <p>Get the list of your favorite movies.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public GetFavoriteMoviesResponse getFavoriteMovies(int accountId, String sessionId) {
         return getFavoriteMovies(accountId, sessionId, null, null, null);
@@ -86,6 +97,8 @@ public class Account {
     /**
      * <p>Get the list of your favorite TV shows.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public GetFavoriteTvShowsResponse getFavoriteTvShows(int accountId, String sessionId, String language, Integer page, Account.GetFavoriteTvShowsSortByParam sortBy) {
         // /account/{account_id}/favorite/tv
@@ -105,6 +118,8 @@ public class Account {
     /**
      * <p>Get the list of your favorite TV shows.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public GetFavoriteTvShowsResponse getFavoriteTvShows(int accountId, String sessionId) {
         return getFavoriteTvShows(accountId, sessionId, null, null, null);
@@ -113,6 +128,8 @@ public class Account {
     /**
      * <p>This method allows you to mark a movie or TV show as a favorite item.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public MarkAsFavoriteResponse markAsFavorite(int accountId, MarkAsFavoriteRequest markAsFavoriteRequest, String sessionId) {
         // /account/{account_id}/favorite
@@ -129,6 +146,8 @@ public class Account {
     /**
      * <p>Get a list of all the movies you have rated.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public GetRatedMoviesResponse getRatedMovies(int accountId, String sessionId, String language, Integer page, Account.GetRatedMoviesSortByParam sortBy) {
         // /account/{account_id}/rated/movies
@@ -148,6 +167,8 @@ public class Account {
     /**
      * <p>Get a list of all the movies you have rated.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public GetRatedMoviesResponse getRatedMovies(int accountId, String sessionId) {
         return getRatedMovies(accountId, sessionId, null, null, null);
@@ -156,6 +177,8 @@ public class Account {
     /**
      * <p>Get a list of all the TV shows you have rated.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public GetRatedTvShowsResponse getRatedTvShows(int accountId, String sessionId, String language, Integer page, Account.GetRatedTvShowsSortByParam sortBy) {
         // /account/{account_id}/rated/tv
@@ -175,6 +198,8 @@ public class Account {
     /**
      * <p>Get a list of all the TV shows you have rated.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public GetRatedTvShowsResponse getRatedTvShows(int accountId, String sessionId) {
         return getRatedTvShows(accountId, sessionId, null, null, null);
@@ -183,6 +208,8 @@ public class Account {
     /**
      * <p>Get a list of all the TV episodes you have rated.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public GetRatedTvEpisodesResponse getRatedTvEpisodes(String accountId, String sessionId, String language, Integer page, Account.GetRatedTvEpisodesSortByParam sortBy) {
         // /account/{account_id}/rated/tv/episodes
@@ -202,6 +229,8 @@ public class Account {
     /**
      * <p>Get a list of all the TV episodes you have rated.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public GetRatedTvEpisodesResponse getRatedTvEpisodes(String accountId, String sessionId) {
         return getRatedTvEpisodes(accountId, sessionId, null, null, null);
@@ -210,6 +239,8 @@ public class Account {
     /**
      * <p>Get a list of all the movies you have added to your watchlist.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public GetMovieWatchlistResponse getMovieWatchlist(int accountId, String sessionId, String language, Integer page, Account.GetMovieWatchlistSortByParam sortBy) {
         // /account/{account_id}/watchlist/movies
@@ -229,6 +260,8 @@ public class Account {
     /**
      * <p>Get a list of all the movies you have added to your watchlist.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public GetMovieWatchlistResponse getMovieWatchlist(int accountId, String sessionId) {
         return getMovieWatchlist(accountId, sessionId, null, null, null);
@@ -237,6 +270,8 @@ public class Account {
     /**
      * <p>Get a list of all the TV shows you have added to your watchlist.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public GetTvShowWatchlistResponse getTvShowWatchlist(int accountId, String sessionId, String language, Integer page, Account.GetTvShowWatchlistSortByParam sortBy) {
         // /account/{account_id}/watchlist/tv
@@ -256,6 +291,8 @@ public class Account {
     /**
      * <p>Get a list of all the TV shows you have added to your watchlist.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public GetTvShowWatchlistResponse getTvShowWatchlist(int accountId, String sessionId) {
         return getTvShowWatchlist(accountId, sessionId, null, null, null);
@@ -264,6 +301,8 @@ public class Account {
     /**
      * <p>Add a movie or TV show to your watchlist.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public AddToWatchlistResponse addToWatchlist(int accountId, AddToWatchlistRequest addToWatchlistRequest, String sessionId) {
         // /account/{account_id}/watchlist

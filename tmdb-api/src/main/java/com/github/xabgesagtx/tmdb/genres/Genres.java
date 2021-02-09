@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.github.xabgesagtx.tmdb.http.RestClient;
+import com.github.xabgesagtx.tmdb.http.exceptions.TmdbApiException;
 
 public class Genres {
 
@@ -17,6 +18,8 @@ public class Genres {
     /**
      * <p>Get the list of official genres for movies.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public GetMovieListResponse getMovieList(String language) {
         String path = "/genre/movie/list";
@@ -32,6 +35,8 @@ public class Genres {
     /**
      * <p>Get the list of official genres for movies.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public GetMovieListResponse getMovieList() {
         return getMovieList(null);
@@ -40,6 +45,8 @@ public class Genres {
     /**
      * <p>Get the list of official genres for TV shows.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public GetTvListResponse getTvList(String language) {
         String path = "/genre/tv/list";
@@ -55,6 +62,8 @@ public class Genres {
     /**
      * <p>Get the list of official genres for TV shows.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public GetTvListResponse getTvList() {
         return getTvList(null);

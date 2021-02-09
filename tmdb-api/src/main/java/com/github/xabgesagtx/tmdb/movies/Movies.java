@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Optional;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.github.xabgesagtx.tmdb.http.RestClient;
+import com.github.xabgesagtx.tmdb.http.exceptions.TmdbApiException;
 
 public class Movies {
 
@@ -21,6 +22,8 @@ public class Movies {
      * <p>Get the primary information about a movie.</p> 
      * <p>Supports <code>append_to_response</code>. Read more about this <a href="https://developers.themoviedb.org/3/getting-started/append-to-response">here</a>.</p> <a href="https://developers.themoviedb.org/#recent-changes">\ud83d\udd17</a> Recent Changes    <strong>Date</strong> <strong>Change</strong>     November 20, 2020 A <code>watch/providers</code> method has been added to show what providers (eg. streaming) are available and where.
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public Optional<GetMovieDetailsResponse> getMovieDetails(int movieId, String appendToResponse, String language) {
         // /movie/{movie_id}
@@ -39,6 +42,8 @@ public class Movies {
      * <p>Get the primary information about a movie.</p> 
      * <p>Supports <code>append_to_response</code>. Read more about this <a href="https://developers.themoviedb.org/3/getting-started/append-to-response">here</a>.</p> <a href="https://developers.themoviedb.org/#recent-changes">\ud83d\udd17</a> Recent Changes    <strong>Date</strong> <strong>Change</strong>     November 20, 2020 A <code>watch/providers</code> method has been added to show what providers (eg. streaming) are available and where.
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public Optional<GetMovieDetailsResponse> getMovieDetails(int movieId) {
         return getMovieDetails(movieId, null, null);
@@ -52,6 +57,8 @@ public class Movies {
      *  <li>If it belongs to your favourite list</li> 
      * </ul>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public Optional<GetMovieAccountStatesResponse> getMovieAccountStates(int movieId, String sessionId, String guestSessionId) {
         // /movie/{movie_id}/account_states
@@ -74,6 +81,8 @@ public class Movies {
      *  <li>If it belongs to your favourite list</li> 
      * </ul>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public Optional<GetMovieAccountStatesResponse> getMovieAccountStates(int movieId, String sessionId) {
         return getMovieAccountStates(movieId, sessionId, null);
@@ -82,6 +91,8 @@ public class Movies {
     /**
      * <p>Get all of the alternative titles for a movie.</p> <a href="https://developers.themoviedb.org/#recent-changes">\ud83d\udd17</a> Recent Changes    <strong>Date</strong> <strong>Change</strong>     March 16, 2018 Added the <code>type</code> field.
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public Optional<GetMovieAlternativeTitlesResponse> getMovieAlternativeTitles(int movieId, String country) {
         // /movie/{movie_id}/alternative_titles
@@ -98,6 +109,8 @@ public class Movies {
     /**
      * <p>Get all of the alternative titles for a movie.</p> <a href="https://developers.themoviedb.org/#recent-changes">\ud83d\udd17</a> Recent Changes    <strong>Date</strong> <strong>Change</strong>     March 16, 2018 Added the <code>type</code> field.
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public Optional<GetMovieAlternativeTitlesResponse> getMovieAlternativeTitles(int movieId) {
         return getMovieAlternativeTitles(movieId, null);
@@ -107,6 +120,8 @@ public class Movies {
      * <p>Get the changes for a movie. By default only the last 24 hours are returned.</p> 
      * <p>You can query up to 14 days in a single query by using the <code>start_date</code> and <code>end_date</code> query parameters.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public GetMovieChangesResponse getMovieChanges(int movieId, LocalDate endDate, Integer page, LocalDate startDate) {
         // /movie/{movie_id}/changes
@@ -126,6 +141,8 @@ public class Movies {
      * <p>Get the changes for a movie. By default only the last 24 hours are returned.</p> 
      * <p>You can query up to 14 days in a single query by using the <code>start_date</code> and <code>end_date</code> query parameters.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public GetMovieChangesResponse getMovieChanges(int movieId) {
         return getMovieChanges(movieId, null, null, null);
@@ -134,6 +151,8 @@ public class Movies {
     /**
      * <p>Get the cast and crew for a movie.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public Optional<GetMovieCreditsResponse> getMovieCredits(int movieId, String language) {
         // /movie/{movie_id}/credits
@@ -150,6 +169,8 @@ public class Movies {
     /**
      * <p>Get the cast and crew for a movie.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public Optional<GetMovieCreditsResponse> getMovieCredits(int movieId) {
         return getMovieCredits(movieId, null);
@@ -158,6 +179,8 @@ public class Movies {
     /**
      * <p>Get the external ids for a movie. We currently support the following external sources.</p>    <strong>Media Databases</strong> <strong>Social IDs</strong>     IMDb ID Facebook    Instagram    Twitter
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public Optional<GetMovieExternalIdsResponse> getMovieExternalIds(int movieId) {
         // /movie/{movie_id}/external_ids
@@ -174,6 +197,8 @@ public class Movies {
      * <p>Get the images that belong to a movie.</p> 
      * <p>Querying images with a <code>language</code> parameter will filter the results. If you want to include a fallback language (especially useful for backdrops) you can use the <code>include_image_language</code> parameter. This should be a comma seperated value like so: <code>include_image_language=en,null</code>.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public Optional<GetMovieImagesResponse> getMovieImages(int movieId, String includeImageLanguage, String language) {
         // /movie/{movie_id}/images
@@ -192,6 +217,8 @@ public class Movies {
      * <p>Get the images that belong to a movie.</p> 
      * <p>Querying images with a <code>language</code> parameter will filter the results. If you want to include a fallback language (especially useful for backdrops) you can use the <code>include_image_language</code> parameter. This should be a comma seperated value like so: <code>include_image_language=en,null</code>.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public Optional<GetMovieImagesResponse> getMovieImages(int movieId) {
         return getMovieImages(movieId, null, null);
@@ -200,6 +227,8 @@ public class Movies {
     /**
      * <p>Get the keywords that have been added to a movie.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public Optional<GetMovieKeywordsResponse> getMovieKeywords(int movieId) {
         // /movie/{movie_id}/keywords
@@ -215,6 +244,8 @@ public class Movies {
     /**
      * <p>Get a list of lists that this movie belongs to.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public GetMovieListsResponse getMovieLists(int movieId, String language, Integer page) {
         // /movie/{movie_id}/lists
@@ -232,6 +263,8 @@ public class Movies {
     /**
      * <p>Get a list of lists that this movie belongs to.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public GetMovieListsResponse getMovieLists(int movieId) {
         return getMovieLists(movieId, null, null);
@@ -240,6 +273,8 @@ public class Movies {
     /**
      * <p>Get a list of recommended movies for a movie.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public GetMovieRecommendationsResponse getMovieRecommendations(int movieId, String language, Integer page) {
         // /movie/{movie_id}/recommendations
@@ -257,6 +292,8 @@ public class Movies {
     /**
      * <p>Get a list of recommended movies for a movie.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public GetMovieRecommendationsResponse getMovieRecommendations(int movieId) {
         return getMovieRecommendations(movieId, null, null);
@@ -274,6 +311,8 @@ public class Movies {
      *  <li>TV</li> 
      * </ol>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public Optional<GetMovieReleaseDatesResponse> getMovieReleaseDates(int movieId) {
         // /movie/{movie_id}/release_dates
@@ -289,6 +328,8 @@ public class Movies {
     /**
      * <p>Get the user reviews for a movie.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public GetMovieReviewsResponse getMovieReviews(int movieId, String language, Integer page) {
         // /movie/{movie_id}/reviews
@@ -306,6 +347,8 @@ public class Movies {
     /**
      * <p>Get the user reviews for a movie.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public GetMovieReviewsResponse getMovieReviews(int movieId) {
         return getMovieReviews(movieId, null, null);
@@ -315,6 +358,8 @@ public class Movies {
      * <p>Get a list of similar movies. This is <strong>not</strong> the same as the "Recommendation" system you see on the website.</p> 
      * <p>These items are assembled by looking at keywords and genres.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public GetSimilarMoviesResponse getSimilarMovies(int movieId, String language, Integer page) {
         // /movie/{movie_id}/similar
@@ -333,6 +378,8 @@ public class Movies {
      * <p>Get a list of similar movies. This is <strong>not</strong> the same as the "Recommendation" system you see on the website.</p> 
      * <p>These items are assembled by looking at keywords and genres.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public GetSimilarMoviesResponse getSimilarMovies(int movieId) {
         return getSimilarMovies(movieId, null, null);
@@ -341,6 +388,8 @@ public class Movies {
     /**
      * <p>Get a list of translations that have been created for a movie.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public Optional<GetMovieTranslationsResponse> getMovieTranslations(int movieId) {
         // /movie/{movie_id}/translations
@@ -356,6 +405,8 @@ public class Movies {
     /**
      * <p>Get the videos that have been added to a movie.</p> <a href="https://developers.themoviedb.org/#recent-changes">\ud83d\udd17</a> Recent Changes    <strong>Date</strong> <strong>Change</strong>     March 23, 2019 Vimeo was added as a video source.   March 20, 2019 "Behind the Scenes" and "Bloopers" were added as valid video types.
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public Optional<GetMovieVideosResponse> getMovieVideos(int movieId, String language) {
         // /movie/{movie_id}/videos
@@ -372,6 +423,8 @@ public class Movies {
     /**
      * <p>Get the videos that have been added to a movie.</p> <a href="https://developers.themoviedb.org/#recent-changes">\ud83d\udd17</a> Recent Changes    <strong>Date</strong> <strong>Change</strong>     March 23, 2019 Vimeo was added as a video source.   March 20, 2019 "Behind the Scenes" and "Bloopers" were added as valid video types.
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public Optional<GetMovieVideosResponse> getMovieVideos(int movieId) {
         return getMovieVideos(movieId, null);
@@ -382,6 +435,8 @@ public class Movies {
      * <p>This is not going to return full deep links, but rather, it's just enough information to display what's available where.</p> 
      * <p>You can link to the provided TMDb URL to help support TMDb and let your users deep link into the content.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public Optional<GetMovieWatchProvidersResponse> getMovieWatchProviders(int movieId) {
         // /movie/{movie_id}/watch/providers
@@ -398,6 +453,8 @@ public class Movies {
      * <p>Rate a movie.</p> 
      * <p>A valid session or guest session ID is required. You can read more about how this works <a href="https://developers.themoviedb.org/3/authentication/how-do-i-generate-a-session-id">here</a>.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public RateMovieResponse rateMovie(int movieId, RateMovieRequest rateMovieRequest, String guestSessionId, String sessionId) {
         // /movie/{movie_id}/rating
@@ -416,6 +473,8 @@ public class Movies {
      * <p>Rate a movie.</p> 
      * <p>A valid session or guest session ID is required. You can read more about how this works <a href="https://developers.themoviedb.org/3/authentication/how-do-i-generate-a-session-id">here</a>.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public RateMovieResponse rateMovie(int movieId, RateMovieRequest requestBody) {
         return rateMovie(movieId, requestBody, null, null);
@@ -425,6 +484,8 @@ public class Movies {
      * <p>Remove your rating for a movie.</p> 
      * <p>A valid session or guest session ID is required. You can read more about how this works <a href="https://developers.themoviedb.org/3/authentication/how-do-i-generate-a-session-id">here</a>.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public DeleteMovieRatingResponse deleteMovieRating(int movieId, String guestSessionId, String sessionId) {
         // /movie/{movie_id}/rating
@@ -443,6 +504,8 @@ public class Movies {
      * <p>Remove your rating for a movie.</p> 
      * <p>A valid session or guest session ID is required. You can read more about how this works <a href="https://developers.themoviedb.org/3/authentication/how-do-i-generate-a-session-id">here</a>.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public DeleteMovieRatingResponse deleteMovieRating(int movieId) {
         return deleteMovieRating(movieId, null, null);
@@ -451,6 +514,8 @@ public class Movies {
     /**
      * <p>Get the most newly created movie. This is a live response and will continuously change.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public GetLatestMovieResponse getLatestMovie(String language) {
         String path = "/movie/latest";
@@ -466,6 +531,8 @@ public class Movies {
     /**
      * <p>Get the most newly created movie. This is a live response and will continuously change.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public GetLatestMovieResponse getLatestMovie() {
         return getLatestMovie(null);
@@ -475,6 +542,8 @@ public class Movies {
      * <p>Get a list of movies in theatres. This is a release type query that looks for all movies that have a release type of 2 or 3 within the specified date range.</p> 
      * <p>You can optionally specify a <code>region</code> prameter which will narrow the search to only look for theatrical release dates within the specified country.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public GetNowPlayingResponse getNowPlaying(String language, Integer page, String region) {
         String path = "/movie/now_playing";
@@ -493,6 +562,8 @@ public class Movies {
      * <p>Get a list of movies in theatres. This is a release type query that looks for all movies that have a release type of 2 or 3 within the specified date range.</p> 
      * <p>You can optionally specify a <code>region</code> prameter which will narrow the search to only look for theatrical release dates within the specified country.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public GetNowPlayingResponse getNowPlaying() {
         return getNowPlaying(null, null, null);
@@ -501,6 +572,8 @@ public class Movies {
     /**
      * <p>Get a list of the current popular movies on TMDb. This list updates daily.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public GetPopularMoviesResponse getPopularMovies(String language, Integer page, String region) {
         String path = "/movie/popular";
@@ -518,6 +591,8 @@ public class Movies {
     /**
      * <p>Get a list of the current popular movies on TMDb. This list updates daily.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public GetPopularMoviesResponse getPopularMovies() {
         return getPopularMovies(null, null, null);
@@ -526,6 +601,8 @@ public class Movies {
     /**
      * <p>Get the top rated movies on TMDb.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public GetTopRatedMoviesResponse getTopRatedMovies(String language, Integer page, String region) {
         String path = "/movie/top_rated";
@@ -543,6 +620,8 @@ public class Movies {
     /**
      * <p>Get the top rated movies on TMDb.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public GetTopRatedMoviesResponse getTopRatedMovies() {
         return getTopRatedMovies(null, null, null);
@@ -552,6 +631,8 @@ public class Movies {
      * <p>Get a list of upcoming movies in theatres. This is a release type query that looks for all movies that have a release type of 2 or 3 within the specified date range.</p> 
      * <p>You can optionally specify a <code>region</code> prameter which will narrow the search to only look for theatrical release dates within the specified country.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public GetUpcomingResponse getUpcoming(String language, Integer page, String region) {
         String path = "/movie/upcoming";
@@ -570,6 +651,8 @@ public class Movies {
      * <p>Get a list of upcoming movies in theatres. This is a release type query that looks for all movies that have a release type of 2 or 3 within the specified date range.</p> 
      * <p>You can optionally specify a <code>region</code> prameter which will narrow the search to only look for theatrical release dates within the specified country.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public GetUpcomingResponse getUpcoming() {
         return getUpcoming(null, null, null);

@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.Map;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.github.xabgesagtx.tmdb.http.RestClient;
+import com.github.xabgesagtx.tmdb.http.exceptions.TmdbApiException;
 
 public class Certifications {
 
@@ -17,6 +18,8 @@ public class Certifications {
     /**
      * <p>Get an up to date list of the officially supported movie certifications on TMDb.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public GetMovieCertificationsResponse getMovieCertifications() {
         String path = "/certification/movie/list";
@@ -31,6 +34,8 @@ public class Certifications {
     /**
      * <p>Get an up to date list of the officially supported TV show certifications on TMDb.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public GetTvCertificationsResponse getTvCertifications() {
         String path = "/certification/tv/list";

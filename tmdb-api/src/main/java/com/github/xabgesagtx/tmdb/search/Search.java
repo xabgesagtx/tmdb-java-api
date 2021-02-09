@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.github.xabgesagtx.tmdb.http.RestClient;
+import com.github.xabgesagtx.tmdb.http.exceptions.TmdbApiException;
 
 public class Search {
 
@@ -17,6 +18,8 @@ public class Search {
     /**
      * <p>Search for companies.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public SearchCompaniesResponse searchCompanies(String query, Integer page) {
         String path = "/search/company";
@@ -33,6 +36,8 @@ public class Search {
     /**
      * <p>Search for companies.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public SearchCompaniesResponse searchCompanies(String query) {
         return searchCompanies(query, null);
@@ -41,6 +46,8 @@ public class Search {
     /**
      * <p>Search for collections.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public SearchCollectionsResponse searchCollections(String query, String language, Integer page) {
         String path = "/search/collection";
@@ -58,6 +65,8 @@ public class Search {
     /**
      * <p>Search for collections.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public SearchCollectionsResponse searchCollections(String query) {
         return searchCollections(query, null, null);
@@ -66,6 +75,8 @@ public class Search {
     /**
      * <p>Search for keywords.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public SearchKeywordsResponse searchKeywords(String query, Integer page) {
         String path = "/search/keyword";
@@ -82,6 +93,8 @@ public class Search {
     /**
      * <p>Search for keywords.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public SearchKeywordsResponse searchKeywords(String query) {
         return searchKeywords(query, null);
@@ -90,6 +103,8 @@ public class Search {
     /**
      * <p>Search for movies.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public SearchMoviesResponse searchMovies(String query, Boolean includeAdult, String language, Integer page, Integer primaryReleaseYear, String region, Integer year) {
         String path = "/search/movie";
@@ -111,6 +126,8 @@ public class Search {
     /**
      * <p>Search for movies.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public SearchMoviesResponse searchMovies(String query) {
         return searchMovies(query, null, null, null, null, null, null);
@@ -119,6 +136,8 @@ public class Search {
     /**
      * <p>Search multiple models in a single request. Multi search currently supports searching for movies, tv shows and people in a single request.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public MultiSearchResponse multiSearch(String query, Boolean includeAdult, String language, Integer page, String region) {
         String path = "/search/multi";
@@ -138,6 +157,8 @@ public class Search {
     /**
      * <p>Search multiple models in a single request. Multi search currently supports searching for movies, tv shows and people in a single request.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public MultiSearchResponse multiSearch(String query) {
         return multiSearch(query, null, null, null, null);
@@ -146,6 +167,8 @@ public class Search {
     /**
      * <p>Search for people.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public SearchPeopleResponse searchPeople(String query, Boolean includeAdult, String language, Integer page, String region) {
         String path = "/search/person";
@@ -165,6 +188,8 @@ public class Search {
     /**
      * <p>Search for people.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public SearchPeopleResponse searchPeople(String query) {
         return searchPeople(query, null, null, null, null);
@@ -173,6 +198,8 @@ public class Search {
     /**
      * <p>Search for a TV show.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public SearchTvShowsResponse searchTvShows(String query, Integer firstAirDateYear, Boolean includeAdult, String language, Integer page) {
         String path = "/search/tv";
@@ -192,6 +219,8 @@ public class Search {
     /**
      * <p>Search for a TV show.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public SearchTvShowsResponse searchTvShows(String query) {
         return searchTvShows(query, null, null, null, null);

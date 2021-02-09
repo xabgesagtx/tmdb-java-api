@@ -2,6 +2,7 @@ package com.github.xabgesagtx.tmdb.codegen;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.github.xabgesagtx.tmdb.codegen.model.*;
+import com.github.xabgesagtx.tmdb.http.exceptions.TmdbApiException;
 import com.google.common.base.CaseFormat;
 import com.sun.codemodel.*;
 import org.apache.commons.lang3.tuple.Pair;
@@ -30,7 +31,9 @@ public class EndpointGenerator extends AbstractGenerator {
         JType methodResultType = endpoint.isSingleElementRetrieval() ? model.ref(Optional.class).narrow(resultType) : resultType;
         JMethod method = resourceClass.method(JMod.PUBLIC, methodResultType, endpoint.getName());
         String javaDocText = javaDocFormatter.format(endpoint.getDescription());
-        method.javadoc().add(javaDocText);
+        JDocComment javadoc = method.javadoc();
+        javadoc.add(javaDocText);
+        addException(javadoc);
         Map<String, JVar> pathVariables = endpoint.getPathVariables()
                 .stream()
                 .sorted(Comparator.comparing(Variable::getName, Comparator.naturalOrder()))
@@ -65,13 +68,19 @@ public class EndpointGenerator extends AbstractGenerator {
         createConvenienceMethod(resourceClass, methodResultType, endpoint, pathVariables, requestClass, requestParams);
     }
 
+    private void addException(JDocComment javadoc) {
+        javadoc.addThrows(model.ref(TmdbApiException.class)).add("when an unexpected status code or any other issue interacting with the API occurs");
+    }
+
     private void createConvenienceMethod(JDefinedClass resourceClass, JType optionalResultType, Endpoint endpoint, Map<String, JVar> pathVariables, JDefinedClass requestClass, Map<String, JVar> requestParams) {
         if (endpoint.getRequestParams().stream().allMatch(Variable::isRequired)) {
             return;
         }
         JMethod method = resourceClass.method(JMod.PUBLIC, optionalResultType, endpoint.getName());
         String javaDocText = javaDocFormatter.format(endpoint.getDescription());
-        method.javadoc().add(javaDocText);
+        JDocComment javadoc = method.javadoc();
+        javadoc.add(javaDocText);
+        addException(javadoc);
         List<JExpression> invocationParams = new ArrayList<>();
         pathVariables
                 .values()

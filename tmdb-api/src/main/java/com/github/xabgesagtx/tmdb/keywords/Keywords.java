@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Optional;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.github.xabgesagtx.tmdb.http.RestClient;
+import com.github.xabgesagtx.tmdb.http.exceptions.TmdbApiException;
 
 public class Keywords {
 
@@ -19,6 +20,8 @@ public class Keywords {
     /**
      * 
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public Optional<GetKeywordDetailsResponse> getKeywordDetails(int keywordId) {
         // /keyword/{keyword_id}
@@ -35,6 +38,8 @@ public class Keywords {
      * <p>Get the movies that belong to a keyword.</p> 
      * <p>We <strong>highly recommend</strong> using <a href="https://developers.themoviedb.org/3/discover/movie-discover">movie discover</a> instead of this method as it is much more flexible.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public Optional<GetMoviesByKeywordResponse> getMoviesByKeyword(int keywordId, Boolean includeAdult, String language) {
         // /keyword/{keyword_id}/movies
@@ -53,6 +58,8 @@ public class Keywords {
      * <p>Get the movies that belong to a keyword.</p> 
      * <p>We <strong>highly recommend</strong> using <a href="https://developers.themoviedb.org/3/discover/movie-discover">movie discover</a> instead of this method as it is much more flexible.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public Optional<GetMoviesByKeywordResponse> getMoviesByKeyword(int keywordId) {
         return getMoviesByKeyword(keywordId, null, null);

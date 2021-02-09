@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.github.xabgesagtx.tmdb.http.RestClient;
+import com.github.xabgesagtx.tmdb.http.exceptions.TmdbApiException;
 
 public class Changes {
 
@@ -19,6 +20,8 @@ public class Changes {
      * <p>Get a list of all of the movie ids that have been changed in the past 24 hours.</p> 
      * <p>You can query it for up to 14 days worth of changed IDs at a time with the <code>start_date</code> and <code>end_date</code> query parameters. 100 items are returned per page.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public GetMovieChangeListResponse getMovieChangeList(LocalDate endDate, Integer page, LocalDate startDate) {
         String path = "/movie/changes";
@@ -37,6 +40,8 @@ public class Changes {
      * <p>Get a list of all of the movie ids that have been changed in the past 24 hours.</p> 
      * <p>You can query it for up to 14 days worth of changed IDs at a time with the <code>start_date</code> and <code>end_date</code> query parameters. 100 items are returned per page.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public GetMovieChangeListResponse getMovieChangeList() {
         return getMovieChangeList(null, null, null);
@@ -46,6 +51,8 @@ public class Changes {
      * <p>Get a list of all of the TV show ids that have been changed in the past 24 hours.</p> 
      * <p>You can query it for up to 14 days worth of changed IDs at a time with the <code>start_date</code> and <code>end_date</code> query parameters. 100 items are returned per page.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public GetTvChangeListResponse getTvChangeList(LocalDate endDate, Integer page, LocalDate startDate) {
         String path = "/tv/changes";
@@ -64,6 +71,8 @@ public class Changes {
      * <p>Get a list of all of the TV show ids that have been changed in the past 24 hours.</p> 
      * <p>You can query it for up to 14 days worth of changed IDs at a time with the <code>start_date</code> and <code>end_date</code> query parameters. 100 items are returned per page.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public GetTvChangeListResponse getTvChangeList() {
         return getTvChangeList(null, null, null);
@@ -73,6 +82,8 @@ public class Changes {
      * <p>Get a list of all of the person ids that have been changed in the past 24 hours.</p> 
      * <p>You can query it for up to 14 days worth of changed IDs at a time with the <code>start_date</code> and <code>end_date</code> query parameters. 100 items are returned per page.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public GetPersonChangeListResponse getPersonChangeList(LocalDate endDate, Integer page, LocalDate startDate) {
         String path = "/person/changes";
@@ -91,6 +102,8 @@ public class Changes {
      * <p>Get a list of all of the person ids that have been changed in the past 24 hours.</p> 
      * <p>You can query it for up to 14 days worth of changed IDs at a time with the <code>start_date</code> and <code>end_date</code> query parameters. 100 items are returned per page.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public GetPersonChangeListResponse getPersonChangeList() {
         return getPersonChangeList(null, null, null);

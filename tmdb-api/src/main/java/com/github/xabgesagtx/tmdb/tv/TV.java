@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Optional;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.github.xabgesagtx.tmdb.http.RestClient;
+import com.github.xabgesagtx.tmdb.http.exceptions.TmdbApiException;
 
 public class TV {
 
@@ -21,6 +22,8 @@ public class TV {
      * <p>Get the primary TV show details by id.</p> 
      * <p>Supports <code>append_to_response</code>. Read more about this <a href="https://developers.themoviedb.org/3/getting-started/append-to-response">here</a>.</p> <a href="https://developers.themoviedb.org/#recent-changes">\ud83d\udd17</a> Recent Changes    <strong>Date</strong> <strong>Change</strong>     November 20, 2020 A <code>watch/providers</code> method has been added to show what providers (eg. streaming) are available and where.   November 14, 2020 The <code>tagline</code> has been added to the default response, and is also available as part of the translations method.   July 17, 2018 We now return <code>last_episode_to_air</code> and <code>next_episode_to_air</code> fields.   March 12, 2018 Networks return proper logos and we introduced SVG support.   March 8, 2018 The <code>seasons</code> field now returns the translated names and overviews.
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public Optional<GetTvDetailsResponse> getTvDetails(int tvId, String appendToResponse, String language) {
         // /tv/{tv_id}
@@ -39,6 +42,8 @@ public class TV {
      * <p>Get the primary TV show details by id.</p> 
      * <p>Supports <code>append_to_response</code>. Read more about this <a href="https://developers.themoviedb.org/3/getting-started/append-to-response">here</a>.</p> <a href="https://developers.themoviedb.org/#recent-changes">\ud83d\udd17</a> Recent Changes    <strong>Date</strong> <strong>Change</strong>     November 20, 2020 A <code>watch/providers</code> method has been added to show what providers (eg. streaming) are available and where.   November 14, 2020 The <code>tagline</code> has been added to the default response, and is also available as part of the translations method.   July 17, 2018 We now return <code>last_episode_to_air</code> and <code>next_episode_to_air</code> fields.   March 12, 2018 Networks return proper logos and we introduced SVG support.   March 8, 2018 The <code>seasons</code> field now returns the translated names and overviews.
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public Optional<GetTvDetailsResponse> getTvDetails(int tvId) {
         return getTvDetails(tvId, null, null);
@@ -52,6 +57,8 @@ public class TV {
      *  <li>If it belongs to your favourite list</li> 
      * </ul>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public Optional<GetTvAccountStatesResponse> getTvAccountStates(int tvId, String guestSessionId, String language, String sessionId) {
         // /tv/{tv_id}/account_states
@@ -75,6 +82,8 @@ public class TV {
      *  <li>If it belongs to your favourite list</li> 
      * </ul>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public Optional<GetTvAccountStatesResponse> getTvAccountStates(int tvId) {
         return getTvAccountStates(tvId, null, null, null);
@@ -84,6 +93,8 @@ public class TV {
      * <p>Get the aggregate credits (cast and crew) that have been added to a TV show.</p> 
      * <p>This call differs from the main <code>credits</code> call in that it does not return the newest season but rather, is a view of all the entire cast &amp; crew for all episodes belonging to a TV show.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public Optional<GetTvAggregateCreditsResponse> getTvAggregateCredits(int tvId, String language) {
         // /tv/{tv_id}/aggregate_credits
@@ -101,6 +112,8 @@ public class TV {
      * <p>Get the aggregate credits (cast and crew) that have been added to a TV show.</p> 
      * <p>This call differs from the main <code>credits</code> call in that it does not return the newest season but rather, is a view of all the entire cast &amp; crew for all episodes belonging to a TV show.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public Optional<GetTvAggregateCreditsResponse> getTvAggregateCredits(int tvId) {
         return getTvAggregateCredits(tvId, null);
@@ -109,6 +122,8 @@ public class TV {
     /**
      * <p>Returns all of the alternative titles for a TV show.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public Optional<GetTvAlternativeTitlesResponse> getTvAlternativeTitles(int tvId, String language) {
         // /tv/{tv_id}/alternative_titles
@@ -125,6 +140,8 @@ public class TV {
     /**
      * <p>Returns all of the alternative titles for a TV show.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public Optional<GetTvAlternativeTitlesResponse> getTvAlternativeTitles(int tvId) {
         return getTvAlternativeTitles(tvId, null);
@@ -135,6 +152,8 @@ public class TV {
      * <p>You can query up to 14 days in a single query by using the <code>start_date</code> and <code>end_date</code> query parameters.</p> 
      * <p>TV show changes are different than movie changes in that there are some edits on seasons and episodes that will create a change entry at the show level. These can be found under the season and episode keys. These keys will contain a <code>series_id</code> and <code>episode_id</code>. You can use the <a href="https://developers.themoviedb.org/3/tv-seasons/get-tv-season-changes">season changes</a> and <a href="https://developers.themoviedb.org/3/tv-episodes/get-tv-episode-changes">episode changes</a> methods to look these up individually.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public GetTvChangesResponse getTvChanges(int tvId, LocalDate endDate, Integer page, LocalDate startDate) {
         // /tv/{tv_id}/changes
@@ -155,6 +174,8 @@ public class TV {
      * <p>You can query up to 14 days in a single query by using the <code>start_date</code> and <code>end_date</code> query parameters.</p> 
      * <p>TV show changes are different than movie changes in that there are some edits on seasons and episodes that will create a change entry at the show level. These can be found under the season and episode keys. These keys will contain a <code>series_id</code> and <code>episode_id</code>. You can use the <a href="https://developers.themoviedb.org/3/tv-seasons/get-tv-season-changes">season changes</a> and <a href="https://developers.themoviedb.org/3/tv-episodes/get-tv-episode-changes">episode changes</a> methods to look these up individually.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public GetTvChangesResponse getTvChanges(int tvId) {
         return getTvChanges(tvId, null, null, null);
@@ -163,6 +184,8 @@ public class TV {
     /**
      * <p>Get the list of content ratings (certifications) that have been added to a TV show.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public Optional<GetTvContentRatingsResponse> getTvContentRatings(int tvId, String language) {
         // /tv/{tv_id}/content_ratings
@@ -179,6 +202,8 @@ public class TV {
     /**
      * <p>Get the list of content ratings (certifications) that have been added to a TV show.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public Optional<GetTvContentRatingsResponse> getTvContentRatings(int tvId) {
         return getTvContentRatings(tvId, null);
@@ -187,6 +212,8 @@ public class TV {
     /**
      * <p>Get the credits (cast and crew) that have been added to a TV show.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public Optional<GetTvCreditsResponse> getTvCredits(int tvId, String language) {
         // /tv/{tv_id}/credits
@@ -203,6 +230,8 @@ public class TV {
     /**
      * <p>Get the credits (cast and crew) that have been added to a TV show.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public Optional<GetTvCreditsResponse> getTvCredits(int tvId) {
         return getTvCredits(tvId, null);
@@ -211,6 +240,8 @@ public class TV {
     /**
      * <p>Get all of the episode groups that have been created for a TV show. With a group ID you can call the <a href="https://developers.themoviedb.org/3/tv-episode-groups/get-tv-episode-group-details">get TV episode group details</a> method.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public Optional<GetTvEpisodeGroupsResponse> getTvEpisodeGroups(int tvId, String language) {
         // /tv/{tv_id}/episode_groups
@@ -227,6 +258,8 @@ public class TV {
     /**
      * <p>Get all of the episode groups that have been created for a TV show. With a group ID you can call the <a href="https://developers.themoviedb.org/3/tv-episode-groups/get-tv-episode-group-details">get TV episode group details</a> method.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public Optional<GetTvEpisodeGroupsResponse> getTvEpisodeGroups(int tvId) {
         return getTvEpisodeGroups(tvId, null);
@@ -236,6 +269,8 @@ public class TV {
      * <p>Get the external ids for a TV show. We currently support the following external sources.</p>    <strong>Media Databases</strong> <strong>Social IDs</strong>     IMDb ID Facebook   TVDB ID Instagram   Freebase MID* Twitter   Freebase ID*    TVRage ID*     
      * <p>*Defunct or no longer available as a service.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public Optional<GetTvExternalIdsResponse> getTvExternalIds(int tvId, String language) {
         // /tv/{tv_id}/external_ids
@@ -253,6 +288,8 @@ public class TV {
      * <p>Get the external ids for a TV show. We currently support the following external sources.</p>    <strong>Media Databases</strong> <strong>Social IDs</strong>     IMDb ID Facebook   TVDB ID Instagram   Freebase MID* Twitter   Freebase ID*    TVRage ID*     
      * <p>*Defunct or no longer available as a service.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public Optional<GetTvExternalIdsResponse> getTvExternalIds(int tvId) {
         return getTvExternalIds(tvId, null);
@@ -262,6 +299,8 @@ public class TV {
      * <p>Get the images that belong to a TV show.</p> 
      * <p>Querying images with a <code>language</code> parameter will filter the results. If you want to include a fallback language (especially useful for backdrops) you can use the <code>include_image_language</code> parameter. This should be a comma seperated value like so: <code>include_image_language=en,null</code>.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public Optional<GetTvImagesResponse> getTvImages(int tvId, String language) {
         // /tv/{tv_id}/images
@@ -279,6 +318,8 @@ public class TV {
      * <p>Get the images that belong to a TV show.</p> 
      * <p>Querying images with a <code>language</code> parameter will filter the results. If you want to include a fallback language (especially useful for backdrops) you can use the <code>include_image_language</code> parameter. This should be a comma seperated value like so: <code>include_image_language=en,null</code>.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public Optional<GetTvImagesResponse> getTvImages(int tvId) {
         return getTvImages(tvId, null);
@@ -287,6 +328,8 @@ public class TV {
     /**
      * <p>Get the keywords that have been added to a TV show.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public Optional<GetTvKeywordsResponse> getTvKeywords(int tvId) {
         // /tv/{tv_id}/keywords
@@ -302,6 +345,8 @@ public class TV {
     /**
      * <p>Get the list of TV show recommendations for this item.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public GetTvRecommendationsResponse getTvRecommendations(int tvId, String language, Integer page) {
         // /tv/{tv_id}/recommendations
@@ -319,6 +364,8 @@ public class TV {
     /**
      * <p>Get the list of TV show recommendations for this item.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public GetTvRecommendationsResponse getTvRecommendations(int tvId) {
         return getTvRecommendations(tvId, null, null);
@@ -327,6 +374,8 @@ public class TV {
     /**
      * <p>Get the reviews for a TV show.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public GetTvReviewsResponse getTvReviews(int tvId, String language, Integer page) {
         // /tv/{tv_id}/reviews
@@ -344,6 +393,8 @@ public class TV {
     /**
      * <p>Get the reviews for a TV show.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public GetTvReviewsResponse getTvReviews(int tvId) {
         return getTvReviews(tvId, null, null);
@@ -352,6 +403,8 @@ public class TV {
     /**
      * <p>Get a list of seasons or episodes that have been screened in a film festival or theatre.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public Optional<GetScreenedTheatricallyResponse> getScreenedTheatrically(int tvId) {
         // /tv/{tv_id}/screened_theatrically
@@ -367,6 +420,8 @@ public class TV {
     /**
      * <p>Get a list of similar TV shows. These items are assembled by looking at keywords and genres.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public GetSimilarTvShowsResponse getSimilarTvShows(int tvId, String language, Integer page) {
         // /tv/{tv_id}/similar
@@ -384,6 +439,8 @@ public class TV {
     /**
      * <p>Get a list of similar TV shows. These items are assembled by looking at keywords and genres.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public GetSimilarTvShowsResponse getSimilarTvShows(int tvId) {
         return getSimilarTvShows(tvId, null, null);
@@ -392,6 +449,8 @@ public class TV {
     /**
      * <p>Get a list of the translations that exist for a TV show.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public Optional<GetTvTranslationsResponse> getTvTranslations(int tvId) {
         // /tv/{tv_id}/translations
@@ -407,6 +466,8 @@ public class TV {
     /**
      * <p>Get the videos that have been added to a TV show.</p> <a href="https://developers.themoviedb.org/#recent-changes">\ud83d\udd17</a> Recent Changes    <strong>Date</strong> <strong>Change</strong>     March 23, 2019 Vimeo was added as a video source.   March 20, 2019 "Behind the Scenes" and "Bloopers" were added as valid video types.
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public Optional<GetTvVideosResponse> getTvVideos(int tvId, String language) {
         // /tv/{tv_id}/videos
@@ -423,6 +484,8 @@ public class TV {
     /**
      * <p>Get the videos that have been added to a TV show.</p> <a href="https://developers.themoviedb.org/#recent-changes">\ud83d\udd17</a> Recent Changes    <strong>Date</strong> <strong>Change</strong>     March 23, 2019 Vimeo was added as a video source.   March 20, 2019 "Behind the Scenes" and "Bloopers" were added as valid video types.
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public Optional<GetTvVideosResponse> getTvVideos(int tvId) {
         return getTvVideos(tvId, null);
@@ -433,6 +496,8 @@ public class TV {
      * <p>This is not going to return full deep links, but rather, it's just enough information to display what's available where.</p> 
      * <p>You can link to the provided TMDb URL to help support TMDb and let your users deep link into the content.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public Optional<GetTvWatchProvidersResponse> getTvWatchProviders(int tvId) {
         // /tv/{tv_id}/watch/providers
@@ -449,6 +514,8 @@ public class TV {
      * <p>Rate a TV show.</p> 
      * <p>A valid session or guest session ID is required. You can read more about how this works <a href="https://developers.themoviedb.org/3/authentication/how-do-i-generate-a-session-id">here</a>.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public RateTvShowResponse rateTvShow(int tvId, RateTvShowRequest rateTvShowRequest, String guestSessionId, String sessionId) {
         // /tv/{tv_id}/rating
@@ -467,6 +534,8 @@ public class TV {
      * <p>Rate a TV show.</p> 
      * <p>A valid session or guest session ID is required. You can read more about how this works <a href="https://developers.themoviedb.org/3/authentication/how-do-i-generate-a-session-id">here</a>.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public RateTvShowResponse rateTvShow(int tvId, RateTvShowRequest requestBody) {
         return rateTvShow(tvId, requestBody, null, null);
@@ -476,6 +545,8 @@ public class TV {
      * <p>Remove your rating for a TV show.</p> 
      * <p>A valid session or guest session ID is required. You can read more about how this works <a href="https://developers.themoviedb.org/3/authentication/how-do-i-generate-a-session-id">here</a>.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public DeleteTvShowRatingResponse deleteTvShowRating(int tvId, String guestSessionId, String sessionId) {
         // /tv/{tv_id}/rating
@@ -494,6 +565,8 @@ public class TV {
      * <p>Remove your rating for a TV show.</p> 
      * <p>A valid session or guest session ID is required. You can read more about how this works <a href="https://developers.themoviedb.org/3/authentication/how-do-i-generate-a-session-id">here</a>.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public DeleteTvShowRatingResponse deleteTvShowRating(int tvId) {
         return deleteTvShowRating(tvId, null, null);
@@ -502,6 +575,8 @@ public class TV {
     /**
      * <p>Get the most newly created TV show. This is a live response and will continuously change.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public GetLatestTvResponse getLatestTv(String language) {
         String path = "/tv/latest";
@@ -517,6 +592,8 @@ public class TV {
     /**
      * <p>Get the most newly created TV show. This is a live response and will continuously change.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public GetLatestTvResponse getLatestTv() {
         return getLatestTv(null);
@@ -526,6 +603,8 @@ public class TV {
      * <p>Get a list of TV shows that are airing today. This query is purely day based as we do not currently support airing times.</p> 
      * <p>You can specify a <a>timezone</a> to offset the day calculation. Without a specified timezone, this query defaults to EST (Eastern Time UTC-05:00).</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public GetTvAiringTodayResponse getTvAiringToday(String language, Integer page) {
         String path = "/tv/airing_today";
@@ -543,6 +622,8 @@ public class TV {
      * <p>Get a list of TV shows that are airing today. This query is purely day based as we do not currently support airing times.</p> 
      * <p>You can specify a <a>timezone</a> to offset the day calculation. Without a specified timezone, this query defaults to EST (Eastern Time UTC-05:00).</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public GetTvAiringTodayResponse getTvAiringToday() {
         return getTvAiringToday(null, null);
@@ -552,6 +633,8 @@ public class TV {
      * <p>Get a list of shows that are currently on the air.</p> 
      * <p>This query looks for any TV show that has an episode with an air date in the next 7 days.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public GetTvOnTheAirResponse getTvOnTheAir(String language, Integer page) {
         String path = "/tv/on_the_air";
@@ -569,6 +652,8 @@ public class TV {
      * <p>Get a list of shows that are currently on the air.</p> 
      * <p>This query looks for any TV show that has an episode with an air date in the next 7 days.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public GetTvOnTheAirResponse getTvOnTheAir() {
         return getTvOnTheAir(null, null);
@@ -577,6 +662,8 @@ public class TV {
     /**
      * <p>Get a list of the current popular TV shows on TMDb. This list updates daily.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public GetPopularTvShowsResponse getPopularTvShows(String language, Integer page) {
         String path = "/tv/popular";
@@ -593,6 +680,8 @@ public class TV {
     /**
      * <p>Get a list of the current popular TV shows on TMDb. This list updates daily.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public GetPopularTvShowsResponse getPopularTvShows() {
         return getPopularTvShows(null, null);
@@ -601,6 +690,8 @@ public class TV {
     /**
      * <p>Get a list of the top rated TV shows on TMDb.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public GetTopRatedTvResponse getTopRatedTv(String language, Integer page) {
         String path = "/tv/top_rated";
@@ -617,6 +708,8 @@ public class TV {
     /**
      * <p>Get a list of the top rated TV shows on TMDb.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public GetTopRatedTvResponse getTopRatedTv() {
         return getTopRatedTv(null, null);

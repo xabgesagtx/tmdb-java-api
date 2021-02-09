@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.github.xabgesagtx.tmdb.http.RestClient;
+import com.github.xabgesagtx.tmdb.http.exceptions.TmdbApiException;
 
 public class TVEpisodeGroups {
 
@@ -26,6 +27,8 @@ public class TVEpisodeGroups {
      *  <li>TV</li> 
      * </ol>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public GetTvEpisodeGroupDetailsResponse getTvEpisodeGroupDetails(String id, String language) {
         // /tv/episode_group/{id}
@@ -51,6 +54,8 @@ public class TVEpisodeGroups {
      *  <li>TV</li> 
      * </ol>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public GetTvEpisodeGroupDetailsResponse getTvEpisodeGroupDetails(String id) {
         return getTvEpisodeGroupDetails(id, null);

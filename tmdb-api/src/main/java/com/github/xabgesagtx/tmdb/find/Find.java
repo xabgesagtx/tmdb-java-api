@@ -6,6 +6,7 @@ import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.github.xabgesagtx.tmdb.http.RestClient;
+import com.github.xabgesagtx.tmdb.http.exceptions.TmdbApiException;
 
 public class Find {
 
@@ -21,6 +22,8 @@ public class Find {
      * <p>The supported external sources for each object are as follows.</p> <a href="https://developers.themoviedb.org/#media-databases">\ud83d\udd17</a> Media Databases     Movies TV Shows TV Seasons TV Episodes People     IMDb ID ✓ ✓ ✗ ✓ ✓   TVDB ID ✗ ✓ ✓ ✓ ✗   Freebase MID* ✗ ✓ ✓ ✓ ✓   Freebase ID* ✗ ✓ ✓ ✓ ✓   TVRage ID* ✗ ✓ ✓ ✓ ✓    <a href="https://developers.themoviedb.org/#social-ids">\ud83d\udd17</a> Social IDs     Movies TV Shows TV Seasons TV Episodes People     Facebook ✓ ✓ ✗ ✗ ✓   Instagram ✓ ✓ ✗ ✗ ✓   Twitter ✓ ✓ ✗ ✗ ✓    
      * <p>*Defunct or no longer available as a service.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public FindByIdResponse findById(String externalId, Find.FindByIdExternalSourceParam externalSource, String language) {
         // /find/{external_id}
@@ -41,6 +44,8 @@ public class Find {
      * <p>The supported external sources for each object are as follows.</p> <a href="https://developers.themoviedb.org/#media-databases">\ud83d\udd17</a> Media Databases     Movies TV Shows TV Seasons TV Episodes People     IMDb ID ✓ ✓ ✗ ✓ ✓   TVDB ID ✗ ✓ ✓ ✓ ✗   Freebase MID* ✗ ✓ ✓ ✓ ✓   Freebase ID* ✗ ✓ ✓ ✓ ✓   TVRage ID* ✗ ✓ ✓ ✓ ✓    <a href="https://developers.themoviedb.org/#social-ids">\ud83d\udd17</a> Social IDs     Movies TV Shows TV Seasons TV Episodes People     Facebook ✓ ✓ ✗ ✗ ✓   Instagram ✓ ✓ ✗ ✗ ✓   Twitter ✓ ✓ ✗ ✗ ✓    
      * <p>*Defunct or no longer available as a service.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public FindByIdResponse findById(String externalId, Find.FindByIdExternalSourceParam externalSource) {
         return findById(externalId, externalSource, null);

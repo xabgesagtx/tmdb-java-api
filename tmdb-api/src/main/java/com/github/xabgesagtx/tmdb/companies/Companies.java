@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Optional;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.github.xabgesagtx.tmdb.http.RestClient;
+import com.github.xabgesagtx.tmdb.http.exceptions.TmdbApiException;
 
 public class Companies {
 
@@ -18,6 +19,8 @@ public class Companies {
     /**
      * <p>Get a companies details by id.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public Optional<GetCompanyDetailsResponse> getCompanyDetails(int companyId) {
         // /company/{company_id}
@@ -33,6 +36,8 @@ public class Companies {
     /**
      * <p>Get the alternative names of a company.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public Optional<GetCompanyAlternativeNamesResponse> getCompanyAlternativeNames(int companyId) {
         // /company/{company_id}/alternative_names
@@ -50,6 +55,8 @@ public class Companies {
      * <p>There are two image formats that are supported for companies, PNG's and SVG's. You can see which type the original file is by looking at the <code>file_type</code> field. We prefer SVG's as they are resolution independent and as such, the width and height are only there to reflect the original asset that was uploaded. An SVG can be scaled properly beyond those dimensions if you call them as a PNG.</p> 
      * <p>For more information about how SVG's and PNG's can be used, take a read through <a href="https://developers.themoviedb.org/3/getting-started/images">this document</a>.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public Optional<GetCompanyImagesResponse> getCompanyImages(int companyId) {
         // /company/{company_id}/images

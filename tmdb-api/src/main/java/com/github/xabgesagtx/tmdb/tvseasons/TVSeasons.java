@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Optional;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.github.xabgesagtx.tmdb.http.RestClient;
+import com.github.xabgesagtx.tmdb.http.exceptions.TmdbApiException;
 
 public class TVSeasons {
 
@@ -20,6 +21,8 @@ public class TVSeasons {
      * <p>Get the TV season details by id.</p> 
      * <p>Supports <code>append_to_response</code>. Read more about this <a href="https://developers.themoviedb.org/3/getting-started/append-to-response">here</a>.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public Optional<GetTvSeasonDetailsResponse> getTvSeasonDetails(int seasonNumber, int tvId, String appendToResponse, String language) {
         // /tv/{tv_id}/season/{season_number}
@@ -38,6 +41,8 @@ public class TVSeasons {
      * <p>Get the TV season details by id.</p> 
      * <p>Supports <code>append_to_response</code>. Read more about this <a href="https://developers.themoviedb.org/3/getting-started/append-to-response">here</a>.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public Optional<GetTvSeasonDetailsResponse> getTvSeasonDetails(int seasonNumber, int tvId) {
         return getTvSeasonDetails(seasonNumber, tvId, null, null);
@@ -46,6 +51,8 @@ public class TVSeasons {
     /**
      * <p>Returns all of the user ratings for the season's episodes.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public Optional<GetTvSeasonAccountStatesResponse> getTvSeasonAccountStates(int seasonNumber, int tvId, String guestSessionId, String language, String sessionId) {
         // /tv/{tv_id}/season/{season_number}/account_states
@@ -64,6 +71,8 @@ public class TVSeasons {
     /**
      * <p>Returns all of the user ratings for the season's episodes.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public Optional<GetTvSeasonAccountStatesResponse> getTvSeasonAccountStates(int seasonNumber, int tvId) {
         return getTvSeasonAccountStates(seasonNumber, tvId, null, null, null);
@@ -73,6 +82,8 @@ public class TVSeasons {
      * <p>Get the aggregate credits for TV season.</p> 
      * <p>This call differs from the main <code>credits</code> call in that it does not only return the season credits, but rather is a view of all the cast &amp; crew for all of the episodes belonging to a season.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public Optional<GetTvSeasonAggregateCreditsResponse> getTvSeasonAggregateCredits(int seasonNumber, int tvId, String language) {
         // /tv/{tv_id}/season/{season_number}/aggregate_credits
@@ -90,6 +101,8 @@ public class TVSeasons {
      * <p>Get the aggregate credits for TV season.</p> 
      * <p>This call differs from the main <code>credits</code> call in that it does not only return the season credits, but rather is a view of all the cast &amp; crew for all of the episodes belonging to a season.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public Optional<GetTvSeasonAggregateCreditsResponse> getTvSeasonAggregateCredits(int seasonNumber, int tvId) {
         return getTvSeasonAggregateCredits(seasonNumber, tvId, null);
@@ -99,6 +112,8 @@ public class TVSeasons {
      * <p>Get the changes for a TV season. By default only the last 24 hours are returned.</p> 
      * <p>You can query up to 14 days in a single query by using the <code>start_date</code> and <code>end_date</code> query parameters.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public GetTvSeasonChangesResponse getTvSeasonChanges(int seasonId, LocalDate endDate, Integer page, LocalDate startDate) {
         // /tv/season/{season_id}/changes
@@ -118,6 +133,8 @@ public class TVSeasons {
      * <p>Get the changes for a TV season. By default only the last 24 hours are returned.</p> 
      * <p>You can query up to 14 days in a single query by using the <code>start_date</code> and <code>end_date</code> query parameters.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public GetTvSeasonChangesResponse getTvSeasonChanges(int seasonId) {
         return getTvSeasonChanges(seasonId, null, null, null);
@@ -126,6 +143,8 @@ public class TVSeasons {
     /**
      * <p>Get the credits for TV season.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public Optional<GetTvSeasonCreditsResponse> getTvSeasonCredits(int seasonNumber, int tvId, String language) {
         // /tv/{tv_id}/season/{season_number}/credits
@@ -142,6 +161,8 @@ public class TVSeasons {
     /**
      * <p>Get the credits for TV season.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public Optional<GetTvSeasonCreditsResponse> getTvSeasonCredits(int seasonNumber, int tvId) {
         return getTvSeasonCredits(seasonNumber, tvId, null);
@@ -151,6 +172,8 @@ public class TVSeasons {
      * <p>Get the external ids for a TV season. We currently support the following external sources.</p>    <strong>Media Databases</strong>     TVDB ID   Freebase MID*   Freebase ID*   TVRage ID*    
      * <p>*Defunct or no longer available as a service.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public Optional<GetTvSeasonExternalIdsResponse> getTvSeasonExternalIds(int seasonNumber, int tvId, String language) {
         // /tv/{tv_id}/season/{season_number}/external_ids
@@ -168,6 +191,8 @@ public class TVSeasons {
      * <p>Get the external ids for a TV season. We currently support the following external sources.</p>    <strong>Media Databases</strong>     TVDB ID   Freebase MID*   Freebase ID*   TVRage ID*    
      * <p>*Defunct or no longer available as a service.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public Optional<GetTvSeasonExternalIdsResponse> getTvSeasonExternalIds(int seasonNumber, int tvId) {
         return getTvSeasonExternalIds(seasonNumber, tvId, null);
@@ -177,6 +202,8 @@ public class TVSeasons {
      * <p>Get the images that belong to a TV season.</p> 
      * <p>Querying images with a <code>language</code> parameter will filter the results. If you want to include a fallback language (especially useful for backdrops) you can use the <code>include_image_language</code> parameter. This should be a comma seperated value like so: <code>include_image_language=en,null</code>.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public Optional<GetTvSeasonImagesResponse> getTvSeasonImages(int seasonNumber, int tvId, String language) {
         // /tv/{tv_id}/season/{season_number}/images
@@ -194,6 +221,8 @@ public class TVSeasons {
      * <p>Get the images that belong to a TV season.</p> 
      * <p>Querying images with a <code>language</code> parameter will filter the results. If you want to include a fallback language (especially useful for backdrops) you can use the <code>include_image_language</code> parameter. This should be a comma seperated value like so: <code>include_image_language=en,null</code>.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public Optional<GetTvSeasonImagesResponse> getTvSeasonImages(int seasonNumber, int tvId) {
         return getTvSeasonImages(seasonNumber, tvId, null);
@@ -202,6 +231,8 @@ public class TVSeasons {
     /**
      * <p>Get the credits for TV season.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public Optional<GetTvSeasonTranslationsResponse> getTvSeasonTranslations(int seasonNumber, int tvId, String language) {
         // /tv/{tv_id}/season/{season_number}/translations
@@ -218,6 +249,8 @@ public class TVSeasons {
     /**
      * <p>Get the credits for TV season.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public Optional<GetTvSeasonTranslationsResponse> getTvSeasonTranslations(int seasonNumber, int tvId) {
         return getTvSeasonTranslations(seasonNumber, tvId, null);
@@ -226,6 +259,8 @@ public class TVSeasons {
     /**
      * <p>Get the videos that have been added to a TV season.</p> <a href="https://developers.themoviedb.org/#recent-changes">\ud83d\udd17</a> Recent Changes    <strong>Date</strong> <strong>Change</strong>     March 23, 2019 Vimeo was added as a video source.   March 20, 2019 "Behind the Scenes" and "Bloopers" and "Recap" were added as valid video types.
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public Optional<GetTvSeasonVideosResponse> getTvSeasonVideos(int seasonNumber, int tvId, String language) {
         // /tv/{tv_id}/season/{season_number}/videos
@@ -242,6 +277,8 @@ public class TVSeasons {
     /**
      * <p>Get the videos that have been added to a TV season.</p> <a href="https://developers.themoviedb.org/#recent-changes">\ud83d\udd17</a> Recent Changes    <strong>Date</strong> <strong>Change</strong>     March 23, 2019 Vimeo was added as a video source.   March 20, 2019 "Behind the Scenes" and "Bloopers" and "Recap" were added as valid video types.
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public Optional<GetTvSeasonVideosResponse> getTvSeasonVideos(int seasonNumber, int tvId) {
         return getTvSeasonVideos(seasonNumber, tvId, null);

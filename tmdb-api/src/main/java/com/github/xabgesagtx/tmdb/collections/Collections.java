@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Optional;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.github.xabgesagtx.tmdb.http.RestClient;
+import com.github.xabgesagtx.tmdb.http.exceptions.TmdbApiException;
 
 public class Collections {
 
@@ -18,6 +19,8 @@ public class Collections {
     /**
      * <p>Get collection details by id.</p> <a href="https://developers.themoviedb.org/#recent-changes">\ud83d\udd17</a> Recent Changes    <strong>Date</strong> <strong>Change</strong>     March 16, 2018 Added the <a href="https://developers.themoviedb.org/3/collections/get-collection-translations">translations</a> method.
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public Optional<GetCollectionDetailsResponse> getCollectionDetails(int collectionId, String language) {
         // /collection/{collection_id}
@@ -34,6 +37,8 @@ public class Collections {
     /**
      * <p>Get collection details by id.</p> <a href="https://developers.themoviedb.org/#recent-changes">\ud83d\udd17</a> Recent Changes    <strong>Date</strong> <strong>Change</strong>     March 16, 2018 Added the <a href="https://developers.themoviedb.org/3/collections/get-collection-translations">translations</a> method.
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public Optional<GetCollectionDetailsResponse> getCollectionDetails(int collectionId) {
         return getCollectionDetails(collectionId, null);
@@ -42,6 +47,8 @@ public class Collections {
     /**
      * <p>Get the images for a collection by id.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public Optional<GetCollectionImagesResponse> getCollectionImages(int collectionId, String language) {
         // /collection/{collection_id}/images
@@ -58,6 +65,8 @@ public class Collections {
     /**
      * <p>Get the images for a collection by id.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public Optional<GetCollectionImagesResponse> getCollectionImages(int collectionId) {
         return getCollectionImages(collectionId, null);
@@ -66,6 +75,8 @@ public class Collections {
     /**
      * <p>Get the list translations for a collection by id.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public Optional<GetCollectionTranslationsResponse> getCollectionTranslations(int collectionId, String language) {
         // /collection/{collection_id}/translations
@@ -82,6 +93,8 @@ public class Collections {
     /**
      * <p>Get the list translations for a collection by id.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public Optional<GetCollectionTranslationsResponse> getCollectionTranslations(int collectionId) {
         return getCollectionTranslations(collectionId, null);

@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Optional;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.github.xabgesagtx.tmdb.http.RestClient;
+import com.github.xabgesagtx.tmdb.http.exceptions.TmdbApiException;
 
 public class Lists {
 
@@ -18,6 +19,8 @@ public class Lists {
     /**
      * <p>Get the details of a list.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public Optional<GetListDetailsResponse> getListDetails(String listId, String language) {
         // /list/{list_id}
@@ -34,6 +37,8 @@ public class Lists {
     /**
      * <p>Get the details of a list.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public Optional<GetListDetailsResponse> getListDetails(String listId) {
         return getListDetails(listId, null);
@@ -42,6 +47,8 @@ public class Lists {
     /**
      * <p>You can use this method to check if a movie has already been added to the list.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public CheckItemStatusResponse checkItemStatus(String listId, int movieId) {
         // /list/{list_id}/item_status
@@ -58,6 +65,8 @@ public class Lists {
     /**
      * <p>Create a list.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public CreateListResponse createList(CreateListRequest createListRequest, String sessionId) {
         String path = "/list";
@@ -73,6 +82,8 @@ public class Lists {
     /**
      * <p>Add a movie to a list.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public AddMovieResponse addMovie(String listId, AddMovieRequest addMovieRequest, String sessionId) {
         // /list/{list_id}/add_item
@@ -89,6 +100,8 @@ public class Lists {
     /**
      * <p>Remove a movie from a list.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public RemoveMovieResponse removeMovie(String listId, RemoveMovieRequest removeMovieRequest, String sessionId) {
         // /list/{list_id}/remove_item
@@ -105,6 +118,8 @@ public class Lists {
     /**
      * <p>Clear all of the items from a list.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public ClearListResponse clearList(String listId, boolean confirm, String sessionId) {
         // /list/{list_id}/clear
@@ -122,6 +137,8 @@ public class Lists {
     /**
      * <p>Delete a list.</p>
      * 
+     * @throws TmdbApiException
+     *     when an unexpected status code or any other issue interacting with the API occurs
      */
     public DeleteListResponse deleteList(String listId, String sessionId) {
         // /list/{list_id}
