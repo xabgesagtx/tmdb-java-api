@@ -35,7 +35,7 @@ public class EndpointGenerator extends AbstractGenerator {
         JDocComment javadoc = method.javadoc();
         javadoc.add(javaDocText);
         addException(javadoc);
-        List<JVar> pathVariables = addPathVariables(resourceClass, endpoint, method, javadoc);
+        List<Pair<Variable<?>, JVar>> pathVariables = addPathVariables(resourceClass, endpoint, method, javadoc);
         JExpression requestBodyExpression = JExpr._null();
         JDefinedClass requestClass = null;
         if (endpoint.getRequestBody() != null) {
@@ -45,11 +45,11 @@ public class EndpointGenerator extends AbstractGenerator {
             javadoc.addParam(param).add(requestBodyParamName);
             requestBodyExpression = param;
         }
-        Map<String, JVar> requestParams = endpoint.getRequestParams()
+        var requestParams = endpoint.getRequestParams()
                 .stream()
                 .sorted(variableComparator)
-                .map(variable -> Pair.of(variable.getJsonName(), createMethodParam(method, resourceClass, variable, javadoc)))
-                .collect(Collectors.toMap(Pair::getKey, Pair::getValue));
+                .map(variable -> Pair.<Variable<?>,JVar>of(variable, createMethodParam(method, resourceClass, variable, javadoc)))
+                .collect(Collectors.toList());
         JBlock body = method.body();
         JVar formattedPath = formatPath(body, endpoint.getPath(), pathVariables);
         JExpression requestParamsExpression = createRequestParamsMap(body, requestParams);
@@ -67,13 +67,15 @@ public class EndpointGenerator extends AbstractGenerator {
         createConvenienceMethod(resourceClass, methodResultType, endpoint, pathVariables, requestClass, requestParams);
     }
 
-    private List<JVar> addPathVariables(JDefinedClass resourceClass, Endpoint endpoint, JMethod method, JDocComment javadoc) {
+    private List<Pair<Variable<?>, JVar>> addPathVariables(JDefinedClass resourceClass, Endpoint endpoint, JMethod method, JDocComment javadoc) {
         List<String> pathVariableOrder = getPathVariableOrder(endpoint.getPath());
         Map<String, Variable<?>> pathVariableMap = endpoint.getPathVariables().stream()
                 .collect(Collectors.toMap(Variable::getJsonName, Function.identity()));
         return pathVariableOrder.stream()
-                .map(variableName -> createMethodParam(method, resourceClass, pathVariableMap.get(variableName), javadoc))
-                .collect(Collectors.toList());
+                .map(variableName -> {
+                    Variable<?> variable = pathVariableMap.get(variableName);
+                    return Pair.<Variable<?>,JVar>of(variable, createMethodParam(method, resourceClass, variable, javadoc));
+                }).collect(Collectors.toList());
     }
 
     private List<String> getPathVariableOrder(String path) {
@@ -91,7 +93,7 @@ public class EndpointGenerator extends AbstractGenerator {
         javadoc.addThrows(model.ref(TmdbApiException.class)).add("when an unexpected status code or any other issue interacting with the API occurs");
     }
 
-    private void createConvenienceMethod(JDefinedClass resourceClass, JType optionalResultType, Endpoint endpoint, List<JVar> pathVariables, JDefinedClass requestClass, Map<String, JVar> requestParams) {
+    private void createConvenienceMethod(JDefinedClass resourceClass, JType optionalResultType, Endpoint endpoint, List<Pair<Variable<?>,JVar>> pathVariables, JDefinedClass requestClass, List<Pair<Variable<?>,JVar>> requestParams) {
         if (endpoint.getRequestParams().stream().allMatch(Variable::isRequired)) {
             return;
         }
@@ -101,18 +103,22 @@ public class EndpointGenerator extends AbstractGenerator {
         javadoc.add(javaDocText);
         addException(javadoc);
         List<JExpression> invocationParams = new ArrayList<>();
-        pathVariables.forEach(jVar -> invocationParams.add(method.param(jVar.type(), jVar.name())));
+        pathVariables.forEach(pair -> {
+            JVar jVar = pair.getValue();
+            JVar param = addMethodParam(method, pair.getKey(), javadoc, jVar.type());
+            invocationParams.add(param);
+        });
         if (requestClass != null) {
             JVar param = method.param(requestClass, "requestBody");
             javadoc.addParam(param).add(param.name());
             invocationParams.add(param);
         }
-        endpoint.getRequestParams().stream()
-                .sorted(variableComparator)
-                .forEach(param -> {
-                    if (param.isRequired()) {
-                        JVar jVar = requestParams.get(param.getJsonName());
-                        invocationParams.add(method.param(jVar.type(), jVar.name()));
+        requestParams.forEach(pair -> {
+                    var variable = pair.getKey();
+                    if (variable.isRequired()) {
+                        JVar jVar = pair.getValue();
+                        JVar param = addMethodParam(method, variable, javadoc, jVar.type());
+                        invocationParams.add(param);
                     } else {
                         invocationParams.add(JExpr._null());
                     }
@@ -123,7 +129,7 @@ public class EndpointGenerator extends AbstractGenerator {
         body._return(invocation);
     }
 
-    private JExpression createRequestParamsMap(JBlock body, Map<String, JVar> requestParams) {
+    private JExpression createRequestParamsMap(JBlock body, List<Pair<Variable<?>, JVar>> requestParams) {
         if (requestParams.isEmpty()) {
             return body.decl(model.ref(Map.class).narrow(String.class, Object.class),
                     "requestParams",
@@ -132,18 +138,22 @@ public class EndpointGenerator extends AbstractGenerator {
             var mapVar = body.decl(model.ref(Map.class).narrow(String.class, Object.class),
                     "requestParams",
                     JExpr._new(model.ref(HashMap.class).narrow(new JClass[0])));
-            requestParams.forEach((name, variable) -> body.invoke(mapVar, "put").arg(JExpr.lit(name)).arg(variable));
+            requestParams.forEach(pair -> {
+                String jsonName = pair.getKey().getJsonName();
+                JVar jVar = pair.getValue();
+                body.invoke(mapVar, "put").arg(JExpr.lit(jsonName)).arg(jVar);
+            });
             return mapVar;
         }
     }
 
-    private JVar formatPath(JBlock body, String path, List<JVar> pathVariables) {
+    private JVar formatPath(JBlock body, String path, List<Pair<Variable<?>, JVar>> pathVariables) {
         if (pathVariables.isEmpty()) {
             return body.decl(model.ref(String.class), "path", JExpr.lit(path));
         } else {
             String pathPattern = path.replaceAll("\\{[^}]+}", "%s");
             JInvocation invocation = model.ref(String.class).staticInvoke("format").arg(JExpr.lit(pathPattern));
-            pathVariables.forEach(invocation::arg);
+            pathVariables.stream().map(Pair::getValue).forEach(invocation::arg);
             body.directStatement("// " + path);
             return body.decl(model.ref(String.class), "path", invocation);
         }

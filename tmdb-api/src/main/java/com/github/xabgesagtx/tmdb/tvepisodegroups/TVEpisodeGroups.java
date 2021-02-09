@@ -58,6 +58,8 @@ public class TVEpisodeGroups {
      *  <li>TV</li> 
      * </ol>
      * 
+     * @param id
+     *     id
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */

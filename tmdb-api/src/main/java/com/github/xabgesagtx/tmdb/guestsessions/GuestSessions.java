@@ -45,6 +45,8 @@ public class GuestSessions {
     /**
      * <p>Get the rated movies for a guest session.</p>
      * 
+     * @param guestSessionId
+     *     guestSessionId
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
@@ -80,6 +82,8 @@ public class GuestSessions {
     /**
      * <p>Get the rated TV shows for a guest session.</p>
      * 
+     * @param guestSessionId
+     *     guestSessionId
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
@@ -115,6 +119,8 @@ public class GuestSessions {
     /**
      * <p>Get the rated TV episodes for a guest session.</p>
      * 
+     * @param guestSessionId
+     *     guestSessionId
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */

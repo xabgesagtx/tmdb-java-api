@@ -66,6 +66,8 @@ public class Keywords {
      * <p>Get the movies that belong to a keyword.</p> 
      * <p>We <strong>highly recommend</strong> using <a href="https://developers.themoviedb.org/3/discover/movie-discover">movie discover</a> instead of this method as it is much more flexible.</p>
      * 
+     * @param keywordId
+     *     keywordId
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */

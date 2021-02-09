@@ -48,6 +48,8 @@ public class Movies {
      * <p>Get the primary information about a movie.</p> 
      * <p>Supports <code>append_to_response</code>. Read more about this <a href="https://developers.themoviedb.org/3/getting-started/append-to-response">here</a>.</p> <a href="https://developers.themoviedb.org/#recent-changes">\ud83d\udd17</a> Recent Changes    <strong>Date</strong> <strong>Change</strong>     November 20, 2020 A <code>watch/providers</code> method has been added to show what providers (eg. streaming) are available and where.
      * 
+     * @param movieId
+     *     movieId
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
@@ -76,8 +78,8 @@ public class Movies {
         // /movie/{movie_id}/account_states
         String path = String.format("/movie/%s/account_states", movieId);
         Map<String, Object> requestParams = new HashMap<>();
-        requestParams.put("guest_session_id", guestSessionId);
         requestParams.put("session_id", sessionId);
+        requestParams.put("guest_session_id", guestSessionId);
         return restClient.getOpt(path, requestParams, new TypeReference<>() {
 
 
@@ -93,6 +95,10 @@ public class Movies {
      *  <li>If it belongs to your favourite list</li> 
      * </ul>
      * 
+     * @param movieId
+     *     movieId
+     * @param sessionId
+     *     sessionId
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
@@ -125,6 +131,8 @@ public class Movies {
     /**
      * <p>Get all of the alternative titles for a movie.</p> <a href="https://developers.themoviedb.org/#recent-changes">\ud83d\udd17</a> Recent Changes    <strong>Date</strong> <strong>Change</strong>     March 16, 2018 Added the <code>type</code> field.
      * 
+     * @param movieId
+     *     movieId
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
@@ -165,6 +173,8 @@ public class Movies {
      * <p>Get the changes for a movie. By default only the last 24 hours are returned.</p> 
      * <p>You can query up to 14 days in a single query by using the <code>start_date</code> and <code>end_date</code> query parameters.</p>
      * 
+     * @param movieId
+     *     movieId
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
@@ -197,6 +207,8 @@ public class Movies {
     /**
      * <p>Get the cast and crew for a movie.</p>
      * 
+     * @param movieId
+     *     movieId
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
@@ -253,6 +265,8 @@ public class Movies {
      * <p>Get the images that belong to a movie.</p> 
      * <p>Querying images with a <code>language</code> parameter will filter the results. If you want to include a fallback language (especially useful for backdrops) you can use the <code>include_image_language</code> parameter. This should be a comma seperated value like so: <code>include_image_language=en,null</code>.</p>
      * 
+     * @param movieId
+     *     movieId
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
@@ -307,6 +321,8 @@ public class Movies {
     /**
      * <p>Get a list of lists that this movie belongs to.</p>
      * 
+     * @param movieId
+     *     movieId
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
@@ -342,6 +358,8 @@ public class Movies {
     /**
      * <p>Get a list of recommended movies for a movie.</p>
      * 
+     * @param movieId
+     *     movieId
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
@@ -405,6 +423,8 @@ public class Movies {
     /**
      * <p>Get the user reviews for a movie.</p>
      * 
+     * @param movieId
+     *     movieId
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
@@ -442,6 +462,8 @@ public class Movies {
      * <p>Get a list of similar movies. This is <strong>not</strong> the same as the "Recommendation" system you see on the website.</p> 
      * <p>These items are assembled by looking at keywords and genres.</p>
      * 
+     * @param movieId
+     *     movieId
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
@@ -493,6 +515,8 @@ public class Movies {
     /**
      * <p>Get the videos that have been added to a movie.</p> <a href="https://developers.themoviedb.org/#recent-changes">\ud83d\udd17</a> Recent Changes    <strong>Date</strong> <strong>Change</strong>     March 23, 2019 Vimeo was added as a video source.   March 20, 2019 "Behind the Scenes" and "Bloopers" were added as valid video types.
      * 
+     * @param movieId
+     *     movieId
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
@@ -553,6 +577,10 @@ public class Movies {
      * <p>Rate a movie.</p> 
      * <p>A valid session or guest session ID is required. You can read more about how this works <a href="https://developers.themoviedb.org/3/authentication/how-do-i-generate-a-session-id">here</a>.</p>
      * 
+     * @param requestBody
+     *     requestBody
+     * @param movieId
+     *     movieId
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
@@ -590,6 +618,8 @@ public class Movies {
      * <p>Remove your rating for a movie.</p> 
      * <p>A valid session or guest session ID is required. You can read more about how this works <a href="https://developers.themoviedb.org/3/authentication/how-do-i-generate-a-session-id">here</a>.</p>
      * 
+     * @param movieId
+     *     movieId
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */

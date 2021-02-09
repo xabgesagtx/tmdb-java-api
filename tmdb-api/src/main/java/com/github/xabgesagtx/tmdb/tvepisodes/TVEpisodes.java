@@ -52,6 +52,12 @@ public class TVEpisodes {
      * <p>Get the TV episode details by id.</p> 
      * <p>Supports <code>append_to_response</code>. Read more about this <a href="https://developers.themoviedb.org/3/getting-started/append-to-response">here</a>.</p> <a href="https://developers.themoviedb.org/#recent-changes">\ud83d\udd17</a> Recent Changes    <strong>Date</strong> <strong>Change</strong>     June 1, 2018 Added the <a href="https://developers.themoviedb.org/3/tv-episodes/get-tv-episode-translations">translations</a> method.
      * 
+     * @param tvId
+     *     tvId
+     * @param seasonNumber
+     *     seasonNumber
+     * @param episodeNumber
+     *     episodeNumber
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
@@ -91,6 +97,12 @@ public class TVEpisodes {
     /**
      * <p>Get your rating for a episode.</p>
      * 
+     * @param tvId
+     *     tvId
+     * @param seasonNumber
+     *     seasonNumber
+     * @param episodeNumber
+     *     episodeNumber
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
@@ -131,6 +143,8 @@ public class TVEpisodes {
      * <p>Get the changes for a TV episode. By default only the last 24 hours are returned.</p> 
      * <p>You can query up to 14 days in a single query by using the <code>start_date</code> and <code>end_date</code> query parameters.</p>
      * 
+     * @param episodeId
+     *     episodeId
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
@@ -167,6 +181,12 @@ public class TVEpisodes {
     /**
      * <p>Get the credits (cast, crew and guest stars) for a TV episode.</p>
      * 
+     * @param tvId
+     *     tvId
+     * @param seasonNumber
+     *     seasonNumber
+     * @param episodeNumber
+     *     episodeNumber
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
@@ -281,6 +301,14 @@ public class TVEpisodes {
      * <p>Rate a TV episode.</p> 
      * <p>A valid session or guest session ID is required. You can read more about how this works <a href="https://developers.themoviedb.org/3/authentication/how-do-i-generate-a-session-id">here</a>.</p>
      * 
+     * @param requestBody
+     *     requestBody
+     * @param tvId
+     *     tvId
+     * @param seasonNumber
+     *     seasonNumber
+     * @param episodeNumber
+     *     episodeNumber
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
@@ -322,6 +350,12 @@ public class TVEpisodes {
      * <p>Remove your rating for a TV episode.</p> 
      * <p>A valid session or guest session ID is required. You can read more about how this works <a href="https://developers.themoviedb.org/3/authentication/how-do-i-generate-a-session-id">here</a>.</p>
      * 
+     * @param tvId
+     *     tvId
+     * @param seasonNumber
+     *     seasonNumber
+     * @param episodeNumber
+     *     episodeNumber
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
@@ -358,6 +392,12 @@ public class TVEpisodes {
     /**
      * <p>Get the videos that have been added to a TV episode.</p> <a href="https://developers.themoviedb.org/#recent-changes">\ud83d\udd17</a> Recent Changes    <strong>Date</strong> <strong>Change</strong>     March 23, 2019 Vimeo was added as a video source.   March 20, 2019 "Behind the Scenes", "Bloopers" and "Recap" were added as valid video types.
      * 
+     * @param tvId
+     *     tvId
+     * @param seasonNumber
+     *     seasonNumber
+     * @param episodeNumber
+     *     episodeNumber
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */

@@ -41,6 +41,8 @@ public class Lists {
     /**
      * <p>Get the details of a list.</p>
      * 
+     * @param listId
+     *     listId
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */

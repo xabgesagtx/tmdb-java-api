@@ -66,6 +66,10 @@ public class Account {
     /**
      * <p>Get all of the lists created by an account. Will invlude private lists if you are the owner.</p>
      * 
+     * @param accountId
+     *     accountId
+     * @param sessionId
+     *     sessionId
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
@@ -107,6 +111,10 @@ public class Account {
     /**
      * <p>Get the list of your favorite movies.</p>
      * 
+     * @param accountId
+     *     accountId
+     * @param sessionId
+     *     sessionId
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
@@ -148,6 +156,10 @@ public class Account {
     /**
      * <p>Get the list of your favorite TV shows.</p>
      * 
+     * @param accountId
+     *     accountId
+     * @param sessionId
+     *     sessionId
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
@@ -213,6 +225,10 @@ public class Account {
     /**
      * <p>Get a list of all the movies you have rated.</p>
      * 
+     * @param accountId
+     *     accountId
+     * @param sessionId
+     *     sessionId
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
@@ -254,6 +270,10 @@ public class Account {
     /**
      * <p>Get a list of all the TV shows you have rated.</p>
      * 
+     * @param accountId
+     *     accountId
+     * @param sessionId
+     *     sessionId
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
@@ -295,6 +315,10 @@ public class Account {
     /**
      * <p>Get a list of all the TV episodes you have rated.</p>
      * 
+     * @param accountId
+     *     accountId
+     * @param sessionId
+     *     sessionId
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
@@ -336,6 +360,10 @@ public class Account {
     /**
      * <p>Get a list of all the movies you have added to your watchlist.</p>
      * 
+     * @param accountId
+     *     accountId
+     * @param sessionId
+     *     sessionId
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
@@ -377,6 +405,10 @@ public class Account {
     /**
      * <p>Get a list of all the TV shows you have added to your watchlist.</p>
      * 
+     * @param accountId
+     *     accountId
+     * @param sessionId
+     *     sessionId
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
