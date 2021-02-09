@@ -27,5 +27,6 @@ public class ComplexTypeSpec {
     private String format;
     private List<String> required;
     private List<ComplexTypeSpec> oneOf;
+    private String description;
 
 }

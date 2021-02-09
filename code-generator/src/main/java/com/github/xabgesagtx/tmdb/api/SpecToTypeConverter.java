@@ -53,7 +53,7 @@ public class SpecToTypeConverter {
         }
         name = StringUtils.replace(name, ".", "_");
         Type type = createType(originalName, spec);
-        return new Field(type, name, originalName);
+        return new Field(type, name, originalName, spec.getDescription());
     }
 
     private Type createType(String originalName, ComplexTypeSpec spec) {

@@ -19,6 +19,8 @@ public class Reviews {
     /**
      * <p>Retrieve the details of a movie or TV show review.</p> <a href="https://developers.themoviedb.org/#recent-changes">\ud83d\udd17</a> Recent Changes    <strong>Date</strong> <strong>Change</strong>     November 14, 2020 A <code>author_details</code> field has been added to the default response, which includes an <code>avatar_path</code> and <code>rating</code> value.
      * 
+     * @param reviewId
+     *     reviewId
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */

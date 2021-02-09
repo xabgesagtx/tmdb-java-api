@@ -65,6 +65,7 @@ public class EndpointSpecToEndpointConverter {
         boolean hasIdPathVariable = pathVariables.keySet().stream().anyMatch(pathVariable -> StringUtils.endsWith(pathVariable, "_id"));
         Map<String, ComplexTypeSpec> requestParams = Objects.requireNonNullElse(spec.getRequest().getQueryString().getProperties(), Collections.emptyMap());
         boolean hasPageRequestParam = requestParams.keySet().stream().anyMatch("page"::equals);
+
         return isGetMethod && startsWithGet && !isArrayResponseType && !hasPageRequestParam && hasIdPathVariable;
     }
 
@@ -101,14 +102,14 @@ public class EndpointSpecToEndpointConverter {
                         String prefix = CaseFormat.LOWER_HYPHEN.to(CaseFormat.UPPER_CAMEL, slug);
                         String suffix = "Param";
                         String variableTypeName = prefix + variableType.getName() + suffix;
-                        return new EnumVariable(variableType.withName(variableTypeName), field.getName(), field.getJsonName(), required);
+                        return new EnumVariable(variableType.withName(variableTypeName), field.getName(), field.getJsonName(), field.getDescription(), required);
                     } else if (field.getType() instanceof SimpleType) {
                         SimpleType.Primitive variableType = ((SimpleType) field.getType()).getPrimitive();
-                        return new PrimitiveVariable(variableType, field.getName(), field.getJsonName(), required);
+                        return new PrimitiveVariable(variableType, field.getName(), field.getJsonName(), field.getDescription(), required);
                     } else {
                         log.info("Found non simple field for {}: {}", type.getName(), field);
                         SimpleType.Primitive variableType = SimpleType.Primitive.STRING;
-                        return new PrimitiveVariable(variableType, field.getName(), field.getJsonName(), required);
+                        return new PrimitiveVariable(variableType, field.getName(), field.getJsonName(), field.getDescription(), required);
                     }
                 })
                 .collect(Collectors.toList());

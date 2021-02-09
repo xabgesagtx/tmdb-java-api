@@ -19,6 +19,8 @@ public class Account {
     /**
      * <p>Get your account details.</p>
      * 
+     * @param sessionId
+     *     sessionId
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
@@ -36,6 +38,14 @@ public class Account {
     /**
      * <p>Get all of the lists created by an account. Will invlude private lists if you are the owner.</p>
      * 
+     * @param accountId
+     *     accountId
+     * @param language
+     *     Pass a ISO 639-1 value to display translated data for the fields that support it.
+     * @param sessionId
+     *     sessionId
+     * @param page
+     *     Specify which page to query.
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
@@ -66,6 +76,16 @@ public class Account {
     /**
      * <p>Get the list of your favorite movies.</p>
      * 
+     * @param accountId
+     *     accountId
+     * @param language
+     *     Pass a ISO 639-1 value to display translated data for the fields that support it.
+     * @param sortBy
+     *     Sort the results.
+     * @param sessionId
+     *     sessionId
+     * @param page
+     *     Specify which page to query.
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
@@ -97,6 +117,16 @@ public class Account {
     /**
      * <p>Get the list of your favorite TV shows.</p>
      * 
+     * @param accountId
+     *     accountId
+     * @param language
+     *     Pass a ISO 639-1 value to display translated data for the fields that support it.
+     * @param sortBy
+     *     Sort the results.
+     * @param sessionId
+     *     sessionId
+     * @param page
+     *     Specify which page to query.
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
@@ -128,6 +158,12 @@ public class Account {
     /**
      * <p>This method allows you to mark a movie or TV show as a favorite item.</p>
      * 
+     * @param accountId
+     *     accountId
+     * @param markAsFavoriteRequest
+     *     markAsFavoriteRequest
+     * @param sessionId
+     *     sessionId
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
@@ -146,6 +182,16 @@ public class Account {
     /**
      * <p>Get a list of all the movies you have rated.</p>
      * 
+     * @param accountId
+     *     accountId
+     * @param language
+     *     Pass a ISO 639-1 value to display translated data for the fields that support it.
+     * @param sortBy
+     *     Sort the results.
+     * @param sessionId
+     *     sessionId
+     * @param page
+     *     Specify which page to query.
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
@@ -177,6 +223,16 @@ public class Account {
     /**
      * <p>Get a list of all the TV shows you have rated.</p>
      * 
+     * @param accountId
+     *     accountId
+     * @param language
+     *     Pass a ISO 639-1 value to display translated data for the fields that support it.
+     * @param sortBy
+     *     Sort the results.
+     * @param sessionId
+     *     sessionId
+     * @param page
+     *     Specify which page to query.
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
@@ -208,6 +264,16 @@ public class Account {
     /**
      * <p>Get a list of all the TV episodes you have rated.</p>
      * 
+     * @param accountId
+     *     accountId
+     * @param language
+     *     Pass a ISO 639-1 value to display translated data for the fields that support it.
+     * @param sortBy
+     *     Sort the results.
+     * @param sessionId
+     *     sessionId
+     * @param page
+     *     Specify which page to query.
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
@@ -239,6 +305,16 @@ public class Account {
     /**
      * <p>Get a list of all the movies you have added to your watchlist.</p>
      * 
+     * @param accountId
+     *     accountId
+     * @param language
+     *     Pass a ISO 639-1 value to display translated data for the fields that support it.
+     * @param sortBy
+     *     Sort the results.
+     * @param sessionId
+     *     sessionId
+     * @param page
+     *     Specify which page to query.
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
@@ -270,6 +346,16 @@ public class Account {
     /**
      * <p>Get a list of all the TV shows you have added to your watchlist.</p>
      * 
+     * @param accountId
+     *     accountId
+     * @param language
+     *     Pass a ISO 639-1 value to display translated data for the fields that support it.
+     * @param sortBy
+     *     Sort the results.
+     * @param sessionId
+     *     sessionId
+     * @param page
+     *     Specify which page to query.
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
@@ -301,6 +387,12 @@ public class Account {
     /**
      * <p>Add a movie or TV show to your watchlist.</p>
      * 
+     * @param accountId
+     *     accountId
+     * @param addToWatchlistRequest
+     *     addToWatchlistRequest
+     * @param sessionId
+     *     sessionId
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */

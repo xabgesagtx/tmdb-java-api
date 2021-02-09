@@ -18,6 +18,8 @@ public class Genres {
     /**
      * <p>Get the list of official genres for movies.</p>
      * 
+     * @param language
+     *     Pass a ISO 639-1 value to display translated data for the fields that support it.
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
@@ -45,6 +47,8 @@ public class Genres {
     /**
      * <p>Get the list of official genres for TV shows.</p>
      * 
+     * @param language
+     *     Pass a ISO 639-1 value to display translated data for the fields that support it.
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */

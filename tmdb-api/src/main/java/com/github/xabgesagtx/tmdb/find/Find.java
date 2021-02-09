@@ -22,6 +22,12 @@ public class Find {
      * <p>The supported external sources for each object are as follows.</p> <a href="https://developers.themoviedb.org/#media-databases">\ud83d\udd17</a> Media Databases     Movies TV Shows TV Seasons TV Episodes People     IMDb ID ✓ ✓ ✗ ✓ ✓   TVDB ID ✗ ✓ ✓ ✓ ✗   Freebase MID* ✗ ✓ ✓ ✓ ✓   Freebase ID* ✗ ✓ ✓ ✓ ✓   TVRage ID* ✗ ✓ ✓ ✓ ✓    <a href="https://developers.themoviedb.org/#social-ids">\ud83d\udd17</a> Social IDs     Movies TV Shows TV Seasons TV Episodes People     Facebook ✓ ✓ ✗ ✗ ✓   Instagram ✓ ✓ ✗ ✗ ✓   Twitter ✓ ✓ ✗ ✗ ✓    
      * <p>*Defunct or no longer available as a service.</p>
      * 
+     * @param externalId
+     *     externalId
+     * @param language
+     *     Pass a ISO 639-1 value to display translated data for the fields that support it.
+     * @param externalSource
+     *     externalSource
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */

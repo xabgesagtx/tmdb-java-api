@@ -19,6 +19,10 @@ public class Lists {
     /**
      * <p>Get the details of a list.</p>
      * 
+     * @param listId
+     *     listId
+     * @param language
+     *     Pass a ISO 639-1 value to display translated data for the fields that support it.
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
@@ -47,6 +51,10 @@ public class Lists {
     /**
      * <p>You can use this method to check if a movie has already been added to the list.</p>
      * 
+     * @param listId
+     *     listId
+     * @param movieId
+     *     movieId
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
@@ -65,6 +73,10 @@ public class Lists {
     /**
      * <p>Create a list.</p>
      * 
+     * @param createListRequest
+     *     createListRequest
+     * @param sessionId
+     *     sessionId
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
@@ -82,6 +94,12 @@ public class Lists {
     /**
      * <p>Add a movie to a list.</p>
      * 
+     * @param listId
+     *     listId
+     * @param addMovieRequest
+     *     addMovieRequest
+     * @param sessionId
+     *     sessionId
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
@@ -100,6 +118,12 @@ public class Lists {
     /**
      * <p>Remove a movie from a list.</p>
      * 
+     * @param listId
+     *     listId
+     * @param removeMovieRequest
+     *     removeMovieRequest
+     * @param sessionId
+     *     sessionId
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
@@ -118,6 +142,12 @@ public class Lists {
     /**
      * <p>Clear all of the items from a list.</p>
      * 
+     * @param listId
+     *     listId
+     * @param confirm
+     *     confirm
+     * @param sessionId
+     *     sessionId
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
@@ -137,6 +167,10 @@ public class Lists {
     /**
      * <p>Delete a list.</p>
      * 
+     * @param listId
+     *     listId
+     * @param sessionId
+     *     sessionId
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */

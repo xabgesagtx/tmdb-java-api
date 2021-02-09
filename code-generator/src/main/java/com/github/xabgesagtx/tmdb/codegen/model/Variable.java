@@ -8,6 +8,8 @@ public interface Variable<T> {
 
     String getJsonName();
 
+    String getDescription();
+
     boolean isRequired();
 
 }

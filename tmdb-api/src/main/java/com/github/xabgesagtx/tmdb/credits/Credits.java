@@ -19,6 +19,8 @@ public class Credits {
     /**
      * <p>Get a movie or TV credit details by id.</p> <a href="https://developers.themoviedb.org/#recent-changes">\ud83d\udd17</a> Recent Changes    <strong>Date</strong> <strong>Change</strong>     July 13, 2018 Movie credits are now supported.
      * 
+     * @param creditId
+     *     creditId
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */

@@ -52,6 +52,8 @@ public class Authentication {
     /**
      * <p>You can use this method to create a fully valid session ID once a user has validated the request token. More information about how this works can be found <a href="https://developers.themoviedb.org/3/authentication/how-do-i-generate-a-session-id">here</a>.</p>
      * 
+     * @param createSessionRequest
+     *     createSessionRequest
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
@@ -71,6 +73,8 @@ public class Authentication {
      * <p>Please note, the preferred method of validating a request token is to have a user authenticate the request via the TMDb website. You can read about that method <a href="https://developers.themoviedb.org/3/authentication/how-do-i-generate-a-session-id">here</a>.</p> 
      * <p>If you decide to use this method please <strong>use HTTPS</strong>.</p>
      * 
+     * @param validateRequestTokenRequest
+     *     validateRequestTokenRequest
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
@@ -87,6 +91,8 @@ public class Authentication {
     /**
      * <p>Use this method to create a v3 session ID if you already have a valid v4 access token. The v4 token needs to be authenticated by the user. Your standard "read token" will not validate to create a session ID.</p>
      * 
+     * @param createSessionFromV4AccessTokenRequest
+     *     createSessionFromV4AccessTokenRequest
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
@@ -103,6 +109,8 @@ public class Authentication {
     /**
      * <p>If you would like to delete (or "logout") from a session, call this method with a valid session ID.</p>
      * 
+     * @param deleteSessionRequest
+     *     deleteSessionRequest
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */

@@ -35,18 +35,20 @@ public class EndpointGenerator extends AbstractGenerator {
         JDocComment javadoc = method.javadoc();
         javadoc.add(javaDocText);
         addException(javadoc);
-        List<JVar> pathVariables = addPathVariables(resourceClass, endpoint, method);
+        List<JVar> pathVariables = addPathVariables(resourceClass, endpoint, method, javadoc);
         JExpression requestBodyExpression = JExpr._null();
         JDefinedClass requestClass = null;
         if (endpoint.getRequestBody() != null) {
             requestClass = modelGenerator.createClass(endpoint.getRequestBody(), jPackage, false);
             String requestBodyParamName = CaseFormat.UPPER_CAMEL.to(CaseFormat.LOWER_CAMEL, endpoint.getRequestBody().getName());
-            requestBodyExpression = method.param(requestClass, requestBodyParamName);
+            JVar param = method.param(requestClass, requestBodyParamName);
+            javadoc.addParam(param).add(requestBodyParamName);
+            requestBodyExpression = param;
         }
         Map<String, JVar> requestParams = endpoint.getRequestParams()
                 .stream()
                 .sorted(variableComparator)
-                .map(variable -> Pair.of(variable.getJsonName(), createMethodParam(method, resourceClass, variable)))
+                .map(variable -> Pair.of(variable.getJsonName(), createMethodParam(method, resourceClass, variable, javadoc)))
                 .collect(Collectors.toMap(Pair::getKey, Pair::getValue));
         JBlock body = method.body();
         JVar formattedPath = formatPath(body, endpoint.getPath(), pathVariables);
@@ -65,12 +67,12 @@ public class EndpointGenerator extends AbstractGenerator {
         createConvenienceMethod(resourceClass, methodResultType, endpoint, pathVariables, requestClass, requestParams);
     }
 
-    private List<JVar> addPathVariables(JDefinedClass resourceClass, Endpoint endpoint, JMethod method) {
+    private List<JVar> addPathVariables(JDefinedClass resourceClass, Endpoint endpoint, JMethod method, JDocComment javadoc) {
         List<String> pathVariableOrder = getPathVariableOrder(endpoint.getPath());
         Map<String, Variable<?>> pathVariableMap = endpoint.getPathVariables().stream()
                 .collect(Collectors.toMap(Variable::getJsonName, Function.identity()));
         return pathVariableOrder.stream()
-                .map(variableName -> createMethodParam(method, resourceClass, pathVariableMap.get(variableName)))
+                .map(variableName -> createMethodParam(method, resourceClass, pathVariableMap.get(variableName), javadoc))
                 .collect(Collectors.toList());
     }
 
@@ -101,7 +103,9 @@ public class EndpointGenerator extends AbstractGenerator {
         List<JExpression> invocationParams = new ArrayList<>();
         pathVariables.forEach(jVar -> invocationParams.add(method.param(jVar.type(), jVar.name())));
         if (requestClass != null) {
-            invocationParams.add(method.param(requestClass, "requestBody"));
+            JVar param = method.param(requestClass, "requestBody");
+            javadoc.addParam(param).add(param.name());
+            invocationParams.add(param);
         }
         endpoint.getRequestParams().stream()
                 .sorted(variableComparator)
@@ -145,17 +149,24 @@ public class EndpointGenerator extends AbstractGenerator {
         }
     }
 
-    JVar createMethodParam(JMethod method, JDefinedClass resourceClass, Variable<?> variable) {
+    JVar createMethodParam(JMethod method, JDefinedClass resourceClass, Variable<?> variable, JDocComment javadoc) {
+        JType type;
         if (variable instanceof EnumVariable) {
             EnumVariable enumVariable = (EnumVariable) variable;
-            JDefinedClass enumClass = modelGenerator.createEnum(enumVariable.getType(), resourceClass);
-            return method.param(enumClass, variable.getName());
+            type = modelGenerator.createEnum(enumVariable.getType(), resourceClass);
         } else {
             PrimitiveVariable primitiveVariable = (PrimitiveVariable) variable;
             Class<?> classForPrimitive = getClassForPrimitive(primitiveVariable.getType());
-            JType type = variable.isRequired() ? model.ref(classForPrimitive).unboxify() : model.ref(classForPrimitive);
-            return method.param(type, variable.getName());
+            type = variable.isRequired() ? model.ref(classForPrimitive).unboxify() : model.ref(classForPrimitive);
         }
+        return addMethodParam(method, variable, javadoc, type);
+    }
+
+    private JVar addMethodParam(JMethod method, Variable<?> variable, JDocComment javadoc, JType type) {
+        JVar param = method.param(type, variable.getName());
+        String paramDescription = variable.getDescription() == null ? variable.getName() : variable.getDescription();
+        javadoc.addParam(param).add(paramDescription);
+        return param;
     }
 
     JType getJType(Type type, JClassContainer classContainer) {

@@ -25,6 +25,74 @@ public class Discover {
      * <p>Also note that a number of filters support being comma (<code>,</code>) or pipe (<code>|</code>) separated. Comma's are treated like an <code>AND</code> and query while pipe's are an <code>OR</code>.</p> 
      * <p>Some examples of what can be done with discover can be found <a href="https://www.themoviedb.org/documentation/api/discover">here</a>.</p> <a href="https://developers.themoviedb.org/#recent-changes">\ud83d\udd17</a> Recent Changes    <strong>Date</strong> <strong>Change</strong>     January 2, 2020 A new set of filters are available for watch provider filtering. Check out <code>with_watch_providers</code> and <code>watch_region</code>.
      * 
+     * @param withCast
+     *     A comma separated list of person ID's. Only include movies that have one of the ID's added as an actor.
+     * @param releaseDate_lte
+     *     Filter and only include movies that have a release date (looking at all release dates) that is less than or equal to the specified value.
+     * @param withCompanies
+     *     A comma separated list of production company ID's. Only include movies that have one of the ID's added as a production company.
+     * @param voteAverage_gte
+     *     Filter and only include movies that have a rating that is greater or equal to the specified value.
+     * @param year
+     *     A filter to limit the results to a specific year (looking at all release dates).
+     * @param withGenres
+     *     Comma separated value of genre ids that you want to include in the results.
+     * @param language
+     *     Pass a ISO 639-1 value to display translated data for the fields that support it.
+     * @param watchRegion
+     *     An ISO 3166-1 code. Combine this filter with `with_watch_providers` in order to filter your results by a specific watch provider in a specific region.
+     * @param withOriginalLanguage
+     *     Specify an ISO 639-1 string to filter results by their original language value.
+     * @param voteCount_gte
+     *     Filter and only include movies that have a vote count that is greater or equal to the specified value.
+     * @param certificationCountry
+     *     Used in conjunction with the certification filter, use this to specify a country with a valid certification.
+     * @param withoutKeywords
+     *     Exclude items with certain keywords. You can comma and pipe seperate these values to create an 'AND' or 'OR' logic.
+     * @param sortBy
+     *     Choose from one of the many available sort options.
+     * @param withReleaseType
+     *     Specify a comma (AND) or pipe (OR) separated value to filter release types by. These release types map to the same values found on the movie release date method.
+     * @param releaseDate_gte
+     *     Filter and only include movies that have a release date (looking at all release dates) that is greater or equal to the specified value.
+     * @param voteAverage_lte
+     *     Filter and only include movies that have a rating that is less than or equal to the specified value.
+     * @param withCrew
+     *     A comma separated list of person ID's. Only include movies that have one of the ID's added as a crew member.
+     * @param primaryReleaseDate_gte
+     *     Filter and only include movies that have a primary release date that is greater or equal to the specified value.
+     * @param certification_gte
+     *     Filter and only include movies that have a certification that is greater than or equal to the specified value.
+     * @param withRuntime_gte
+     *     Filter and only include movies that have a runtime that is greater or equal to a value.
+     * @param withWatchProviders
+     *     A comma or pipe separated list of watch provider ID's. Combine this filter with `watch_region` in order to filter your results by a specific watch provider in a specific region.
+     * @param voteCount_lte
+     *     Filter and only include movies that have a vote count that is less than or equal to the specified value.
+     * @param certification_lte
+     *     Filter and only include movies that have a certification that is less than or equal to the specified value.
+     * @param includeAdult
+     *     A filter and include or exclude adult movies.
+     * @param withKeywords
+     *     A comma separated list of keyword ID's. Only includes movies that have one of the ID's added as a keyword.
+     * @param certification
+     *     Filter results with a valid certification from the 'certification_country' field.
+     * @param includeVideo
+     *     A filter to include or exclude videos.
+     * @param primaryReleaseYear
+     *     A filter to limit the results to a specific primary release year.
+     * @param withoutGenres
+     *     Comma separated value of genre ids that you want to exclude from the results.
+     * @param withPeople
+     *     A comma separated list of person ID's. Only include movies that have one of the ID's added as a either a actor or a crew member.
+     * @param page
+     *     Specify the page of results to query.
+     * @param region
+     *     Specify a ISO 3166-1 code to filter release dates. Must be uppercase.
+     * @param withRuntime_lte
+     *     Filter and only include movies that have a runtime that is less than or equal to a value.
+     * @param primaryReleaseDate_lte
+     *     Filter and only include movies that have a primary release date that is less than or equal to the specified value.
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
@@ -93,6 +161,54 @@ public class Discover {
      * <p>Also note that a number of filters support being comma (<code>,</code>) or pipe (<code>|</code>) separated. Comma's are treated like an <code>AND</code> and query while pipe's are an <code>OR</code>.</p> 
      * <p>Some examples of what can be done with discover can be found <a href="https://www.themoviedb.org/documentation/api/discover">here</a>.</p> <a href="https://developers.themoviedb.org/#recent-changes">\ud83d\udd17</a> Recent Changes    <strong>Date</strong> <strong>Change</strong>     January 2, 2020 A new set of filters are available for watch provider filtering. Check out <code>with_watch_providers</code> and <code>watch_region</code>.
      * 
+     * @param firstAirDate_gte
+     *     Filter and only include TV shows that have a original air date that is greater or equal to the specified value. Can be used in conjunction with the "include_null_first_air_dates" filter if you want to include items with no air date.
+     * @param withCompanies
+     *     A comma separated list of production company ID's. Only include movies that have one of the ID's added as a production company.
+     * @param voteAverage_gte
+     *     Filter and only include movies that have a rating that is greater or equal to the specified value.
+     * @param firstAirDate_lte
+     *     Filter and only include TV shows that have a original air date that is less than or equal to the specified value. Can be used in conjunction with the "include_null_first_air_dates" filter if you want to include items with no air date.
+     * @param timezone
+     *     Used in conjunction with the air_date.gte/lte filter to calculate the proper UTC offset.
+     * @param withGenres
+     *     Comma separated value of genre ids that you want to include in the results.
+     * @param screenedTheatrically
+     *     Filter results to include items that have been screened theatrically.
+     * @param withRuntime_gte
+     *     Filter and only include TV shows with an episode runtime that is greater than or equal to a value.
+     * @param withWatchProviders
+     *     A comma or pipe separated list of watch provider ID's. Combine this filter with `watch_region` in order to filter your results by a specific watch provider in a specific region.
+     * @param airDate_gte
+     *     Filter and only include TV shows that have a air date (by looking at all episodes) that is greater or equal to the specified value.
+     * @param language
+     *     Pass a ISO 639-1 value to display translated data for the fields that support it.
+     * @param airDate_lte
+     *     Filter and only include TV shows that have a air date (by looking at all episodes) that is less than or equal to the specified value.
+     * @param watchRegion
+     *     An ISO 3166-1 code. Combine this filter with `with_watch_providers` in order to filter your results by a specific watch provider in a specific region.
+     * @param withOriginalLanguage
+     *     Specify an ISO 639-1 string to filter results by their original language value.
+     * @param withKeywords
+     *     A comma separated list of keyword ID's. Only includes TV shows that have one of the ID's added as a keyword.
+     * @param voteCount_gte
+     *     Filter and only include movies that have a rating that is less than or equal to the specified value.
+     * @param withNetworks
+     *     Comma separated value of network ids that you want to include in the results.
+     * @param includeNullFirstAirDates
+     *     Use this filter to include TV shows that don't have an air date while using any of the "first_air_date" filters.
+     * @param withoutGenres
+     *     Comma separated value of genre ids that you want to exclude from the results.
+     * @param withoutKeywords
+     *     Exclude items with certain keywords. You can comma and pipe seperate these values to create an 'AND' or 'OR' logic.
+     * @param firstAirDateYear
+     *     Filter and only include TV shows that have a original air date year that equal to the specified value. Can be used in conjunction with the "include_null_first_air_dates" filter if you want to include items with no air date.
+     * @param sortBy
+     *     Choose from one of the many available sort options.
+     * @param page
+     *     Specify the page of results to query.
+     * @param withRuntime_lte
+     *     Filter and only include TV shows with an episode runtime that is less than or equal to a value.
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */

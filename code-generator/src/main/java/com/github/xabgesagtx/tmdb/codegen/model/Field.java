@@ -8,5 +8,6 @@ public class Field {
     Type type;
     String name;
     String jsonName;
+    String description;
 
 }
