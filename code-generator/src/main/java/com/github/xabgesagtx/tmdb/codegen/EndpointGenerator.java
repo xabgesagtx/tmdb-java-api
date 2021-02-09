@@ -78,7 +78,7 @@ public class EndpointGenerator extends AbstractGenerator {
         Pattern searchPattern = Pattern.compile("\\{([^}]+)}");
         ArrayList<String> result = new ArrayList<>();
         Matcher matcher = searchPattern.matcher(path);
-        while(matcher.find()) {
+        while (matcher.find()) {
             String variableName = matcher.group(1);
             result.add(variableName);
         }
