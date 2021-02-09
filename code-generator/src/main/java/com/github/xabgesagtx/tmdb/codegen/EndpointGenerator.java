@@ -48,7 +48,7 @@ public class EndpointGenerator extends AbstractGenerator {
         var requestParams = endpoint.getRequestParams()
                 .stream()
                 .sorted(variableComparator)
-                .map(variable -> Pair.<Variable<?>,JVar>of(variable, createMethodParam(method, resourceClass, variable, javadoc)))
+                .map(variable -> Pair.<Variable<?>, JVar>of(variable, createMethodParam(method, resourceClass, variable, javadoc)))
                 .collect(Collectors.toList());
         JBlock body = method.body();
         JVar formattedPath = formatPath(body, endpoint.getPath(), pathVariables);
@@ -74,7 +74,7 @@ public class EndpointGenerator extends AbstractGenerator {
         return pathVariableOrder.stream()
                 .map(variableName -> {
                     Variable<?> variable = pathVariableMap.get(variableName);
-                    return Pair.<Variable<?>,JVar>of(variable, createMethodParam(method, resourceClass, variable, javadoc));
+                    return Pair.<Variable<?>, JVar>of(variable, createMethodParam(method, resourceClass, variable, javadoc));
                 }).collect(Collectors.toList());
     }
 
@@ -93,7 +93,7 @@ public class EndpointGenerator extends AbstractGenerator {
         javadoc.addThrows(model.ref(TmdbApiException.class)).add("when an unexpected status code or any other issue interacting with the API occurs");
     }
 
-    private void createConvenienceMethod(JDefinedClass resourceClass, JType optionalResultType, Endpoint endpoint, List<Pair<Variable<?>,JVar>> pathVariables, JDefinedClass requestClass, List<Pair<Variable<?>,JVar>> requestParams) {
+    private void createConvenienceMethod(JDefinedClass resourceClass, JType optionalResultType, Endpoint endpoint, List<Pair<Variable<?>, JVar>> pathVariables, JDefinedClass requestClass, List<Pair<Variable<?>, JVar>> requestParams) {
         if (endpoint.getRequestParams().stream().allMatch(Variable::isRequired)) {
             return;
         }
@@ -114,15 +114,15 @@ public class EndpointGenerator extends AbstractGenerator {
             invocationParams.add(param);
         }
         requestParams.forEach(pair -> {
-                    var variable = pair.getKey();
-                    if (variable.isRequired()) {
-                        JVar jVar = pair.getValue();
-                        JVar param = addMethodParam(method, variable, javadoc, jVar.type());
-                        invocationParams.add(param);
-                    } else {
-                        invocationParams.add(JExpr._null());
-                    }
-                });
+            var variable = pair.getKey();
+            if (variable.isRequired()) {
+                JVar jVar = pair.getValue();
+                JVar param = addMethodParam(method, variable, javadoc, jVar.type());
+                invocationParams.add(param);
+            } else {
+                invocationParams.add(JExpr._null());
+            }
+        });
         JBlock body = method.body();
         JInvocation invocation = JExpr.invoke(endpoint.getName());
         invocationParams.forEach(invocation::arg);
