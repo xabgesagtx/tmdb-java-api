@@ -8,6 +8,7 @@ import com.sun.codemodel.*;
 import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.*;
+import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -34,11 +35,7 @@ public class EndpointGenerator extends AbstractGenerator {
         JDocComment javadoc = method.javadoc();
         javadoc.add(javaDocText);
         addException(javadoc);
-        Map<String, JVar> pathVariables = endpoint.getPathVariables()
-                .stream()
-                .sorted(Comparator.comparing(Variable::getName, Comparator.naturalOrder()))
-                .map(variable -> Pair.of(variable.getJsonName(), createMethodParam(method, resourceClass, variable)))
-                .collect(Collectors.toMap(Pair::getKey, Pair::getValue));
+        List<JVar> pathVariables = addPathVariables(resourceClass, endpoint, method);
         JExpression requestBodyExpression = JExpr._null();
         JDefinedClass requestClass = null;
         if (endpoint.getRequestBody() != null) {
@@ -68,11 +65,31 @@ public class EndpointGenerator extends AbstractGenerator {
         createConvenienceMethod(resourceClass, methodResultType, endpoint, pathVariables, requestClass, requestParams);
     }
 
+    private List<JVar> addPathVariables(JDefinedClass resourceClass, Endpoint endpoint, JMethod method) {
+        List<String> pathVariableOrder = getPathVariableOrder(endpoint.getPath());
+        Map<String, Variable<?>> pathVariableMap = endpoint.getPathVariables().stream()
+                .collect(Collectors.toMap(Variable::getJsonName, Function.identity()));
+        return pathVariableOrder.stream()
+                .map(variableName -> createMethodParam(method, resourceClass, pathVariableMap.get(variableName)))
+                .collect(Collectors.toList());
+    }
+
+    private List<String> getPathVariableOrder(String path) {
+        Pattern searchPattern = Pattern.compile("\\{([^}]+)}");
+        ArrayList<String> result = new ArrayList<>();
+        Matcher matcher = searchPattern.matcher(path);
+        while(matcher.find()) {
+            String variableName = matcher.group(1);
+            result.add(variableName);
+        }
+        return result;
+    }
+
     private void addException(JDocComment javadoc) {
         javadoc.addThrows(model.ref(TmdbApiException.class)).add("when an unexpected status code or any other issue interacting with the API occurs");
     }
 
-    private void createConvenienceMethod(JDefinedClass resourceClass, JType optionalResultType, Endpoint endpoint, Map<String, JVar> pathVariables, JDefinedClass requestClass, Map<String, JVar> requestParams) {
+    private void createConvenienceMethod(JDefinedClass resourceClass, JType optionalResultType, Endpoint endpoint, List<JVar> pathVariables, JDefinedClass requestClass, Map<String, JVar> requestParams) {
         if (endpoint.getRequestParams().stream().allMatch(Variable::isRequired)) {
             return;
         }
@@ -82,11 +99,7 @@ public class EndpointGenerator extends AbstractGenerator {
         javadoc.add(javaDocText);
         addException(javadoc);
         List<JExpression> invocationParams = new ArrayList<>();
-        pathVariables
-                .values()
-                .stream()
-                .sorted(Comparator.comparing(JVar::name, Comparator.naturalOrder()))
-                .forEach(jVar -> invocationParams.add(method.param(jVar.type(), jVar.name())));
+        pathVariables.forEach(jVar -> invocationParams.add(method.param(jVar.type(), jVar.name())));
         if (requestClass != null) {
             invocationParams.add(method.param(requestClass, "requestBody"));
         }
@@ -120,19 +133,13 @@ public class EndpointGenerator extends AbstractGenerator {
         }
     }
 
-    private JVar formatPath(JBlock body, String path, Map<String, JVar> pathVariables) {
+    private JVar formatPath(JBlock body, String path, List<JVar> pathVariables) {
         if (pathVariables.isEmpty()) {
             return body.decl(model.ref(String.class), "path", JExpr.lit(path));
         } else {
-            Pattern searchPattern = Pattern.compile("\\{([^}]+)}");
-            Matcher matcher = searchPattern.matcher(path);
             String pathPattern = path.replaceAll("\\{[^}]+}", "%s");
             JInvocation invocation = model.ref(String.class).staticInvoke("format").arg(JExpr.lit(pathPattern));
-            while (matcher.find()) {
-                String variableName = matcher.group(1);
-                JVar var = pathVariables.get(variableName);
-                invocation.arg(var);
-            }
+            pathVariables.forEach(invocation::arg);
             body.directStatement("// " + path);
             return body.decl(model.ref(String.class), "path", invocation);
         }

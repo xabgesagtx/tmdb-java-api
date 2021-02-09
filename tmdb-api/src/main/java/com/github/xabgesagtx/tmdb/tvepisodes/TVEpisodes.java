@@ -25,7 +25,7 @@ public class TVEpisodes {
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
-    public Optional<GetTvEpisodeDetailsResponse> getTvEpisodeDetails(int episodeNumber, int seasonNumber, int tvId, String appendToResponse, String language) {
+    public Optional<GetTvEpisodeDetailsResponse> getTvEpisodeDetails(int tvId, int seasonNumber, int episodeNumber, String appendToResponse, String language) {
         // /tv/{tv_id}/season/{season_number}/episode/{episode_number}
         String path = String.format("/tv/%s/season/%s/episode/%s", tvId, seasonNumber, episodeNumber);
         Map<String, Object> requestParams = new HashMap<>();
@@ -45,8 +45,8 @@ public class TVEpisodes {
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
-    public Optional<GetTvEpisodeDetailsResponse> getTvEpisodeDetails(int episodeNumber, int seasonNumber, int tvId) {
-        return getTvEpisodeDetails(episodeNumber, seasonNumber, tvId, null, null);
+    public Optional<GetTvEpisodeDetailsResponse> getTvEpisodeDetails(int tvId, int seasonNumber, int episodeNumber) {
+        return getTvEpisodeDetails(tvId, seasonNumber, episodeNumber, null, null);
     }
 
     /**
@@ -55,7 +55,7 @@ public class TVEpisodes {
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
-    public Optional<GetTvEpisodeAccountStatesResponse> getTvEpisodeAccountStates(int episodeNumber, int seasonNumber, int tvId, String guestSessionId, String sessionId) {
+    public Optional<GetTvEpisodeAccountStatesResponse> getTvEpisodeAccountStates(int tvId, int seasonNumber, int episodeNumber, String guestSessionId, String sessionId) {
         // /tv/{tv_id}/season/{season_number}/episode/{episode_number}/account_states
         String path = String.format("/tv/%s/season/%s/episode/%s/account_states", tvId, seasonNumber, episodeNumber);
         Map<String, Object> requestParams = new HashMap<>();
@@ -74,8 +74,8 @@ public class TVEpisodes {
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
-    public Optional<GetTvEpisodeAccountStatesResponse> getTvEpisodeAccountStates(int episodeNumber, int seasonNumber, int tvId) {
-        return getTvEpisodeAccountStates(episodeNumber, seasonNumber, tvId, null, null);
+    public Optional<GetTvEpisodeAccountStatesResponse> getTvEpisodeAccountStates(int tvId, int seasonNumber, int episodeNumber) {
+        return getTvEpisodeAccountStates(tvId, seasonNumber, episodeNumber, null, null);
     }
 
     /**
@@ -116,7 +116,7 @@ public class TVEpisodes {
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
-    public Optional<GetTvEpisodeCreditsResponse> getTvEpisodeCredits(int episodeNumber, int seasonNumber, int tvId, String language) {
+    public Optional<GetTvEpisodeCreditsResponse> getTvEpisodeCredits(int tvId, int seasonNumber, int episodeNumber, String language) {
         // /tv/{tv_id}/season/{season_number}/episode/{episode_number}/credits
         String path = String.format("/tv/%s/season/%s/episode/%s/credits", tvId, seasonNumber, episodeNumber);
         Map<String, Object> requestParams = new HashMap<>();
@@ -134,8 +134,8 @@ public class TVEpisodes {
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
-    public Optional<GetTvEpisodeCreditsResponse> getTvEpisodeCredits(int episodeNumber, int seasonNumber, int tvId) {
-        return getTvEpisodeCredits(episodeNumber, seasonNumber, tvId, null);
+    public Optional<GetTvEpisodeCreditsResponse> getTvEpisodeCredits(int tvId, int seasonNumber, int episodeNumber) {
+        return getTvEpisodeCredits(tvId, seasonNumber, episodeNumber, null);
     }
 
     /**
@@ -145,7 +145,7 @@ public class TVEpisodes {
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
-    public Optional<GetTvEpisodeExternalIdsResponse> getTvEpisodeExternalIds(int episodeNumber, int seasonNumber, int tvId) {
+    public Optional<GetTvEpisodeExternalIdsResponse> getTvEpisodeExternalIds(int tvId, int seasonNumber, int episodeNumber) {
         // /tv/{tv_id}/season/{season_number}/episode/{episode_number}/external_ids
         String path = String.format("/tv/%s/season/%s/episode/%s/external_ids", tvId, seasonNumber, episodeNumber);
         Map<String, Object> requestParams = Collections.emptyMap();
@@ -163,7 +163,7 @@ public class TVEpisodes {
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
-    public Optional<GetTvEpisodeImagesResponse> getTvEpisodeImages(int episodeNumber, int seasonNumber, int tvId) {
+    public Optional<GetTvEpisodeImagesResponse> getTvEpisodeImages(int tvId, int seasonNumber, int episodeNumber) {
         // /tv/{tv_id}/season/{season_number}/episode/{episode_number}/images
         String path = String.format("/tv/%s/season/%s/episode/%s/images", tvId, seasonNumber, episodeNumber);
         Map<String, Object> requestParams = Collections.emptyMap();
@@ -180,7 +180,7 @@ public class TVEpisodes {
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
-    public Optional<GetTvEpisodeTranslationsResponse> getTvEpisodeTranslations(int episodeNumber, int seasonNumber, int tvId) {
+    public Optional<GetTvEpisodeTranslationsResponse> getTvEpisodeTranslations(int tvId, int seasonNumber, int episodeNumber) {
         // /tv/{tv_id}/season/{season_number}/episode/{episode_number}/translations
         String path = String.format("/tv/%s/season/%s/episode/%s/translations", tvId, seasonNumber, episodeNumber);
         Map<String, Object> requestParams = Collections.emptyMap();
@@ -198,7 +198,7 @@ public class TVEpisodes {
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
-    public RateTvEpisodeResponse rateTvEpisode(int episodeNumber, int seasonNumber, int tvId, RateTvEpisodeRequest rateTvEpisodeRequest, String guestSessionId, String sessionId) {
+    public RateTvEpisodeResponse rateTvEpisode(int tvId, int seasonNumber, int episodeNumber, RateTvEpisodeRequest rateTvEpisodeRequest, String guestSessionId, String sessionId) {
         // /tv/{tv_id}/season/{season_number}/episode/{episode_number}/rating
         String path = String.format("/tv/%s/season/%s/episode/%s/rating", tvId, seasonNumber, episodeNumber);
         Map<String, Object> requestParams = new HashMap<>();
@@ -218,8 +218,8 @@ public class TVEpisodes {
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
-    public RateTvEpisodeResponse rateTvEpisode(int episodeNumber, int seasonNumber, int tvId, RateTvEpisodeRequest requestBody) {
-        return rateTvEpisode(episodeNumber, seasonNumber, tvId, requestBody, null, null);
+    public RateTvEpisodeResponse rateTvEpisode(int tvId, int seasonNumber, int episodeNumber, RateTvEpisodeRequest requestBody) {
+        return rateTvEpisode(tvId, seasonNumber, episodeNumber, requestBody, null, null);
     }
 
     /**
@@ -229,7 +229,7 @@ public class TVEpisodes {
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
-    public DeleteTvEpisodeRatingResponse deleteTvEpisodeRating(int episodeNumber, int seasonNumber, int tvId, String guestSessionId, String sessionId) {
+    public DeleteTvEpisodeRatingResponse deleteTvEpisodeRating(int tvId, int seasonNumber, int episodeNumber, String guestSessionId, String sessionId) {
         // /tv/{tv_id}/season/{season_number}/episode/{episode_number}/rating
         String path = String.format("/tv/%s/season/%s/episode/%s/rating", tvId, seasonNumber, episodeNumber);
         Map<String, Object> requestParams = new HashMap<>();
@@ -249,8 +249,8 @@ public class TVEpisodes {
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
-    public DeleteTvEpisodeRatingResponse deleteTvEpisodeRating(int episodeNumber, int seasonNumber, int tvId) {
-        return deleteTvEpisodeRating(episodeNumber, seasonNumber, tvId, null, null);
+    public DeleteTvEpisodeRatingResponse deleteTvEpisodeRating(int tvId, int seasonNumber, int episodeNumber) {
+        return deleteTvEpisodeRating(tvId, seasonNumber, episodeNumber, null, null);
     }
 
     /**
@@ -259,7 +259,7 @@ public class TVEpisodes {
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
-    public Optional<GetTvEpisodeVideosResponse> getTvEpisodeVideos(int episodeNumber, int seasonNumber, int tvId, String language) {
+    public Optional<GetTvEpisodeVideosResponse> getTvEpisodeVideos(int tvId, int seasonNumber, int episodeNumber, String language) {
         // /tv/{tv_id}/season/{season_number}/episode/{episode_number}/videos
         String path = String.format("/tv/%s/season/%s/episode/%s/videos", tvId, seasonNumber, episodeNumber);
         Map<String, Object> requestParams = new HashMap<>();
@@ -277,8 +277,8 @@ public class TVEpisodes {
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
-    public Optional<GetTvEpisodeVideosResponse> getTvEpisodeVideos(int episodeNumber, int seasonNumber, int tvId) {
-        return getTvEpisodeVideos(episodeNumber, seasonNumber, tvId, null);
+    public Optional<GetTvEpisodeVideosResponse> getTvEpisodeVideos(int tvId, int seasonNumber, int episodeNumber) {
+        return getTvEpisodeVideos(tvId, seasonNumber, episodeNumber, null);
     }
 
 }
