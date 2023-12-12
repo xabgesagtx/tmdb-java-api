@@ -5,6 +5,11 @@
     <artifactId>code-generator</artifactId>
     <version>0.3-SNAPSHOT</version>
     <name>code-generator</name>
+    <properties>
+        <codemodel.version>3.0.0</codemodel.version>
+        <guava.version>32.1.3-jre</guava.version>
+        <jsoup.version>1.17.1</jsoup.version>
+    </properties>
     <parent>
         <groupId>com.github.xabgesagtx</groupId>
         <artifactId>tmdb-java-api-parent</artifactId>
@@ -15,7 +20,7 @@
         <dependency>
             <groupId>org.glassfish.jaxb</groupId>
             <artifactId>codemodel</artifactId>
-            <version>3.0.0</version>
+            <version>${codemodel.version}</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -32,7 +37,7 @@
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
-            <version>30.0-jre</version>
+            <version>${guava.version}</version>
         </dependency>
         <dependency>
             <groupId>ch.qos.logback</groupId>
@@ -45,7 +50,7 @@
         <dependency>
             <groupId>org.jsoup</groupId>
             <artifactId>jsoup</artifactId>
-            <version>1.13.1</version>
+            <version>${jsoup.version}</version>
         </dependency>
 
         <dependency>

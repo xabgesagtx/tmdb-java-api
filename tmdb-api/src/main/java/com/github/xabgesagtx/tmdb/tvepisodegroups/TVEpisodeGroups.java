@@ -16,15 +16,15 @@ public class TVEpisodeGroups {
     }
 
     /**
-     * <p>Get the details of a TV episode group. Groups support 7 different types which are enumerated as the following:</p> 
-     * <ol> 
-     *  <li>Original air date</li> 
-     *  <li>Absolute</li> 
-     *  <li>DVD</li> 
-     *  <li>Digital</li> 
-     *  <li>Story arc</li> 
-     *  <li>Production</li> 
-     *  <li>TV</li> 
+     * <p>Get the details of a TV episode group. Groups support 7 different types which are enumerated as the following:</p>
+     * <ol>
+     *  <li>Original air date</li>
+     *  <li>Absolute</li>
+     *  <li>DVD</li>
+     *  <li>Digital</li>
+     *  <li>Story arc</li>
+     *  <li>Production</li>
+     *  <li>TV</li>
      * </ol>
      * 
      * @param language
@@ -47,15 +47,15 @@ public class TVEpisodeGroups {
     }
 
     /**
-     * <p>Get the details of a TV episode group. Groups support 7 different types which are enumerated as the following:</p> 
-     * <ol> 
-     *  <li>Original air date</li> 
-     *  <li>Absolute</li> 
-     *  <li>DVD</li> 
-     *  <li>Digital</li> 
-     *  <li>Story arc</li> 
-     *  <li>Production</li> 
-     *  <li>TV</li> 
+     * <p>Get the details of a TV episode group. Groups support 7 different types which are enumerated as the following:</p>
+     * <ol>
+     *  <li>Original air date</li>
+     *  <li>Absolute</li>
+     *  <li>DVD</li>
+     *  <li>Digital</li>
+     *  <li>Story arc</li>
+     *  <li>Production</li>
+     *  <li>TV</li>
      * </ol>
      * 
      * @param id

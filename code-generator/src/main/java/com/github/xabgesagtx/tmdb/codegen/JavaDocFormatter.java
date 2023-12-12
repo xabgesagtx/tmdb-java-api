@@ -3,7 +3,7 @@ package com.github.xabgesagtx.tmdb.codegen;
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.safety.Whitelist;
+import org.jsoup.safety.Safelist;
 
 public class JavaDocFormatter {
 
@@ -20,6 +20,6 @@ public class JavaDocFormatter {
             String absUrl = e.absUrl("href");
             e.attr("href", absUrl);
         });
-        return Jsoup.clean(doc.select("body").html(), Whitelist.basic().removeEnforcedAttribute("a", "rel"));
+        return Jsoup.clean(doc.select("body").html(), Safelist.basic().removeEnforcedAttribute("a", "rel"));
     }
 }

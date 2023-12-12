@@ -18,12 +18,12 @@ public class Discover {
     }
 
     /**
-     * <p>Discover movies by different types of data like average rating, number of votes, genres and certifications. You can get a valid list of certifications from the <a href="https://developers.themoviedb.org/3/certifications/get-movie-certifications">certifications list</a> method.</p> 
-     * <p>Discover also supports a nice list of sort options. See below for all of the available options.</p> 
-     * <p>Please note, when using <code>certification</code> \ <code>certification.lte</code> you must also specify <code>certification_country</code>. These two parameters work together in order to filter the results. You can only filter results with the countries we have added to our <a href="https://developers.themoviedb.org/3/certifications/get-movie-certifications">certifications list</a>.</p> 
-     * <p>If you specify the <code>region</code> parameter, the regional release date will be used instead of the primary release date. The date returned will be the first date based on your query (ie. if a <code>with_release_type</code> is specified). It's important to note the order of the release types that are used. Specifying "2|3" would return the limited theatrical release date as opposed to "3|2" which would return the theatrical date.</p> 
-     * <p>Also note that a number of filters support being comma (<code>,</code>) or pipe (<code>|</code>) separated. Comma's are treated like an <code>AND</code> and query while pipe's are an <code>OR</code>.</p> 
-     * <p>Some examples of what can be done with discover can be found <a href="https://www.themoviedb.org/documentation/api/discover">here</a>.</p> <a href="https://developers.themoviedb.org/#recent-changes">\ud83d\udd17</a> Recent Changes    <strong>Date</strong> <strong>Change</strong>     January 2, 2020 A new set of filters are available for watch provider filtering. Check out <code>with_watch_providers</code> and <code>watch_region</code>.
+     * <p>Discover movies by different types of data like average rating, number of votes, genres and certifications. You can get a valid list of certifications from the <a href="https://developers.themoviedb.org/3/certifications/get-movie-certifications">certifications list</a> method.</p>
+     * <p>Discover also supports a nice list of sort options. See below for all of the available options.</p>
+     * <p>Please note, when using <code>certification</code> \ <code>certification.lte</code> you must also specify <code>certification_country</code>. These two parameters work together in order to filter the results. You can only filter results with the countries we have added to our <a href="https://developers.themoviedb.org/3/certifications/get-movie-certifications">certifications list</a>.</p>
+     * <p>If you specify the <code>region</code> parameter, the regional release date will be used instead of the primary release date. The date returned will be the first date based on your query (ie. if a <code>with_release_type</code> is specified). It's important to note the order of the release types that are used. Specifying "2|3" would return the limited theatrical release date as opposed to "3|2" which would return the theatrical date.</p>
+     * <p>Also note that a number of filters support being comma (<code>,</code>) or pipe (<code>|</code>) separated. Comma's are treated like an <code>AND</code> and query while pipe's are an <code>OR</code>.</p>
+     * <p>Some examples of what can be done with discover can be found <a href="https://www.themoviedb.org/documentation/api/discover">here</a>.</p><a href="https://developers.themoviedb.org/#recent-changes">\ud83d\udd17</a> Recent Changes <strong>Date</strong> <strong>Change</strong> January 2, 2020 A new set of filters are available for watch provider filtering. Check out <code>with_watch_providers</code> and <code>watch_region</code>.
      * 
      * @param withCast
      *     A comma separated list of person ID's. Only include movies that have one of the ID's added as an actor.
@@ -141,12 +141,12 @@ public class Discover {
     }
 
     /**
-     * <p>Discover movies by different types of data like average rating, number of votes, genres and certifications. You can get a valid list of certifications from the <a href="https://developers.themoviedb.org/3/certifications/get-movie-certifications">certifications list</a> method.</p> 
-     * <p>Discover also supports a nice list of sort options. See below for all of the available options.</p> 
-     * <p>Please note, when using <code>certification</code> \ <code>certification.lte</code> you must also specify <code>certification_country</code>. These two parameters work together in order to filter the results. You can only filter results with the countries we have added to our <a href="https://developers.themoviedb.org/3/certifications/get-movie-certifications">certifications list</a>.</p> 
-     * <p>If you specify the <code>region</code> parameter, the regional release date will be used instead of the primary release date. The date returned will be the first date based on your query (ie. if a <code>with_release_type</code> is specified). It's important to note the order of the release types that are used. Specifying "2|3" would return the limited theatrical release date as opposed to "3|2" which would return the theatrical date.</p> 
-     * <p>Also note that a number of filters support being comma (<code>,</code>) or pipe (<code>|</code>) separated. Comma's are treated like an <code>AND</code> and query while pipe's are an <code>OR</code>.</p> 
-     * <p>Some examples of what can be done with discover can be found <a href="https://www.themoviedb.org/documentation/api/discover">here</a>.</p> <a href="https://developers.themoviedb.org/#recent-changes">\ud83d\udd17</a> Recent Changes    <strong>Date</strong> <strong>Change</strong>     January 2, 2020 A new set of filters are available for watch provider filtering. Check out <code>with_watch_providers</code> and <code>watch_region</code>.
+     * <p>Discover movies by different types of data like average rating, number of votes, genres and certifications. You can get a valid list of certifications from the <a href="https://developers.themoviedb.org/3/certifications/get-movie-certifications">certifications list</a> method.</p>
+     * <p>Discover also supports a nice list of sort options. See below for all of the available options.</p>
+     * <p>Please note, when using <code>certification</code> \ <code>certification.lte</code> you must also specify <code>certification_country</code>. These two parameters work together in order to filter the results. You can only filter results with the countries we have added to our <a href="https://developers.themoviedb.org/3/certifications/get-movie-certifications">certifications list</a>.</p>
+     * <p>If you specify the <code>region</code> parameter, the regional release date will be used instead of the primary release date. The date returned will be the first date based on your query (ie. if a <code>with_release_type</code> is specified). It's important to note the order of the release types that are used. Specifying "2|3" would return the limited theatrical release date as opposed to "3|2" which would return the theatrical date.</p>
+     * <p>Also note that a number of filters support being comma (<code>,</code>) or pipe (<code>|</code>) separated. Comma's are treated like an <code>AND</code> and query while pipe's are an <code>OR</code>.</p>
+     * <p>Some examples of what can be done with discover can be found <a href="https://www.themoviedb.org/documentation/api/discover">here</a>.</p><a href="https://developers.themoviedb.org/#recent-changes">\ud83d\udd17</a> Recent Changes <strong>Date</strong> <strong>Change</strong> January 2, 2020 A new set of filters are available for watch provider filtering. Check out <code>with_watch_providers</code> and <code>watch_region</code>.
      * 
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
@@ -156,10 +156,10 @@ public class Discover {
     }
 
     /**
-     * <p>Discover TV shows by different types of data like average rating, number of votes, genres, the network they aired on and air dates.</p> 
-     * <p>Discover also supports a nice list of sort options. See below for all of the available options.</p> 
-     * <p>Also note that a number of filters support being comma (<code>,</code>) or pipe (<code>|</code>) separated. Comma's are treated like an <code>AND</code> and query while pipe's are an <code>OR</code>.</p> 
-     * <p>Some examples of what can be done with discover can be found <a href="https://www.themoviedb.org/documentation/api/discover">here</a>.</p> <a href="https://developers.themoviedb.org/#recent-changes">\ud83d\udd17</a> Recent Changes    <strong>Date</strong> <strong>Change</strong>     January 2, 2020 A new set of filters are available for watch provider filtering. Check out <code>with_watch_providers</code> and <code>watch_region</code>.
+     * <p>Discover TV shows by different types of data like average rating, number of votes, genres, the network they aired on and air dates.</p>
+     * <p>Discover also supports a nice list of sort options. See below for all of the available options.</p>
+     * <p>Also note that a number of filters support being comma (<code>,</code>) or pipe (<code>|</code>) separated. Comma's are treated like an <code>AND</code> and query while pipe's are an <code>OR</code>.</p>
+     * <p>Some examples of what can be done with discover can be found <a href="https://www.themoviedb.org/documentation/api/discover">here</a>.</p><a href="https://developers.themoviedb.org/#recent-changes">\ud83d\udd17</a> Recent Changes <strong>Date</strong> <strong>Change</strong> January 2, 2020 A new set of filters are available for watch provider filtering. Check out <code>with_watch_providers</code> and <code>watch_region</code>.
      * 
      * @param firstAirDate_gte
      *     Filter and only include TV shows that have a original air date that is greater or equal to the specified value. Can be used in conjunction with the "include_null_first_air_dates" filter if you want to include items with no air date.
@@ -247,10 +247,10 @@ public class Discover {
     }
 
     /**
-     * <p>Discover TV shows by different types of data like average rating, number of votes, genres, the network they aired on and air dates.</p> 
-     * <p>Discover also supports a nice list of sort options. See below for all of the available options.</p> 
-     * <p>Also note that a number of filters support being comma (<code>,</code>) or pipe (<code>|</code>) separated. Comma's are treated like an <code>AND</code> and query while pipe's are an <code>OR</code>.</p> 
-     * <p>Some examples of what can be done with discover can be found <a href="https://www.themoviedb.org/documentation/api/discover">here</a>.</p> <a href="https://developers.themoviedb.org/#recent-changes">\ud83d\udd17</a> Recent Changes    <strong>Date</strong> <strong>Change</strong>     January 2, 2020 A new set of filters are available for watch provider filtering. Check out <code>with_watch_providers</code> and <code>watch_region</code>.
+     * <p>Discover TV shows by different types of data like average rating, number of votes, genres, the network they aired on and air dates.</p>
+     * <p>Discover also supports a nice list of sort options. See below for all of the available options.</p>
+     * <p>Also note that a number of filters support being comma (<code>,</code>) or pipe (<code>|</code>) separated. Comma's are treated like an <code>AND</code> and query while pipe's are an <code>OR</code>.</p>
+     * <p>Some examples of what can be done with discover can be found <a href="https://www.themoviedb.org/documentation/api/discover">here</a>.</p><a href="https://developers.themoviedb.org/#recent-changes">\ud83d\udd17</a> Recent Changes <strong>Date</strong> <strong>Change</strong> January 2, 2020 A new set of filters are available for watch provider filtering. Check out <code>with_watch_providers</code> and <code>watch_region</code>.
      * 
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs

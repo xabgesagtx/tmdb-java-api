@@ -16,8 +16,8 @@ public class Authentication {
     }
 
     /**
-     * <p>This method will let you create a new guest session. Guest sessions are a type of session that will let a user rate movies and TV shows but not require them to have a TMDb user account. More information about user authentication can be found <a href="https://developers.themoviedb.org/3/authentication/how-do-i-generate-a-session-id">here</a>.</p> 
-     * <p>Please note, you should only generate a single guest session per user (or device) as you will be able to attach the ratings to a TMDb user account in the future. There is also IP limits in place so you should always make sure it's the end user doing the guest session actions.</p> 
+     * <p>This method will let you create a new guest session. Guest sessions are a type of session that will let a user rate movies and TV shows but not require them to have a TMDb user account. More information about user authentication can be found <a href="https://developers.themoviedb.org/3/authentication/how-do-i-generate-a-session-id">here</a>.</p>
+     * <p>Please note, you should only generate a single guest session per user (or device) as you will be able to attach the ratings to a TMDb user account in the future. There is also IP limits in place so you should always make sure it's the end user doing the guest session actions.</p>
      * <p>If a guest session is not used for the first time within 24 hours, it will be automatically deleted.</p>
      * 
      * @throws TmdbApiException
@@ -68,9 +68,9 @@ public class Authentication {
     }
 
     /**
-     * <p>This method allows an application to validate a request token by entering a username and password.</p> 
-     * <p>Not all applications have access to a web view so this can be used as a substitute.</p> 
-     * <p>Please note, the preferred method of validating a request token is to have a user authenticate the request via the TMDb website. You can read about that method <a href="https://developers.themoviedb.org/3/authentication/how-do-i-generate-a-session-id">here</a>.</p> 
+     * <p>This method allows an application to validate a request token by entering a username and password.</p>
+     * <p>Not all applications have access to a web view so this can be used as a substitute.</p>
+     * <p>Please note, the preferred method of validating a request token is to have a user authenticate the request via the TMDb website. You can read about that method <a href="https://developers.themoviedb.org/3/authentication/how-do-i-generate-a-session-id">here</a>.</p>
      * <p>If you decide to use this method please <strong>use HTTPS</strong>.</p>
      * 
      * @param validateRequestTokenRequest

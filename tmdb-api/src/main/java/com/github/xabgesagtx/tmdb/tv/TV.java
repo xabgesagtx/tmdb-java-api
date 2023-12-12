@@ -19,8 +19,8 @@ public class TV {
     }
 
     /**
-     * <p>Get the primary TV show details by id.</p> 
-     * <p>Supports <code>append_to_response</code>. Read more about this <a href="https://developers.themoviedb.org/3/getting-started/append-to-response">here</a>.</p> <a href="https://developers.themoviedb.org/#recent-changes">\ud83d\udd17</a> Recent Changes    <strong>Date</strong> <strong>Change</strong>     November 20, 2020 A <code>watch/providers</code> method has been added to show what providers (eg. streaming) are available and where.   November 14, 2020 The <code>tagline</code> has been added to the default response, and is also available as part of the translations method.   July 17, 2018 We now return <code>last_episode_to_air</code> and <code>next_episode_to_air</code> fields.   March 12, 2018 Networks return proper logos and we introduced SVG support.   March 8, 2018 The <code>seasons</code> field now returns the translated names and overviews.
+     * <p>Get the primary TV show details by id.</p>
+     * <p>Supports <code>append_to_response</code>. Read more about this <a href="https://developers.themoviedb.org/3/getting-started/append-to-response">here</a>.</p><a href="https://developers.themoviedb.org/#recent-changes">\ud83d\udd17</a> Recent Changes <strong>Date</strong> <strong>Change</strong> November 20, 2020 A <code>watch/providers</code> method has been added to show what providers (eg. streaming) are available and where. November 14, 2020 The <code>tagline</code> has been added to the default response, and is also available as part of the translations method. July 17, 2018 We now return <code>last_episode_to_air</code> and <code>next_episode_to_air</code> fields. March 12, 2018 Networks return proper logos and we introduced SVG support. March 8, 2018 The <code>seasons</code> field now returns the translated names and overviews.
      * 
      * @param appendToResponse
      *     Append requests within the same namespace to the response.
@@ -45,8 +45,8 @@ public class TV {
     }
 
     /**
-     * <p>Get the primary TV show details by id.</p> 
-     * <p>Supports <code>append_to_response</code>. Read more about this <a href="https://developers.themoviedb.org/3/getting-started/append-to-response">here</a>.</p> <a href="https://developers.themoviedb.org/#recent-changes">\ud83d\udd17</a> Recent Changes    <strong>Date</strong> <strong>Change</strong>     November 20, 2020 A <code>watch/providers</code> method has been added to show what providers (eg. streaming) are available and where.   November 14, 2020 The <code>tagline</code> has been added to the default response, and is also available as part of the translations method.   July 17, 2018 We now return <code>last_episode_to_air</code> and <code>next_episode_to_air</code> fields.   March 12, 2018 Networks return proper logos and we introduced SVG support.   March 8, 2018 The <code>seasons</code> field now returns the translated names and overviews.
+     * <p>Get the primary TV show details by id.</p>
+     * <p>Supports <code>append_to_response</code>. Read more about this <a href="https://developers.themoviedb.org/3/getting-started/append-to-response">here</a>.</p><a href="https://developers.themoviedb.org/#recent-changes">\ud83d\udd17</a> Recent Changes <strong>Date</strong> <strong>Change</strong> November 20, 2020 A <code>watch/providers</code> method has been added to show what providers (eg. streaming) are available and where. November 14, 2020 The <code>tagline</code> has been added to the default response, and is also available as part of the translations method. July 17, 2018 We now return <code>last_episode_to_air</code> and <code>next_episode_to_air</code> fields. March 12, 2018 Networks return proper logos and we introduced SVG support. March 8, 2018 The <code>seasons</code> field now returns the translated names and overviews.
      * 
      * @param tvId
      *     tvId
@@ -58,11 +58,11 @@ public class TV {
     }
 
     /**
-     * <p>Grab the following account states for a session:</p> 
-     * <ul> 
-     *  <li>TV show rating</li> 
-     *  <li>If it belongs to your watchlist</li> 
-     *  <li>If it belongs to your favourite list</li> 
+     * <p>Grab the following account states for a session:</p>
+     * <ul>
+     *  <li>TV show rating</li>
+     *  <li>If it belongs to your watchlist</li>
+     *  <li>If it belongs to your favourite list</li>
      * </ul>
      * 
      * @param language
@@ -91,11 +91,11 @@ public class TV {
     }
 
     /**
-     * <p>Grab the following account states for a session:</p> 
-     * <ul> 
-     *  <li>TV show rating</li> 
-     *  <li>If it belongs to your watchlist</li> 
-     *  <li>If it belongs to your favourite list</li> 
+     * <p>Grab the following account states for a session:</p>
+     * <ul>
+     *  <li>TV show rating</li>
+     *  <li>If it belongs to your watchlist</li>
+     *  <li>If it belongs to your favourite list</li>
      * </ul>
      * 
      * @param tvId
@@ -108,7 +108,7 @@ public class TV {
     }
 
     /**
-     * <p>Get the aggregate credits (cast and crew) that have been added to a TV show.</p> 
+     * <p>Get the aggregate credits (cast and crew) that have been added to a TV show.</p>
      * <p>This call differs from the main <code>credits</code> call in that it does not return the newest season but rather, is a view of all the entire cast &amp; crew for all episodes belonging to a TV show.</p>
      * 
      * @param language
@@ -131,7 +131,7 @@ public class TV {
     }
 
     /**
-     * <p>Get the aggregate credits (cast and crew) that have been added to a TV show.</p> 
+     * <p>Get the aggregate credits (cast and crew) that have been added to a TV show.</p>
      * <p>This call differs from the main <code>credits</code> call in that it does not return the newest season but rather, is a view of all the entire cast &amp; crew for all episodes belonging to a TV show.</p>
      * 
      * @param tvId
@@ -178,8 +178,8 @@ public class TV {
     }
 
     /**
-     * <p>Get the changes for a TV show. By default only the last 24 hours are returned.</p> 
-     * <p>You can query up to 14 days in a single query by using the <code>start_date</code> and <code>end_date</code> query parameters.</p> 
+     * <p>Get the changes for a TV show. By default only the last 24 hours are returned.</p>
+     * <p>You can query up to 14 days in a single query by using the <code>start_date</code> and <code>end_date</code> query parameters.</p>
      * <p>TV show changes are different than movie changes in that there are some edits on seasons and episodes that will create a change entry at the show level. These can be found under the season and episode keys. These keys will contain a <code>series_id</code> and <code>episode_id</code>. You can use the <a href="https://developers.themoviedb.org/3/tv-seasons/get-tv-season-changes">season changes</a> and <a href="https://developers.themoviedb.org/3/tv-episodes/get-tv-episode-changes">episode changes</a> methods to look these up individually.</p>
      * 
      * @param endDate
@@ -208,8 +208,8 @@ public class TV {
     }
 
     /**
-     * <p>Get the changes for a TV show. By default only the last 24 hours are returned.</p> 
-     * <p>You can query up to 14 days in a single query by using the <code>start_date</code> and <code>end_date</code> query parameters.</p> 
+     * <p>Get the changes for a TV show. By default only the last 24 hours are returned.</p>
+     * <p>You can query up to 14 days in a single query by using the <code>start_date</code> and <code>end_date</code> query parameters.</p>
      * <p>TV show changes are different than movie changes in that there are some edits on seasons and episodes that will create a change entry at the show level. These can be found under the season and episode keys. These keys will contain a <code>series_id</code> and <code>episode_id</code>. You can use the <a href="https://developers.themoviedb.org/3/tv-seasons/get-tv-season-changes">season changes</a> and <a href="https://developers.themoviedb.org/3/tv-episodes/get-tv-episode-changes">episode changes</a> methods to look these up individually.</p>
      * 
      * @param tvId
@@ -324,7 +324,7 @@ public class TV {
     }
 
     /**
-     * <p>Get the external ids for a TV show. We currently support the following external sources.</p>    <strong>Media Databases</strong> <strong>Social IDs</strong>     IMDb ID Facebook   TVDB ID Instagram   Freebase MID* Twitter   Freebase ID*    TVRage ID*     
+     * <p>Get the external ids for a TV show. We currently support the following external sources.</p> <strong>Media Databases</strong> <strong>Social IDs</strong> IMDb ID Facebook TVDB ID Instagram Freebase MID* Twitter Freebase ID* TVRage ID*
      * <p>*Defunct or no longer available as a service.</p>
      * 
      * @param language
@@ -347,7 +347,7 @@ public class TV {
     }
 
     /**
-     * <p>Get the external ids for a TV show. We currently support the following external sources.</p>    <strong>Media Databases</strong> <strong>Social IDs</strong>     IMDb ID Facebook   TVDB ID Instagram   Freebase MID* Twitter   Freebase ID*    TVRage ID*     
+     * <p>Get the external ids for a TV show. We currently support the following external sources.</p> <strong>Media Databases</strong> <strong>Social IDs</strong> IMDb ID Facebook TVDB ID Instagram Freebase MID* Twitter Freebase ID* TVRage ID*
      * <p>*Defunct or no longer available as a service.</p>
      * 
      * @param tvId
@@ -360,7 +360,7 @@ public class TV {
     }
 
     /**
-     * <p>Get the images that belong to a TV show.</p> 
+     * <p>Get the images that belong to a TV show.</p>
      * <p>Querying images with a <code>language</code> parameter will filter the results. If you want to include a fallback language (especially useful for backdrops) you can use the <code>include_image_language</code> parameter. This should be a comma seperated value like so: <code>include_image_language=en,null</code>.</p>
      * 
      * @param language
@@ -383,7 +383,7 @@ public class TV {
     }
 
     /**
-     * <p>Get the images that belong to a TV show.</p> 
+     * <p>Get the images that belong to a TV show.</p>
      * <p>Querying images with a <code>language</code> parameter will filter the results. If you want to include a fallback language (especially useful for backdrops) you can use the <code>include_image_language</code> parameter. This should be a comma seperated value like so: <code>include_image_language=en,null</code>.</p>
      * 
      * @param tvId
@@ -564,7 +564,7 @@ public class TV {
     }
 
     /**
-     * <p>Get the videos that have been added to a TV show.</p> <a href="https://developers.themoviedb.org/#recent-changes">\ud83d\udd17</a> Recent Changes    <strong>Date</strong> <strong>Change</strong>     March 23, 2019 Vimeo was added as a video source.   March 20, 2019 "Behind the Scenes" and "Bloopers" were added as valid video types.
+     * <p>Get the videos that have been added to a TV show.</p><a href="https://developers.themoviedb.org/#recent-changes">\ud83d\udd17</a> Recent Changes <strong>Date</strong> <strong>Change</strong> March 23, 2019 Vimeo was added as a video source. March 20, 2019 "Behind the Scenes" and "Bloopers" were added as valid video types.
      * 
      * @param language
      *     Pass a ISO 639-1 value to display translated data for the fields that support it.
@@ -586,7 +586,7 @@ public class TV {
     }
 
     /**
-     * <p>Get the videos that have been added to a TV show.</p> <a href="https://developers.themoviedb.org/#recent-changes">\ud83d\udd17</a> Recent Changes    <strong>Date</strong> <strong>Change</strong>     March 23, 2019 Vimeo was added as a video source.   March 20, 2019 "Behind the Scenes" and "Bloopers" were added as valid video types.
+     * <p>Get the videos that have been added to a TV show.</p><a href="https://developers.themoviedb.org/#recent-changes">\ud83d\udd17</a> Recent Changes <strong>Date</strong> <strong>Change</strong> March 23, 2019 Vimeo was added as a video source. March 20, 2019 "Behind the Scenes" and "Bloopers" were added as valid video types.
      * 
      * @param tvId
      *     tvId
@@ -598,8 +598,8 @@ public class TV {
     }
 
     /**
-     * <p>Powered by our partnership with JustWatch, you can query this method to get a list of the availabilities per country by provider.</p> 
-     * <p>This is not going to return full deep links, but rather, it's just enough information to display what's available where.</p> 
+     * <p>Powered by our partnership with JustWatch, you can query this method to get a list of the availabilities per country by provider.</p>
+     * <p>This is not going to return full deep links, but rather, it's just enough information to display what's available where.</p>
      * <p>You can link to the provided TMDb URL to help support TMDb and let your users deep link into the content.</p>
      * 
      * @param tvId
@@ -619,7 +619,7 @@ public class TV {
     }
 
     /**
-     * <p>Rate a TV show.</p> 
+     * <p>Rate a TV show.</p>
      * <p>A valid session or guest session ID is required. You can read more about how this works <a href="https://developers.themoviedb.org/3/authentication/how-do-i-generate-a-session-id">here</a>.</p>
      * 
      * @param rateTvShowRequest
@@ -647,7 +647,7 @@ public class TV {
     }
 
     /**
-     * <p>Rate a TV show.</p> 
+     * <p>Rate a TV show.</p>
      * <p>A valid session or guest session ID is required. You can read more about how this works <a href="https://developers.themoviedb.org/3/authentication/how-do-i-generate-a-session-id">here</a>.</p>
      * 
      * @param requestBody
@@ -662,7 +662,7 @@ public class TV {
     }
 
     /**
-     * <p>Remove your rating for a TV show.</p> 
+     * <p>Remove your rating for a TV show.</p>
      * <p>A valid session or guest session ID is required. You can read more about how this works <a href="https://developers.themoviedb.org/3/authentication/how-do-i-generate-a-session-id">here</a>.</p>
      * 
      * @param tvId
@@ -688,7 +688,7 @@ public class TV {
     }
 
     /**
-     * <p>Remove your rating for a TV show.</p> 
+     * <p>Remove your rating for a TV show.</p>
      * <p>A valid session or guest session ID is required. You can read more about how this works <a href="https://developers.themoviedb.org/3/authentication/how-do-i-generate-a-session-id">here</a>.</p>
      * 
      * @param tvId
@@ -730,7 +730,7 @@ public class TV {
     }
 
     /**
-     * <p>Get a list of TV shows that are airing today. This query is purely day based as we do not currently support airing times.</p> 
+     * <p>Get a list of TV shows that are airing today. This query is purely day based as we do not currently support airing times.</p>
      * <p>You can specify a <a>timezone</a> to offset the day calculation. Without a specified timezone, this query defaults to EST (Eastern Time UTC-05:00).</p>
      * 
      * @param language
@@ -753,7 +753,7 @@ public class TV {
     }
 
     /**
-     * <p>Get a list of TV shows that are airing today. This query is purely day based as we do not currently support airing times.</p> 
+     * <p>Get a list of TV shows that are airing today. This query is purely day based as we do not currently support airing times.</p>
      * <p>You can specify a <a>timezone</a> to offset the day calculation. Without a specified timezone, this query defaults to EST (Eastern Time UTC-05:00).</p>
      * 
      * @throws TmdbApiException
@@ -764,7 +764,7 @@ public class TV {
     }
 
     /**
-     * <p>Get a list of shows that are currently on the air.</p> 
+     * <p>Get a list of shows that are currently on the air.</p>
      * <p>This query looks for any TV show that has an episode with an air date in the next 7 days.</p>
      * 
      * @param language
@@ -787,7 +787,7 @@ public class TV {
     }
 
     /**
-     * <p>Get a list of shows that are currently on the air.</p> 
+     * <p>Get a list of shows that are currently on the air.</p>
      * <p>This query looks for any TV show that has an episode with an air date in the next 7 days.</p>
      * 
      * @throws TmdbApiException
