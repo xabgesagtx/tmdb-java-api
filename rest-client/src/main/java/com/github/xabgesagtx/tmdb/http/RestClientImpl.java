@@ -24,6 +24,7 @@ import static java.util.stream.Collectors.joining;
 @RequiredArgsConstructor
 public class RestClientImpl implements RestClient {
 
+    public static final String BASE_URL_V3 = "https://api.themoviedb.org/3";
     private final HttpClient client;
     private final JsonTransformer jsonTransformer;
     @NonNull
@@ -32,11 +33,19 @@ public class RestClientImpl implements RestClient {
     private final String baseUrl;
 
     public RestClientImpl(String apiKey) {
-        this(apiKey, "https://api.themoviedb.org/3");
+        this(apiKey, BASE_URL_V3);
+    }
+
+    public RestClientImpl(String apiKey, HttpClient client) {
+        this(apiKey, BASE_URL_V3, client);
     }
 
     public RestClientImpl(String apiKey, String baseUrl) {
-        this(HttpClient.newHttpClient(), new JacksonJsonTransformer(), apiKey, baseUrl);
+        this(apiKey, baseUrl, HttpClient.newHttpClient());
+    }
+
+    public RestClientImpl(String apiKey, String baseUrl, HttpClient client) {
+        this(client, new JacksonJsonTransformer(), apiKey, baseUrl);
     }
 
     @Override
@@ -109,18 +118,13 @@ public class RestClientImpl implements RestClient {
     }
 
     <T> Optional<T> handleResponse(HttpResponse<T> response) {
-        switch (response.statusCode()) {
-            case 200:
-                return Optional.of(response.body());
-            case 401:
-                throw new UnauthorizedException("Got unauthorized from API");
-            case 403:
-                throw new ForbiddenException("Got forbidden from API");
-            case 404:
-                return Optional.empty();
-            default:
-                throw new UnexpectedStatusCodeException(response.statusCode());
-        }
+        return switch (response.statusCode()) {
+            case 200 -> Optional.of(response.body());
+            case 401 -> throw new UnauthorizedException("Got unauthorized from API");
+            case 403 -> throw new ForbiddenException("Got forbidden from API");
+            case 404 -> Optional.empty();
+            default -> throw new UnexpectedStatusCodeException(response.statusCode());
+        };
     }
 
     private URI createUri(String path, Map<String, Object> params) {

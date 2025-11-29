@@ -10,6 +10,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.http.HttpClient;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -44,11 +45,23 @@ public class CodeGenerator extends AbstractGenerator {
             tmdbApi.method(JMod.PUBLIC, resource, resourceName).body()._return(field);
         });
 
-        // convenience constructor
+        convenienceConstructor(tmdbApi);
+        convenienceConstructorWithHttpClient(tmdbApi);
+    }
+
+    private void convenienceConstructor(JDefinedClass tmdbApi) {
         JMethod apiKeyConstructor = tmdbApi.constructor(JMod.PUBLIC);
         JVar apiKeyParam = apiKeyConstructor.param(String.class, "apiKey");
         JInvocation restClientImpl = JExpr._new(model.ref(RestClientImpl.class)).arg(apiKeyParam);
         apiKeyConstructor.body().invoke("this").arg(restClientImpl);
+    }
+
+    private void convenienceConstructorWithHttpClient(JDefinedClass tmdbApi) {
+        JMethod constructor = tmdbApi.constructor(JMod.PUBLIC);
+        JVar apiKeyParam = constructor.param(String.class, "apiKey");
+        JVar httpClientParam = constructor.param(HttpClient.class, "httpClient");
+        JInvocation restClientImpl = JExpr._new(model.ref(RestClientImpl.class)).arg(apiKeyParam).arg(httpClientParam);
+        constructor.body().invoke("this").arg(restClientImpl);
     }
 
 }

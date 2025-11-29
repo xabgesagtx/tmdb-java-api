@@ -1,6 +1,7 @@
 
 package com.github.xabgesagtx.tmdb;
 
+import java.net.http.HttpClient;
 import com.github.xabgesagtx.tmdb.account.Account;
 import com.github.xabgesagtx.tmdb.authentication.Authentication;
 import com.github.xabgesagtx.tmdb.certifications.Certifications;
@@ -84,6 +85,10 @@ public class TmdbApi {
 
     public TmdbApi(String apiKey) {
         this(new RestClientImpl(apiKey));
+    }
+
+    public TmdbApi(String apiKey, HttpClient httpClient) {
+        this(new RestClientImpl(apiKey, httpClient));
     }
 
     public Account account() {
