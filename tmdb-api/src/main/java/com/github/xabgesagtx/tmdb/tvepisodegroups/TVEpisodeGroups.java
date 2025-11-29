@@ -27,10 +27,10 @@ public class TVEpisodeGroups {
      *  <li>TV</li>
      * </ol>
      * 
-     * @param language
-     *     Pass a ISO 639-1 value to display translated data for the fields that support it.
      * @param id
      *     id
+     * @param language
+     *     Pass a ISO 639-1 value to display translated data for the fields that support it.
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */

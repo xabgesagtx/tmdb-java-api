@@ -20,14 +20,15 @@ public class Movies {
 
     /**
      * <p>Get the primary information about a movie.</p>
-     * <p>Supports <code>append_to_response</code>. Read more about this <a href="https://developers.themoviedb.org/3/getting-started/append-to-response">here</a>.</p><a href="https://developers.themoviedb.org/#recent-changes">\ud83d\udd17</a> Recent Changes <strong>Date</strong> <strong>Change</strong> November 20, 2020 A <code>watch/providers</code> method has been added to show what providers (eg. streaming) are available and where.
+     * <p>Supports <code>append_to_response</code>. Read more about this <a href="https://developers.themoviedb.org/3/getting-started/append-to-response">here</a>.</p>
+     * <a href="https://developers.themoviedb.org/#recent-changes">\ud83d\udd17</a> Recent Changes    <strong>Date</strong> <strong>Change</strong>     November 20, 2020 A <code>watch/providers</code> method has been added to show what providers (eg. streaming) are available and where.
      * 
      * @param appendToResponse
      *     Append requests within the same namespace to the response.
-     * @param movieId
-     *     movieId
      * @param language
      *     Pass a ISO 639-1 value to display translated data for the fields that support it.
+     * @param movieId
+     *     movieId
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
@@ -46,7 +47,8 @@ public class Movies {
 
     /**
      * <p>Get the primary information about a movie.</p>
-     * <p>Supports <code>append_to_response</code>. Read more about this <a href="https://developers.themoviedb.org/3/getting-started/append-to-response">here</a>.</p><a href="https://developers.themoviedb.org/#recent-changes">\ud83d\udd17</a> Recent Changes <strong>Date</strong> <strong>Change</strong> November 20, 2020 A <code>watch/providers</code> method has been added to show what providers (eg. streaming) are available and where.
+     * <p>Supports <code>append_to_response</code>. Read more about this <a href="https://developers.themoviedb.org/3/getting-started/append-to-response">here</a>.</p>
+     * <a href="https://developers.themoviedb.org/#recent-changes">\ud83d\udd17</a> Recent Changes    <strong>Date</strong> <strong>Change</strong>     November 20, 2020 A <code>watch/providers</code> method has been added to show what providers (eg. streaming) are available and where.
      * 
      * @param movieId
      *     movieId
@@ -65,12 +67,12 @@ public class Movies {
      *  <li>If it belongs to your favourite list</li>
      * </ul>
      * 
+     * @param guestSessionId
+     *     guestSessionId
      * @param movieId
      *     movieId
      * @param sessionId
      *     sessionId
-     * @param guestSessionId
-     *     guestSessionId
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
@@ -107,7 +109,8 @@ public class Movies {
     }
 
     /**
-     * <p>Get all of the alternative titles for a movie.</p><a href="https://developers.themoviedb.org/#recent-changes">\ud83d\udd17</a> Recent Changes <strong>Date</strong> <strong>Change</strong> March 16, 2018 Added the <code>type</code> field.
+     * <p>Get all of the alternative titles for a movie.</p>
+     * <a href="https://developers.themoviedb.org/#recent-changes">\ud83d\udd17</a> Recent Changes    <strong>Date</strong> <strong>Change</strong>     March 16, 2018 Added the <code>type</code> field.
      * 
      * @param country
      *     country
@@ -129,7 +132,8 @@ public class Movies {
     }
 
     /**
-     * <p>Get all of the alternative titles for a movie.</p><a href="https://developers.themoviedb.org/#recent-changes">\ud83d\udd17</a> Recent Changes <strong>Date</strong> <strong>Change</strong> March 16, 2018 Added the <code>type</code> field.
+     * <p>Get all of the alternative titles for a movie.</p>
+     * <a href="https://developers.themoviedb.org/#recent-changes">\ud83d\udd17</a> Recent Changes    <strong>Date</strong> <strong>Change</strong>     March 16, 2018 Added the <code>type</code> field.
      * 
      * @param movieId
      *     movieId
@@ -185,10 +189,10 @@ public class Movies {
     /**
      * <p>Get the cast and crew for a movie.</p>
      * 
-     * @param movieId
-     *     movieId
      * @param language
      *     Pass a ISO 639-1 value to display translated data for the fields that support it.
+     * @param movieId
+     *     movieId
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
@@ -217,7 +221,8 @@ public class Movies {
     }
 
     /**
-     * <p>Get the external ids for a movie. We currently support the following external sources.</p> <strong>Media Databases</strong> <strong>Social IDs</strong> IMDb ID Facebook Instagram Twitter
+     * <p>Get the external ids for a movie. We currently support the following external sources.</p>   
+     * <strong>Media Databases</strong> <strong>Social IDs</strong>     IMDb ID Facebook    Instagram    Twitter
      * 
      * @param movieId
      *     movieId
@@ -241,10 +246,10 @@ public class Movies {
      * 
      * @param includeImageLanguage
      *     includeImageLanguage
-     * @param movieId
-     *     movieId
      * @param language
      *     Pass a ISO 639-1 value to display translated data for the fields that support it.
+     * @param movieId
+     *     movieId
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
@@ -296,10 +301,10 @@ public class Movies {
     /**
      * <p>Get a list of lists that this movie belongs to.</p>
      * 
-     * @param movieId
-     *     movieId
      * @param language
      *     Pass a ISO 639-1 value to display translated data for the fields that support it.
+     * @param movieId
+     *     movieId
      * @param page
      *     Specify which page to query.
      * @throws TmdbApiException
@@ -333,10 +338,10 @@ public class Movies {
     /**
      * <p>Get a list of recommended movies for a movie.</p>
      * 
-     * @param movieId
-     *     movieId
      * @param language
      *     Pass a ISO 639-1 value to display translated data for the fields that support it.
+     * @param movieId
+     *     movieId
      * @param page
      *     Specify which page to query.
      * @throws TmdbApiException
@@ -398,10 +403,10 @@ public class Movies {
     /**
      * <p>Get the user reviews for a movie.</p>
      * 
-     * @param movieId
-     *     movieId
      * @param language
      *     Pass a ISO 639-1 value to display translated data for the fields that support it.
+     * @param movieId
+     *     movieId
      * @param page
      *     Specify which page to query.
      * @throws TmdbApiException
@@ -436,10 +441,10 @@ public class Movies {
      * <p>Get a list of similar movies. This is <strong>not</strong> the same as the "Recommendation" system you see on the website.</p>
      * <p>These items are assembled by looking at keywords and genres.</p>
      * 
-     * @param movieId
-     *     movieId
      * @param language
      *     Pass a ISO 639-1 value to display translated data for the fields that support it.
+     * @param movieId
+     *     movieId
      * @param page
      *     Specify which page to query.
      * @throws TmdbApiException
@@ -491,12 +496,13 @@ public class Movies {
     }
 
     /**
-     * <p>Get the videos that have been added to a movie.</p><a href="https://developers.themoviedb.org/#recent-changes">\ud83d\udd17</a> Recent Changes <strong>Date</strong> <strong>Change</strong> March 23, 2019 Vimeo was added as a video source. March 20, 2019 "Behind the Scenes" and "Bloopers" were added as valid video types.
+     * <p>Get the videos that have been added to a movie.</p>
+     * <a href="https://developers.themoviedb.org/#recent-changes">\ud83d\udd17</a> Recent Changes    <strong>Date</strong> <strong>Change</strong>     March 23, 2019 Vimeo was added as a video source.   March 20, 2019 "Behind the Scenes" and "Bloopers" were added as valid video types.
      * 
-     * @param movieId
-     *     movieId
      * @param language
      *     Pass a ISO 639-1 value to display translated data for the fields that support it.
+     * @param movieId
+     *     movieId
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
@@ -513,7 +519,8 @@ public class Movies {
     }
 
     /**
-     * <p>Get the videos that have been added to a movie.</p><a href="https://developers.themoviedb.org/#recent-changes">\ud83d\udd17</a> Recent Changes <strong>Date</strong> <strong>Change</strong> March 23, 2019 Vimeo was added as a video source. March 20, 2019 "Behind the Scenes" and "Bloopers" were added as valid video types.
+     * <p>Get the videos that have been added to a movie.</p>
+     * <a href="https://developers.themoviedb.org/#recent-changes">\ud83d\udd17</a> Recent Changes    <strong>Date</strong> <strong>Change</strong>     March 23, 2019 Vimeo was added as a video source.   March 20, 2019 "Behind the Scenes" and "Bloopers" were added as valid video types.
      * 
      * @param movieId
      *     movieId
@@ -549,14 +556,14 @@ public class Movies {
      * <p>Rate a movie.</p>
      * <p>A valid session or guest session ID is required. You can read more about how this works <a href="https://developers.themoviedb.org/3/authentication/how-do-i-generate-a-session-id">here</a>.</p>
      * 
-     * @param rateMovieRequest
-     *     rateMovieRequest
-     * @param movieId
-     *     movieId
-     * @param sessionId
-     *     sessionId
      * @param guestSessionId
      *     guestSessionId
+     * @param movieId
+     *     movieId
+     * @param rateMovieRequest
+     *     rateMovieRequest
+     * @param sessionId
+     *     sessionId
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
@@ -577,10 +584,10 @@ public class Movies {
      * <p>Rate a movie.</p>
      * <p>A valid session or guest session ID is required. You can read more about how this works <a href="https://developers.themoviedb.org/3/authentication/how-do-i-generate-a-session-id">here</a>.</p>
      * 
-     * @param requestBody
-     *     requestBody
      * @param movieId
      *     movieId
+     * @param requestBody
+     *     requestBody
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
@@ -592,12 +599,12 @@ public class Movies {
      * <p>Remove your rating for a movie.</p>
      * <p>A valid session or guest session ID is required. You can read more about how this works <a href="https://developers.themoviedb.org/3/authentication/how-do-i-generate-a-session-id">here</a>.</p>
      * 
+     * @param guestSessionId
+     *     guestSessionId
      * @param movieId
      *     movieId
      * @param sessionId
      *     sessionId
-     * @param guestSessionId
-     *     guestSessionId
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */

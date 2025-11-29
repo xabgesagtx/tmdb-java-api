@@ -20,12 +20,12 @@ public class GuestSessions {
     /**
      * <p>Get the rated movies for a guest session.</p>
      * 
+     * @param guestSessionId
+     *     guestSessionId
      * @param language
      *     Pass a ISO 639-1 value to display translated data for the fields that support it.
      * @param sortBy
      *     Sort the results.
-     * @param guestSessionId
-     *     guestSessionId
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
@@ -57,12 +57,12 @@ public class GuestSessions {
     /**
      * <p>Get the rated TV shows for a guest session.</p>
      * 
+     * @param guestSessionId
+     *     guestSessionId
      * @param language
      *     Pass a ISO 639-1 value to display translated data for the fields that support it.
      * @param sortBy
      *     Sort the results.
-     * @param guestSessionId
-     *     guestSessionId
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
@@ -94,12 +94,12 @@ public class GuestSessions {
     /**
      * <p>Get the rated TV episodes for a guest session.</p>
      * 
+     * @param guestSessionId
+     *     guestSessionId
      * @param language
      *     Pass a ISO 639-1 value to display translated data for the fields that support it.
      * @param sortBy
      *     Sort the results.
-     * @param guestSessionId
-     *     guestSessionId
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */

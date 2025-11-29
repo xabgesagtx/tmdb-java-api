@@ -19,10 +19,10 @@ public class Lists {
     /**
      * <p>Get the details of a list.</p>
      * 
-     * @param listId
-     *     listId
      * @param language
      *     Pass a ISO 639-1 value to display translated data for the fields that support it.
+     * @param listId
+     *     listId
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
@@ -96,10 +96,10 @@ public class Lists {
     /**
      * <p>Add a movie to a list.</p>
      * 
-     * @param listId
-     *     listId
      * @param addMovieRequest
      *     addMovieRequest
+     * @param listId
+     *     listId
      * @param sessionId
      *     sessionId
      * @throws TmdbApiException
@@ -144,10 +144,10 @@ public class Lists {
     /**
      * <p>Clear all of the items from a list.</p>
      * 
-     * @param listId
-     *     listId
      * @param confirm
      *     confirm
+     * @param listId
+     *     listId
      * @param sessionId
      *     sessionId
      * @throws TmdbApiException

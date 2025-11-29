@@ -25,10 +25,10 @@ public class TVSeasons {
      *     Append requests within the same namespace to the response.
      * @param language
      *     Pass a ISO 639-1 value to display translated data for the fields that support it.
-     * @param tvId
-     *     tvId
      * @param seasonNumber
      *     seasonNumber
+     * @param tvId
+     *     tvId
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
@@ -49,10 +49,10 @@ public class TVSeasons {
      * <p>Get the TV season details by id.</p>
      * <p>Supports <code>append_to_response</code>. Read more about this <a href="https://developers.themoviedb.org/3/getting-started/append-to-response">here</a>.</p>
      * 
-     * @param tvId
-     *     tvId
      * @param seasonNumber
      *     seasonNumber
+     * @param tvId
+     *     tvId
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
@@ -63,16 +63,16 @@ public class TVSeasons {
     /**
      * <p>Returns all of the user ratings for the season's episodes.</p>
      * 
+     * @param guestSessionId
+     *     guestSessionId
      * @param language
      *     Pass a ISO 639-1 value to display translated data for the fields that support it.
-     * @param tvId
-     *     tvId
      * @param seasonNumber
      *     seasonNumber
      * @param sessionId
      *     sessionId
-     * @param guestSessionId
-     *     guestSessionId
+     * @param tvId
+     *     tvId
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
@@ -93,10 +93,10 @@ public class TVSeasons {
     /**
      * <p>Returns all of the user ratings for the season's episodes.</p>
      * 
-     * @param tvId
-     *     tvId
      * @param seasonNumber
      *     seasonNumber
+     * @param tvId
+     *     tvId
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
@@ -110,10 +110,10 @@ public class TVSeasons {
      * 
      * @param language
      *     Pass a ISO 639-1 value to display translated data for the fields that support it.
-     * @param tvId
-     *     tvId
      * @param seasonNumber
      *     seasonNumber
+     * @param tvId
+     *     tvId
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
@@ -133,10 +133,10 @@ public class TVSeasons {
      * <p>Get the aggregate credits for TV season.</p>
      * <p>This call differs from the main <code>credits</code> call in that it does not only return the season credits, but rather is a view of all the cast &amp; crew for all of the episodes belonging to a season.</p>
      * 
-     * @param tvId
-     *     tvId
      * @param seasonNumber
      *     seasonNumber
+     * @param tvId
+     *     tvId
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
@@ -148,12 +148,12 @@ public class TVSeasons {
      * <p>Get the changes for a TV season. By default only the last 24 hours are returned.</p>
      * <p>You can query up to 14 days in a single query by using the <code>start_date</code> and <code>end_date</code> query parameters.</p>
      * 
-     * @param seasonId
-     *     seasonId
      * @param endDate
      *     Filter the results with a end date.
      * @param page
      *     Specify which page to query.
+     * @param seasonId
+     *     seasonId
      * @param startDate
      *     Filter the results with a start date.
      * @throws TmdbApiException
@@ -191,10 +191,10 @@ public class TVSeasons {
      * 
      * @param language
      *     Pass a ISO 639-1 value to display translated data for the fields that support it.
-     * @param tvId
-     *     tvId
      * @param seasonNumber
      *     seasonNumber
+     * @param tvId
+     *     tvId
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
@@ -213,10 +213,10 @@ public class TVSeasons {
     /**
      * <p>Get the credits for TV season.</p>
      * 
-     * @param tvId
-     *     tvId
      * @param seasonNumber
      *     seasonNumber
+     * @param tvId
+     *     tvId
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
@@ -225,15 +225,16 @@ public class TVSeasons {
     }
 
     /**
-     * <p>Get the external ids for a TV season. We currently support the following external sources.</p> <strong>Media Databases</strong> TVDB ID Freebase MID* Freebase ID* TVRage ID*
+     * <p>Get the external ids for a TV season. We currently support the following external sources.</p>   
+     * <strong>Media Databases</strong>     TVDB ID   Freebase MID*   Freebase ID*   TVRage ID*   
      * <p>*Defunct or no longer available as a service.</p>
      * 
      * @param language
      *     Pass a ISO 639-1 value to display translated data for the fields that support it.
-     * @param tvId
-     *     tvId
      * @param seasonNumber
      *     seasonNumber
+     * @param tvId
+     *     tvId
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
@@ -250,13 +251,14 @@ public class TVSeasons {
     }
 
     /**
-     * <p>Get the external ids for a TV season. We currently support the following external sources.</p> <strong>Media Databases</strong> TVDB ID Freebase MID* Freebase ID* TVRage ID*
+     * <p>Get the external ids for a TV season. We currently support the following external sources.</p>   
+     * <strong>Media Databases</strong>     TVDB ID   Freebase MID*   Freebase ID*   TVRage ID*   
      * <p>*Defunct or no longer available as a service.</p>
      * 
-     * @param tvId
-     *     tvId
      * @param seasonNumber
      *     seasonNumber
+     * @param tvId
+     *     tvId
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
@@ -270,10 +272,10 @@ public class TVSeasons {
      * 
      * @param language
      *     Pass a ISO 639-1 value to display translated data for the fields that support it.
-     * @param tvId
-     *     tvId
      * @param seasonNumber
      *     seasonNumber
+     * @param tvId
+     *     tvId
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
@@ -293,10 +295,10 @@ public class TVSeasons {
      * <p>Get the images that belong to a TV season.</p>
      * <p>Querying images with a <code>language</code> parameter will filter the results. If you want to include a fallback language (especially useful for backdrops) you can use the <code>include_image_language</code> parameter. This should be a comma seperated value like so: <code>include_image_language=en,null</code>.</p>
      * 
-     * @param tvId
-     *     tvId
      * @param seasonNumber
      *     seasonNumber
+     * @param tvId
+     *     tvId
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
@@ -309,10 +311,10 @@ public class TVSeasons {
      * 
      * @param language
      *     Pass a ISO 639-1 value to display translated data for the fields that support it.
-     * @param tvId
-     *     tvId
      * @param seasonNumber
      *     seasonNumber
+     * @param tvId
+     *     tvId
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
@@ -331,10 +333,10 @@ public class TVSeasons {
     /**
      * <p>Get the credits for TV season.</p>
      * 
-     * @param tvId
-     *     tvId
      * @param seasonNumber
      *     seasonNumber
+     * @param tvId
+     *     tvId
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
@@ -343,14 +345,15 @@ public class TVSeasons {
     }
 
     /**
-     * <p>Get the videos that have been added to a TV season.</p><a href="https://developers.themoviedb.org/#recent-changes">\ud83d\udd17</a> Recent Changes <strong>Date</strong> <strong>Change</strong> March 23, 2019 Vimeo was added as a video source. March 20, 2019 "Behind the Scenes" and "Bloopers" and "Recap" were added as valid video types.
+     * <p>Get the videos that have been added to a TV season.</p>
+     * <a href="https://developers.themoviedb.org/#recent-changes">\ud83d\udd17</a> Recent Changes    <strong>Date</strong> <strong>Change</strong>     March 23, 2019 Vimeo was added as a video source.   March 20, 2019 "Behind the Scenes" and "Bloopers" and "Recap" were added as valid video types.
      * 
      * @param language
      *     Pass a ISO 639-1 value to display translated data for the fields that support it.
-     * @param tvId
-     *     tvId
      * @param seasonNumber
      *     seasonNumber
+     * @param tvId
+     *     tvId
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
@@ -367,12 +370,13 @@ public class TVSeasons {
     }
 
     /**
-     * <p>Get the videos that have been added to a TV season.</p><a href="https://developers.themoviedb.org/#recent-changes">\ud83d\udd17</a> Recent Changes <strong>Date</strong> <strong>Change</strong> March 23, 2019 Vimeo was added as a video source. March 20, 2019 "Behind the Scenes" and "Bloopers" and "Recap" were added as valid video types.
+     * <p>Get the videos that have been added to a TV season.</p>
+     * <a href="https://developers.themoviedb.org/#recent-changes">\ud83d\udd17</a> Recent Changes    <strong>Date</strong> <strong>Change</strong>     March 23, 2019 Vimeo was added as a video source.   March 20, 2019 "Behind the Scenes" and "Bloopers" and "Recap" were added as valid video types.
      * 
-     * @param tvId
-     *     tvId
      * @param seasonNumber
      *     seasonNumber
+     * @param tvId
+     *     tvId
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */

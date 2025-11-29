@@ -42,10 +42,10 @@ public class Account {
      *     accountId
      * @param language
      *     Pass a ISO 639-1 value to display translated data for the fields that support it.
-     * @param sessionId
-     *     sessionId
      * @param page
      *     Specify which page to query.
+     * @param sessionId
+     *     sessionId
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
@@ -84,12 +84,12 @@ public class Account {
      *     accountId
      * @param language
      *     Pass a ISO 639-1 value to display translated data for the fields that support it.
-     * @param sortBy
-     *     Sort the results.
-     * @param sessionId
-     *     sessionId
      * @param page
      *     Specify which page to query.
+     * @param sessionId
+     *     sessionId
+     * @param sortBy
+     *     Sort the results.
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
@@ -129,12 +129,12 @@ public class Account {
      *     accountId
      * @param language
      *     Pass a ISO 639-1 value to display translated data for the fields that support it.
-     * @param sortBy
-     *     Sort the results.
-     * @param sessionId
-     *     sessionId
      * @param page
      *     Specify which page to query.
+     * @param sessionId
+     *     sessionId
+     * @param sortBy
+     *     Sort the results.
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
@@ -198,12 +198,12 @@ public class Account {
      *     accountId
      * @param language
      *     Pass a ISO 639-1 value to display translated data for the fields that support it.
-     * @param sortBy
-     *     Sort the results.
-     * @param sessionId
-     *     sessionId
      * @param page
      *     Specify which page to query.
+     * @param sessionId
+     *     sessionId
+     * @param sortBy
+     *     Sort the results.
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
@@ -243,12 +243,12 @@ public class Account {
      *     accountId
      * @param language
      *     Pass a ISO 639-1 value to display translated data for the fields that support it.
-     * @param sortBy
-     *     Sort the results.
-     * @param sessionId
-     *     sessionId
      * @param page
      *     Specify which page to query.
+     * @param sessionId
+     *     sessionId
+     * @param sortBy
+     *     Sort the results.
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
@@ -288,12 +288,12 @@ public class Account {
      *     accountId
      * @param language
      *     Pass a ISO 639-1 value to display translated data for the fields that support it.
-     * @param sortBy
-     *     Sort the results.
-     * @param sessionId
-     *     sessionId
      * @param page
      *     Specify which page to query.
+     * @param sessionId
+     *     sessionId
+     * @param sortBy
+     *     Sort the results.
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
@@ -333,12 +333,12 @@ public class Account {
      *     accountId
      * @param language
      *     Pass a ISO 639-1 value to display translated data for the fields that support it.
-     * @param sortBy
-     *     Sort the results.
-     * @param sessionId
-     *     sessionId
      * @param page
      *     Specify which page to query.
+     * @param sessionId
+     *     sessionId
+     * @param sortBy
+     *     Sort the results.
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */
@@ -378,12 +378,12 @@ public class Account {
      *     accountId
      * @param language
      *     Pass a ISO 639-1 value to display translated data for the fields that support it.
-     * @param sortBy
-     *     Sort the results.
-     * @param sessionId
-     *     sessionId
      * @param page
      *     Specify which page to query.
+     * @param sessionId
+     *     sessionId
+     * @param sortBy
+     *     Sort the results.
      * @throws TmdbApiException
      *     when an unexpected status code or any other issue interacting with the API occurs
      */

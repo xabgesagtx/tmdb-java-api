@@ -17,7 +17,8 @@ public class Networks {
     }
 
     /**
-     * <p>Get the details of a network.</p><a href="https://developers.themoviedb.org/#recent-changes">\ud83d\udd17</a> Recent Changes <strong>Date</strong> <strong>Change</strong> November 14, 2020 The <code>logo_path</code> has been added to the default response.
+     * <p>Get the details of a network.</p>
+     * <a href="https://developers.themoviedb.org/#recent-changes">\ud83d\udd17</a> Recent Changes    <strong>Date</strong> <strong>Change</strong>     November 14, 2020 The <code>logo_path</code> has been added to the default response.
      * 
      * @param networkId
      *     networkId
