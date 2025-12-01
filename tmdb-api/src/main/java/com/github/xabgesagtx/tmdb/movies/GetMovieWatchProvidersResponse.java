@@ -789,6 +789,8 @@ public class GetMovieWatchProvidersResponse {
             String link;
             @JsonProperty("rent")
             List<GetMovieWatchProvidersResponse.Result.De.Rent> rent;
+            @JsonProperty("flatrate")
+            List<GetMovieWatchProvidersResponse.Result.De.Flatrate> flatrate;
             @JsonProperty("buy")
             List<GetMovieWatchProvidersResponse.Result.De.Buy> buy;
 
@@ -797,6 +799,23 @@ public class GetMovieWatchProvidersResponse {
             @Jacksonized
             @JsonIgnoreProperties(ignoreUnknown = true)
             public static class Buy {
+
+                @JsonProperty("display_priority")
+                Integer displayPriority;
+                @JsonProperty("logo_path")
+                String logoPath;
+                @JsonProperty("provider_id")
+                Integer providerId;
+                @JsonProperty("provider_name")
+                String providerName;
+
+            }
+
+            @Value
+            @Builder
+            @Jacksonized
+            @JsonIgnoreProperties(ignoreUnknown = true)
+            public static class Flatrate {
 
                 @JsonProperty("display_priority")
                 Integer displayPriority;
