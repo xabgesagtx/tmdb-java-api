@@ -3,19 +3,19 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>tmdb-api</artifactId>
-    <version>0.5-SNAPSHOT</version>
+    <version>0.5</version>
     <packaging>jar</packaging>
     <parent>
         <groupId>com.github.xabgesagtx</groupId>
         <artifactId>tmdb-java-api-parent</artifactId>
-        <version>0.5-SNAPSHOT</version>
+        <version>0.5</version>
     </parent>
 
     <dependencies>
         <dependency>
             <groupId>com.github.xabgesagtx</groupId>
             <artifactId>rest-client</artifactId>
-            <version>0.5-SNAPSHOT</version>
+            <version>0.5</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
